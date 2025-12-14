@@ -1,0 +1,16 @@
+# MkDocs
+site/
+.cache/
+
+# macOS
+.DS_Store
+
+# Editor
+*.swp
+*.swo
+*~
+
+# Python
+__pycache__/
+*.pyc
+.venv/
