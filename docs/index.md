@@ -2,7 +2,7 @@
 
 **Smart context switching for iTerm2 with auto-profile switching and tab titles.**
 
-**Version:** 2.1.0
+**Version:** 2.2.0
 
 ---
 
@@ -27,16 +27,25 @@ Automatically switches iTerm2 profiles (colors) and sets tab titles based on you
 ## Features
 
 - ✅ Auto-switch profiles by directory context
-- ✅ Tab titles with icons (📦 medfit, 🐍 myproject)
+- ✅ Tab titles with icons and **git branch**: `📦 medfit (main)`
+- ✅ **Git dirty indicator**: `📦 medfit (main)*` when uncommitted changes
 - ✅ Production environment warnings (🚨)
 - ✅ Dynamic profiles auto-installed (no manual setup)
 - ✅ Caches state to prevent redundant switches
-- ✅ No conflicts with other shell hooks
 - ✅ Zero configuration after setup
 
 ---
 
 ## Quick Start
+
+### Option 1: Install Script
+
+```bash
+cd ~/projects/dev-tools/iterm2-context-switcher
+bash scripts/install-profiles.sh
+```
+
+### Option 2: Manual Setup
 
 ```bash
 # Add to ~/.config/zsh/.zshrc (before Oh-My-Zsh loads)
@@ -64,7 +73,14 @@ When you `cd` into a directory, the integration:
 
 1. **Detects context** - Checks for project files (DESCRIPTION, pyproject.toml, etc.)
 2. **Switches profile** - Changes iTerm2 colors via escape sequence
-3. **Sets title** - Updates tab title with icon + project name
+3. **Sets title** - Updates tab title with icon + project name + git branch
+
+Example titles:
+
+- `📦 medfit (main)` - R package on main branch
+- `📦 medfit (main)*` - R package with uncommitted changes
+- `🔧 iterm2-context-switcher (dev)` - Dev-tools on dev branch
+- `🐍 myproject (feature/api)` - Python project on feature branch
 
 All changes are cached to prevent redundant switches.
 
@@ -72,8 +88,11 @@ All changes are cached to prevent redundant switches.
 
 ## Dynamic Profiles
 
-Color profiles are automatically installed via iTerm2 Dynamic Profiles:
+All 7 color profiles are automatically installed via iTerm2 Dynamic Profiles:
 
+- **R-Dev** - Blue theme for R packages
+- **AI-Session** - Purple theme for Claude/Gemini
+- **Production** - Red theme for production warning
 - **Dev-Tools** - Amber/orange theme for shell tools
 - **Emacs** - Purple/magenta theme for Emacs configs
 - **Python-Dev** - Green theme for Python projects

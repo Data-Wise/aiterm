@@ -2,35 +2,49 @@
 
 Get up and running in 2 minutes.
 
-## Minimal Setup
+## Fastest Setup (Recommended)
 
 ```bash
-# 1. Add to your .zshrc
-echo 'DISABLE_AUTO_TITLE="true"' >> ~/.zshrc
-echo 'source ~/path/to/iterm2-context-switcher/zsh/iterm2-integration.zsh' >> ~/.zshrc
+# 1. Run install script
+cd ~/projects/dev-tools/iterm2-context-switcher
+bash scripts/install-profiles.sh
 
-# 2. Reload
+# 2. Add to your .zshrc
+echo 'DISABLE_AUTO_TITLE="true"' >> ~/.zshrc
+echo 'source ~/projects/dev-tools/iterm2-context-switcher/zsh/iterm2-integration.zsh' >> ~/.zshrc
+
+# 3. Reload
 source ~/.zshrc
 
-# 3. Test
-cd ~/your/r-package
-# Tab should show: 📦 package-name
+# 4. Test
+cd ~/projects/r-packages/active/medfit
+# Tab should show: 📦 medfit (main)
 ```
 
 ## What You'll See
 
+Titles now include **git branch** and **dirty indicator**:
+
 | When you `cd` to... | Title shows | Profile |
 |---------------------|-------------|---------|
-| R package (has DESCRIPTION) | 📦 pkgname | R-Dev (green) |
-| Python project | 🐍 dirname | Python-Dev |
-| Node project | 📦 pkgname | Node-Dev |
-| Quarto project | 📊 dirname | Default |
-| Emacs project | ⚡ dirname | Default |
-| Dev tools | 🔧 dirname | Default |
-| Production folder | 🚨 dirname | Production (red) |
+| R package (clean) | `📦 medfit (main)` | R-Dev (blue) |
+| R package (dirty) | `📦 medfit (main)*` | R-Dev (blue) |
+| Python project | `🐍 myapp (dev)` | Python-Dev (green) |
+| Node project | `📦 webapp (feature/x)` | Node-Dev (dark) |
+| Quarto project | `📊 report (main)` | R-Dev (blue) |
+| Emacs project | `⚡ dotemacs (master)` | Emacs (purple) |
+| Dev tools | `🔧 cli-tool (dev)*` | Dev-Tools (amber) |
+| Production folder | `🚨 server (main)` | Production (red) |
+| AI session | `🤖 claude (main)` | AI-Session (purple) |
+
+## Git Info Format
+
+- `(branch)` - Current branch name
+- `(branch)*` - Has uncommitted changes
+- `(feature/lo…ng-name)` - Long branches truncated
 
 ## Next Steps
 
-- [Full Installation](installation.md) - Create all profiles
+- [Full Installation](installation.md) - Detailed setup guide
 - [Context Detection](../guide/context-detection.md) - How detection works
-- [Triggers](../guide/triggers.md) - Claude Code notifications
+- [Profiles](../guide/profiles.md) - Customize colors
