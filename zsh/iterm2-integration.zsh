@@ -89,7 +89,7 @@ _iterm_detect_context() {
         name=$(grep "^title:" _quarto.yml 2>/dev/null | head -1 | cut -d'"' -f2 || echo "$name")
     elif [[ -f "Cask" ]] || [[ -f ".dir-locals.el" ]] || [[ -f "init.el" ]] || [[ -f "early-init.el" ]]; then
         icon="⚡"
-    elif [[ -d "commands" ]] || [[ -d "bin" && -f "Makefile" ]]; then
+    elif [[ -d "commands" ]] || [[ -d "scripts" ]] || [[ -d "bin" && -f "Makefile" ]]; then
         icon="🔧"
     fi
 
