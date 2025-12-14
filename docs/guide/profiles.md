@@ -12,7 +12,7 @@ Dynamic profiles are automatically installed and ready to use:
 | Emacs | ⚡ | Purple/Magenta | Emacs configurations |
 | Python-Dev | 🐍 | Green | Python projects |
 | Node-Dev | 📦 | Dark | Node.js projects |
-| R-Dev | 📦 | Blue | R packages (create manually) |
+| R-Dev | 📦 | Blue | R packages, Quarto |
 | AI-Session | 🤖 | Purple | Claude/Gemini sessions |
 | Production | 🚨 | Red | Production warning |
 
@@ -48,18 +48,7 @@ Profiles are stored in:
 ~/Library/Application Support/iTerm2/DynamicProfiles/context-switcher-profiles.json
 ```
 
-## Creating Additional Profiles
-
-### R-Dev Profile (Manual)
-
-The R-Dev profile needs to be created manually:
-
-1. Open iTerm2 → Settings → Profiles
-2. Click "+" to create new profile
-3. Name it exactly: `R-Dev`
-4. Set background color: Blue (#1a3a5c recommended)
-5. Under General → Title: Select "Session Name"
-6. Check "Applications in terminal may change title"
+## Creating Custom Profiles
 
 ### Custom Dynamic Profiles
 
@@ -83,6 +72,9 @@ Add to the existing JSON file:
 
 | Profile | Background | Foreground |
 |---------|------------|------------|
+| R-Dev | Dark blue (#141f2e) | Light blue (#cce6ff) |
+| AI-Session | Dark purple (#1f1429) | Light purple (#e6d9ff) |
+| Production | Dark red (#330d0d) | Light red (#ffd9d9) |
 | Dev-Tools | Dark brown (#1f1a0f) | Amber (#ffc259) |
 | Emacs | Dark purple (#1a1424) | Light purple (#d9ccf2) |
 | Python-Dev | Green (#137746) | Yellow (#fff0a5) |
