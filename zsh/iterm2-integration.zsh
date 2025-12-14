@@ -1,10 +1,17 @@
 #!/usr/bin/env zsh
 # ITERM2 CONTEXT SWITCHER - Profile + Title
 # Switches profile colors AND sets tab title with icon
+# Integrates with shared project-detector when available
 
 # Cache to avoid redundant switches
 typeset -g _ITERM_CURRENT_PROFILE=""
 typeset -g _ITERM_CURRENT_TITLE=""
+
+# Try to load shared project detector (from zsh-claude-workflow)
+typeset -g _ITERM_HAS_DETECTOR=0
+if [[ -f "$HOME/.config/zsh/functions/project-detector.zsh" ]]; then
+    source "$HOME/.config/zsh/functions/project-detector.zsh" 2>/dev/null && _ITERM_HAS_DETECTOR=1
+fi
 
 _iterm_switch_profile() {
     local new_profile="$1"
@@ -20,6 +27,16 @@ _iterm_set_title() {
     printf '\033]2;%s\007' "$new_title"  # Window title (OSC 2)
 }
 
+# Map project types to iTerm2 profiles
+_iterm_type_to_profile() {
+    case "$1" in
+        rpkg) echo "R-Dev" ;;
+        python) echo "Python-Dev" ;;
+        node) echo "Node-Dev" ;;
+        *) echo "Default" ;;
+    esac
+}
+
 _iterm_detect_context() {
     [[ "$TERM_PROGRAM" != "iTerm.app" ]] && return
 
@@ -27,15 +44,36 @@ _iterm_detect_context() {
     local icon=""
     local name="${PWD:t}"  # Current directory name
 
-    # Detect context and set profile + icon
-    # Priority: Safety > AI > Language-specific > Document types > Tools
+    # Priority overrides (Safety > AI sessions)
     if [[ $PWD == */production/* || $PWD == */prod/* ]]; then
         profile="Production"
         icon="🚨"
+        _iterm_switch_profile "$profile"
+        _iterm_set_title "$icon $name"
+        return
     elif [[ $PWD == */claude-sessions/* || $PWD == */gemini-sessions/* ]]; then
         profile="AI-Session"
         icon="🤖"
-    elif [[ -f "DESCRIPTION" ]]; then
+        _iterm_switch_profile "$profile"
+        _iterm_set_title "$icon $name"
+        return
+    fi
+
+    # Use shared detector if available (unified detection)
+    if (( _ITERM_HAS_DETECTOR )); then
+        local proj_type=$(get_project_type 2>/dev/null)
+        if [[ -n "$proj_type" && "$proj_type" != "unknown" ]]; then
+            icon=$(get_project_icon "$proj_type" 2>/dev/null)
+            name=$(get_project_name 2>/dev/null || echo "$name")
+            profile=$(_iterm_type_to_profile "$proj_type")
+            _iterm_switch_profile "$profile"
+            [[ -n "$icon" ]] && _iterm_set_title "$icon $name" || _iterm_set_title "$name"
+            return
+        fi
+    fi
+
+    # Fallback detection (fast, built-in)
+    if [[ -f "DESCRIPTION" ]]; then
         profile="R-Dev"
         icon="📦"
         name=$(grep "^Package:" DESCRIPTION 2>/dev/null | cut -d' ' -f2 || echo "$name")
@@ -48,7 +86,6 @@ _iterm_detect_context() {
         name=$(grep '"name"' package.json 2>/dev/null | head -1 | cut -d'"' -f4 || echo "$name")
     elif [[ -f "_quarto.yml" ]]; then
         icon="📊"
-        # Get project title from _quarto.yml
         name=$(grep "^title:" _quarto.yml 2>/dev/null | head -1 | cut -d'"' -f2 || echo "$name")
     elif [[ -f "Cask" ]] || [[ -f ".dir-locals.el" ]] || [[ -f "init.el" ]] || [[ -f "early-init.el" ]]; then
         icon="⚡"
@@ -63,6 +100,39 @@ _iterm_detect_context() {
         _iterm_set_title "$icon $name"
     else
         _iterm_set_title "$name"
+    fi
+}
+
+# ─── Session-Aware Profile Switching ─────────────────────────────
+
+# Store the profile before session started
+typeset -g _ITERM_PRE_SESSION_PROFILE=""
+
+# Called when a focus session starts
+iterm_session_start() {
+    local session_name="${1:-Focus}"
+
+    # Save current profile
+    _ITERM_PRE_SESSION_PROFILE="$_ITERM_CURRENT_PROFILE"
+
+    # Switch to Focus profile and update title
+    _iterm_switch_profile "Focus"
+    _iterm_set_title "🎯 $session_name"
+
+    echo "🎯 iTerm2: Focus mode activated"
+}
+
+# Called when a focus session ends
+iterm_session_end() {
+    if [[ -n "$_ITERM_PRE_SESSION_PROFILE" ]]; then
+        # Restore previous profile
+        _iterm_switch_profile "$_ITERM_PRE_SESSION_PROFILE"
+        _ITERM_PRE_SESSION_PROFILE=""
+
+        # Re-detect context for title
+        _iterm_detect_context
+
+        echo "✅ iTerm2: Focus mode ended"
     fi
 }
 
