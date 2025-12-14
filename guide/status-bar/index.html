@@ -12,13 +12,13 @@
         <meta name="author" content="Data-Wise">
       
       
-        <link rel="canonical" href="https://data-wise.github.io/iterm2-context-switcher/reference/configuration/">
+        <link rel="canonical" href="https://data-wise.github.io/iterm2-context-switcher/guide/status-bar/">
       
       
-        <link rel="prev" href="../../guide/triggers/">
+        <link rel="prev" href="../profiles/">
       
       
-        <link rel="next" href="../troubleshooting/">
+        <link rel="next" href="../triggers/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Configuration - iTerm2 Context Switcher</title>
+        <title>Status Bar - iTerm2 Context Switcher</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#configuration-reference" class="md-skip">
+        <a href="#status-bar-integration" class="md-skip">
           Skip to content
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Configuration
+              Status Bar
             
           </span>
         </div>
@@ -264,11 +264,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../guide/context-detection/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../context-detection/" class="md-tabs__link">
           
   
   
@@ -284,13 +286,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../reference/configuration/" class="md-tabs__link">
           
   
   
@@ -493,26 +493,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -530,7 +535,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -548,7 +553,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guide/context-detection/" class="md-nav__link">
+      <a href="../context-detection/" class="md-nav__link">
         
   
   
@@ -576,7 +581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guide/profiles/" class="md-nav__link">
+      <a href="../profiles/" class="md-nav__link">
         
   
   
@@ -601,10 +606,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../guide/status-bar/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Status Bar
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -620,6 +652,231 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#available-variables-v240" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Available Variables (v2.4.0)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Setup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-enable-status-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Enable Status Bar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-add-context-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Add Context Component
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Configurations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Example Configurations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#minimal-icon-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimal: Icon + Name
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#full-icon-name-branch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Full: Icon + Name + Branch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profile-aware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Profile-Aware
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#branch-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Branch Only
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-status-bar-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Status Bar Layout
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#status-bar-styling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status Bar Styling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Status Bar Styling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#component-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Component Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recommended-settings-for-context-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Settings for Context Component
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#per-profile-status-bars" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Per-Profile Status Bars
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#built-in-git-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Built-in Git Component
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#technical-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Technical Details
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -632,7 +889,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guide/triggers/" class="md-nav__link">
+      <a href="../triggers/" class="md-nav__link">
         
   
   
@@ -664,31 +921,26 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
             
   
   
@@ -706,7 +958,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -721,37 +973,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Configuration
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../reference/configuration/" class="md-nav__link">
         
   
   
@@ -767,137 +992,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#shell-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Shell Configuration
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Shell Configuration">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#required-in-zshrc" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Required in .zshrc
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#environment-variables" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Environment Variables
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#integration-variables" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Integration Variables
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#iterm2-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        iTerm2 Configuration
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="iTerm2 Configuration">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#title-settings" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Title Settings
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#for-triggers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        For Triggers
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#file-locations" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        File Locations
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#escape-sequences-used" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Escape Sequences Used
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -910,7 +1004,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/" class="md-nav__link">
+      <a href="../../reference/troubleshooting/" class="md-nav__link">
         
   
   
@@ -965,22 +1059,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#shell-configuration" class="md-nav__link">
+  <a href="#available-variables-v240" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Shell Configuration
+        Available Variables (v2.4.0)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Shell Configuration">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Setup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Setup">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#required-in-zshrc" class="md-nav__link">
+  <a href="#1-enable-status-bar" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Required in .zshrc
+        1. Enable Status Bar
       
     </span>
   </a>
@@ -988,10 +1093,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#environment-variables" class="md-nav__link">
+  <a href="#2-add-context-component" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Environment Variables
+        2. Add Context Component
       
     </span>
   </a>
@@ -1004,33 +1109,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#integration-variables" class="md-nav__link">
+  <a href="#example-configurations" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Integration Variables
+        Example Configurations
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#iterm2-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        iTerm2 Configuration
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="iTerm2 Configuration">
+    <nav class="md-nav" aria-label="Example Configurations">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#title-settings" class="md-nav__link">
+  <a href="#minimal-icon-name" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Title Settings
+        Minimal: Icon + Name
       
     </span>
   </a>
@@ -1038,10 +1132,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#for-triggers" class="md-nav__link">
+  <a href="#full-icon-name-branch" class="md-nav__link">
     <span class="md-ellipsis">
       
-        For Triggers
+        Full: Icon + Name + Branch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profile-aware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Profile-Aware
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#branch-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Branch Only
       
     </span>
   </a>
@@ -1054,10 +1170,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#file-locations" class="md-nav__link">
+  <a href="#recommended-status-bar-layout" class="md-nav__link">
     <span class="md-ellipsis">
       
-        File Locations
+        Recommended Status Bar Layout
       
     </span>
   </a>
@@ -1065,10 +1181,82 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#escape-sequences-used" class="md-nav__link">
+  <a href="#status-bar-styling" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Escape Sequences Used
+        Status Bar Styling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Status Bar Styling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#component-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Component Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recommended-settings-for-context-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Settings for Context Component
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#per-profile-status-bars" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Per-Profile Status Bars
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#built-in-git-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Built-in Git Component
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#technical-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Technical Details
       
     </span>
   </a>
@@ -1095,131 +1283,161 @@
   
 
 
-<h1 id="configuration-reference">Configuration Reference</h1>
-<h2 id="shell-configuration">Shell Configuration</h2>
-<h3 id="required-in-zshrc">Required in .zshrc</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Must be before Oh My Zsh / Antidote loads</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nv">DISABLE_AUTO_TITLE</span><span class="o">=</span><span class="s2">&quot;true&quot;</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># At end of .zshrc</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nb">source</span><span class="w"> </span>~/path/to/iterm2-context-switcher/zsh/iterm2-integration.zsh
+<h1 id="status-bar-integration">Status Bar Integration</h1>
+<p>Display context information in iTerm2's status bar.</p>
+<h2 id="available-variables-v240">Available Variables (v2.4.0)</h2>
+<p>The context switcher sets these user variables on every directory change:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Content</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>\(user.ctxIcon)</code></td>
+<td>Context icon</td>
+<td><code>📦</code>, <code>🐍</code>, <code>🔧</code></td>
+</tr>
+<tr>
+<td><code>\(user.ctxName)</code></td>
+<td>Project name</td>
+<td><code>medfit</code>, <code>myapp</code></td>
+</tr>
+<tr>
+<td><code>\(user.ctxBranch)</code></td>
+<td>Git branch</td>
+<td><code>main</code>, <code>dev</code></td>
+</tr>
+<tr>
+<td><code>\(user.ctxProfile)</code></td>
+<td>Active profile</td>
+<td><code>R-Dev</code>, <code>Python-Dev</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="quick-setup">Quick Setup</h2>
+<h3 id="1-enable-status-bar">1. Enable Status Bar</h3>
+<ol>
+<li>Open iTerm2 → Settings → Profiles</li>
+<li>Select your profile (e.g., <strong>Default</strong>)</li>
+<li>Go to <strong>Session</strong> tab</li>
+<li>Check <strong>Status bar enabled</strong></li>
+<li>Click <strong>Configure Status Bar</strong></li>
+</ol>
+<h3 id="2-add-context-component">2. Add Context Component</h3>
+<ol>
+<li>In the configuration panel, find <strong>Interpolated String</strong></li>
+<li>Drag it to your status bar</li>
+<li>Click <strong>Configure Component</strong></li>
+<li>Set <strong>String Value</strong> to:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>\(user.ctxIcon) \(user.ctxName) (\(user.ctxBranch))
 </code></pre></div>
-<h3 id="environment-variables">Environment Variables</h3>
-<table>
-<thead>
-<tr>
-<th>Variable</th>
-<th>Purpose</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>TERM_PROGRAM</code></td>
-<td>Must be "iTerm.app"</td>
-<td>Set by iTerm2</td>
-</tr>
-<tr>
-<td><code>DISABLE_AUTO_TITLE</code></td>
-<td>Prevent OMZ title override</td>
-<td>Not set</td>
-</tr>
-</tbody>
-</table>
-<h2 id="integration-variables">Integration Variables</h2>
-<p>These are set by the integration (read-only):</p>
-<table>
-<thead>
-<tr>
-<th>Variable</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>_ITERM_CURRENT_PROFILE</code></td>
-<td>Currently active profile</td>
-</tr>
-<tr>
-<td><code>_ITERM_CURRENT_TITLE</code></td>
-<td>Current tab title</td>
-</tr>
-<tr>
-<td><code>_ITERM_HOOK_REGISTERED</code></td>
-<td>Prevents duplicate hooks</td>
-</tr>
-</tbody>
-</table>
-<h2 id="iterm2-configuration">iTerm2 Configuration</h2>
-<h3 id="title-settings">Title Settings</h3>
-<p>Path: Settings → Profiles → General → Title</p>
-<table>
-<thead>
-<tr>
-<th>Setting</th>
-<th>Recommended</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Title</td>
-<td>Session Name</td>
-</tr>
-<tr>
-<td>Alternative</td>
-<td>Session Name + Job</td>
-</tr>
-</tbody>
-</table>
-<h3 id="for-triggers">For Triggers</h3>
-<p>Path: Settings → Profiles → Default → Advanced → Triggers</p>
-<p>See <a href="../../guide/triggers/">Triggers Guide</a> for setup.</p>
-<h2 id="file-locations">File Locations</h2>
-<table>
-<thead>
-<tr>
-<th>File</th>
-<th>Location</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Integration script</td>
-<td><code>zsh/iterm2-integration.zsh</code></td>
-</tr>
-<tr>
-<td>Dynamic Profiles</td>
-<td><code>profiles/context-switcher-profiles.json</code></td>
-</tr>
-<tr>
-<td>iTerm2 Dynamic Profiles</td>
-<td><code>~/Library/Application Support/iTerm2/DynamicProfiles/</code></td>
-</tr>
-<tr>
-<td>iTerm2 Preferences</td>
-<td><code>~/Library/Preferences/com.googlecode.iterm2.plist</code></td>
-</tr>
-</tbody>
-</table>
-<h2 id="escape-sequences-used">Escape Sequences Used</h2>
-<table>
-<thead>
-<tr>
-<th>Sequence</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>\033]1337;SetProfile=NAME\007</code></td>
-<td>Switch profile</td>
-</tr>
-<tr>
-<td><code>\033]2;TITLE\007</code></td>
-<td>Set window title</td>
-</tr>
-</tbody>
-</table>
+<p>This displays: <code>📦 medfit (main)</code></p>
+<hr />
+<h2 id="example-configurations">Example Configurations</h2>
+<h3 id="minimal-icon-name">Minimal: Icon + Name</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>\(user.ctxIcon) \(user.ctxName)
+</code></pre></div>
+<p>Shows: <code>🔧 iterm2-context-switcher</code></p>
+<h3 id="full-icon-name-branch">Full: Icon + Name + Branch</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>\(user.ctxIcon) \(user.ctxName) (\(user.ctxBranch))
+</code></pre></div>
+<p>Shows: <code>📦 medfit (main)</code></p>
+<h3 id="profile-aware">Profile-Aware</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>[\(user.ctxProfile)] \(user.ctxIcon) \(user.ctxName)
+</code></pre></div>
+<p>Shows: <code>[R-Dev] 📦 medfit</code></p>
+<h3 id="branch-only">Branch Only</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>\(user.ctxBranch)
+</code></pre></div>
+<p>Shows: <code>main</code> or <code>feature/new-api</code></p>
+<hr />
+<h2 id="recommended-status-bar-layout">Recommended Status Bar Layout</h2>
+<p>A balanced status bar setup:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>┌────────────────────────────────────────────────────────┐
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>│ 📦 medfit (main)  │  ~/projects/...  │  CPU  │  12:30 │
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>└────────────────────────────────────────────────────────┘
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>     ↑                    ↑               ↑        ↑
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>  Context            Current Dir       System   Clock
+</code></pre></div>
+<p><strong>Components (left to right):</strong></p>
+<ol>
+<li><strong>Interpolated String</strong> - <code>\(user.ctxIcon) \(user.ctxName) (\(user.ctxBranch))</code></li>
+<li><strong>Spring</strong> (spacer)</li>
+<li><strong>Current Directory</strong> (built-in)</li>
+<li><strong>CPU Utilization</strong> (built-in, optional)</li>
+<li><strong>Clock</strong> (built-in)</li>
+</ol>
+<hr />
+<h2 id="status-bar-styling">Status Bar Styling</h2>
+<h3 id="component-settings">Component Settings</h3>
+<p>For each component, you can set:</p>
+<ul>
+<li><strong>Background Color</strong> - Override default</li>
+<li><strong>Text Color</strong> - Override default</li>
+<li><strong>Priority</strong> - Higher priority keeps component visible when space is tight (default: 5)</li>
+<li><strong>Minimum Width</strong> - Prevent component from shrinking too small</li>
+</ul>
+<h3 id="recommended-settings-for-context-component">Recommended Settings for Context Component</h3>
+<ul>
+<li><strong>Priority</strong>: 10 (high - keep visible)</li>
+<li><strong>Minimum Width</strong>: 100</li>
+<li><strong>Background Color</strong>: Match your theme or leave default</li>
+</ul>
+<hr />
+<h2 id="per-profile-status-bars">Per-Profile Status Bars</h2>
+<p>Each iTerm2 profile can have its own status bar configuration.</p>
+<p><strong>Tip:</strong> Configure the status bar on your <strong>Default</strong> profile, then child profiles (R-Dev, Python-Dev, etc.) will inherit it automatically.</p>
+<hr />
+<h2 id="built-in-git-component">Built-in Git Component</h2>
+<p>iTerm2 also has a built-in <strong>git state</strong> component that shows:</p>
+<ul>
+<li>Branch name</li>
+<li>Dirty/clean status</li>
+<li>Ahead/behind remote</li>
+</ul>
+<p>You can use this alongside or instead of <code>\(user.ctxBranch)</code>.</p>
+<p>To add it:</p>
+<ol>
+<li>Configure Status Bar</li>
+<li>Drag <strong>git state</strong> to your bar</li>
+<li>It auto-updates based on the current directory</li>
+</ol>
+<hr />
+<h2 id="troubleshooting">Troubleshooting</h2>
+<p><strong>Variables show empty or literal text:</strong></p>
+<ul>
+<li>Reload your shell: <code>source ~/.zshrc</code></li>
+<li>Verify integration is loaded: <code>type _iterm_detect_context</code></li>
+<li>Run <code>cd .</code> to trigger an update</li>
+</ul>
+<p><strong>Status bar not visible:</strong></p>
+<ul>
+<li>Enable in Settings → Profiles → Session → Status bar enabled</li>
+<li>Check the profile you're using has status bar enabled</li>
+</ul>
+<p><strong>Variables not updating:</strong></p>
+<ul>
+<li>Variables update on directory change (<code>cd</code>)</li>
+<li>Run <code>_iterm_detect_context</code> manually to force update</li>
+</ul>
+<p><strong>Wrong variable values:</strong></p>
+<ul>
+<li>Check you're in the expected directory</li>
+<li>Verify git repo exists for branch info</li>
+</ul>
+<hr />
+<h2 id="technical-details">Technical Details</h2>
+<p>User variables are set via iTerm2's OSC 1337 escape sequence:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">printf</span><span class="w"> </span><span class="s1">&#39;\033]1337;SetUserVar=%s=%s\007&#39;</span><span class="w"> </span><span class="s2">&quot;name&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;value&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="k">)</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>The context switcher calls this automatically on every <code>chpwd</code> hook (directory change).</p>
+<p>Variables persist in the session until changed or the session ends.</p>
 
 
 
