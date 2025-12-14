@@ -175,6 +175,113 @@ A balanced status bar setup:
 
 ---
 
+## Status Bar Position
+
+By default, the status bar appears at the **top**. To move it to the **bottom**:
+
+1. Open **iTerm2** → **Settings** (⌘,)
+2. Click **Appearance** tab
+3. Under **General**, find **Status bar location**
+4. Select **Bottom**
+
+!!! tip "Bottom Recommended"
+    Bottom placement keeps the status bar near your command line, making it easier to glance at context while typing.
+
+---
+
+## Available Components
+
+### Recommended Components
+
+| Component | Description | Use Case |
+|-----------|-------------|----------|
+| **Interpolated String** | Custom variables | Your context info |
+| **git state** | Branch, dirty, ahead/behind | Built-in git info |
+| **Current Directory** | Full path | Know where you are |
+| **Clock** | Time and date | Always useful |
+| **Job Name** | Running process | See what's executing |
+
+### System Monitors
+
+| Component | Description | Use Case |
+|-----------|-------------|----------|
+| **CPU Utilization** | CPU graph over time | Monitor heavy jobs |
+| **Memory Utilization** | RAM graph over time | Watch data analysis |
+| **Battery Level** | Battery with charging | Laptop users |
+| **Network Throughput** | Upload/download | Monitor transfers |
+
+### Spacers
+
+| Component | Description |
+|-----------|-------------|
+| **Spring** | Flexible spacer (pushes items apart) |
+| **Fixed-size Spacer** | Fixed width gap |
+| **Empty Space** | Minimal gap |
+
+### UI Tools
+
+| Component | Description |
+|-----------|-------------|
+| **Composer** | Edit commands before sending |
+| **Search Tool** | Search terminal history |
+| **Filter** | Filter terminal output |
+| **Snippets** | Quick text insertion |
+
+---
+
+## Suggested Layouts
+
+### Minimal (Recommended)
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│ 📦 medfit (main)  │  ~/projects/r-packages/active/medfit  │  14:30 │
+└──────────────────────────────────────────────────────────────┘
+```
+
+**Components:**
+
+1. Interpolated String: `\(user.ctxIcon) \(user.ctxName) (\(user.ctxBranch))`
+2. Spring
+3. Current Directory
+4. Clock
+
+### With System Monitors
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│ 📦 medfit  │  CPU ▃▅▂  │  RAM ▆▄▅  │  ~/proj...  │  14:30   │
+└──────────────────────────────────────────────────────────────┘
+```
+
+**Components:**
+
+1. Interpolated String: `\(user.ctxIcon) \(user.ctxName)`
+2. CPU Utilization
+3. Memory Utilization
+4. Spring
+5. Current Directory
+6. Clock
+
+### Developer Focus
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│ 📦 medfit  │  main*  │  R  │  ~/projects/...  │  14:30     │
+└──────────────────────────────────────────────────────────────┘
+```
+
+**Components:**
+
+1. Interpolated String: `\(user.ctxIcon) \(user.ctxName)`
+2. git state (built-in)
+3. Job Name
+4. Spring
+5. Current Directory
+6. Clock
+
+---
+
 ## Status Bar Styling
 
 ### Component Settings
