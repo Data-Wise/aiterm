@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(chmod:*)",
+      "Bash(./scripts/verify-setup.sh:*)",
+      "Bash(zsh -n:*)",
+      "Bash(timeout 10 zsh:*)",
+      "Bash(echo \"⚠️ Command timed out or failed (exit code: $?\")",
+      "Bash(gtimeout 10 zsh:*)",
+      "Bash(echo:*)",
+      "Bash(# Check for downloaded iTerm2 themes echo \"\"=== Looking for downloaded themes ===\"\" find ~/Downloads -name \"\"*.itermcolors\"\" -mtime -7)",
+      "WebFetch(domain:iterm2colorschemes.com)",
+      "Bash(# Download recommended themes from the repository cd ~/Downloads echo \"\"=== Downloading recommended themes ===\"\" # Purple for AI-Session curl -sLO \"\"https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/master/schemes/Shades%20of%20Purple.itermcolors\"\" && echo \"\"✅ Shades of Purple\"\" # Green for Python curl -sLO \"\"https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/master/schemes/Grass.itermcolors\"\" && echo \"\"✅ Grass (green)\"\" # Yellow/Amber for Node curl -sLO \"\"https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/master/schemes/Citruszest.itermcolors\"\" && echo \"\"✅ Citruszest (yellow)\"\" # Blue for R (alternative to Solarized) curl -sLO \"\"https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/master/schemes/Cobalt%20Neon.itermcolors\"\" && echo \"\"✅ Cobalt Neon (blue)\"\" echo \"\"\"\" echo \"\"=== All available themes ===\"\" ls -1 ~/Downloads/*.itermcolors)",
+      "Bash(xargs:*)",
+      "Bash(# Find iTerm2 app echo \"\"=== Finding iTerm2 ===\"\" ls -la /Applications/iTerm.app && echo \"\"Found: /Applications/iTerm.app\"\" ls -la /Applications/iTerm2.app && echo \"\"Found: /Applications/iTerm2.app\"\" mdfind \"\"kMDItemKind == ''Application'' && kMDItemDisplayName == ''iTerm*''\"\")",
+      "Bash(__NEW_LINE__ echo \"\")",
+      "Bash(open:*)",
+      "Bash(pgrep:*)",
+      "Bash(# Research: Test badge by running command in iTerm2\necho \"\"=== Testing Badge in iTerm2 ===\"\"\n\n# Navigate to R package and trigger the context switcher\nosascript <<'EOF'\ntell application \"iTerm\"\n    activate\n    tell current session of current window\n        write text \"cd ~/projects/r-packages/active/medfit && echo 'Badge should show: 📦 medfit'\"\n    end tell\nend tell\nEOF\n\necho \"\"✅ Sent cd command to iTerm2\"\"\necho \"\"\"\"\necho \"\"Check the iTerm2 window - you should see a badge in the top-right corner\"\")",
+      "WebFetch(domain:iterm2.com)",
+      "Bash(# Manually set a badge in the current iTerm2 session to test\nosascript <<'EOF'\ntell application \"iTerm\"\n    activate\n    tell current session of current window\n        -- Set badge directly via escape sequence\n        write text \"printf '\\\\033]1337;SetBadgeFormat=%s\\\\a' $(echo -n '📦 medfit' | base64)\"\n    end tell\nend tell\nEOF\n\necho \"\"✅ Sent badge command\"\"\necho \"\"\"\"\necho \"\"If badge doesn''t appear, it may need to be enabled in profile settings:\"\"\necho \"\"  iTerm2 → Settings → Profiles → General → Badge\"\")",
+      "Bash(# Check badge settings in iTerm2 preferences echo \"\"=== Checking Badge Settings in Profiles ===\"\" # Convert plist and check badge-related settings plutil -convert xml1 -o /tmp/iterm2-prefs.xml ~/Library/Preferences/com.googlecode.iterm2.plist # Look for badge-related keys echo \"\"Badge-related settings found:\"\" grep -i \"\"badge\"\" /tmp/iterm2-prefs.xml)",
+      "Bash(zsh:*)",
+      "Bash(# Check Dynamic Profiles location echo \"\"=== Dynamic Profiles Directory ===\"\" ls -la ~/Library/Application\\ Support/iTerm2/DynamicProfiles/ || echo \"\"Directory doesn''t exist\"\" echo \"\"\"\" echo \"\"=== Profile names in Dynamic Profiles JSON ===\"\" cat ~/Library/Application\\ Support/iTerm2/DynamicProfiles/context-switcher-profiles.json)",
+      "Bash(# Test: Send escape sequence directly to iTerm2\nosascript <<'EOF'\ntell application \"iTerm\"\n    activate\n    tell current session of current window\n        -- Test switching to R-Dev profile\n        write text \"printf '\\\\033]1337;SetProfile=R-Dev\\\\007'\"\n    end tell\nend tell\nEOF\n\necho \"\"\"\"\necho \"\"Sent test command to iTerm2.\"\"\necho \"\"Check if the terminal background color changed to green (R-Dev profile).\"\")",
+      "WebSearch",
+      "Bash(# Check zsh-claude-workflow structure ls ~/projects/dev-tools/zsh-claude-workflow/)",
+      "Bash(git init:*)",
+      "Bash(git add:*)"
+    ]
+  }
+}
