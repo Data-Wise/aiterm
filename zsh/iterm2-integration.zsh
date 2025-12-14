@@ -59,10 +59,11 @@ _iterm_detect_context() {
         return
     fi
 
-    # Use shared detector if available (unified detection)
+    # Use shared detector if available (for specific types only)
     if (( _ITERM_HAS_DETECTOR )); then
         local proj_type=$(get_project_type 2>/dev/null)
-        if [[ -n "$proj_type" && "$proj_type" != "unknown" ]]; then
+        # Only use shared detector for specific types, not generic "project"
+        if [[ -n "$proj_type" && "$proj_type" != "unknown" && "$proj_type" != "project" ]]; then
             icon=$(get_project_icon "$proj_type" 2>/dev/null)
             name=$(get_project_name 2>/dev/null || echo "$name")
             profile=$(_iterm_type_to_profile "$proj_type")
@@ -89,7 +90,8 @@ _iterm_detect_context() {
         name=$(grep "^title:" _quarto.yml 2>/dev/null | head -1 | cut -d'"' -f2 || echo "$name")
     elif [[ -f "Cask" ]] || [[ -f ".dir-locals.el" ]] || [[ -f "init.el" ]] || [[ -f "early-init.el" ]]; then
         icon="⚡"
-    elif [[ -d "commands" ]] || [[ -d "scripts" ]] || [[ -d "bin" && -f "Makefile" ]]; then
+    elif [[ -d ".git" ]] && { [[ -d "commands" ]] || [[ -d "scripts" ]] || [[ -d "bin" && -f "Makefile" ]]; }; then
+        profile="Dev-Tools"
         icon="🔧"
     fi
 
