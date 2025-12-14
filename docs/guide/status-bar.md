@@ -15,28 +15,105 @@ The context switcher sets these user variables on every directory change:
 
 ---
 
-## Quick Setup
+## Step-by-Step Setup
 
-### 1. Enable Status Bar
+### Step 1: Enable Status Bar
 
-1. Open iTerm2 → Settings → Profiles
-2. Select your profile (e.g., **Default**)
-3. Go to **Session** tab
-4. Check **Status bar enabled**
-5. Click **Configure Status Bar**
+1. Open **iTerm2** → **Settings** (⌘,)
+2. Click **Profiles** tab
+3. Select your profile (e.g., **Default**) in the left sidebar
+4. Click **Session** sub-tab (in the row: General, Colors, Text, **Session**, etc.)
+5. Check the box: **Status bar enabled**
+6. Click **Configure Status Bar** button
 
-### 2. Add Context Component
+![Status Bar Enable](https://iterm2.com/img/screenshots/v3-screen-shots/session.png)
 
-1. In the configuration panel, find **Interpolated String**
-2. Drag it to your status bar
-3. Click **Configure Component**
-4. Set **String Value** to:
+### Step 2: Add Interpolated String Component
+
+The Configure Status Bar panel has two sections:
+
+- **Top**: Available components (drag from here)
+- **Bottom**: Active components (your status bar)
+
+1. Scroll down in the **available components** list
+2. Find **Interpolated String** (near the bottom)
+3. **Drag** it to the **Active Components** area at the bottom
+4. Position it where you want (left side recommended)
+
+### Step 3: Configure the Component
+
+1. **Click** on the Interpolated String component you just added
+2. Click **Configure Component** button (bottom left)
+3. In the **String Value** field, enter:
 
 ```
 \(user.ctxIcon) \(user.ctxName) (\(user.ctxBranch))
 ```
 
-This displays: `📦 medfit (main)`
+4. Optionally set:
+   - **Background Color**: Pick a color or leave default
+   - **Text Color**: Pick a color or leave default
+   - **Size**: Fixed or Auto
+
+5. Click **OK** to close the component config
+6. Click **OK** to close the status bar config
+
+### Step 4: Reload Your Shell
+
+```bash
+source ~/.zshrc
+```
+
+Then `cd` to a project directory to see it update!
+
+---
+
+## Understanding Interpolated Strings
+
+iTerm2 interpolated strings use `\(expression)` syntax:
+
+```
+\(variableName)           → Evaluates to variable value
+\(user.customVar)         → User-defined variables start with "user."
+```
+
+**Our variables:**
+
+- `\(user.ctxIcon)` → `📦`
+- `\(user.ctxName)` → `medfit`
+- `\(user.ctxBranch)` → `main`
+- `\(user.ctxProfile)` → `R-Dev`
+
+**Combining them:**
+
+```
+\(user.ctxIcon) \(user.ctxName)
+```
+
+Result: `📦 medfit`
+
+---
+
+## Built-in Variables You Can Also Use
+
+iTerm2 provides many built-in variables:
+
+| Variable | Description |
+|----------|-------------|
+| `\(session.path)` | Current directory path |
+| `\(session.hostname)` | Current hostname |
+| `\(session.username)` | Current username |
+| `\(session.jobName)` | Running command name |
+| `\(session.columns)` | Terminal width |
+| `\(session.rows)` | Terminal height |
+
+**Example combining built-in and custom:**
+
+```
+\(user.ctxIcon) \(user.ctxName) @ \(session.hostname)
+```
+
+Result: `📦 medfit @ macbook`
 
 ---
 
