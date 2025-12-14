@@ -2,6 +2,20 @@
 
 All notable changes to iterm2-context-switcher will be documented in this file.
 
+## [2.0.1] - 2025-12-14
+
+### Added
+- **Dev-Tools profile** - New profile for dev-tools projects with 🔧 icon
+- **scripts/ detection** - Dev-tools now detected by `scripts/` directory (not just `commands/`)
+
+### Fixed
+- **Shared detector bypass** - Skip generic "project" type, use local detection for specifics
+- **False positive fix** - Require `.git` for dev-tools detection (prevents `~/scripts` false positive)
+- **iTerm2 title setting** - Profiles must use "Session Name" for escape sequences to work
+
+### Changed
+- Detection now more specific: dev-tools requires git repo + commands/ or scripts/
+
 ## [2.0.0] - 2025-12-14
 
 ### Added
@@ -60,12 +74,11 @@ All notable changes to iterm2-context-switcher will be documented in this file.
 
 ### Planned
 - Git branch in tab title (`📦 medfit (main)`)
-- Color profiles for Quarto/Emacs/DevTools
-- MCP server detection (🔌 icon)
+- Color profiles for Quarto/Emacs/MCP
 - iTerm2 triggers for Claude Code notifications
 - Status bar integration
 
 ---
 
-**Project Status:** Complete (v2.0)
+**Project Status:** Complete (v2.0.1)
 **Live Docs:** https://data-wise.github.io/iterm2-context-switcher/
