@@ -89,7 +89,15 @@
       "Bash(plutil:*)",
       "Bash(ps:*)",
       "Bash(bash -c 'zsh ./scripts/test-context-switcher.sh >/dev/null 2>&1; echo \"\"Exit code: $?\"\"')",
-      "Bash(timeout 5 ./scripts/test-context-switcher.sh:*)"
+      "Bash(timeout 5 ./scripts/test-context-switcher.sh:*)",
+      "Bash(git pull:*)",
+      "Bash(claude:*)",
+      "Bash(~/.claude/bin/claude-quota:*)",
+      "Bash(python3:*)",
+      "Bash(test:*)",
+      "Bash(~/.claude/hooks/prompt-optimizer.sh)",
+      "Bash(/tmp/test-option-d.sh)",
+      "Bash(__NEW_LINE__ rm -f /tmp/test-option-d.sh)"
     ]
   }
 }

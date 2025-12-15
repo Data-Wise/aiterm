@@ -99,6 +99,13 @@
   - backup-creator (save versions before changes)
   - changelog-updater (track file modifications)
 - **UserPromptSubmit Hooks:**
+  - ✅ **@smart prompt optimizer** (Tier 1 MVP IMPLEMENTED!)
+    - Detects `@smart` or `[refine]` in prompts
+    - Auto-adds project context (type, git, recent files)
+    - Interactive menu: Submit/Revise/Cancel
+    - Works with existing `/workflow:*` commands
+    - Location: `~/.claude/hooks/prompt-optimizer.sh`
+    - Status: Active and working!
   - context-injector (add project-specific context)
   - style-enforcer (ensure consistency)
 - **PermissionRequest Hooks:**
