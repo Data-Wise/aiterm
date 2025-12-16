@@ -7,7 +7,7 @@ Ported from zsh/iterm2-integration.zsh.
 from dataclasses import dataclass
 from enum import Enum
 from pathlib import Path
-from typing import Optional
+from typing import Any, Dict, Optional, Tuple
 import subprocess
 
 
@@ -51,7 +51,7 @@ class ContextInfo:
 
 
 # Mapping of context types to iTerm2 profiles and icons
-CONTEXT_CONFIG = {
+CONTEXT_CONFIG: Dict[ContextType, Dict[str, str]] = {
     ContextType.PRODUCTION: {"profile": "Production", "icon": "🚨"},
     ContextType.AI_SESSION: {"profile": "AI-Session", "icon": "🤖"},
     ContextType.R_PACKAGE: {"profile": "R-Dev", "icon": "📦"},
@@ -96,7 +96,7 @@ def get_git_info(path: Path) -> tuple[Optional[str], bool]:
             text=True,
             timeout=2,
         )
-        branch = result.stdout.strip()
+        branch: Optional[str] = result.stdout.strip()
 
         # If no branch (detached HEAD), try to get tag or show "detached"
         if not branch:
@@ -110,7 +110,7 @@ def get_git_info(path: Path) -> tuple[Optional[str], bool]:
             branch = result.stdout.strip() if result.returncode == 0 else "detached"
 
         # Truncate long branch names
-        if len(branch) > 20:
+        if branch and len(branch) > 20:
             branch = f"{branch[:8]}…{branch[-8:]}"
 
         # Check for uncommitted changes
@@ -121,7 +121,7 @@ def get_git_info(path: Path) -> tuple[Optional[str], bool]:
             text=True,
             timeout=2,
         )
-        is_dirty = bool(result.stdout.strip())
+        is_dirty: bool = bool(result.stdout.strip())
 
         return branch, is_dirty
 
@@ -129,13 +129,15 @@ def get_git_info(path: Path) -> tuple[Optional[str], bool]:
         return None, False
 
 
-def _read_file_field(path: Path, pattern: str, delimiter: str = " ", field: int = 1) -> Optional[str]:
+def _read_file_field(
+    path: Path, pattern: str, delimiter: str = " ", field: int = 1
+) -> Optional[str]:
     """Read a field from a file matching a pattern."""
     try:
-        content = path.read_text()
+        content: str = path.read_text()
         for line in content.splitlines():
             if line.startswith(pattern):
-                parts = line.split(delimiter, field + 1)
+                parts: list[str] = line.split(delimiter, field + 1)
                 if len(parts) > field:
                     return parts[field].strip().strip('"').strip("'")
     except (OSError, UnicodeDecodeError):
@@ -148,8 +150,13 @@ def _get_json_field(path: Path, field: str) -> Optional[str]:
     try:
         import json
 
-        content = json.loads(path.read_text())
-        return content.get(field)
+        content: Any = json.loads(path.read_text())
+        if not isinstance(content, dict):
+            return None
+        value = content.get(field)
+        if isinstance(value, str):
+            return value
+        return None
     except (OSError, json.JSONDecodeError, UnicodeDecodeError):
         return None
 
@@ -163,19 +170,19 @@ def detect_context(path: Optional[Path] = None) -> ContextInfo:
     Returns:
         ContextInfo with detected type, name, icon, and profile.
     """
-    if path is None:
-        path = Path.cwd()
-    path = path.resolve()
+    current_path: Path = (path or Path.cwd()).resolve()
 
     # Default name is directory name
-    name = path.name
-    context_type = ContextType.DEFAULT
+    name: str = current_path.name
+    context_type: ContextType = ContextType.DEFAULT
 
     # Get git info first (used for all types)
-    branch, is_dirty = get_git_info(path)
+    branch: Optional[str]
+    is_dirty: bool
+    branch, is_dirty = get_git_info(current_path)
 
     # Priority 1: Safety checks (production paths)
-    path_str = str(path).lower()
+    path_str: str = str(current_path).lower()
     if "/production/" in path_str or "/prod/" in path_str:
         context_type = ContextType.PRODUCTION
 
@@ -184,51 +191,62 @@ def detect_context(path: Optional[Path] = None) -> ContextInfo:
         context_type = ContextType.AI_SESSION
 
     # Priority 3: MCP server detection
-    elif (path / "mcp-server").is_dir() or ("mcp" in path_str and (path / "package.json").exists()):
+    elif (current_path / "mcp-server").is_dir() or (
+        "mcp" in path_str and (current_path / "package.json").exists()
+    ):
         context_type = ContextType.MCP_SERVER
 
     # Priority 4: Specific project types
-    elif (path / "DESCRIPTION").exists():
+    elif (current_path / "DESCRIPTION").exists():
         # R package
         context_type = ContextType.R_PACKAGE
-        pkg_name = _read_file_field(path / "DESCRIPTION", "Package:", ":", 1)
+        pkg_name: Optional[str] = _read_file_field(
+            current_path / "DESCRIPTION", "Package:", ":", 1
+        )
         if pkg_name:
             name = pkg_name
 
-    elif (path / "pyproject.toml").exists():
+    elif (current_path / "pyproject.toml").exists():
         # Python project
         context_type = ContextType.PYTHON
         # Try to get project name from pyproject.toml
-        proj_name = _read_file_field(path / "pyproject.toml", "name", "=", 1)
+        proj_name: Optional[str] = _read_file_field(
+            current_path / "pyproject.toml", "name", "=", 1
+        )
         if proj_name:
             name = proj_name
 
-    elif (path / "package.json").exists():
+    elif (current_path / "package.json").exists():
         # Node.js project
         context_type = ContextType.NODE
-        pkg_name = _get_json_field(path / "package.json", "name")
+        pkg_name = _get_json_field(current_path / "package.json", "name")
         if pkg_name:
             name = pkg_name
 
-    elif (path / "_quarto.yml").exists():
+    elif (current_path / "_quarto.yml").exists():
         # Quarto project
         context_type = ContextType.QUARTO
-        title = _read_file_field(path / "_quarto.yml", "title:", ":", 1)
+        title: Optional[str] = _read_file_field(
+            current_path / "_quarto.yml", "title:", ":", 1
+        )
         if title:
             name = title
 
-    elif any((path / f).exists() for f in ["Cask", ".dir-locals.el", "init.el", "early-init.el"]):
+    elif any(
+        (current_path / f).exists()
+        for f in ["Cask", ".dir-locals.el", "init.el", "early-init.el"]
+    ):
         # Emacs project
         context_type = ContextType.EMACS
 
-    elif (path / ".git").is_dir() and any(
-        (path / d).is_dir() for d in ["commands", "scripts"]
-    ) or ((path / "bin").is_dir() and (path / "Makefile").exists()):
+    elif (current_path / ".git").is_dir() and any(
+        (current_path / d).is_dir() for d in ["commands", "scripts"]
+    ) or ((current_path / "bin").is_dir() and (current_path / "Makefile").exists()):
         # Dev tools project
         context_type = ContextType.DEV_TOOLS
 
     # Get config for this type
-    config = CONTEXT_CONFIG[context_type]
+    config: Dict[str, str] = CONTEXT_CONFIG[context_type]
 
     return ContextInfo(
         type=context_type,
