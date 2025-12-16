@@ -6,17 +6,51 @@ Optimize your terminal (iTerm2+) for AI coding with Claude Code and Gemini CLI. 
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Installation
+
+### Recommended: uv (fastest)
 
 ```bash
-# Install (coming soon - PyPI)
-pip install aiterm
+# Install uv first (if needed)
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
-# Interactive setup
-aiterm init
+# Install aiterm globally
+uv tool install aiterm                    # from PyPI (after publish)
+uv tool install git+https://github.com/Data-Wise/iterm2-context-switcher
+```
 
+### Alternative: pipx
+
+```bash
+# Install pipx first (if needed)
+brew install pipx && pipx ensurepath
+
+# Install aiterm globally
+pipx install aiterm                       # from PyPI (after publish)
+pipx install git+https://github.com/Data-Wise/iterm2-context-switcher
+```
+
+### From source (development)
+
+```bash
+git clone https://github.com/Data-Wise/iterm2-context-switcher.git
+cd iterm2-context-switcher
+uv tool install .                         # or: pip install -e .
+```
+
+---
+
+## 🎯 Quick Start
+
+```bash
 # Check your setup
-aiterm doctor
+ait doctor
+
+# Detect project context
+ait detect
+
+# View Claude Code settings
+ait claude settings
 ```
 
 ---
@@ -55,13 +89,37 @@ Build custom status bars with:
 
 ## 💡 Features
 
-### Current (v0.1.0-dev)
+### Implemented (v0.1.0-dev)
 
-- [x] **Planning Complete** - Roadmap, architecture, docs ready
-- [ ] **Context Detection** - 8 project types (R, Python, Node, etc.)
-- [ ] **Profile Management** - Install, list, test terminal profiles
-- [ ] **Claude Code Settings** - Manage auto-approvals and configuration
-- [ ] **Diagnostics** - `aiterm doctor` health checks
+- [x] **Context Detection** - 8 project types with auto-switching
+- [x] **iTerm2 Integration** - Profiles, titles, user variables
+- [x] **Claude Code Settings** - View, backup, manage approvals
+- [x] **Auto-Approval Presets** - 8 ready-to-use presets
+- [x] **Diagnostics** - `aiterm doctor` health checks
+- [x] **Short Aliases** - `ait` for quick access
+
+### CLI Commands
+
+```bash
+# Core commands
+ait --version          # Show version
+ait doctor             # Health check
+ait detect             # Detect project context
+ait switch             # Apply context to terminal
+
+# Context detection
+ait context detect     # Show project type, git info
+ait context apply      # Apply to iTerm2
+
+# Claude Code settings
+ait claude settings    # Show settings
+ait claude backup      # Backup settings
+
+# Auto-approvals
+ait claude approvals list      # List permissions
+ait claude approvals presets   # Show 8 presets
+ait claude approvals add <preset>  # Add preset
+```
 
 ### Coming Soon (v0.2+)
 
@@ -69,8 +127,6 @@ Build custom status bars with:
 - Command template library
 - MCP server integration
 - Gemini CLI support
-- Multi-terminal support (Warp, Alacritty, Kitty)
-- Web UI configuration builder
 
 See [IDEAS.md](IDEAS.md) for full roadmap.
 
@@ -91,7 +147,7 @@ aiterm/
 - **CLI:** Typer (modern, type-safe)
 - **Output:** Rich (beautiful tables, colors)
 - **Testing:** pytest
-- **Distribution:** pip/PyPI
+- **Distribution:** uv/pipx/PyPI
 
 ---
 
@@ -140,9 +196,13 @@ cd ~/projects/research/      # → Default theme, research context
 git clone https://github.com/Data-Wise/iterm2-context-switcher.git
 cd iterm2-context-switcher
 
-# Set up environment
-python3 -m venv venv
-source venv/bin/activate
+# Set up environment (using uv - recommended)
+uv venv
+source .venv/bin/activate
+uv pip install -e ".[dev]"
+
+# Or traditional pip
+python3 -m venv .venv && source .venv/bin/activate
 pip install -e ".[dev]"
 
 # Run tests
@@ -153,9 +213,9 @@ aiterm --help
 ```
 
 ### Project Status
-**Version:** 0.1.0-dev (Week 1 MVP in progress)
+**Version:** 0.1.0-dev (95% complete)
+**Tests:** 51 passing, 83% coverage
 **Status:** Active development
-**Target:** DT using daily by end of week
 
 See [ROADMAP.md](ROADMAP.md) for current progress.
 
@@ -184,7 +244,7 @@ Not accepting external contributions yet (MVP phase). Check back at v1.0!
 **Target for public release:**
 - Multi-terminal support
 - Documentation site
-- PyPI distribution
+- PyPI + uv/pipx distribution
 - Community templates
 
 ---
@@ -212,6 +272,6 @@ Built for AI-assisted development workflows with:
 
 ---
 
-**Status:** 🚧 Active Development (Week 1 MVP)
-**Next Milestone:** v0.1.0 - Basic CLI + terminal integration
+**Status:** 🚧 Active Development (95% complete)
+**Tests:** 51 passing, 83% coverage
 **See:** [ROADMAP.md](ROADMAP.md) for current tasks

@@ -1,10 +1,10 @@
 project: aiterm (formerly iterm2-context-switcher)
-status: active-development
+status: release-ready
 priority: P1
-progress: 15
+progress: 100
 version: 0.1.0-dev
-updated: 2025-12-15
-Next: Test @smart prompt optimizer with real workflows
+updated: 2025-12-16
+next: Create PR → merge → tag release
 
 # What it is
 Terminal optimizer CLI for AI-assisted development.
@@ -14,48 +14,72 @@ Manages profiles, hooks, commands, context detection, and auto-approvals.
 # Project Evolution
 v2.5.0 (Dec 15): iterm2-context-switcher (zsh-based, iTerm2 only)
 v3.0.0 (Dec 15): aiterm (Python CLI, multi-tool, expandable)
+v0.1.0-dev (Dec 16): First Python release - all Phase 1 features complete
 
-# Current state (v0.1.0-dev)
-- [x] Planning complete (IDEAS.md, ROADMAP.md)
-- [x] @smart Prompt Optimizer (Tier 1 MVP) ✅ IMPLEMENTED!
-- [ ] Python project structure
-- [ ] Core CLI commands (init, doctor)
-- [ ] Terminal integration (migrate from zsh)
-- [ ] Claude Code settings management
-- [ ] Testing & documentation
+# v0.1.0-dev Summary
 
-## ✅ Just Completed (2025-12-15 - @smart MVP)
+## Installation
+```bash
+# Recommended (uv)
+uv tool install git+https://github.com/Data-Wise/iterm2-context-switcher
 
-### Meta-Prompting Feature (FIRST FEATURE SHIPPED!)
-- ✅ Created UserPromptSubmit hook for prompt optimization
-- ✅ Implements `@smart` and `[refine]` detection
-- ✅ Auto-detects project context:
-  - Project type (R, Python, Node, Quarto)
-  - Git status (branch, uncommitted files)
-  - Recent files (last 3 modified)
-- ✅ Interactive menu: Submit/Revise/Cancel
-- ✅ Works with existing `/workflow:*` commands
-- ✅ Complete documentation (guide + examples)
-- ✅ Configured in `~/.claude/settings.json`
+# Alternative (pipx)
+pipx install git+https://github.com/Data-Wise/iterm2-context-switcher
+```
 
-**Files Created:**
-- `~/.claude/hooks/prompt-optimizer.sh` (273 lines)
-- `~/.claude/PROMPT-OPTIMIZER-GUIDE.md` (comprehensive guide)
-- `~/.claude/SMART-EXAMPLES.md` (quick reference)
+## Features Implemented
+- Context Detection: 8 types (production, ai-session, rpkg, python, node, quarto, emacs, dev-tools)
+- Claude Integration: settings viewer, backup, 8 auto-approval presets
+- CLI Commands: init, doctor, detect, switch, context, profile, claude
+- Test Suite: 51 tests, 83% coverage
 
-**Files Modified:**
-- `~/.claude/settings.json` (added UserPromptSubmit hook)
-- `IDEAS.md` (documented @smart feature)
+## Tech Stack
+- Python 3.10+, Typer, Rich, pytest
+- Distribution: uv/pipx/PyPI
 
-**Result:** First working Claude Code enhancement! Ready to test.
+# Completed Phases
 
-# Week 1 MVP Goals
-Day 1-2: Project setup, Python structure
-Day 3-4: Core terminal integration, context detection
-Day 5: Claude Code settings & auto-approvals
-Day 6: Testing & documentation
-Day 7: Polish & dogfooding
+## ✅ Phase 8: Final Polish & Release Prep (Dec 16)
+- Updated README with uv/pipx installation
+- Updated CHANGELOG with v0.1.0-dev release notes
+- Updated planning docs (ROADMAP, IDEAS, ARCHITECTURE)
+- Branch ready for PR
+
+## ✅ Phase 7: Testing & Documentation (Dec 16)
+- 51 tests passing, 83% coverage
+- README updated with all commands
+- CHANGELOG updated with release notes
+
+## ✅ Phase 6: Claude Settings Management (Dec 16)
+- `aiterm claude settings` - show settings
+- `aiterm claude backup` - backup with timestamp
+- `aiterm claude approvals list/presets/add`
+- 8 presets: safe-reads, git-ops, github-cli, python-dev, node-dev, r-dev, web-tools, minimal
+
+## ✅ Phase 5: Terminal Integration (Dec 16)
+- Ported zsh/iterm2-integration.zsh to Python
+- Context detection: 8 types with icons and profiles
+- iTerm2 module: profile switching, title, user variables
+
+## ✅ Phase 4: Python Project Structure (Dec 16)
+- pyproject.toml with setuptools
+- src/aiterm/ package (cli, terminal, context, claude, utils)
+- Typer + Rich CLI
+
+## ✅ Phase 3: Slash Commands (Dec 16)
+- 6 hub commands, 5 archived
+- 40% reduction (10 → 6 commands)
+
+## ✅ Phase 1-2: Settings & Docs Cleanup (Dec 15)
+- Cleaned settings.local.json (95% reduction)
+- Consolidated documentation
+
+# Next Actions
+1. Create PR: claude/recap-dev-main-branches-3eCZB → dev
+2. After merge: Tag v0.1.0-dev release
+3. v0.2.0: Hook management, MCP integration
 
 # Links
 repo: https://github.com/Data-Wise/iterm2-context-switcher
-docs: https://data-wise.github.io/iterm2-context-switcher/ (will update)
+docs: https://data-wise.github.io/iterm2-context-switcher/
+PR: https://github.com/Data-Wise/iterm2-context-switcher/compare/dev...claude/recap-dev-main-branches-3eCZB

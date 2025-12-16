@@ -4,6 +4,83 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [0.1.0-dev] - 2025-12-16 - FIRST PYTHON RELEASE
+
+### 🎉 aiterm Python CLI is Here!
+
+The first functional Python release of aiterm, migrated from zsh to a modern CLI.
+
+### Installation
+
+```bash
+# Recommended (uv)
+uv tool install git+https://github.com/Data-Wise/iterm2-context-switcher
+
+# Alternative (pipx)
+pipx install git+https://github.com/Data-Wise/iterm2-context-switcher
+```
+
+### New Features
+
+#### Context Detection (8 types)
+- **Production** 🚨 - Red theme for `*/production/*` paths
+- **AI Sessions** 🤖 - Purple theme for `*/claude-sessions/*`
+- **R Packages** 📦 - Blue theme (DESCRIPTION file)
+- **Python** 🐍 - Green theme (pyproject.toml)
+- **Node.js** 📦 - Dark theme (package.json)
+- **Quarto** 📊 - Blue theme (_quarto.yml)
+- **Emacs** ⚡ - Purple theme (init.el, Cask)
+- **Dev-Tools** 🔧 - Amber theme (commands/, scripts/)
+
+#### Claude Code Integration
+- `ait claude settings` - View settings summary
+- `ait claude backup` - Backup settings.json
+- `ait claude approvals list` - Show allow/deny permissions
+- `ait claude approvals presets` - List 8 ready-to-use presets
+- `ait claude approvals add <preset>` - Add preset permissions
+
+#### Auto-Approval Presets
+- **safe-reads** - Safe read-only operations
+- **git-ops** - Git commands (status, diff, log, branch)
+- **github-cli** - GitHub CLI (gh pr, gh issue)
+- **python-dev** - Python tools (pytest, pip, ruff)
+- **node-dev** - Node.js tools (npm, yarn, pnpm)
+- **r-dev** - R development (R, Rscript)
+- **web-tools** - Web utilities (curl, wget, jq)
+- **minimal** - Basic safe commands only
+
+#### CLI Commands
+```bash
+ait --version          # Show version
+ait doctor             # Health check
+ait detect             # Detect project context
+ait switch             # Apply context to terminal
+ait context detect     # Full context detection
+ait context apply      # Apply to iTerm2
+ait profile list       # List profiles
+```
+
+### Tech Stack
+- **Language:** Python 3.10+
+- **CLI Framework:** Typer
+- **Terminal Output:** Rich
+- **Testing:** pytest (51 tests, 83% coverage)
+- **Distribution:** uv/pipx/PyPI
+
+### Files Added
+- `src/aiterm/` - Main package (cli, context, terminal, claude, utils)
+- `tests/` - 51 tests across 4 files
+- `templates/commands/` - 6 hub commands + 5 archived
+- `pyproject.toml` - Modern Python project config
+
+### What's Next (v0.2.0)
+- Hook management system
+- Command template library
+- MCP server integration
+- Gemini CLI support
+
+---
+
 ## [3.0.0] - 2025-12-15 - PROJECT PIVOT
 
 ### 🎉 Major Change: iterm2-context-switcher → **aiterm**
@@ -55,6 +132,22 @@ See `ROADMAP.md` for Week 1 MVP plan:
 ---
 
 ## [2.5.0] - 2025-12-15 - Final zsh-based release
+
+### Added
+- **Comprehensive test suite** - `scripts/test-context-switcher.sh`
+  - Tests all 8 context detection scenarios
+  - Validates profile switching and title/badge setting
+  - Includes git dirty indicator testing
+  - 15 test cases with full coverage
+- **Statusline theme alternatives** - `statusline-alternatives/`
+  - 3 color theme variants (cool-blues, forest-greens, purple-charcoal)
+  - Preview and installation scripts
+  - Theme comparison documentation
+- **Expanded auto-approvals** - Updated `.claude/settings.local.json`
+  - Added 40+ common safe commands (gh, mkdocs, find, grep, jq, etc.)
+  - Reduces approval friction for routine operations
+
+## [2.5.0] - 2025-12-15
 
 ### Added
 - **Comprehensive test suite** - `scripts/test-context-switcher.sh`

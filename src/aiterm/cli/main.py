@@ -1,0 +1,360 @@
+"""Main CLI entry point for aiterm."""
+
+from pathlib import Path
+from typing import Optional
+
+import typer
+from rich.console import Console
+from rich.panel import Panel
+from rich.table import Table
+
+from aiterm import __app_name__, __version__
+
+# Initialize Typer app
+app = typer.Typer(
+    name=__app_name__,
+    help="Terminal optimizer CLI for AI-assisted development.",
+    add_completion=True,
+    rich_markup_mode="rich",
+)
+
+console = Console()
+
+
+def version_callback(value: bool) -> None:
+    """Print version and exit."""
+    if value:
+        console.print(
+            Panel(
+                f"[bold cyan]{__app_name__}[/] version [green]{__version__}[/]\n"
+                f"Terminal optimizer for Claude Code & Gemini CLI",
+                title="aiterm",
+                border_style="cyan",
+            )
+        )
+        raise typer.Exit()
+
+
+@app.callback()
+def main(
+    version: Optional[bool] = typer.Option(
+        None,
+        "--version",
+        "-v",
+        help="Show version and exit.",
+        callback=version_callback,
+        is_eager=True,
+    ),
+) -> None:
+    """
+    aiterm - Terminal optimizer CLI for AI-assisted development.
+
+    Optimizes iTerm2 (and other terminals) for Claude Code and Gemini CLI.
+    Manages profiles, hooks, commands, context detection, and auto-approvals.
+    """
+    pass
+
+
+@app.command()
+def init() -> None:
+    """Interactive setup wizard for aiterm."""
+    console.print("[bold cyan]aiterm init[/] - Setup wizard")
+    console.print("[yellow]Coming soon![/] This will:")
+    console.print("  - Detect your terminal type")
+    console.print("  - Install base profiles")
+    console.print("  - Configure context detection")
+    console.print("  - Test installation")
+
+
+@app.command()
+def doctor() -> None:
+    """Check aiterm installation and configuration."""
+    console.print("[bold cyan]aiterm doctor[/] - Health check")
+    console.print()
+
+    # Terminal detection
+    import os
+
+    term_program = os.environ.get("TERM_PROGRAM", "unknown")
+    shell = os.environ.get("SHELL", "unknown")
+
+    console.print(f"[bold]Terminal:[/] {term_program}")
+    console.print(f"[bold]Shell:[/] {shell}")
+    console.print(f"[bold]Python:[/] {__import__('sys').version.split()[0]}")
+    console.print(f"[bold]aiterm:[/] {__version__}")
+    console.print()
+    console.print("[green]Basic checks passed![/]")
+    console.print("[yellow]Full diagnostics coming in v0.2.0[/]")
+
+
+# ─── Context detection implementation ────────────────────────────────────────
+
+
+def _context_detect_impl(path: Optional[Path], apply: bool) -> None:
+    """Shared implementation for context detection commands."""
+    from aiterm.context.detector import detect_context
+    from aiterm.terminal import iterm2
+
+    target = path or Path.cwd()
+    context = detect_context(target)
+
+    # Build info table
+    table = Table(title="Context Detection", show_header=False, border_style="cyan")
+    table.add_column("Field", style="bold")
+    table.add_column("Value")
+
+    table.add_row("Directory", str(target))
+    table.add_row("Type", f"{context.icon} {context.type.value}" if context.icon else context.type.value)
+    table.add_row("Name", context.name)
+    table.add_row("Profile", context.profile)
+
+    if context.branch:
+        dirty = " [red]*[/]" if context.is_dirty else ""
+        table.add_row("Git Branch", f"{context.branch}{dirty}")
+
+    console.print(table)
+
+    # Apply to terminal if requested
+    if apply:
+        if iterm2.is_iterm2():
+            iterm2.apply_context(context)
+            console.print("\n[green]✓[/] Context applied to iTerm2")
+        else:
+            console.print("\n[yellow]⚠[/] Not running in iTerm2 - context not applied")
+
+
+# ─── Top-level shortcuts ─────────────────────────────────────────────────────
+
+
+@app.command()
+def detect(
+    path: Optional[Path] = typer.Argument(None, help="Directory to analyze."),
+) -> None:
+    """Detect project context (shortcut for 'context detect')."""
+    _context_detect_impl(path, apply=False)
+
+
+@app.command()
+def switch(
+    path: Optional[Path] = typer.Argument(None, help="Directory to analyze."),
+) -> None:
+    """Detect and apply context to terminal (shortcut for 'context apply')."""
+    _context_detect_impl(path, apply=True)
+
+
+# ─── Sub-command groups ──────────────────────────────────────────────────────
+
+
+context_app = typer.Typer(help="Context detection commands.")
+profile_app = typer.Typer(help="Profile management commands.")
+claude_app = typer.Typer(help="Claude Code integration commands.")
+
+app.add_typer(context_app, name="context")
+app.add_typer(profile_app, name="profile")
+app.add_typer(claude_app, name="claude")
+
+
+@context_app.command("detect")
+def context_detect(
+    path: Optional[Path] = typer.Argument(
+        None,
+        help="Directory to analyze. Defaults to current directory.",
+    ),
+    apply: bool = typer.Option(
+        False,
+        "--apply",
+        "-a",
+        help="Apply detected context to terminal (switch profile, set title).",
+    ),
+) -> None:
+    """Detect the project context for a directory."""
+    _context_detect_impl(path, apply)
+
+
+@context_app.command("show")
+def context_show() -> None:
+    """Show current context (alias for detect)."""
+    context_detect(path=None, apply=False)
+
+
+@context_app.command("apply")
+def context_apply(
+    path: Optional[Path] = typer.Argument(
+        None,
+        help="Directory to analyze. Defaults to current directory.",
+    ),
+) -> None:
+    """Detect and apply context to terminal."""
+    context_detect(path=path, apply=True)
+
+
+@profile_app.command("list")
+def profile_list() -> None:
+    """List available profiles."""
+    console.print("[bold cyan]Available Profiles:[/]")
+    console.print("  - default (iTerm2 base)")
+    console.print("  - ai-session (Claude Code / Gemini)")
+    console.print("  - production (warning colors)")
+    console.print()
+    console.print("[yellow]Profile management coming in v0.2.0[/]")
+
+
+# ─── Claude settings commands ────────────────────────────────────────────────
+
+
+@claude_app.command("settings")
+def claude_settings_show() -> None:
+    """Display current Claude Code settings."""
+    from aiterm.claude.settings import load_settings, find_settings_file
+
+    settings = load_settings()
+    if not settings:
+        console.print("[red]No Claude Code settings found.[/]")
+        console.print(f"Expected at: ~/.claude/settings.json")
+        return
+
+    # Build settings table
+    table = Table(title="Claude Code Settings", show_header=False, border_style="cyan")
+    table.add_column("Field", style="bold")
+    table.add_column("Value")
+
+    table.add_row("File", str(settings.path))
+    table.add_row("Permissions (allow)", str(len(settings.allow_list)))
+    table.add_row("Permissions (deny)", str(len(settings.deny_list)))
+
+    if settings.hooks:
+        table.add_row("Hooks", str(len(settings.hooks)))
+
+    console.print(table)
+
+    # Show permissions
+    if settings.allow_list:
+        console.print("\n[bold]Allowed:[/]")
+        for perm in settings.allow_list[:10]:
+            console.print(f"  [green]✓[/] {perm}")
+        if len(settings.allow_list) > 10:
+            console.print(f"  [dim]... and {len(settings.allow_list) - 10} more[/]")
+
+
+@claude_app.command("backup")
+def claude_backup() -> None:
+    """Backup Claude Code settings."""
+    from aiterm.claude.settings import backup_settings, find_settings_file
+
+    settings_path = find_settings_file()
+    if not settings_path:
+        console.print("[red]No Claude Code settings found to backup.[/]")
+        return
+
+    backup_path = backup_settings(settings_path)
+    if backup_path:
+        console.print(f"[green]✓[/] Backup created: {backup_path}")
+    else:
+        console.print("[red]Failed to create backup.[/]")
+
+
+# Approvals sub-command group
+approvals_app = typer.Typer(help="Manage auto-approval permissions.")
+claude_app.add_typer(approvals_app, name="approvals")
+
+
+@approvals_app.command("list")
+def approvals_list() -> None:
+    """List current auto-approval permissions."""
+    from aiterm.claude.settings import load_settings
+
+    settings = load_settings()
+    if not settings:
+        console.print("[red]No Claude Code settings found.[/]")
+        return
+
+    console.print(f"[bold cyan]Auto-Approvals[/] ({settings.path})\n")
+
+    if settings.allow_list:
+        console.print("[bold green]Allowed:[/]")
+        for perm in sorted(settings.allow_list):
+            console.print(f"  ✓ {perm}")
+    else:
+        console.print("[dim]No allowed permissions configured.[/]")
+
+    if settings.deny_list:
+        console.print("\n[bold red]Denied:[/]")
+        for perm in sorted(settings.deny_list):
+            console.print(f"  ✗ {perm}")
+
+
+@approvals_app.command("presets")
+def approvals_presets() -> None:
+    """List available approval presets."""
+    from aiterm.claude.settings import list_presets
+
+    presets = list_presets()
+
+    table = Table(title="Available Presets", border_style="cyan")
+    table.add_column("Name", style="bold")
+    table.add_column("Description")
+    table.add_column("Permissions", justify="right")
+
+    for name, preset in presets.items():
+        table.add_row(
+            name,
+            preset["description"],
+            str(len(preset["permissions"])),
+        )
+
+    console.print(table)
+    console.print("\n[dim]Use 'aiterm claude approvals add <preset>' to add a preset.[/]")
+
+
+@approvals_app.command("add")
+def approvals_add(
+    preset_name: str = typer.Argument(..., help="Name of preset to add."),
+) -> None:
+    """Add a preset to auto-approvals."""
+    from aiterm.claude.settings import (
+        load_settings,
+        save_settings,
+        add_preset_to_settings,
+        get_preset,
+        backup_settings,
+    )
+
+    # Validate preset exists
+    preset = get_preset(preset_name)
+    if not preset:
+        console.print(f"[red]Unknown preset: {preset_name}[/]")
+        console.print("Run 'aiterm claude approvals presets' to see available presets.")
+        raise typer.Exit(1)
+
+    # Load settings
+    settings = load_settings()
+    if not settings:
+        console.print("[red]No Claude Code settings found.[/]")
+        console.print("Create ~/.claude/settings.json first.")
+        raise typer.Exit(1)
+
+    # Backup first
+    backup_settings(settings.path)
+
+    # Add preset
+    success, added = add_preset_to_settings(settings, preset_name)
+    if not success:
+        console.print(f"[red]Failed to add preset: {preset_name}[/]")
+        raise typer.Exit(1)
+
+    if not added:
+        console.print(f"[yellow]All permissions from '{preset_name}' already present.[/]")
+        return
+
+    # Save
+    if save_settings(settings):
+        console.print(f"[green]✓[/] Added {len(added)} permissions from '{preset_name}':")
+        for perm in added:
+            console.print(f"  + {perm}")
+    else:
+        console.print("[red]Failed to save settings.[/]")
+        raise typer.Exit(1)
+
+
+if __name__ == "__main__":
+    app()

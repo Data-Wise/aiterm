@@ -739,6 +739,7 @@ aiterm = "aiterm.cli.main:app"
 
 ---
 
-**Last Updated:** 2025-12-15
-**Version:** 0.1.0-dev
+**Last Updated:** 2025-12-16
+**Version:** 0.1.0-dev (95% complete)
 **Author:** DT
+**Status:** Phase 1 MVP complete, awaiting PR merge
