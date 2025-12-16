@@ -1,10 +1,10 @@
 project: aiterm (formerly iterm2-context-switcher)
 status: active-development
 priority: P1
-progress: 15
+progress: 20
 version: 0.1.0-dev
 updated: 2025-12-15
-Next: Test @smart prompt optimizer with real workflows
+Next: Phase 3 - Slash commands optimization (10 → 6 hubs)
 
 # What it is
 Terminal optimizer CLI for AI-assisted development.
@@ -24,30 +24,44 @@ v3.0.0 (Dec 15): aiterm (Python CLI, multi-tool, expandable)
 - [ ] Claude Code settings management
 - [ ] Testing & documentation
 
-## ✅ Just Completed (2025-12-15 - @smart MVP)
+## ✅ Just Completed (2025-12-15 - Claude Code Refactoring)
 
-### Meta-Prompting Feature (FIRST FEATURE SHIPPED!)
-- ✅ Created UserPromptSubmit hook for prompt optimization
-- ✅ Implements `@smart` and `[refine]` detection
-- ✅ Auto-detects project context:
-  - Project type (R, Python, Node, Quarto)
-  - Git status (branch, uncommitted files)
-  - Recent files (last 3 modified)
-- ✅ Interactive menu: Submit/Revise/Cancel
-- ✅ Works with existing `/workflow:*` commands
-- ✅ Complete documentation (guide + examples)
-- ✅ Configured in `~/.claude/settings.json`
+### Phase 1: Settings Cleanup (CRITICAL)
+- ✅ Cleaned .claude/settings.local.json (95% reduction)
+- ✅ Removed 86 one-time/temporary auto-approvals
+- ✅ Kept 20 essential patterns only
+- ✅ Result: 10,056 bytes → 513 bytes
 
-**Files Created:**
-- `~/.claude/hooks/prompt-optimizer.sh` (273 lines)
-- `~/.claude/PROMPT-OPTIMIZER-GUIDE.md` (comprehensive guide)
-- `~/.claude/SMART-EXAMPLES.md` (quick reference)
+### Phase 2: Documentation Consolidation
+- ✅ Consolidated 8 files → 4 focused files
+- ✅ Created START-HERE.md (3-min quick start)
+- ✅ Created REFERENCE.md (merged 2 files)
+- ✅ Created @SMART.md (merged 2 files)
+- ✅ Archived 6 old documentation files
+- ✅ Result: Clearer entry points, single source of truth
+
+### Documentation Site Maintenance
+- ✅ Fixed broken iTerm2 screenshot link (404 error)
+- ✅ Ran comprehensive link checker (100% valid)
+- ✅ Rebuilt and deployed to GitHub Pages
+- ✅ Merged dev → main and pushed
 
 **Files Modified:**
-- `~/.claude/settings.json` (added UserPromptSubmit hook)
-- `IDEAS.md` (documented @smart feature)
+- `.claude/settings.local.json` (cleaned)
+- `~/.claude/START-HERE.md` (rewritten)
+- `~/.claude/REFERENCE.md` (new)
+- `~/.claude/@SMART.md` (new)
+- `docs/guide/status-bar.md` (link fix)
 
-**Result:** First working Claude Code enhancement! Ready to test.
+**Result:** Faster startup, cleaner docs, deployed successfully!
+
+## 🎯 Next Action
+
+**Phase 3: Slash Commands Optimization** (~15 min) 🟢
+- Archive 5 command files (help, math, write, github, teach)
+- Enhance /hub to absorb /help functionality
+- Keep 6 core hubs: /hub, /workflow, /git, /site, /code, /research
+- Result: 40% reduction, clearer command structure
 
 # Week 1 MVP Goals
 Day 1-2: Project setup, Python structure
