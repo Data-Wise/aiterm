@@ -1,10 +1,10 @@
 project: aiterm (formerly iterm2-context-switcher)
-status: active-development
+status: release-ready
 priority: P1
-progress: 95
+progress: 100
 version: 0.1.0-dev
 updated: 2025-12-16
-Next: Merge PR and tag release
+next: Create PR → merge → tag release
 
 # What it is
 Terminal optimizer CLI for AI-assisted development.
@@ -14,146 +14,72 @@ Manages profiles, hooks, commands, context detection, and auto-approvals.
 # Project Evolution
 v2.5.0 (Dec 15): iterm2-context-switcher (zsh-based, iTerm2 only)
 v3.0.0 (Dec 15): aiterm (Python CLI, multi-tool, expandable)
+v0.1.0-dev (Dec 16): First Python release - all Phase 1 features complete
 
-# Current state (v0.1.0-dev)
-- [x] Planning complete (IDEAS.md, ROADMAP.md)
-- [x] @smart Prompt Optimizer (Tier 1 MVP) ✅ IMPLEMENTED!
-- [x] Python project structure ✅
-- [x] Core CLI commands (init, doctor) ✅
-- [x] Terminal integration (migrate from zsh) ✅
-- [x] Claude Code settings management ✅
-- [x] Testing & documentation ✅ (51 tests, 83% coverage)
+# v0.1.0-dev Summary
 
-## ✅ Just Completed (2025-12-16 - Final Polish)
+## Installation
+```bash
+# Recommended (uv)
+uv tool install git+https://github.com/Data-Wise/iterm2-context-switcher
 
-### Phase 8: Final Polish & Release Prep
-- ✅ Ran final test suite (51 tests, all passing)
-- ✅ Branch ready for PR: `claude/recap-dev-main-branches-3eCZB`
-- 🟡 Awaiting PR merge to main
-- 🟡 Tag v0.1.0-dev release after merge
+# Alternative (pipx)
+pipx install git+https://github.com/Data-Wise/iterm2-context-switcher
+```
 
----
+## Features Implemented
+- Context Detection: 8 types (production, ai-session, rpkg, python, node, quarto, emacs, dev-tools)
+- Claude Integration: settings viewer, backup, 8 auto-approval presets
+- CLI Commands: init, doctor, detect, switch, context, profile, claude
+- Test Suite: 51 tests, 83% coverage
 
-### Phase 7: Testing & Documentation Polish
-- ✅ Added 3 more CLI tests (51 total)
-- ✅ Test coverage: 83% (443 statements, 74 missing)
-- ✅ Updated README with all implemented commands
-- ✅ Documented CLI usage and presets
+## Tech Stack
+- Python 3.10+, Typer, Rich, pytest
+- Distribution: uv/pipx/PyPI
 
----
+# Completed Phases
 
-### Phase 6: Claude Code Settings Management
-- ✅ Created settings module (load, save, backup)
-- ✅ Implemented `aiterm claude settings` - show settings
-- ✅ Implemented `aiterm claude backup` - backup settings
-- ✅ Implemented `aiterm claude approvals list` - show permissions
-- ✅ Implemented `aiterm claude approvals presets` - list 8 presets
-- ✅ Implemented `aiterm claude approvals add <preset>` - add preset
-- ✅ Added 14 new tests (48 total, all passing)
+## ✅ Phase 8: Final Polish & Release Prep (Dec 16)
+- Updated README with uv/pipx installation
+- Updated CHANGELOG with v0.1.0-dev release notes
+- Updated planning docs (ROADMAP, IDEAS, ARCHITECTURE)
+- Branch ready for PR
 
-**Presets Available:**
-- safe-reads, git-ops, github-cli, python-dev, node-dev, r-dev, web-tools, minimal
+## ✅ Phase 7: Testing & Documentation (Dec 16)
+- 51 tests passing, 83% coverage
+- README updated with all commands
+- CHANGELOG updated with release notes
 
-**Files Created:**
-- `src/aiterm/claude/settings.py` (settings management)
-- `tests/test_claude_settings.py` (14 tests)
+## ✅ Phase 6: Claude Settings Management (Dec 16)
+- `aiterm claude settings` - show settings
+- `aiterm claude backup` - backup with timestamp
+- `aiterm claude approvals list/presets/add`
+- 8 presets: safe-reads, git-ops, github-cli, python-dev, node-dev, r-dev, web-tools, minimal
 
----
+## ✅ Phase 5: Terminal Integration (Dec 16)
+- Ported zsh/iterm2-integration.zsh to Python
+- Context detection: 8 types with icons and profiles
+- iTerm2 module: profile switching, title, user variables
 
-### Phase 5: Terminal Integration
-- ✅ Ported zsh/iterm2-integration.zsh to Python
-- ✅ Implemented context detection (8 types: production, ai-session, rpkg, python, node, quarto, emacs, dev-tools)
-- ✅ Added iTerm2 module (profile switching, title, user variables)
-- ✅ New CLI commands: `aiterm context detect`, `context show`, `context apply`
-- ✅ Added 23 new tests (32 total, all passing)
+## ✅ Phase 4: Python Project Structure (Dec 16)
+- pyproject.toml with setuptools
+- src/aiterm/ package (cli, terminal, context, claude, utils)
+- Typer + Rich CLI
 
-**Files Created:**
-- `src/aiterm/context/detector.py` (context detection logic)
-- `src/aiterm/terminal/iterm2.py` (iTerm2 escape sequences)
-- `tests/test_context.py` (13 context tests)
-- `tests/test_iterm2.py` (10 iTerm2 tests)
+## ✅ Phase 3: Slash Commands (Dec 16)
+- 6 hub commands, 5 archived
+- 40% reduction (10 → 6 commands)
 
-**Result:** `aiterm context detect` shows project type, git branch, and suggested profile!
+## ✅ Phase 1-2: Settings & Docs Cleanup (Dec 15)
+- Cleaned settings.local.json (95% reduction)
+- Consolidated documentation
 
----
-
-### Phase 4: Python Project Structure
-- ✅ Created pyproject.toml with all dependencies
-- ✅ Set up src/aiterm/ package structure (cli, terminal, context, claude, utils)
-- ✅ Implemented basic CLI with Typer + Rich
-- ✅ Working commands: --version, init, doctor, profile list, claude settings
-- ✅ Added test suite (6 tests, all passing)
-- ✅ Installed with `pip install -e ".[dev]"`
-
-**Files Created:**
-- `pyproject.toml` (project config + dependencies)
-- `src/aiterm/` (main package)
-- `src/aiterm/cli/main.py` (CLI entry point)
-- `tests/test_cli.py` (6 CLI tests)
-
-**Result:** `aiterm --version` works! CLI foundation ready.
-
----
-
-### Phase 3: Slash Commands Optimization
-- ✅ Created 6 core hub commands: /hub, /workflow, /git, /site, /code, /research
-- ✅ Archived 5 deprecated commands: help, math, write, github, teach
-- ✅ Enhanced /hub to absorb /help functionality
-- ✅ Added command templates in `templates/commands/`
-- ✅ Result: 40% reduction (10 → 6 commands), clearer structure
-
-**Files Created:**
-- `templates/commands/hubs/*.md` (6 hub commands)
-- `templates/commands/archive/*.md` (5 archived commands)
-- `templates/commands/README.md` (documentation)
-
----
-
-## ✅ Previously Completed (2025-12-15 - Claude Code Refactoring)
-
-### Phase 1: Settings Cleanup (CRITICAL)
-- ✅ Cleaned .claude/settings.local.json (95% reduction)
-- ✅ Removed 86 one-time/temporary auto-approvals
-- ✅ Kept 20 essential patterns only
-- ✅ Result: 10,056 bytes → 513 bytes
-
-### Phase 2: Documentation Consolidation
-- ✅ Consolidated 8 files → 4 focused files
-- ✅ Created START-HERE.md (3-min quick start)
-- ✅ Created REFERENCE.md (merged 2 files)
-- ✅ Created @SMART.md (merged 2 files)
-- ✅ Archived 6 old documentation files
-- ✅ Result: Clearer entry points, single source of truth
-
-### Documentation Site Maintenance
-- ✅ Fixed broken iTerm2 screenshot link (404 error)
-- ✅ Ran comprehensive link checker (100% valid)
-- ✅ Rebuilt and deployed to GitHub Pages
-- ✅ Merged dev → main and pushed
-
-**Files Modified:**
-- `.claude/settings.local.json` (cleaned)
-- `~/.claude/START-HERE.md` (rewritten)
-- `~/.claude/REFERENCE.md` (new)
-- `~/.claude/@SMART.md` (new)
-- `docs/guide/status-bar.md` (link fix)
-
-**Result:** Faster startup, cleaner docs, deployed successfully!
-
-## 🎯 Next Action
-
-**PR Ready for Review** 🟢
-- Branch: `claude/recap-dev-main-branches-3eCZB` → `dev`
-- After merge to dev: Final review & merge to main
-- After main merge: Tag v0.1.0-dev release
-
-# Week 1 MVP Goals
-Day 1-2: Project setup, Python structure
-Day 3-4: Core terminal integration, context detection
-Day 5: Claude Code settings & auto-approvals
-Day 6: Testing & documentation
-Day 7: Polish & dogfooding
+# Next Actions
+1. Create PR: claude/recap-dev-main-branches-3eCZB → dev
+2. After merge: Tag v0.1.0-dev release
+3. v0.2.0: Hook management, MCP integration
 
 # Links
 repo: https://github.com/Data-Wise/iterm2-context-switcher
-docs: https://data-wise.github.io/iterm2-context-switcher/ (will update)
+docs: https://data-wise.github.io/iterm2-context-switcher/
+PR: https://github.com/Data-Wise/iterm2-context-switcher/compare/dev...claude/recap-dev-main-branches-3eCZB
