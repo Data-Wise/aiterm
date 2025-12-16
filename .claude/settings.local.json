@@ -1,7 +1,7 @@
 {
   "statusLine": {
     "type": "command",
-    "command": "/bin/bash /Users/dt/.claude/statusline-debug.sh"
+    "command": "/bin/bash /Users/dt/.claude/statusline-minimal-test.sh"
   },
   "permissions": {
     "allow": [
