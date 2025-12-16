@@ -1,10 +1,12 @@
 """Main CLI entry point for aiterm."""
 
+from pathlib import Path
 from typing import Optional
 
 import typer
 from rich.console import Console
 from rich.panel import Panel
+from rich.table import Table
 
 from aiterm import __app_name__, __version__
 
@@ -85,12 +87,76 @@ def doctor() -> None:
     console.print("[yellow]Full diagnostics coming in v0.2.0[/]")
 
 
-# Sub-command groups (stubs for now)
+# Sub-command groups
+context_app = typer.Typer(help="Context detection commands.")
 profile_app = typer.Typer(help="Profile management commands.")
 claude_app = typer.Typer(help="Claude Code integration commands.")
 
+app.add_typer(context_app, name="context")
 app.add_typer(profile_app, name="profile")
 app.add_typer(claude_app, name="claude")
+
+
+@context_app.command("detect")
+def context_detect(
+    path: Optional[Path] = typer.Argument(
+        None,
+        help="Directory to analyze. Defaults to current directory.",
+    ),
+    apply: bool = typer.Option(
+        False,
+        "--apply",
+        "-a",
+        help="Apply detected context to terminal (switch profile, set title).",
+    ),
+) -> None:
+    """Detect the project context for a directory."""
+    from aiterm.context.detector import detect_context
+    from aiterm.terminal import iterm2
+
+    target = path or Path.cwd()
+    context = detect_context(target)
+
+    # Build info table
+    table = Table(title="Context Detection", show_header=False, border_style="cyan")
+    table.add_column("Field", style="bold")
+    table.add_column("Value")
+
+    table.add_row("Directory", str(target))
+    table.add_row("Type", f"{context.icon} {context.type.value}" if context.icon else context.type.value)
+    table.add_row("Name", context.name)
+    table.add_row("Profile", context.profile)
+
+    if context.branch:
+        dirty = " [red]*[/]" if context.is_dirty else ""
+        table.add_row("Git Branch", f"{context.branch}{dirty}")
+
+    console.print(table)
+
+    # Apply to terminal if requested
+    if apply:
+        if iterm2.is_iterm2():
+            iterm2.apply_context(context)
+            console.print("\n[green]✓[/] Context applied to iTerm2")
+        else:
+            console.print("\n[yellow]⚠[/] Not running in iTerm2 - context not applied")
+
+
+@context_app.command("show")
+def context_show() -> None:
+    """Show current context (alias for detect)."""
+    context_detect(path=None, apply=False)
+
+
+@context_app.command("apply")
+def context_apply(
+    path: Optional[Path] = typer.Argument(
+        None,
+        help="Directory to analyze. Defaults to current directory.",
+    ),
+) -> None:
+    """Detect and apply context to terminal."""
+    context_detect(path=path, apply=True)
 
 
 @profile_app.command("list")

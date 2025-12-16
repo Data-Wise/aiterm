@@ -47,3 +47,25 @@ def test_claude_settings():
     """Test claude settings command."""
     result = runner.invoke(app, ["claude", "settings"])
     assert result.exit_code == 0
+
+
+def test_context_detect():
+    """Test context detect command."""
+    result = runner.invoke(app, ["context", "detect"])
+    assert result.exit_code == 0
+    assert "Context Detection" in result.output
+
+
+def test_context_show():
+    """Test context show command."""
+    result = runner.invoke(app, ["context", "show"])
+    assert result.exit_code == 0
+    assert "Context Detection" in result.output
+
+
+def test_context_apply():
+    """Test context apply command."""
+    result = runner.invoke(app, ["context", "apply"])
+    assert result.exit_code == 0
+    # Should show warning about not being in iTerm2
+    assert "Context Detection" in result.output

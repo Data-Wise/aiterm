@@ -1,10 +1,10 @@
 project: aiterm (formerly iterm2-context-switcher)
 status: active-development
 priority: P1
-progress: 35
+progress: 50
 version: 0.1.0-dev
 updated: 2025-12-16
-Next: Phase 5 - Terminal integration (migrate from zsh)
+Next: Phase 6 - Claude Code settings management
 
 # What it is
 Terminal optimizer CLI for AI-assisted development.
@@ -20,11 +20,28 @@ v3.0.0 (Dec 15): aiterm (Python CLI, multi-tool, expandable)
 - [x] @smart Prompt Optimizer (Tier 1 MVP) ✅ IMPLEMENTED!
 - [x] Python project structure ✅
 - [x] Core CLI commands (init, doctor) ✅
-- [ ] Terminal integration (migrate from zsh)
+- [x] Terminal integration (migrate from zsh) ✅
 - [ ] Claude Code settings management
 - [ ] Testing & documentation
 
-## ✅ Just Completed (2025-12-16 - Python Project Structure)
+## ✅ Just Completed (2025-12-16 - Terminal Integration)
+
+### Phase 5: Terminal Integration
+- ✅ Ported zsh/iterm2-integration.zsh to Python
+- ✅ Implemented context detection (8 types: production, ai-session, rpkg, python, node, quarto, emacs, dev-tools)
+- ✅ Added iTerm2 module (profile switching, title, user variables)
+- ✅ New CLI commands: `aiterm context detect`, `context show`, `context apply`
+- ✅ Added 23 new tests (32 total, all passing)
+
+**Files Created:**
+- `src/aiterm/context/detector.py` (context detection logic)
+- `src/aiterm/terminal/iterm2.py` (iTerm2 escape sequences)
+- `tests/test_context.py` (13 context tests)
+- `tests/test_iterm2.py` (10 iTerm2 tests)
+
+**Result:** `aiterm context detect` shows project type, git branch, and suggested profile!
+
+---
 
 ### Phase 4: Python Project Structure
 - ✅ Created pyproject.toml with all dependencies
@@ -91,11 +108,11 @@ v3.0.0 (Dec 15): aiterm (Python CLI, multi-tool, expandable)
 
 ## 🎯 Next Action
 
-**Phase 5: Terminal Integration** 🟡
-- Port zsh/iterm2-integration.zsh to Python
-- Implement context detection (8 types)
-- Add profile switching logic
-- Test iTerm2 escape sequences
+**Phase 6: Claude Code Settings Management** 🟡
+- Read/display Claude Code settings.json
+- Implement auto-approval presets
+- Add settings backup/restore
+- `aiterm claude approvals list/add-preset`
 
 # Week 1 MVP Goals
 Day 1-2: Project setup, Python structure
