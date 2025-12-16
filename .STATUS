@@ -1,10 +1,10 @@
 project: aiterm (formerly iterm2-context-switcher)
 status: active-development
 priority: P1
-progress: 50
+progress: 70
 version: 0.1.0-dev
 updated: 2025-12-16
-Next: Phase 6 - Claude Code settings management
+Next: Phase 7 - Testing & documentation polish
 
 # What it is
 Terminal optimizer CLI for AI-assisted development.
@@ -21,10 +21,28 @@ v3.0.0 (Dec 15): aiterm (Python CLI, multi-tool, expandable)
 - [x] Python project structure ✅
 - [x] Core CLI commands (init, doctor) ✅
 - [x] Terminal integration (migrate from zsh) ✅
-- [ ] Claude Code settings management
+- [x] Claude Code settings management ✅
 - [ ] Testing & documentation
 
-## ✅ Just Completed (2025-12-16 - Terminal Integration)
+## ✅ Just Completed (2025-12-16 - Claude Code Settings)
+
+### Phase 6: Claude Code Settings Management
+- ✅ Created settings module (load, save, backup)
+- ✅ Implemented `aiterm claude settings` - show settings
+- ✅ Implemented `aiterm claude backup` - backup settings
+- ✅ Implemented `aiterm claude approvals list` - show permissions
+- ✅ Implemented `aiterm claude approvals presets` - list 8 presets
+- ✅ Implemented `aiterm claude approvals add <preset>` - add preset
+- ✅ Added 14 new tests (48 total, all passing)
+
+**Presets Available:**
+- safe-reads, git-ops, github-cli, python-dev, node-dev, r-dev, web-tools, minimal
+
+**Files Created:**
+- `src/aiterm/claude/settings.py` (settings management)
+- `tests/test_claude_settings.py` (14 tests)
+
+---
 
 ### Phase 5: Terminal Integration
 - ✅ Ported zsh/iterm2-integration.zsh to Python
@@ -108,11 +126,11 @@ v3.0.0 (Dec 15): aiterm (Python CLI, multi-tool, expandable)
 
 ## 🎯 Next Action
 
-**Phase 6: Claude Code Settings Management** 🟡
-- Read/display Claude Code settings.json
-- Implement auto-approval presets
-- Add settings backup/restore
-- `aiterm claude approvals list/add-preset`
+**Phase 7: Testing & Documentation Polish** 🟡
+- Increase test coverage
+- Add CLI integration tests
+- Update README with new commands
+- Polish error messages and help text
 
 # Week 1 MVP Goals
 Day 1-2: Project setup, Python structure

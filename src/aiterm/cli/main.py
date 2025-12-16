@@ -199,18 +199,161 @@ def profile_list() -> None:
     console.print("[yellow]Profile management coming in v0.2.0[/]")
 
 
-@claude_app.command("settings")
-def claude_settings() -> None:
-    """Display current Claude Code settings."""
-    from pathlib import Path
+# ─── Claude settings commands ────────────────────────────────────────────────
 
-    settings_path = Path.home() / ".claude" / "settings.json"
-    if settings_path.exists():
-        console.print(f"[bold]Settings file:[/] {settings_path}")
-        console.print("[yellow]Settings viewer coming in v0.2.0[/]")
-    else:
+
+@claude_app.command("settings")
+def claude_settings_show() -> None:
+    """Display current Claude Code settings."""
+    from aiterm.claude.settings import load_settings, find_settings_file
+
+    settings = load_settings()
+    if not settings:
         console.print("[red]No Claude Code settings found.[/]")
-        console.print(f"Expected at: {settings_path}")
+        console.print(f"Expected at: ~/.claude/settings.json")
+        return
+
+    # Build settings table
+    table = Table(title="Claude Code Settings", show_header=False, border_style="cyan")
+    table.add_column("Field", style="bold")
+    table.add_column("Value")
+
+    table.add_row("File", str(settings.path))
+    table.add_row("Permissions (allow)", str(len(settings.allow_list)))
+    table.add_row("Permissions (deny)", str(len(settings.deny_list)))
+
+    if settings.hooks:
+        table.add_row("Hooks", str(len(settings.hooks)))
+
+    console.print(table)
+
+    # Show permissions
+    if settings.allow_list:
+        console.print("\n[bold]Allowed:[/]")
+        for perm in settings.allow_list[:10]:
+            console.print(f"  [green]✓[/] {perm}")
+        if len(settings.allow_list) > 10:
+            console.print(f"  [dim]... and {len(settings.allow_list) - 10} more[/]")
+
+
+@claude_app.command("backup")
+def claude_backup() -> None:
+    """Backup Claude Code settings."""
+    from aiterm.claude.settings import backup_settings, find_settings_file
+
+    settings_path = find_settings_file()
+    if not settings_path:
+        console.print("[red]No Claude Code settings found to backup.[/]")
+        return
+
+    backup_path = backup_settings(settings_path)
+    if backup_path:
+        console.print(f"[green]✓[/] Backup created: {backup_path}")
+    else:
+        console.print("[red]Failed to create backup.[/]")
+
+
+# Approvals sub-command group
+approvals_app = typer.Typer(help="Manage auto-approval permissions.")
+claude_app.add_typer(approvals_app, name="approvals")
+
+
+@approvals_app.command("list")
+def approvals_list() -> None:
+    """List current auto-approval permissions."""
+    from aiterm.claude.settings import load_settings
+
+    settings = load_settings()
+    if not settings:
+        console.print("[red]No Claude Code settings found.[/]")
+        return
+
+    console.print(f"[bold cyan]Auto-Approvals[/] ({settings.path})\n")
+
+    if settings.allow_list:
+        console.print("[bold green]Allowed:[/]")
+        for perm in sorted(settings.allow_list):
+            console.print(f"  ✓ {perm}")
+    else:
+        console.print("[dim]No allowed permissions configured.[/]")
+
+    if settings.deny_list:
+        console.print("\n[bold red]Denied:[/]")
+        for perm in sorted(settings.deny_list):
+            console.print(f"  ✗ {perm}")
+
+
+@approvals_app.command("presets")
+def approvals_presets() -> None:
+    """List available approval presets."""
+    from aiterm.claude.settings import list_presets
+
+    presets = list_presets()
+
+    table = Table(title="Available Presets", border_style="cyan")
+    table.add_column("Name", style="bold")
+    table.add_column("Description")
+    table.add_column("Permissions", justify="right")
+
+    for name, preset in presets.items():
+        table.add_row(
+            name,
+            preset["description"],
+            str(len(preset["permissions"])),
+        )
+
+    console.print(table)
+    console.print("\n[dim]Use 'aiterm claude approvals add <preset>' to add a preset.[/]")
+
+
+@approvals_app.command("add")
+def approvals_add(
+    preset_name: str = typer.Argument(..., help="Name of preset to add."),
+) -> None:
+    """Add a preset to auto-approvals."""
+    from aiterm.claude.settings import (
+        load_settings,
+        save_settings,
+        add_preset_to_settings,
+        get_preset,
+        backup_settings,
+    )
+
+    # Validate preset exists
+    preset = get_preset(preset_name)
+    if not preset:
+        console.print(f"[red]Unknown preset: {preset_name}[/]")
+        console.print("Run 'aiterm claude approvals presets' to see available presets.")
+        raise typer.Exit(1)
+
+    # Load settings
+    settings = load_settings()
+    if not settings:
+        console.print("[red]No Claude Code settings found.[/]")
+        console.print("Create ~/.claude/settings.json first.")
+        raise typer.Exit(1)
+
+    # Backup first
+    backup_settings(settings.path)
+
+    # Add preset
+    success, added = add_preset_to_settings(settings, preset_name)
+    if not success:
+        console.print(f"[red]Failed to add preset: {preset_name}[/]")
+        raise typer.Exit(1)
+
+    if not added:
+        console.print(f"[yellow]All permissions from '{preset_name}' already present.[/]")
+        return
+
+    # Save
+    if save_settings(settings):
+        console.print(f"[green]✓[/] Added {len(added)} permissions from '{preset_name}':")
+        for perm in added:
+            console.print(f"  + {perm}")
+    else:
+        console.print("[red]Failed to save settings.[/]")
+        raise typer.Exit(1)
 
 
 if __name__ == "__main__":
