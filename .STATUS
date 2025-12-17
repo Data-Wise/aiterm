@@ -3,8 +3,8 @@ status: release-ready
 priority: P1
 progress: 100
 version: 0.1.0-dev
-updated: 2025-12-16
-next: Create PR → merge → tag release
+updated: 2025-12-17
+next: Test aiterm features and learn more about CLI capabilities
 
 # What it is
 Terminal optimizer CLI for AI-assisted development.
@@ -83,10 +83,22 @@ pipx install git+https://github.com/Data-Wise/iterm2-context-switcher
 **Workaround:** None until Claude Code updates
 **Note:** This bug was discovered during v0.1.0-dev release prep. The statusLine script itself is production-ready and will work once Claude Code is updated.
 
-# Next Actions
-1. ✅ Tag created: v0.1.0-dev (merged to main and dev)
-2. Create GitHub release with STATUSLINE-BUG.md noted in known issues
-3. v0.2.0: Hook management, MCP integration, statusLine builder tool
+# ✅ Just Completed (Dec 17)
+- Created comprehensive Claude Code CLI tutorial (3,266 lines, 16 sections)
+- Added ADHD-friendly workflows, tips, and plugin vetting guide
+- Deployed site to GitHub Pages with Gemini CLI docs
+- Tagged v0.1.0-dev release
+- Fixed broken anchors in tutorial
+
+# 🎯 Next Action
+**Choose one:**
+- **A)** Test aiterm CLI features daily (dogfooding) 🟢
+- **B)** Implement full `aiterm init` wizard (v0.1.1)
+- **C)** Add more `aiterm doctor` diagnostics
+
+# Future Actions
+1. Create GitHub release with STATUSLINE-BUG.md noted in known issues
+2. v0.2.0: Hook management, MCP integration, statusLine builder tool
 
 # Links
 repo: https://github.com/Data-Wise/iterm2-context-switcher
