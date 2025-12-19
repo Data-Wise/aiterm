@@ -1,6 +1,6 @@
 # ROADMAP - Week 1 MVP ✅ COMPLETE
 
-**Goal:** Transform iterm2-context-switcher → aiterm CLI tool
+**Goal:** Transform aiterm → aiterm CLI tool
 
 **Timeline:** 7 days (COMPLETED 2025-12-16)
 **Target Version:** v0.1.0-dev
@@ -208,18 +208,38 @@
 
 ---
 
-## Post-MVP: Week 2 Preview
+## Post-MVP: v0.2.0 Roadmap
 
-### Planned for v0.2 (Phase 2)
-1. Hook management system
-2. Command template library
-3. MCP server integration
-4. Advanced status bar builder
+### Focus Areas for v0.2.0 (Phase 2)
 
-### Quick wins to add:
-- `aiterm context show` - Current context info
+**Core Goals:** Deep Claude Code integration and developer productivity
+
+#### 1. Hook Management System
+- Install and manage Claude Code hooks (9 types available)
+- Template library for common hook patterns
+- Interactive hook creator/editor
+- Hook validation and testing
+
+#### 2. MCP Integration
+- Discover and configure MCP servers
+- Test MCP server connections
+- Manage server permissions
+- Generate server configs from templates
+
+#### 3. StatusLine Builder
+- Interactive statusLine script generator
+- Theme templates (cool-blues, forest-greens, purple-charcoal)
+- Real-time preview
+- Session data integration (cost tracking, duration, changes)
+
+### Quick Wins to Add:
+- `aiterm context show` - Current context info (already exists!)
 - `aiterm quota set` - Integration with existing `qu` command
 - `aiterm export` - Export config for backup
+
+### Timeline
+**Target:** 2 weeks after v0.1.0 release
+**Priority:** Hook management > MCP integration > StatusLine builder
 
 ---
 

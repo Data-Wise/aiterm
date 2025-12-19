@@ -71,7 +71,7 @@ echo "════════════════════════�
 echo ""
 
 # Line 1: Directory + Git Status (Clean)
-dir_segment="\033[${DIR_BG};${DIR_FG}m ${EDGE_START} 📁 iterm2-context-switcher "
+dir_segment="\033[${DIR_BG};${DIR_FG}m ${EDGE_START} 📁 aiterm "
 git_segment="\033[38;5;${DIR_BG##*;};${VCS_CLEAN_BG}m${SEP_LEFT}\033[${VCS_CLEAN_BG};${VCS_FG}m main \033[0m\033[38;5;${VCS_CLEAN_BG##*;}m${EDGE_END}\033[0m"
 line1_clean="╭─${dir_segment}${git_segment}"
 

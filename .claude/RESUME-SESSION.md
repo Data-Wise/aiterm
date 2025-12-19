@@ -127,7 +127,7 @@ cat /tmp/claude-statusline-input.log
 git status
 
 # Resume working on aiterm
-cd ~/projects/dev-tools/iterm2-context-switcher
+cd ~/projects/dev-tools/aiterm
 
 # Tag release (when ready)
 git tag -a v0.1.0-dev -m "Release v0.1.0-dev"

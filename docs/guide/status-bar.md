@@ -125,7 +125,7 @@ Result: `📦 medfit @ macbook`
 \(user.ctxIcon) \(user.ctxName)
 ```
 
-Shows: `🔧 iterm2-context-switcher`
+Shows: `🔧 aiterm`
 
 ### Full: Icon + Name + Branch
 

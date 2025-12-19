@@ -113,25 +113,25 @@ Each theme has a standalone script in `statusline-alternatives/`:
 2. **Preview a theme** (see visual output without installing):
    ```bash
    # Preview Cool Blues
-   bash ~/projects/dev-tools/iterm2-context-switcher/statusline-alternatives/preview-theme.sh cool-blues
+   bash ~/projects/dev-tools/aiterm/statusline-alternatives/preview-theme.sh cool-blues
 
    # Preview Forest Greens
-   bash ~/projects/dev-tools/iterm2-context-switcher/statusline-alternatives/preview-theme.sh forest-greens
+   bash ~/projects/dev-tools/aiterm/statusline-alternatives/preview-theme.sh forest-greens
 
    # Preview Purple & Charcoal
-   bash ~/projects/dev-tools/iterm2-context-switcher/statusline-alternatives/preview-theme.sh purple-charcoal
+   bash ~/projects/dev-tools/aiterm/statusline-alternatives/preview-theme.sh purple-charcoal
    ```
 
 3. **Apply a theme** (automatic installation):
    ```bash
    # Install Cool Blues
-   bash ~/projects/dev-tools/iterm2-context-switcher/statusline-alternatives/install-theme.sh cool-blues
+   bash ~/projects/dev-tools/aiterm/statusline-alternatives/install-theme.sh cool-blues
 
    # Install Forest Greens
-   bash ~/projects/dev-tools/iterm2-context-switcher/statusline-alternatives/install-theme.sh forest-greens
+   bash ~/projects/dev-tools/aiterm/statusline-alternatives/install-theme.sh forest-greens
 
    # Install Purple & Charcoal
-   bash ~/projects/dev-tools/iterm2-context-switcher/statusline-alternatives/install-theme.sh purple-charcoal
+   bash ~/projects/dev-tools/aiterm/statusline-alternatives/install-theme.sh purple-charcoal
    ```
 
 4. **Test the theme** (start new Claude Code session):
@@ -181,18 +181,18 @@ You can easily switch themes by running the install script:
 
 ```bash
 # Try Cool Blues for daytime work
-bash ~/projects/dev-tools/iterm2-context-switcher/statusline-alternatives/install-theme.sh cool-blues
+bash ~/projects/dev-tools/aiterm/statusline-alternatives/install-theme.sh cool-blues
 
 # Switch to Purple & Charcoal for evening coding
-bash ~/projects/dev-tools/iterm2-context-switcher/statusline-alternatives/install-theme.sh purple-charcoal
+bash ~/projects/dev-tools/aiterm/statusline-alternatives/install-theme.sh purple-charcoal
 ```
 
 **Tip:** Create aliases in your `~/.zshrc`:
 ```bash
 # Add to ~/.config/zsh/.zshrc
-alias statusline-cool="bash ~/projects/dev-tools/iterm2-context-switcher/statusline-alternatives/install-theme.sh cool-blues"
-alias statusline-forest="bash ~/projects/dev-tools/iterm2-context-switcher/statusline-alternatives/install-theme.sh forest-greens"
-alias statusline-purple="bash ~/projects/dev-tools/iterm2-context-switcher/statusline-alternatives/install-theme.sh purple-charcoal"
+alias statusline-cool="bash ~/projects/dev-tools/aiterm/statusline-alternatives/install-theme.sh cool-blues"
+alias statusline-forest="bash ~/projects/dev-tools/aiterm/statusline-alternatives/install-theme.sh forest-greens"
+alias statusline-purple="bash ~/projects/dev-tools/aiterm/statusline-alternatives/install-theme.sh purple-charcoal"
 alias statusline-original="cp ~/.claude/statusline-p10k.sh.backup ~/.claude/statusline-p10k.sh"
 ```
 

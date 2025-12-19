@@ -16,7 +16,7 @@
 
 ## Phase 1: MVP (Week 1) - v0.1.0 ✅ COMPLETE
 
-**Goal:** Working CLI that improves on current iterm2-context-switcher
+**Goal:** Working CLI that improves on current aiterm
 **Status:** 95% complete - awaiting PR merge (2025-12-16)
 
 ### Core Features
@@ -58,6 +58,8 @@
 ## Phase 2: Enhanced Claude Integration (v0.2.0)
 
 **Goal:** Deep Claude Code customization
+**Timeline:** 2 weeks post v0.1.0 release
+**Priorities:** Hook management > MCP integration > StatusLine builder
 
 ### NEW KNOWLEDGE: 9 Hook Types Available!
 - PreToolUse (block/approve tools before execution)
@@ -480,7 +482,7 @@ aiterm mcp recommend
 ### MVP (v0.1)
 - DT uses daily for 1 week
 - Faster setup than manual config
-- No regressions from current iterm2-context-switcher
+- No regressions from current aiterm
 
 ### v1.0
 - 10+ external users

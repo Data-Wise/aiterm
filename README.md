@@ -16,7 +16,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Install aiterm globally
 uv tool install aiterm                    # from PyPI (after publish)
-uv tool install git+https://github.com/Data-Wise/iterm2-context-switcher
+uv tool install git+https://github.com/Data-Wise/aiterm
 ```
 
 ### Alternative: pipx
@@ -27,14 +27,14 @@ brew install pipx && pipx ensurepath
 
 # Install aiterm globally
 pipx install aiterm                       # from PyPI (after publish)
-pipx install git+https://github.com/Data-Wise/iterm2-context-switcher
+pipx install git+https://github.com/Data-Wise/aiterm
 ```
 
 ### From source (development)
 
 ```bash
-git clone https://github.com/Data-Wise/iterm2-context-switcher.git
-cd iterm2-context-switcher
+git clone https://github.com/Data-Wise/aiterm.git
+cd aiterm
 uv tool install .                         # or: pip install -e .
 ```
 
@@ -193,8 +193,8 @@ cd ~/projects/research/      # → Default theme, research context
 ### Setup
 ```bash
 # Clone repo
-git clone https://github.com/Data-Wise/iterm2-context-switcher.git
-cd iterm2-context-switcher
+git clone https://github.com/Data-Wise/aiterm.git
+cd aiterm
 
 # Set up environment (using uv - recommended)
 uv venv
@@ -223,7 +223,7 @@ See [ROADMAP.md](ROADMAP.md) for current progress.
 
 ## 📜 History
 
-**v2.5.0 (Dec 15, 2024):** iterm2-context-switcher
+**v2.5.0 (Dec 15, 2024):** aiterm
 - zsh-based terminal integration
 - 8 context types
 - iTerm2 status bar support
@@ -268,7 +268,7 @@ Built for AI-assisted development workflows with:
 
 **Author:** DT
 **Project:** Part of the Data-Wise development toolkit
-**Repo:** https://github.com/Data-Wise/iterm2-context-switcher
+**Repo:** https://github.com/Data-Wise/aiterm
 
 ---
 

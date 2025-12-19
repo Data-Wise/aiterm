@@ -9,7 +9,7 @@
 DISABLE_AUTO_TITLE="true"
 
 # At end of .zshrc
-source ~/path/to/iterm2-context-switcher/zsh/iterm2-integration.zsh
+source ~/path/to/aiterm/zsh/iterm2-integration.zsh
 ```
 
 ### Environment Variables
