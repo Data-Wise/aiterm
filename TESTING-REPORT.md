@@ -201,7 +201,7 @@ mkdocs serve
 ```bash
 mkdocs gh-deploy --force
 ```
-**Result:** ✅ Deployed to https://Data-Wise.github.io/iterm2-context-switcher/
+**Result:** ✅ Deployed to https://Data-Wise.github.io/aiterm/
 
 **Documentation Quality:**
 - 8 comprehensive pages

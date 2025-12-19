@@ -27,27 +27,27 @@ This file provides guidance to Claude Code when working with the aiterm project.
 
 ---
 
-## Project Status: Week 1 MVP (v0.1.0-dev)
+## Project Status: v0.1.0-dev COMPLETE ✅
 
-**Current Phase:** First feature shipped (@smart prompt optimizer)!
+**Current Phase:** Ready for v0.1.0 release!
 
-**Progress:**
-- [x] Planning complete (IDEAS.md, ROADMAP.md, ARCHITECTURE.md)
-- [x] @smart Prompt Optimizer (Tier 1 MVP) ✅ IMPLEMENTED!
-- [ ] Python project structure
-- [ ] Core CLI commands (init, doctor)
-- [ ] Terminal integration (migrate from zsh)
-- [ ] Claude Code settings management
-- [ ] Testing & documentation
+**Completed:**
+- [x] UV build system and virtual environment
+- [x] Python project structure (hatchling, src/ layout)
+- [x] Core CLI commands (doctor, detect, switch)
+- [x] Terminal integration (iTerm2 escape sequences)
+- [x] Claude Code settings management
+- [x] Auto-approval presets (8 presets)
+- [x] Testing & documentation (51 tests, 83% coverage)
+- [x] Comprehensive docs (2,647 lines, deployed to GitHub Pages)
+- [x] Repository renamed to "aiterm"
 
-**This Week's Goals:**
-1. Set up Python project structure (Poetry/pip)
-2. Migrate zsh integration to Python
-3. Build core CLI commands (init, doctor, profile, claude)
-4. Port existing test suite
-5. Get DT using it daily
+**Links:**
+- **Repo:** https://github.com/Data-Wise/aiterm
+- **Docs:** https://Data-Wise.github.io/aiterm/
+- **Status:** Ready for release 🚀
 
-See `ROADMAP.md` for detailed day-by-day plan.
+See `TESTING-REPORT.md` for complete test results.
 
 ---
 
@@ -142,13 +142,14 @@ These files load automatically when working in relevant paths.
 
 ## Success Criteria
 
-### MVP (v0.1.0)
-- [ ] Installs in <5 minutes
-- [ ] `aiterm init` sets up terminal
-- [ ] Context switching works (8 types)
-- [ ] Claude Code auto-approvals manageable
-- [ ] Tests pass (>80% coverage)
-- [ ] DT uses daily for 1 week
+### MVP (v0.1.0) ✅ COMPLETE
+- [x] Installs in <5 minutes (with UV: < 2 minutes!)
+- [x] Context switching works (8 types)
+- [x] Claude Code auto-approvals manageable (8 presets)
+- [x] Tests pass (51/51, 83% coverage)
+- [x] Comprehensive documentation deployed
+- [ ] `aiterm init` wizard (deferred to v0.2.0)
+- [ ] DT uses daily for 1 week (testing in progress)
 
 ### Long-term (v1.0.0)
 - [ ] Multi-terminal support
