@@ -49,7 +49,7 @@ trap cleanup EXIT
 # SOURCE THE INTEGRATION
 # ══════════════════════════════════════════════════════════════════════════════
 
-INTEGRATION="$HOME/projects/dev-tools/iterm2-context-switcher/zsh/iterm2-integration.zsh"
+INTEGRATION="$HOME/projects/dev-tools/aiterm/zsh/iterm2-integration.zsh"
 
 echo ""
 echo -e "${BOLD}🧪 iTerm2 Context Switcher - Edge Case Tests${NC}"

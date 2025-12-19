@@ -99,7 +99,7 @@ If yes, R detection wins. This is by design for R packages with Python scripts.
 Run the included diagnostic:
 
 ```bash
-~/path/to/iterm2-context-switcher/scripts/diagnose.sh
+~/path/to/aiterm/scripts/diagnose.sh
 ```
 
 ## Reset Everything

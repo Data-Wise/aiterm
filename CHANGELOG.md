@@ -14,10 +14,10 @@ The first functional Python release of aiterm, migrated from zsh to a modern CLI
 
 ```bash
 # Recommended (uv)
-uv tool install git+https://github.com/Data-Wise/iterm2-context-switcher
+uv tool install git+https://github.com/Data-Wise/aiterm
 
 # Alternative (pipx)
-pipx install git+https://github.com/Data-Wise/iterm2-context-switcher
+pipx install git+https://github.com/Data-Wise/aiterm
 ```
 
 ### New Features
@@ -83,7 +83,7 @@ ait profile list       # List profiles
 
 ## [3.0.0] - 2025-12-15 - PROJECT PIVOT
 
-### 🎉 Major Change: iterm2-context-switcher → **aiterm**
+### 🎉 Major Change: aiterm → **aiterm**
 
 **Vision Evolution:**
 - **Was:** zsh-based iTerm2 context switcher
@@ -263,7 +263,7 @@ See `ROADMAP.md` for Week 1 MVP plan:
 
 ### Documentation
 - 7 documentation pages covering installation, guides, and reference
-- Live site: https://data-wise.github.io/iterm2-context-switcher/
+- Live site: https://data-wise.github.io/aiterm/
 
 ## [1.1.0] - 2025-12-13
 
@@ -299,4 +299,4 @@ See `ROADMAP.md` for Week 1 MVP plan:
 ---
 
 **Project Status:** Complete (v2.4.0)
-**Live Docs:** https://data-wise.github.io/iterm2-context-switcher/
+**Live Docs:** https://data-wise.github.io/aiterm/

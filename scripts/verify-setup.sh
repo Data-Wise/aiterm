@@ -87,7 +87,7 @@ fi
 
 section "3. Integration File"
 
-INTEGRATION_FILE="$HOME/projects/dev-tools/iterm2-context-switcher/zsh/iterm2-integration.zsh"
+INTEGRATION_FILE="$HOME/projects/dev-tools/aiterm/zsh/iterm2-integration.zsh"
 
 if [[ -f "$INTEGRATION_FILE" ]]; then
     check_pass "Integration file exists"
@@ -106,11 +106,11 @@ if [[ ! -f "$ZSHRC" ]]; then
 fi
 
 if [[ -f "$ZSHRC" ]]; then
-    if grep -q "iterm2-context-switcher" "$ZSHRC" 2>/dev/null; then
+    if grep -q "aiterm" "$ZSHRC" 2>/dev/null; then
         check_pass "Integration sourced in $(basename $ZSHRC)"
     else
         check_fail "Integration not sourced in $ZSHRC"
-        echo "       Add: source ~/projects/dev-tools/iterm2-context-switcher/zsh/iterm2-integration.zsh"
+        echo "       Add: source ~/projects/dev-tools/aiterm/zsh/iterm2-integration.zsh"
     fi
 else
     check_warn "Could not find .zshrc"

@@ -10,7 +10,7 @@ paths:
 
 ```bash
 # Clone repo
-cd ~/projects/dev-tools/iterm2-context-switcher
+cd ~/projects/dev-tools/aiterm
 
 # Set up Python environment
 python3 -m venv venv

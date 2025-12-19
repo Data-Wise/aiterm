@@ -1,10 +1,10 @@
 site_name: iTerm2 Context Switcher
 site_description: Smart context switching for iTerm2 with auto-profile switching and tab titles
 site_author: Data-Wise
-site_url: https://data-wise.github.io/iterm2-context-switcher
+site_url: https://data-wise.github.io/aiterm
 
-repo_name: Data-Wise/iterm2-context-switcher
-repo_url: https://github.com/Data-Wise/iterm2-context-switcher
+repo_name: Data-Wise/aiterm
+repo_url: https://github.com/Data-Wise/aiterm
 edit_uri: edit/main/docs/
 
 theme:

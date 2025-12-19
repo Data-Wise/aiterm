@@ -6,12 +6,12 @@ Get up and running in 2 minutes.
 
 ```bash
 # 1. Run install script
-cd ~/projects/dev-tools/iterm2-context-switcher
+cd ~/projects/dev-tools/aiterm
 bash scripts/install-profiles.sh
 
 # 2. Add to your .zshrc
 echo 'DISABLE_AUTO_TITLE="true"' >> ~/.zshrc
-echo 'source ~/projects/dev-tools/iterm2-context-switcher/zsh/iterm2-integration.zsh' >> ~/.zshrc
+echo 'source ~/projects/dev-tools/aiterm/zsh/iterm2-integration.zsh' >> ~/.zshrc
 
 # 3. Reload
 source ~/.zshrc

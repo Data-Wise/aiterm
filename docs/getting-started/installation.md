@@ -15,7 +15,7 @@ Complete installation guide for iTerm2 Context Switcher.
 The fastest way to get started:
 
 ```bash
-cd ~/projects/dev-tools/iterm2-context-switcher
+cd ~/projects/dev-tools/aiterm
 bash scripts/install-profiles.sh
 ```
 
@@ -32,7 +32,7 @@ This automatically installs all 7 color profiles via iTerm2 Dynamic Profiles.
 2. **Add at end of .zshrc**:
 
     ```zsh
-    source ~/projects/dev-tools/iterm2-context-switcher/zsh/iterm2-integration.zsh
+    source ~/projects/dev-tools/aiterm/zsh/iterm2-integration.zsh
     ```
 
 3. **Configure iTerm2 profiles** (one-time):
@@ -73,7 +73,7 @@ Add to `~/.config/zsh/.zshrc` (or `~/.zshrc`):
 DISABLE_AUTO_TITLE="true"
 
 # At end of file:
-source ~/projects/dev-tools/iterm2-context-switcher/zsh/iterm2-integration.zsh
+source ~/projects/dev-tools/aiterm/zsh/iterm2-integration.zsh
 ```
 
 !!! warning "DISABLE_AUTO_TITLE"

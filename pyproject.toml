@@ -54,10 +54,10 @@ aiterm = "aiterm.cli.main:app"
 ait = "aiterm.cli.main:app"  # Short alias
 
 [project.urls]
-Homepage = "https://github.com/Data-Wise/iterm2-context-switcher"
-Documentation = "https://data-wise.github.io/iterm2-context-switcher/"
-Repository = "https://github.com/Data-Wise/iterm2-context-switcher"
-Issues = "https://github.com/Data-Wise/iterm2-context-switcher/issues"
+Homepage = "https://github.com/Data-Wise/aiterm"
+Documentation = "https://data-wise.github.io/aiterm/"
+Repository = "https://github.com/Data-Wise/aiterm"
+Issues = "https://github.com/Data-Wise/aiterm/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]

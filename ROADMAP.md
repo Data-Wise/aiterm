@@ -1,6 +1,6 @@
 # ROADMAP - Week 1 MVP ✅ COMPLETE
 
-**Goal:** Transform iterm2-context-switcher → aiterm CLI tool
+**Goal:** Transform aiterm → aiterm CLI tool
 
 **Timeline:** 7 days (COMPLETED 2025-12-16)
 **Target Version:** v0.1.0-dev

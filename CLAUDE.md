@@ -4,7 +4,7 @@ This file provides guidance to Claude Code when working with the aiterm project.
 
 ## Project Overview
 
-**aiterm** (formerly iterm2-context-switcher) - Terminal optimizer CLI for AI-assisted development with Claude Code and Gemini CLI.
+**aiterm** (formerly aiterm) - Terminal optimizer CLI for AI-assisted development with Claude Code and Gemini CLI.
 
 **What it does:**
 - Optimizes terminal setup (iTerm2 primarily) for AI coding workflows

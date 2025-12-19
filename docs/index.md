@@ -43,7 +43,7 @@ Automatically switches iTerm2 profiles (colors) and sets tab titles based on you
 ### Option 1: Install Script
 
 ```bash
-cd ~/projects/dev-tools/iterm2-context-switcher
+cd ~/projects/dev-tools/aiterm
 bash scripts/install-profiles.sh
 ```
 
@@ -54,7 +54,7 @@ bash scripts/install-profiles.sh
 DISABLE_AUTO_TITLE="true"
 
 # At end of .zshrc
-source ~/projects/dev-tools/iterm2-context-switcher/zsh/iterm2-integration.zsh
+source ~/projects/dev-tools/aiterm/zsh/iterm2-integration.zsh
 ```
 
 **Important:** Set each iTerm2 profile's Title to "Session Name" in Preferences.
@@ -81,7 +81,7 @@ Example titles:
 
 - `📦 medfit (main)` - R package on main branch
 - `📦 medfit (main)*` - R package with uncommitted changes
-- `🔧 iterm2-context-switcher (dev)` - Dev-tools on dev branch
+- `🔧 aiterm (dev)` - Dev-tools on dev branch
 - `🐍 myproject (feature/api)` - Python project on feature branch
 
 All changes are cached to prevent redundant switches.
