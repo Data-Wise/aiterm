@@ -1,8 +1,4 @@
 {
-  "statusLine": {
-    "type": "command",
-    "command": "/bin/bash /Users/dt/.claude/statusline-minimal-test.sh"
-  },
   "permissions": {
     "allow": [
       "Bash(cat:*)",
@@ -18,7 +14,7 @@
       "Bash(git status:*)",
       "Bash(git restore:*)",
       "Bash(git log:*)",
-      "Bash(gh *:*)",
+      "Bash(gh :*::*)",
       "Bash(tree:*)",
       "Bash(jq:*)",
       "Bash(curl:*)",
@@ -96,7 +92,9 @@
       "WebFetch(domain:claude.com)",
       "WebFetch(domain:github.com)",
       "Bash(git -C /Users/dt/projects/dev-tools/iterm2-context-switcher status)",
-      "Bash(mkdocs gh-deploy:*)"
+      "Bash(mkdocs gh-deploy:*)",
+      "Bash(claude /code:debug)",
+      "Bash(claude --doctor)"
     ]
   }
 }
