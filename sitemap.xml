@@ -1,59 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://data-wise.github.io/iterm2-context-switcher/</loc>
+         <loc>https://data-wise.github.io/aiterm/</loc>
          <lastmod>2025-12-19</lastmod>
     </url>
     <url>
-         <loc>https://data-wise.github.io/iterm2-context-switcher/CLAUDE-CODE-TUTORIAL/</loc>
+         <loc>https://data-wise.github.io/aiterm/development/architecture/</loc>
          <lastmod>2025-12-19</lastmod>
     </url>
     <url>
-         <loc>https://data-wise.github.io/iterm2-context-switcher/gemini-cli/GEMINI_REFCARD/</loc>
+         <loc>https://data-wise.github.io/aiterm/development/contributing/</loc>
          <lastmod>2025-12-19</lastmod>
     </url>
     <url>
-         <loc>https://data-wise.github.io/iterm2-context-switcher/gemini-cli/GEMINI_TUTORIAL/</loc>
+         <loc>https://data-wise.github.io/aiterm/getting-started/installation/</loc>
          <lastmod>2025-12-19</lastmod>
     </url>
     <url>
-         <loc>https://data-wise.github.io/iterm2-context-switcher/gemini-cli/PROMPT_ENGINEERING_ADHD/</loc>
+         <loc>https://data-wise.github.io/aiterm/getting-started/quickstart/</loc>
          <lastmod>2025-12-19</lastmod>
     </url>
     <url>
-         <loc>https://data-wise.github.io/iterm2-context-switcher/gemini-cli/WORKFLOW_GUIDE/</loc>
+         <loc>https://data-wise.github.io/aiterm/guide/claude-integration/</loc>
          <lastmod>2025-12-19</lastmod>
     </url>
     <url>
-         <loc>https://data-wise.github.io/iterm2-context-switcher/getting-started/installation/</loc>
+         <loc>https://data-wise.github.io/aiterm/guide/context-detection/</loc>
          <lastmod>2025-12-19</lastmod>
     </url>
     <url>
-         <loc>https://data-wise.github.io/iterm2-context-switcher/getting-started/quickstart/</loc>
+         <loc>https://data-wise.github.io/aiterm/guide/profiles/</loc>
          <lastmod>2025-12-19</lastmod>
     </url>
     <url>
-         <loc>https://data-wise.github.io/iterm2-context-switcher/guide/context-detection/</loc>
+         <loc>https://data-wise.github.io/aiterm/guide/status-bar/</loc>
          <lastmod>2025-12-19</lastmod>
     </url>
     <url>
-         <loc>https://data-wise.github.io/iterm2-context-switcher/guide/profiles/</loc>
+         <loc>https://data-wise.github.io/aiterm/guide/triggers/</loc>
          <lastmod>2025-12-19</lastmod>
     </url>
     <url>
-         <loc>https://data-wise.github.io/iterm2-context-switcher/guide/status-bar/</loc>
+         <loc>https://data-wise.github.io/aiterm/guide/workflows/</loc>
          <lastmod>2025-12-19</lastmod>
     </url>
     <url>
-         <loc>https://data-wise.github.io/iterm2-context-switcher/guide/triggers/</loc>
+         <loc>https://data-wise.github.io/aiterm/reference/commands/</loc>
          <lastmod>2025-12-19</lastmod>
     </url>
     <url>
-         <loc>https://data-wise.github.io/iterm2-context-switcher/reference/configuration/</loc>
+         <loc>https://data-wise.github.io/aiterm/reference/configuration/</loc>
          <lastmod>2025-12-19</lastmod>
     </url>
     <url>
-         <loc>https://data-wise.github.io/iterm2-context-switcher/reference/troubleshooting/</loc>
+         <loc>https://data-wise.github.io/aiterm/reference/troubleshooting/</loc>
          <lastmod>2025-12-19</lastmod>
     </url>
 </urlset>
