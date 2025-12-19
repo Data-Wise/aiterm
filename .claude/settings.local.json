@@ -1,8 +1,4 @@
 {
-  "statusLine": {
-    "type": "command",
-    "command": "/bin/bash /Users/dt/.claude/statusline-debug.sh"
-  },
   "permissions": {
     "allow": [
       "Bash(cat:*)",
@@ -71,7 +67,12 @@
       "Bash(tee:*)",
       "Bash(brew info:*)",
       "Bash(claude --upgrade)",
-      "Bash(brew upgrade:*)"
+      "Bash(brew upgrade:*)",
+      "Bash(gh release :*)"
     ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "/bin/bash /Users/dt/.claude/statusline-debug.sh"
   }
 }

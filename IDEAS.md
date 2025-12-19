@@ -58,6 +58,8 @@
 ## Phase 2: Enhanced Claude Integration (v0.2.0)
 
 **Goal:** Deep Claude Code customization
+**Timeline:** 2 weeks post v0.1.0 release
+**Priorities:** Hook management > MCP integration > StatusLine builder
 
 ### NEW KNOWLEDGE: 9 Hook Types Available!
 - PreToolUse (block/approve tools before execution)
