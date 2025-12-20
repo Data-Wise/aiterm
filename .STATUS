@@ -1,121 +1,63 @@
-project: aiterm (formerly iterm2-context-switcher)
-status: released
+project: aiterm
+status: active
 priority: P1
-progress: 100
-version: 0.1.0
-updated: 2024-12-18
-next: Create announcement materials (GIF, blog post, social media)
+progress: 10
+version: 0.2.0-dev
+updated: 2025-12-19
+next: Inventory Claude CLI custom commands and MCP servers for refactoring
 
-## ✅ Just Completed (v0.1.0 Release Session - Dec 18, 2024)
+## ✅ Just Completed (Standards Session - Dec 19, 2024)
+- Adopted standards from zsh-configuration (12 documents)
+- Created comprehensive documentation (18,000+ lines)
+- Implemented sync infrastructure (scripts/sync-standards.sh)
+- Created 3 aiterm-specific documentation guides
+- 7 brainstorm documents for v0.2.0+ vision (committed)
+- Standards ready for v0.2.0 implementation
+
+## ✅ Previously Completed (v0.1.0 Release - Dec 18, 2024)
 - UV build system migration (10-100x faster installation)
-- Comprehensive documentation (2,647 lines, 8 pages)
-- Deployed docs to GitHub Pages
-- Complete testing report (all 51 tests passing)
+- Comprehensive documentation (2,647 lines, deployed)
 - Repository renamed to "aiterm"
 - v0.1.0 release published
-- Merged to main branch
+- All 51 tests passing (83% coverage)
 
-## 🎯 Next Action
-**Choose one:**
-- **A)** Create installation GIF/video [30-45 min] 🟢 RECOMMENDED
-- **B)** Write blog post announcement [1 hour]
-- **C)** Prepare social media posts [15-30 min]
+## 🎯 Current Focus: Custom Commands & MCP Refactoring
+**Task:** Inventory and refactor Claude CLI custom commands and MCP servers
+- Analyze ~/.claude/commands/ (194 files)
+- Analyze ~/.claude/settings.json MCP servers (3 configured)
+- Identify duplication and opportunities for consolidation
+- Propose refactoring into organized plugins
+- Better maintenance and discoverability
+
+## 📋 Planned Refactoring Outcomes
+1. Organize commands into logical plugin groups
+2. Convert standalone commands into plugin skills
+3. Identify commands that should be MCP server tools
+4. Create plugin architecture for better maintenance
+5. Reduce duplication across 194 command files
+
+## 🚀 v0.2.0 Roadmap (After Refactoring)
+Phase 1 (Week 1-3): MCP Creation Tools
+- Create aiterm-mcp-marketplace server
+- Implement `aiterm mcp create` wizard
+- Create MCP server templates
+- Write tutorials using new standards
+
+Phase 2 (Week 4-6): Plugin/Hook/Agent Creation
+- Plugin creation wizard
+- Hook creation wizard
+- Agent configuration builder
+
+Phase 3 (Week 7-9): IDE Integration
+- Positron extension
+- Zed extension
+- VS Code extension
 
 # What it is
-Terminal optimizer CLI for AI-assisted development.
-Optimizes iTerm2 (+ other terminals) for Claude Code and Gemini CLI.
-Manages profiles, hooks, commands, context detection, and auto-approvals.
-
-# Project Evolution
-v2.5.0 (Dec 15): iterm2-context-switcher (zsh-based, iTerm2 only)
-v3.0.0 (Dec 15): aiterm (Python CLI, multi-tool, expandable)
-v0.1.0-dev (Dec 16): First Python release - all Phase 1 features complete
-
-# v0.1.0-dev Summary
-
-## Installation
-```bash
-# Recommended (uv)
-uv tool install git+https://github.com/Data-Wise/iterm2-context-switcher
-
-# Alternative (pipx)
-pipx install git+https://github.com/Data-Wise/iterm2-context-switcher
-```
-
-## Features Implemented
-- Context Detection: 8 types (production, ai-session, rpkg, python, node, quarto, emacs, dev-tools)
-- Claude Integration: settings viewer, backup, 8 auto-approval presets
-- CLI Commands: init, doctor, detect, switch, context, profile, claude
-- Test Suite: 51 tests, 83% coverage
-
-## Tech Stack
-- Python 3.10+, Typer, Rich, pytest
-- Distribution: uv/pipx/PyPI
-
-# Completed Phases
-
-## ✅ Phase 8: Final Polish & Release Prep (Dec 16)
-- Updated README with uv/pipx installation
-- Updated CHANGELOG with v0.1.0-dev release notes
-- Updated planning docs (ROADMAP, IDEAS, ARCHITECTURE)
-- Branch ready for PR
-
-## ✅ Phase 7: Testing & Documentation (Dec 16)
-- 51 tests passing, 83% coverage
-- README updated with all commands
-- CHANGELOG updated with release notes
-
-## ✅ Phase 6: Claude Settings Management (Dec 16)
-- `aiterm claude settings` - show settings
-- `aiterm claude backup` - backup with timestamp
-- `aiterm claude approvals list/presets/add`
-- 8 presets: safe-reads, git-ops, github-cli, python-dev, node-dev, r-dev, web-tools, minimal
-
-## ✅ Phase 5: Terminal Integration (Dec 16)
-- Ported zsh/iterm2-integration.zsh to Python
-- Context detection: 8 types with icons and profiles
-- iTerm2 module: profile switching, title, user variables
-
-## ✅ Phase 4: Python Project Structure (Dec 16)
-- pyproject.toml with setuptools
-- src/aiterm/ package (cli, terminal, context, claude, utils)
-- Typer + Rich CLI
-
-## ✅ Phase 3: Slash Commands (Dec 16)
-- 6 hub commands, 5 archived
-- 40% reduction (10 → 6 commands)
-
-## ✅ Phase 1-2: Settings & Docs Cleanup (Dec 15)
-- Cleaned settings.local.json (95% reduction)
-- Consolidated documentation
-
-# Known Issues
-
-## StatusLine Bug in Claude Code v2.0.70
-**Status:** Documented (STATUSLINE-BUG.md)
-**Impact:** Low (does not affect aiterm functionality)
-**Description:** Claude Code v2.0.70 (current brew version) does not pass JSON to statusLine scripts via stdin. The statusline-p10k.sh script is correctly implemented but cannot receive session data from Claude Code.
-**Workaround:** None until Claude Code updates
-**Note:** This bug was discovered during v0.1.0-dev release prep. The statusLine script itself is production-ready and will work once Claude Code is updated.
-
-# ✅ Just Completed (Dec 17)
-- Created comprehensive Claude Code CLI tutorial (3,266 lines, 16 sections)
-- Added ADHD-friendly workflows, tips, and plugin vetting guide
-- Deployed site to GitHub Pages with Gemini CLI docs
-- Tagged v0.1.0-dev release
-- Fixed broken anchors in tutorial
-
-# 🎯 Next Action
-**Choose one:**
-- **A)** Test aiterm CLI features daily (dogfooding) 🟢
-- **B)** Implement full `aiterm init` wizard (v0.1.1)
-- **C)** Add more `aiterm doctor` diagnostics
-
-# Future Actions
-1. Create GitHub release with STATUSLINE-BUG.md noted in known issues
-2. v0.2.0: Hook management, MCP integration, statusLine builder tool
+AI Coding Ecosystem Platform - "npm for AI tools"
+Creates and manages MCP servers, plugins, agents, and hooks for Claude Code.
+Terminal integration (iTerm2+) with context detection and profile switching.
 
 # Links
-repo: https://github.com/Data-Wise/iterm2-context-switcher
-docs: https://data-wise.github.io/iterm2-context-switcher/
-PR: https://github.com/Data-Wise/iterm2-context-switcher/compare/dev...claude/recap-dev-main-branches-3eCZB
+repo: https://github.com/Data-Wise/aiterm
+docs: https://Data-Wise.github.io/aiterm/
