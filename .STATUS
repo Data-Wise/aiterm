@@ -1,12 +1,35 @@
 project: aiterm
 status: active
 priority: P1
-progress: 45
+progress: 75
 version: 0.2.0-dev
 updated: 2025-12-21
-next: Week 2 - Create User Guide, Integration Guide, Troubleshooting Guide
+next: Week 3 - Implementation Summary, Documentation Index, Deploy to GitHub Pages
 
-## ✅ Just Completed (Phase 0 Week 1 - Documentation Foundation - Dec 21, 2025)
+## ✅ Just Completed (Phase 0 Week 2 - User-Facing Guides - Dec 21, 2025)
+- ✅ Created comprehensive User Guide (AITERM-USER-GUIDE.md, 800+ lines)
+  - Installation walkthrough (UV, pip, from source)
+  - First-time setup (4-step process)
+  - Daily workflows (5 real-world scenarios)
+  - Advanced features + tips & tricks
+  - FAQ (10 common questions)
+- ✅ Created comprehensive Integration Guide (AITERM-INTEGRATION.md, 600+ lines)
+  - Using aiterm as Python library
+  - 4 custom detector examples (Go, Rust, Docker, Fullstack)
+  - 3 terminal backend examples (Wezterm, Alacritty)
+  - 4 integration patterns (shell, IDE, build, deployment)
+  - 20+ complete code examples
+- ✅ Created comprehensive Troubleshooting Guide (AITERM-TROUBLESHOOTING.md, 550+ lines)
+  - Quick diagnosis flowchart
+  - 15 common issues with solutions
+  - Platform-specific troubleshooting (macOS, Linux, Windows)
+  - Error message reference
+  - Diagnostic script
+- ✅ Week 2 deliverables COMPLETE (1,950+ lines)
+- ✅ Cumulative total: 3,150+ lines of documentation
+- **AMAZING PROGRESS:** Completed Week 2 in ONE session! 🚀
+
+## ✅ Previously Completed (Phase 0 Week 1 - Documentation Foundation - Dec 21, 2025)
 - ✅ Created comprehensive API documentation (AITERM-API.md, 520+ lines)
   - Complete CLI command reference (doctor, detect, profile, claude)
   - Complete Python API reference (terminal, context, settings)
