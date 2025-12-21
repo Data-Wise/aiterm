@@ -329,10 +329,215 @@ aiterm mcp recommend
 
 ---
 
+## Phase 2.6: Workflow Commands & Documentation Automation (v0.2.6)
+
+**Goal:** ADHD-friendly session management + automated documentation updates
+**Timeline:** 2-3 weeks
+**Status:** ✅ `/workflow:done` command created (2025-12-21)
+
+### Background
+
+**Problem Discovered:**
+- `/workflow:done` was referenced 14+ times in ADHD guide but **file didn't exist**!
+- Documentation rot happens at session boundaries (README updated, CLAUDE.md forgotten)
+- Website docs (mkdocs.yml, docs/*.md) diverge from README
+- CLAUDE.md staleness causes AI assistants to hallucinate
+
+**Solution:**
+- Created `/workflow:done` command (474 lines, comprehensive)
+- Planned enhancements for automatic documentation detection/updates
+- Three-phase rollout: Detection → Auto-updates → AI generation
+
+### Features
+
+#### 1. `/workflow:done` - Session Completion Command ✅ CREATED
+
+**Core Functionality (Implemented):**
+- [ ] Captures session progress from git changes
+- [ ] Updates .STATUS file with accomplishments
+- [ ] Generates commit message from changes
+- [ ] Preserves context for next session
+- [ ] Interactive summary with 4 options (A/B/C/D)
+- [ ] Works even if user "forgot what they did"
+
+**Location:** `~/.claude/commands/workflow/done.md`
+
+**ADHD-Optimized:**
+- 30-second fast path (press Enter to accept)
+- Auto-detects accomplishments from git
+- Prevents context loss at session boundaries
+- Forgiveness mode for forgotten work
+
+**Integration:**
+- Complements `/workflow:recap` (start session)
+- Works with `/workflow:next` (decide next task)
+- Integrates with shell `finish` command
+
+#### 2. Documentation Detection (Phase 1 - Planned)
+
+**Auto-detect documentation needs:**
+
+**Tier 1: Always Check**
+- [ ] CHANGELOG.md - Generate entry from git diff
+- [ ] NEWS.md - User-facing changes
+- [ ] .STATUS file - Progress tracking (already in done.md)
+
+**Tier 2: Conditional Checks**
+- [ ] README.md - If new features/commands added
+- [ ] CLAUDE.md - If architecture/patterns changed
+- [ ] Planning docs - ROADMAP.md, IDEAS.md, TODO.md
+- [ ] Website docs (docs/*.md) - If user-facing changes
+- [ ] mkdocs.yml - If new pages created (orphan detection)
+
+**Tier 3: Smart Detection**
+- [ ] API docs - If public interfaces changed
+- [ ] Test coverage - If added code but no tests
+- [ ] Migration guides - If breaking changes detected
+
+**Detection Methods:**
+```bash
+# CLAUDE.md staleness
+CLAUDE_AGE=$(git log -1 --format=%at CLAUDE.md)
+if [ $DAYS_OLD -gt 14 ]; then warn; fi
+
+# Orphaned website pages
+find docs -name "*.md" | while read doc; do
+  grep -q "$doc" mkdocs.yml || echo "Orphaned: $doc"
+done
+
+# README vs docs/ divergence
+diff <(extract_section README.md Installation) \
+     <(extract_section docs/installation.md Installation)
+```
+
+#### 3. Documentation Auto-Updates (Phase 2 - Planned)
+
+**Auto-fixable Documentation:**
+
+**CHANGELOG.md:**
+```markdown
+## [Unreleased]
+
+### Added
+- [Inferred from new files/functions]
+
+### Changed
+- [Modified files with descriptions]
+
+### Fixed
+- [If commit messages contain "fix"]
+```
+
+**CLAUDE.md Section Updates:**
+- New directories → Update "Project Structure"
+- New CLI commands → Update "Commands" section
+- New dependencies → Update "Tech Stack"
+- Architecture changes → Update "Architecture"
+
+**mkdocs.yml Navigation:**
+```yaml
+# Auto-add new pages to nav
+nav:
+  - Guide:
++   - Authentication: guide/authentication.md  # Auto-detected
+```
+
+**README ↔ docs/ Sync:**
+- Detect divergence in key sections
+- Offer to sync (bidirectional)
+- Shared includes for single source of truth
+
+#### 4. AI-Powered Documentation (Phase 3 - Future)
+
+- [ ] GPT-4 generates doc updates from code
+- [ ] Analyzes semantic changes (not just diffs)
+- [ ] Writes tutorial content automatically
+- [ ] Multi-file coordination
+
+### Implementation Plan
+
+**Phase 1: Detection & Warnings (Week 1)** ⭐
+- Add Step 2.5 to `/workflow:done` (meta-documentation check)
+- CLAUDE.md staleness warning
+- Orphaned page detector
+- README ↔ docs/ divergence check
+- **Effort:** 3-4 hours
+
+**Phase 2: Auto-Updates (Week 2-3)**
+- CHANGELOG auto-generation
+- CLAUDE.md section updates
+- mkdocs.yml nav additions
+- Shared content system (docs/snippets/)
+- **Effort:** 8-12 hours
+
+**Phase 3: AI Enhancement (v0.3.0)**
+- LLM-powered doc generation
+- Semantic change analysis
+- Full automation
+- **Effort:** 2-3 weeks
+
+### Integration with Workflow
+
+**Updated Session Pattern:**
+```bash
+START:  /workflow:recap      # "Where was I?"
+WORK:   [code happens]
+END:    /workflow:done        # New comprehensive end:
+        ├─ Detect changes
+        ├─ Check ALL docs (code + meta + website)
+        ├─ Auto-update what we can
+        ├─ Prompt for review
+        ├─ Update .STATUS
+        └─ Generate commit (includes doc updates)
+```
+
+**Shell Integration:**
+```bash
+finish() {
+  claude "/workflow:done"     # Checks code + all docs now
+  git commit -m "$MESSAGE"    # Includes doc updates
+  git push
+}
+```
+
+### Success Criteria
+
+**Phase 1 (Detection):**
+- ✅ 0 orphaned website pages
+- ✅ CLAUDE.md never >14 days stale
+- ✅ 100% divergence detection
+
+**Phase 2 (Auto-Updates):**
+- ✅ 80% of CHANGELOG entries auto-generated
+- ✅ 90% of mkdocs.yml nav updates automatic
+- ✅ CLAUDE.md sections auto-updated
+
+**Phase 3 (AI):**
+- ✅ 95% of documentation auto-generated
+- ✅ Zero manual doc maintenance
+
+### Files
+
+**Created:**
+- `~/.claude/commands/workflow/done.md` (474 lines)
+
+**Planning Documents:**
+- Session brainstorm: `/workflow:done` documentation features
+- CLAUDE.md & website sync strategies
+- Three-phase implementation plan
+
+**To Update:**
+- This file (IDEAS.md) - Document the plan
+- CHANGELOG.md - Note command creation
+- aiterm CLAUDE.md - Document Homebrew + workflow:done
+
+---
+
 ## Phase 2.7: Distribution & Installation (v0.2.7)
 
 **Goal:** Professional distribution via Homebrew
 **Timeline:** 1-2 weeks (setup + testing)
+**Status:** ✅ Homebrew formula created & deployed (2025-12-21)
 
 ### Features
 

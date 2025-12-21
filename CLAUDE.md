@@ -23,7 +23,7 @@ This file provides guidance to Claude Code when working with the aiterm project.
 - **Terminal:** Rich (beautiful terminal output)
 - **Prompts:** Questionary (interactive prompts)
 - **Testing:** pytest
-- **Distribution:** pip/PyPI
+- **Distribution:** Homebrew (macOS primary), pip/PyPI (cross-platform)
 
 ---
 
@@ -62,10 +62,24 @@ After completing RForge MCP auto-detection documentation (7 docs, ~80 pages, 15 
 - [x] Testing & documentation (51 tests, 83% coverage)
 - [x] Basic docs (2,647 lines, deployed to GitHub Pages)
 - [x] Repository renamed to "aiterm"
+- [x] **Homebrew distribution** (private tap: data-wise/tap)
+
+**Installation:**
+```bash
+# macOS (Recommended - Homebrew)
+brew install data-wise/tap/aiterm
+
+# All Platforms (UV - fastest)
+uv tool install git+https://github.com/Data-Wise/aiterm
+
+# All Platforms (pipx)
+pipx install git+https://github.com/Data-Wise/aiterm
+```
 
 **Links:**
 - **Repo:** https://github.com/Data-Wise/aiterm
 - **Docs:** https://Data-Wise.github.io/aiterm/
+- **Homebrew Tap:** https://github.com/Data-Wise/homebrew-tap
 - **Status:** v0.1.0 released, v0.2.0 in planning
 
 ---
@@ -115,6 +129,7 @@ cd ~/test-dir
 
 **Workflow Commands:**
 - `/recap`, `/next`, `/focus` - ADHD-friendly workflow (will enhance)
+- `/workflow:done` - Session completion with documentation automation (NEW!)
 - `work`, `finish`, `dash`, `pp` - Project management (will integrate with context)
 
 **MCP Servers (Now Organized!):**
@@ -152,6 +167,10 @@ cd ~/test-dir
   - `aiterm mcp test <server>` - Validate server runs
   - `aiterm mcp validate` - Check configs are valid
 - Advanced status bar builder
+- **Workflow & Documentation Automation** (Phase 2.6)
+  - Enhanced `/workflow:done` with documentation detection
+  - Automatic CHANGELOG, CLAUDE.md, mkdocs.yml updates
+  - 3-phase roadmap: Detection → Auto-updates → AI generation
 
 ---
 

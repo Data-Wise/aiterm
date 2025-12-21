@@ -13,14 +13,35 @@ All notable changes to this project will be documented in this file.
   - Simple updates with `brew upgrade aiterm`
   - Primary installation method for macOS
 
+### Workflow & Documentation
+- 🔧 **Created `/workflow:done` Command** - Critical missing ADHD-friendly session completion
+  - Captures session progress from git changes (commits, diffs, file changes)
+  - Updates .STATUS file automatically
+  - Generates commit messages based on work completed
+  - 474 lines, comprehensive implementation
+  - Location: `~/.claude/commands/workflow/done.md`
+  - Integrates with `/workflow:recap` for context restoration
+  - ADHD-optimized with 30-second fast path
+
 ### Changed
 - Updated README with Homebrew as recommended macOS installation method
 - Added installation methods comparison table
+- Updated website documentation (docs/getting-started/*.md, docs/index.md)
+- Enhanced CLAUDE.md with Homebrew installation methods
 
 ### Documentation
 - Created `HOMEBREW-DISTRIBUTION-PLAN.md` - comprehensive Homebrew roadmap
 - Created `HOMEBREW-QUICKSTART.md` - quick implementation guide
-- Updated `IDEAS.md` with Homebrew phases (2.7, 3, 4.5)
+- Updated `IDEAS.md` with:
+  - Phase 2.6: Workflow Commands & Documentation Automation
+  - Phase 2.7: Distribution & Installation (Homebrew complete)
+  - Phase 3: Public Homebrew release plan
+  - Phase 4.5: Official Homebrew Core submission plan
+- Updated `ROADMAP.md` with Phase 2.6 (Workflow & Documentation Automation)
+  - 3-phase enhancement plan for `/workflow:done`
+  - Detection methods for CLAUDE.md, mkdocs.yml staleness
+  - Auto-update strategies for documentation ecosystem
+- Deployed updated documentation to GitHub Pages
 
 ---
 
