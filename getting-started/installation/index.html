@@ -1554,22 +1554,22 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#method-1-uv-recommended" class="md-nav__link">
+  <a href="#method-1-homebrew-macos-recommended" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Method 1: UV (Recommended ⚡)
+        Method 1: Homebrew (macOS - Recommended 🍺)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Method 1: UV (Recommended ⚡)">
+    <nav class="md-nav" aria-label="Method 1: Homebrew (macOS - Recommended 🍺)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#install-uv" class="md-nav__link">
+  <a href="#install-homebrew-if-needed" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Install UV
+        Install Homebrew (if needed)
       
     </span>
   </a>
@@ -1598,28 +1598,39 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#uninstall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Uninstall
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#method-2-pipx" class="md-nav__link">
+  <a href="#method-2-uv-cross-platform" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Method 2: pipx
+        Method 2: UV (Cross-Platform ⚡)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Method 2: pipx">
+    <nav class="md-nav" aria-label="Method 2: UV (Cross-Platform ⚡)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#install-pipx" class="md-nav__link">
+  <a href="#install-uv" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Install pipx
+        Install UV
       
     </span>
   </a>
@@ -1654,10 +1665,60 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#method-3-development-installation" class="md-nav__link">
+  <a href="#method-3-pipx" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Method 3: Development Installation
+        Method 3: pipx
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Method 3: pipx">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-pipx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install pipx
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-aiterm_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install aiterm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-aiterm_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update aiterm
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-4-development-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 4: Development Installation
       
     </span>
   </a>
@@ -1798,6 +1859,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#installation-methods-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installation Methods Comparison
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#uninstalling" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1808,6 +1880,17 @@
   
     <nav class="md-nav" aria-label="Uninstalling">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#homebrew" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Homebrew
+      
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#uv" class="md-nav__link">
@@ -1918,18 +2001,15 @@
 </ul>
 <hr />
 <h2 id="installation-methods">Installation Methods</h2>
-<h3 id="method-1-uv-recommended">Method 1: UV (Recommended ⚡)</h3>
-<p><strong>UV</strong> is 10-100x faster than pip and handles everything automatically.</p>
-<h4 id="install-uv">Install UV</h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Install uv if you don&#39;t have it</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Verify installation</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>uv<span class="w"> </span>--version
+<h3 id="method-1-homebrew-macos-recommended">Method 1: Homebrew (macOS - Recommended 🍺)</h3>
+<p><strong>Homebrew</strong> is the easiest way to install aiterm on macOS. One command, automatic updates, no Python setup needed.</p>
+<h4 id="install-homebrew-if-needed">Install Homebrew (if needed)</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Install Homebrew if you don&#39;t have it</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="k">)</span><span class="s2">&quot;</span>
 </code></pre></div>
 <h4 id="install-aiterm">Install aiterm</h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Install aiterm as a CLI tool</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>git+https://github.com/Data-Wise/aiterm
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Install from Data-Wise tap</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>brew<span class="w"> </span>install<span class="w"> </span>data-wise/tap/aiterm
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Verify installation</span>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>aiterm<span class="w"> </span>--version
@@ -1937,145 +2017,227 @@
 </code></pre></div>
 <h4 id="update-aiterm">Update aiterm</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Update to latest version</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>uv<span class="w"> </span>tool<span class="w"> </span>upgrade<span class="w"> </span>aiterm
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>brew<span class="w"> </span>upgrade<span class="w"> </span>aiterm
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># Or update all Homebrew packages</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>brew<span class="w"> </span>upgrade
 </code></pre></div>
+<h4 id="uninstall">Uninstall</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>brew<span class="w"> </span>uninstall<span class="w"> </span>aiterm
+</code></pre></div>
+<p><strong>Why Homebrew?</strong></p>
+<ul>
+<li>✅ One-line installation</li>
+<li>✅ Automatic dependency management (Python, etc.)</li>
+<li>✅ Simple updates with <code>brew upgrade</code></li>
+<li>✅ Standard macOS package manager</li>
+<li>✅ No virtual environment configuration needed</li>
+</ul>
 <hr />
-<h3 id="method-2-pipx">Method 2: pipx</h3>
-<p><strong>pipx</strong> installs Python CLI tools in isolated environments.</p>
-<h4 id="install-pipx">Install pipx</h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Install pipx</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--user<span class="w"> </span>pipx
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Add pipx to PATH</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>python3<span class="w"> </span>-m<span class="w"> </span>pipx<span class="w"> </span>ensurepath
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># Restart your terminal, then verify</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>pipx<span class="w"> </span>--version
-</code></pre></div>
-<h4 id="install-aiterm_1">Install aiterm</h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Install aiterm</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>pipx<span class="w"> </span>install<span class="w"> </span>git+https://github.com/Data-Wise/aiterm
+<h3 id="method-2-uv-cross-platform">Method 2: UV (Cross-Platform ⚡)</h3>
+<p><strong>UV</strong> is 10-100x faster than pip and works on all platforms.</p>
+<h4 id="install-uv">Install UV</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Install uv if you don&#39;t have it</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># Verify installation</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>aiterm<span class="w"> </span>--version
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>uv<span class="w"> </span>--version
+</code></pre></div>
+<h4 id="install-aiterm_1">Install aiterm</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Install aiterm as a CLI tool</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>git+https://github.com/Data-Wise/aiterm
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Verify installation</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>aiterm<span class="w"> </span>--version
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>ait<span class="w"> </span>--version<span class="w">  </span><span class="c1"># Short alias also works</span>
 </code></pre></div>
 <h4 id="update-aiterm_1">Update aiterm</h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Update to latest version</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>pipx<span class="w"> </span>upgrade<span class="w"> </span>aiterm
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Update to latest version</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>uv<span class="w"> </span>tool<span class="w"> </span>upgrade<span class="w"> </span>aiterm
 </code></pre></div>
 <hr />
-<h3 id="method-3-development-installation">Method 3: Development Installation</h3>
+<h3 id="method-3-pipx">Method 3: pipx</h3>
+<p><strong>pipx</strong> installs Python CLI tools in isolated environments.</p>
+<h4 id="install-pipx">Install pipx</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Install pipx</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--user<span class="w"> </span>pipx
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># Add pipx to PATH</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>python3<span class="w"> </span>-m<span class="w"> </span>pipx<span class="w"> </span>ensurepath
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="c1"># Restart your terminal, then verify</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>pipx<span class="w"> </span>--version
+</code></pre></div>
+<h4 id="install-aiterm_2">Install aiterm</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Install aiterm</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>pipx<span class="w"> </span>install<span class="w"> </span>git+https://github.com/Data-Wise/aiterm
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># Verify installation</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>aiterm<span class="w"> </span>--version
+</code></pre></div>
+<h4 id="update-aiterm_2">Update aiterm</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Update to latest version</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>pipx<span class="w"> </span>upgrade<span class="w"> </span>aiterm
+</code></pre></div>
+<hr />
+<h3 id="method-4-development-installation">Method 4: Development Installation</h3>
 <p>For contributing or local development:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Clone the repository</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Data-Wise/aiterm.git
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nb">cd</span><span class="w"> </span>aiterm
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="c1"># Create virtual environment with uv</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>uv<span class="w"> </span>venv
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="c1"># Activate environment</span>
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
-<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
-<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="c1"># Install in editable mode with dev dependencies</span>
-<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[dev]&quot;</span>
-<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>
-<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="c1"># Run tests</span>
-<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>pytest<span class="w"> </span>-v
-<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>
-<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="c1"># Verify installation</span>
-<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>aiterm<span class="w"> </span>--version
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Clone the repository</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Data-Wise/aiterm.git
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="nb">cd</span><span class="w"> </span>aiterm
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="c1"># Create virtual environment with uv</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>uv<span class="w"> </span>venv
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="c1"># Activate environment</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="c1"># Install in editable mode with dev dependencies</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[dev]&quot;</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="c1"># Run tests</span>
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>pytest<span class="w"> </span>-v
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>
+<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="c1"># Verify installation</span>
+<a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a>aiterm<span class="w"> </span>--version
 </code></pre></div>
 <hr />
 <h2 id="post-installation">Post-Installation</h2>
 <h3 id="verify-installation">Verify Installation</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Check version</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>aiterm<span class="w"> </span>--version
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># Run health check</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>aiterm<span class="w"> </span>doctor
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="c1"># Test context detection</span>
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>aiterm<span class="w"> </span>detect
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Check version</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>aiterm<span class="w"> </span>--version
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1"># Run health check</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>aiterm<span class="w"> </span>doctor
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="c1"># Test context detection</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>aiterm<span class="w"> </span>detect
 </code></pre></div>
 <p>Expected output from <code>aiterm doctor</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>aiterm doctor - Health check
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>Terminal: iTerm.app
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>Shell: /bin/zsh
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>Python: 3.10+
-<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>aiterm: 0.1.0-dev
-<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
-<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>Basic checks passed!
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>aiterm doctor - Health check
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>Terminal: iTerm.app
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>Shell: /bin/zsh
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>Python: 3.10+
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>aiterm: 0.1.0-dev
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>Basic checks passed!
 </code></pre></div>
 <h3 id="shell-completion-optional">Shell Completion (Optional)</h3>
 <p>Enable tab completion for your shell:</p>
 <h4 id="zsh">Zsh</h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Add to ~/.zshrc</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span><span class="nv">_AITERM_COMPLETE</span><span class="o">=</span>zsh_source<span class="w"> </span>aiterm<span class="k">)</span><span class="s2">&quot;</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># Reload shell</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="nb">source</span><span class="w"> </span>~/.zshrc
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># Add to ~/.zshrc</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span><span class="nv">_AITERM_COMPLETE</span><span class="o">=</span>zsh_source<span class="w"> </span>aiterm<span class="k">)</span><span class="s2">&quot;</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="c1"># Reload shell</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="nb">source</span><span class="w"> </span>~/.zshrc
 </code></pre></div>
 <h4 id="bash">Bash</h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Add to ~/.bashrc</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span><span class="nv">_AITERM_COMPLETE</span><span class="o">=</span>bash_source<span class="w"> </span>aiterm<span class="k">)</span><span class="s2">&quot;</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1"># Reload shell</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="nb">source</span><span class="w"> </span>~/.bashrc
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># Add to ~/.bashrc</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span><span class="nv">_AITERM_COMPLETE</span><span class="o">=</span>bash_source<span class="w"> </span>aiterm<span class="k">)</span><span class="s2">&quot;</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="c1"># Reload shell</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="nb">source</span><span class="w"> </span>~/.bashrc
 </code></pre></div>
 <hr />
 <h2 id="troubleshooting">Troubleshooting</h2>
 <h3 id="command-not-found">Command Not Found</h3>
 <p>If <code>aiterm</code> command is not found after installation:</p>
 <p><strong>UV users:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Check UV bin directory is in PATH</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$PATH</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-o<span class="w"> </span>~/.local/bin
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1"># If not found, add to your shell config (~/.zshrc or ~/.bashrc)</span>
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.local/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># Check UV bin directory is in PATH</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$PATH</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-o<span class="w"> </span>~/.local/bin
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="c1"># If not found, add to your shell config (~/.zshrc or ~/.bashrc)</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.local/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
 </code></pre></div></p>
 <p><strong>pipx users:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># Ensure pipx path</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>python3<span class="w"> </span>-m<span class="w"> </span>pipx<span class="w"> </span>ensurepath
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
-<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1"># Restart terminal</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1"># Ensure pipx path</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>python3<span class="w"> </span>-m<span class="w"> </span>pipx<span class="w"> </span>ensurepath
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="c1"># Restart terminal</span>
 </code></pre></div></p>
 <h3 id="permission-denied">Permission Denied</h3>
 <p>If you get permission errors:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># Don&#39;t use sudo with uv or pipx!</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="c1"># They install to user directories automatically</span>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="c1"># If you accidentally used sudo, uninstall and reinstall:</span>
-<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>uv<span class="w"> </span>tool<span class="w"> </span>uninstall<span class="w"> </span>aiterm
-<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>git+https://github.com/Data-Wise/aiterm
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1"># Don&#39;t use sudo with uv or pipx!</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="c1"># They install to user directories automatically</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="c1"># If you accidentally used sudo, uninstall and reinstall:</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>uv<span class="w"> </span>tool<span class="w"> </span>uninstall<span class="w"> </span>aiterm
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>git+https://github.com/Data-Wise/aiterm
 </code></pre></div>
 <h3 id="python-version-issues">Python Version Issues</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># Check Python version</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>python3<span class="w"> </span>--version
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
-<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="c1"># aiterm requires Python 3.10+</span>
-<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="c1"># Update Python if needed:</span>
-<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>brew<span class="w"> </span>install<span class="w"> </span>python@3.12<span class="w">  </span><span class="c1"># macOS with Homebrew</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># Check Python version</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>python3<span class="w"> </span>--version
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="c1"># aiterm requires Python 3.10+</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="c1"># Update Python if needed:</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>brew<span class="w"> </span>install<span class="w"> </span>python@3.12<span class="w">  </span><span class="c1"># macOS with Homebrew</span>
 </code></pre></div>
 <h3 id="iterm2-not-detected">iTerm2 Not Detected</h3>
 <p>If <code>aiterm doctor</code> shows wrong terminal:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># Check TERM_PROGRAM environment variable</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$TERM_PROGRAM</span>
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
-<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="c1"># Should show: iTerm.app</span>
-<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="c1"># If not, you&#39;re not running in iTerm2</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1"># Check TERM_PROGRAM environment variable</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$TERM_PROGRAM</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="c1"># Should show: iTerm.app</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="c1"># If not, you&#39;re not running in iTerm2</span>
 </code></pre></div>
 <hr />
+<h2 id="installation-methods-comparison">Installation Methods Comparison</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Platform</th>
+<th>Speed</th>
+<th>Updates</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Homebrew</strong> 🍺</td>
+<td>macOS</td>
+<td>Fast</td>
+<td><code>brew upgrade</code></td>
+<td>Mac users (recommended)</td>
+</tr>
+<tr>
+<td><strong>UV</strong> ⚡</td>
+<td>All</td>
+<td>Fastest</td>
+<td><code>uv tool upgrade</code></td>
+<td>Cross-platform, speed</td>
+</tr>
+<tr>
+<td><strong>pipx</strong></td>
+<td>All</td>
+<td>Fast</td>
+<td><code>pipx upgrade</code></td>
+<td>Python developers</td>
+</tr>
+<tr>
+<td><strong>Source</strong></td>
+<td>All</td>
+<td>Slow</td>
+<td><code>git pull</code></td>
+<td>Contributors</td>
+</tr>
+</tbody>
+</table>
+<hr />
 <h2 id="uninstalling">Uninstalling</h2>
+<h3 id="homebrew">Homebrew</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>brew<span class="w"> </span>uninstall<span class="w"> </span>aiterm
+</code></pre></div>
 <h3 id="uv">UV</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>uv<span class="w"> </span>tool<span class="w"> </span>uninstall<span class="w"> </span>aiterm
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>uv<span class="w"> </span>tool<span class="w"> </span>uninstall<span class="w"> </span>aiterm
 </code></pre></div>
 <h3 id="pipx">pipx</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>pipx<span class="w"> </span>uninstall<span class="w"> </span>aiterm
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>pipx<span class="w"> </span>uninstall<span class="w"> </span>aiterm
 </code></pre></div>
 <h3 id="development-install">Development Install</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nb">cd</span><span class="w"> </span>aiterm
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>uv<span class="w"> </span>pip<span class="w"> </span>uninstall<span class="w"> </span>aiterm
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nb">cd</span><span class="w"> </span>aiterm
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>uv<span class="w"> </span>pip<span class="w"> </span>uninstall<span class="w"> </span>aiterm
 </code></pre></div>
 <hr />
 <h2 id="next-steps">Next Steps</h2>
