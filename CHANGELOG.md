@@ -6,6 +6,16 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+<!-- Auto-generated 2025-12-21 by update-changelog.sh -->
+
+### Added
+
+- **workflow**: implement Phase 1 documentation detection ([1324721](https://github.com/Data-Wise/aiterm/commit/1324721))
+
+### Documentation
+
+- session completion - Phase 1 documentation automation ([8f2750b](https://github.com/Data-Wise/aiterm/commit/8f2750b))
+
 ### Added
 - 🍺 **Homebrew Distribution** - macOS users can now install via `brew install data-wise/tap/aiterm`
   - Added formula to private Homebrew tap
