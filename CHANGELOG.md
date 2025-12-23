@@ -6,6 +6,19 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+<!-- Auto-generated 2025-12-22 by update-changelog.sh -->
+
+### Added
+
+- **docs**: implement mkdocs navigation updater - Phase 2 Session 2 ([2b3eadd](https://github.com/Data-Wise/aiterm/commit/2b3eadd))
+- **docs**: implement Phase 2 auto-updates - CHANGELOG generator ([dfadd0e](https://github.com/Data-Wise/aiterm/commit/dfadd0e))
+
+### Documentation
+
+- update .STATUS - Phase 2 100% complete ([79a1931](https://github.com/Data-Wise/aiterm/commit/79a1931))
+- Phase 2 MVP complete - documentation auto-updates ([1bf4807](https://github.com/Data-Wise/aiterm/commit/1bf4807))
+- session completion - Phase 2 auto-updates progress ([a487fd2](https://github.com/Data-Wise/aiterm/commit/a487fd2))
+
 <!-- Auto-generated 2025-12-21 by update-changelog.sh -->
 
 ### Added
