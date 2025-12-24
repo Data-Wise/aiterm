@@ -10,6 +10,17 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- **hooks**: add 4 production-ready hook templates ([8469e1b](https://github.com/Data-Wise/aiterm/commit/8469e1b))
+- **hooks**: implement hook management system (Phase 3A Day 1) ([e42fa76](https://github.com/Data-Wise/aiterm/commit/e42fa76))
+
+### Documentation
+
+- auto-update CHANGELOG with Phase 3 commits ([17568e8](https://github.com/Data-Wise/aiterm/commit/17568e8))
+
+<!-- Auto-generated 2025-12-24 by update-changelog.sh -->
+
+### Added
+
 - **docs**: implement Phase 2 auto-update system ([6289379](https://github.com/Data-Wise/aiterm/commit/6289379))
 
 ### Documentation
