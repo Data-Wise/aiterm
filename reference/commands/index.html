@@ -15,6 +15,10 @@
         <link rel="canonical" href="https://data-wise.github.io/aiterm/reference/commands/">
       
       
+        <link rel="prev" href="../../guide/triggers/">
+      
+      
+        <link rel="next" href="../../api/AITERM-API/">
       
       
         
@@ -25,7 +29,7 @@
     
     
       
-        <title>CLI Reference - aiterm</title>
+        <title>Commands - aiterm</title>
       
     
     
@@ -110,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              CLI Reference
+              Commands
             
           </span>
         </div>
@@ -263,7 +267,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../guides/AITERM-USER-GUIDE/" class="md-tabs__link">
+        <a href="../../getting-started/installation/" class="md-tabs__link">
           
   
   
@@ -299,11 +303,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../api/AITERM-API/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
           
   
   
@@ -323,11 +329,11 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../CLAUDE-CODE-TUTORIAL.md" class="md-tabs__link">
+        <a href="../../architecture/AITERM-ARCHITECTURE/" class="md-tabs__link">
           
   
   
-  Claude Code
+  Architecture
 
         </a>
       </li>
@@ -343,31 +349,11 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../gemini-cli/GEMINI_TUTORIAL.md" class="md-tabs__link">
+        <a href="../../AUTO-UPDATE-INDEX/" class="md-tabs__link">
           
   
   
-  Gemini CLI
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../STANDARDS-SUMMARY.md" class="md-tabs__link">
-          
-  
-  
-  Project Standards
+  Documentation Automation
 
         </a>
       </li>
@@ -533,7 +519,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/AITERM-USER-GUIDE/" class="md-nav__link">
+      <a href="../../getting-started/installation/" class="md-nav__link">
         
   
   
@@ -655,7 +641,7 @@
   <span class="md-ellipsis">
     
   
-    Installation
+    Complete Guide
   
 
     
@@ -684,6 +670,62 @@
     
   
     Integration Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guide/claude-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claude Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guide/workflows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workflows
   
 
     
@@ -820,26 +862,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
             
   
   
@@ -857,7 +904,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -867,6 +914,442 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Commands
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#global-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Global Options
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aiterm-doctor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        aiterm doctor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aiterm-init" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        aiterm init
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#context-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context Detection
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Context Detection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aiterm-detect-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        aiterm detect [PATH]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aiterm-switch-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        aiterm switch [PATH]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aiterm-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        aiterm context
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="aiterm context">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aiterm-context-detect-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        aiterm context detect [PATH]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aiterm-context-show" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        aiterm context show
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aiterm-context-apply-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        aiterm context apply [PATH]
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#profile-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Profile Management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Profile Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aiterm-profile-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        aiterm profile list
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#claude-code-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claude Code Integration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Claude Code Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aiterm-claude-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        aiterm claude settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aiterm-claude-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        aiterm claude backup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aiterm-claude-approvals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        aiterm claude approvals
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="aiterm claude approvals">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aiterm-claude-approvals-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        aiterm claude approvals list
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aiterm-claude-approvals-presets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        aiterm claude approvals presets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aiterm-claude-approvals-add-preset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        aiterm claude approvals add &lt;preset&gt;
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quick-setup-for-claude-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Setup for Claude Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#context-switching-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context Switching Workflow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r-package-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        R Package Development
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#short-aliases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Short Aliases
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exit-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exit Codes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment Variables
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration Files
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
             
               
                 
@@ -883,62 +1366,6 @@
     
   
     API Documentation
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../architecture/AITERM-ARCHITECTURE/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Architecture
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../AITERM-IMPLEMENTATION-SUMMARY/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Implementation Summary
   
 
     
@@ -987,7 +1414,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../troubleshooting/AITERM-TROUBLESHOOTING/" class="md-nav__link">
+      <a href="../troubleshooting/" class="md-nav__link">
         
   
   
@@ -995,6 +1422,34 @@
     
   
     Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/AITERM-TROUBLESHOOTING/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Troubleshooting
   
 
     
@@ -1045,7 +1500,7 @@
   <span class="md-ellipsis">
     
   
-    Claude Code
+    Architecture
   
 
     
@@ -1061,7 +1516,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Claude Code
+    Architecture
   
 
           </label>
@@ -1074,14 +1529,98 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CLAUDE-CODE-TUTORIAL.md" class="md-nav__link">
+      <a href="../../architecture/AITERM-ARCHITECTURE/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Comprehensive Tutorial
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AITERM-IMPLEMENTATION-SUMMARY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
   
 
     
@@ -1132,7 +1671,7 @@
   <span class="md-ellipsis">
     
   
-    Gemini CLI
+    Documentation Automation
   
 
     
@@ -1148,7 +1687,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Gemini CLI
+    Documentation Automation
   
 
           </label>
@@ -1161,7 +1700,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../../gemini-cli/GEMINI_TUTORIAL.md" class="md-nav__link">
+      <a href="../../AUTO-UPDATE-INDEX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AUTO-UPDATE-TUTORIAL/" class="md-nav__link">
         
   
   
@@ -1189,14 +1756,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../gemini-cli/GEMINI_REFCARD.md" class="md-nav__link">
+      <a href="../../AUTO-UPDATE-REFCARD/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Reference Card
+    Quick Reference
   
 
     
@@ -1217,14 +1784,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../gemini-cli/PROMPT_ENGINEERING_ADHD.md" class="md-nav__link">
+      <a href="../../AUTO-UPDATE-WORKFLOW/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Prompt Engineering
+    Workflow
   
 
     
@@ -1245,14 +1812,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../gemini-cli/WORKFLOW_GUIDE.md" class="md-nav__link">
+      <a href="../../AUTO-UPDATE-WORKFLOW-DIAGRAM/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Workflow Guide
+    Workflow Diagrams
   
 
     
@@ -1261,209 +1828,6 @@
   
 
       </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
-        
-          
-          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Project Standards
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_8">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Project Standards
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../STANDARDS-SUMMARY.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Overview
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Vision Documents
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_8_2">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Vision Documents
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../AITERM-FINAL-SCOPE.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Final Scope
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../NEXT-STEPS.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Next Steps
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
