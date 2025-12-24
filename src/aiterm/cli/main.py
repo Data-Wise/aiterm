@@ -144,7 +144,6 @@ def switch(
 
 # ─── Sub-command groups ──────────────────────────────────────────────────────
 
-
 context_app = typer.Typer(help="Context detection commands.")
 profile_app = typer.Typer(help="Profile management commands.")
 claude_app = typer.Typer(help="Claude Code integration commands.")
@@ -354,6 +353,11 @@ def approvals_add(
     else:
         console.print("[red]Failed to save settings.[/]")
         raise typer.Exit(1)
+
+
+# ─── Register hooks commands (must be after app is fully defined) ────────────
+from aiterm.cli import hooks as hooks_cli
+app.add_typer(hooks_cli.app, name="hooks")
 
 
 if __name__ == "__main__":
