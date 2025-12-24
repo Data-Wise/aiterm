@@ -6,6 +6,15 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+<!-- Auto-generated 2025-12-24 by update-changelog.sh -->
+
+### Documentation
+
+- enhance Phase 0 documentation with diagrams and fixes ([68d92eb](https://github.com/Data-Wise/aiterm/commit/68d92eb))
+- fix mkdocs navigation and broken links ([0ad3dd7](https://github.com/Data-Wise/aiterm/commit/0ad3dd7))
+- comprehensive Phase 2 test results ([b1b7744](https://github.com/Data-Wise/aiterm/commit/b1b7744))
+- auto-update CHANGELOG with Phase 2 commits ([4e13734](https://github.com/Data-Wise/aiterm/commit/4e13734))
+
 <!-- Auto-generated 2025-12-22 by update-changelog.sh -->
 
 ### Added
