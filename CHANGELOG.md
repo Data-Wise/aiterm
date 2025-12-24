@@ -10,6 +10,17 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- **mcp**: implement MCP server management system ([bb3e51c](https://github.com/Data-Wise/aiterm/commit/bb3e51c))
+
+### Documentation
+
+- **mcp**: add comprehensive MCP integration guide ([2f168c5](https://github.com/Data-Wise/aiterm/commit/2f168c5))
+- auto-update CHANGELOG with command library ([0c42bb9](https://github.com/Data-Wise/aiterm/commit/0c42bb9))
+
+<!-- Auto-generated 2025-12-24 by update-changelog.sh -->
+
+### Added
+
 - **commands**: implement command template library (Phase 3A Days 3-4) ([f32be78](https://github.com/Data-Wise/aiterm/commit/f32be78))
 
 ### Documentation
