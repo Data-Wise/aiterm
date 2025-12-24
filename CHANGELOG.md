@@ -10,6 +10,16 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- **commands**: implement command template library (Phase 3A Days 3-4) ([f32be78](https://github.com/Data-Wise/aiterm/commit/f32be78))
+
+### Documentation
+
+- auto-update CHANGELOG with hook implementation ([33fba90](https://github.com/Data-Wise/aiterm/commit/33fba90))
+
+<!-- Auto-generated 2025-12-24 by update-changelog.sh -->
+
+### Added
+
 - **hooks**: add 4 production-ready hook templates ([8469e1b](https://github.com/Data-Wise/aiterm/commit/8469e1b))
 - **hooks**: implement hook management system (Phase 3A Day 1) ([e42fa76](https://github.com/Data-Wise/aiterm/commit/e42fa76))
 
