@@ -27,7 +27,7 @@ This file provides guidance to Claude Code when working with the aiterm project.
 
 ---
 
-## Project Status: v0.2.0-dev - Documentation First! 📚
+## Project Status: v0.1.0-dev - Documentation First! 📚
 
 **Current Phase:** Phase 0 - Comprehensive Documentation (Before Feature Expansion)
 
