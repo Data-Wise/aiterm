@@ -4,6 +4,146 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [Unreleased]
+
+<!-- Auto-generated 2025-12-24 by update-changelog.sh -->
+
+### Changed
+
+- release: Phase 3A complete - v0.2.0-dev preparation (1d9d2e9)
+
+### Documentation
+
+- update .STATUS - Phase 3A Week 2 Days 3-4 complete ([810b732](https://github.com/Data-Wise/aiterm/commit/810b732))
+- Phase 3A Week 2 Days 3-4 completion summary ([b4ddd8e](https://github.com/Data-Wise/aiterm/commit/b4ddd8e))
+- auto-update CHANGELOG with documentation helpers ([4c9947e](https://github.com/Data-Wise/aiterm/commit/4c9947e))
+
+<!-- Auto-generated 2025-12-24 by update-changelog.sh -->
+
+### Added
+
+- **docs**: implement documentation validation system ([5ec60ca](https://github.com/Data-Wise/aiterm/commit/5ec60ca))
+
+### Documentation
+
+- update .STATUS - Phase 3A Week 2 complete ([eb6f4db](https://github.com/Data-Wise/aiterm/commit/eb6f4db))
+- Phase 3A Week 2 completion summary ([688de8f](https://github.com/Data-Wise/aiterm/commit/688de8f))
+- auto-update CHANGELOG with MCP integration ([9205896](https://github.com/Data-Wise/aiterm/commit/9205896))
+
+<!-- Auto-generated 2025-12-24 by update-changelog.sh -->
+
+### Added
+
+- **mcp**: implement MCP server management system ([bb3e51c](https://github.com/Data-Wise/aiterm/commit/bb3e51c))
+
+### Documentation
+
+- **mcp**: add comprehensive MCP integration guide ([2f168c5](https://github.com/Data-Wise/aiterm/commit/2f168c5))
+- auto-update CHANGELOG with command library ([0c42bb9](https://github.com/Data-Wise/aiterm/commit/0c42bb9))
+
+<!-- Auto-generated 2025-12-24 by update-changelog.sh -->
+
+### Added
+
+- **commands**: implement command template library (Phase 3A Days 3-4) ([f32be78](https://github.com/Data-Wise/aiterm/commit/f32be78))
+
+### Documentation
+
+- auto-update CHANGELOG with hook implementation ([33fba90](https://github.com/Data-Wise/aiterm/commit/33fba90))
+
+<!-- Auto-generated 2025-12-24 by update-changelog.sh -->
+
+### Added
+
+- **hooks**: add 4 production-ready hook templates ([8469e1b](https://github.com/Data-Wise/aiterm/commit/8469e1b))
+- **hooks**: implement hook management system (Phase 3A Day 1) ([e42fa76](https://github.com/Data-Wise/aiterm/commit/e42fa76))
+
+### Documentation
+
+- auto-update CHANGELOG with Phase 3 commits ([17568e8](https://github.com/Data-Wise/aiterm/commit/17568e8))
+
+<!-- Auto-generated 2025-12-24 by update-changelog.sh -->
+
+### Added
+
+- **docs**: implement Phase 2 auto-update system ([6289379](https://github.com/Data-Wise/aiterm/commit/6289379))
+
+### Documentation
+
+- Phase 3 quick start guide ([da3acf3](https://github.com/Data-Wise/aiterm/commit/da3acf3))
+- Phase 3 planning - core features vs AI documentation ([25eeeb8](https://github.com/Data-Wise/aiterm/commit/25eeeb8))
+
+<!-- Auto-generated 2025-12-24 by update-changelog.sh -->
+
+### Documentation
+
+- enhance Phase 0 documentation with diagrams and fixes ([68d92eb](https://github.com/Data-Wise/aiterm/commit/68d92eb))
+- fix mkdocs navigation and broken links ([0ad3dd7](https://github.com/Data-Wise/aiterm/commit/0ad3dd7))
+- comprehensive Phase 2 test results ([b1b7744](https://github.com/Data-Wise/aiterm/commit/b1b7744))
+- auto-update CHANGELOG with Phase 2 commits ([4e13734](https://github.com/Data-Wise/aiterm/commit/4e13734))
+
+<!-- Auto-generated 2025-12-22 by update-changelog.sh -->
+
+### Added
+
+- **docs**: implement mkdocs navigation updater - Phase 2 Session 2 ([2b3eadd](https://github.com/Data-Wise/aiterm/commit/2b3eadd))
+- **docs**: implement Phase 2 auto-updates - CHANGELOG generator ([dfadd0e](https://github.com/Data-Wise/aiterm/commit/dfadd0e))
+
+### Documentation
+
+- update .STATUS - Phase 2 100% complete ([79a1931](https://github.com/Data-Wise/aiterm/commit/79a1931))
+- Phase 2 MVP complete - documentation auto-updates ([1bf4807](https://github.com/Data-Wise/aiterm/commit/1bf4807))
+- session completion - Phase 2 auto-updates progress ([a487fd2](https://github.com/Data-Wise/aiterm/commit/a487fd2))
+
+<!-- Auto-generated 2025-12-21 by update-changelog.sh -->
+
+### Added
+
+- **workflow**: implement Phase 1 documentation detection ([1324721](https://github.com/Data-Wise/aiterm/commit/1324721))
+
+### Documentation
+
+- session completion - Phase 1 documentation automation ([8f2750b](https://github.com/Data-Wise/aiterm/commit/8f2750b))
+
+### Added
+- 🍺 **Homebrew Distribution** - macOS users can now install via `brew install data-wise/tap/aiterm`
+  - Added formula to private Homebrew tap
+  - Automatic dependency management
+  - Simple updates with `brew upgrade aiterm`
+  - Primary installation method for macOS
+
+### Workflow & Documentation
+- 🔧 **Created `/workflow:done` Command** - Critical missing ADHD-friendly session completion
+  - Captures session progress from git changes (commits, diffs, file changes)
+  - Updates .STATUS file automatically
+  - Generates commit messages based on work completed
+  - 474 lines, comprehensive implementation
+  - Location: `~/.claude/commands/workflow/done.md`
+  - Integrates with `/workflow:recap` for context restoration
+  - ADHD-optimized with 30-second fast path
+
+### Changed
+- Updated README with Homebrew as recommended macOS installation method
+- Added installation methods comparison table
+- Updated website documentation (docs/getting-started/*.md, docs/index.md)
+- Enhanced CLAUDE.md with Homebrew installation methods
+
+### Documentation
+- Created `HOMEBREW-DISTRIBUTION-PLAN.md` - comprehensive Homebrew roadmap
+- Created `HOMEBREW-QUICKSTART.md` - quick implementation guide
+- Updated `IDEAS.md` with:
+  - Phase 2.6: Workflow Commands & Documentation Automation
+  - Phase 2.7: Distribution & Installation (Homebrew complete)
+  - Phase 3: Public Homebrew release plan
+  - Phase 4.5: Official Homebrew Core submission plan
+- Updated `ROADMAP.md` with Phase 2.6 (Workflow & Documentation Automation)
+  - 3-phase enhancement plan for `/workflow:done`
+  - Detection methods for CLAUDE.md, mkdocs.yml staleness
+  - Auto-update strategies for documentation ecosystem
+- Deployed updated documentation to GitHub Pages
+
+---
+
 ## [0.1.0] - 2024-12-18 - FIRST PRODUCTION RELEASE 🎉
 
 **First production release of aiterm!**

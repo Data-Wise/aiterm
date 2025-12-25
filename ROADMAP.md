@@ -232,6 +232,40 @@
 - Real-time preview
 - Session data integration (cost tracking, duration, changes)
 
+#### 4. Workflow Commands & Documentation Automation (Phase 2.6)
+**Status:** Planning complete, implementation planned
+**Created:** `/workflow:done` command (474 lines)
+
+**Core Features:**
+- Session completion with git-based activity detection
+- Automatic .STATUS file updates
+- Commit message generation
+- ADHD-optimized 30-second fast path
+
+**Enhancement Roadmap (3 Phases):**
+1. **Detection & Warnings** (3-4 hours)
+   - CLAUDE.md staleness detection (git diff)
+   - Orphaned documentation pages (grep)
+   - README/docs divergence checks
+   - Missing CHANGELOG entries
+
+2. **Auto-Updates** (4-6 hours)
+   - CHANGELOG generation from commits
+   - CLAUDE.md "What's New" section updates
+   - mkdocs.yml navigation sync
+   - Link validation and fixing
+
+3. **AI-Powered Generation** (8-12 hours)
+   - LLM-based documentation writing
+   - Interactive doc review interface
+   - Multi-document consistency checks
+   - Screenshot/diagram generation
+
+**Integration Points:**
+- Works with `/workflow:recap` for session restoration
+- Complements `/workflow:next` for decision support
+- Enhances git workflow with documentation awareness
+
 ### Quick Wins to Add:
 - `aiterm context show` - Current context info (already exists!)
 - `aiterm quota set` - Integration with existing `qu` command
@@ -239,7 +273,7 @@
 
 ### Timeline
 **Target:** 2 weeks after v0.1.0 release
-**Priority:** Hook management > MCP integration > StatusLine builder
+**Priority:** Hook management > MCP integration > StatusLine builder > Workflow automation
 
 ---
 

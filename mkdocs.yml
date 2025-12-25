@@ -1,5 +1,5 @@
 site_name: aiterm
-site_description: Terminal optimizer CLI for AI-assisted development with Claude Code and Gemini CLI
+site_description: AI-powered terminal optimizer for Claude Code and Gemini CLI workflows
 site_author: Data-Wise
 site_url: https://data-wise.github.io/aiterm
 
@@ -60,20 +60,36 @@ markdown_extensions:
 
 nav:
   - Home: index.md
+  - Documentation Index: AITERM-DOCS-INDEX.md
   - Getting Started:
     - Installation: getting-started/installation.md
     - Quick Start: getting-started/quickstart.md
   - User Guide:
-    - Context Detection: guide/context-detection.md
-    - Claude Code Integration: guide/claude-integration.md
+    - Complete Guide: guides/AITERM-USER-GUIDE.md
+    - Integration Guide: guides/AITERM-INTEGRATION.md
+    - Claude Integration: guide/claude-integration.md
     - Workflows: guide/workflows.md
-  - CLI Reference:
+    - Context Detection: guide/context-detection.md
+    - Profiles: guide/profiles.md
+    - Status Bar: guide/status-bar.md
+    - Triggers: guide/triggers.md
+  - Reference:
     - Commands: reference/commands.md
+    - API Documentation: api/AITERM-API.md
     - Configuration: reference/configuration.md
     - Troubleshooting: reference/troubleshooting.md
-  - Development:
+    - Advanced Troubleshooting: troubleshooting/AITERM-TROUBLESHOOTING.md
+  - Architecture:
+    - Overview: architecture/AITERM-ARCHITECTURE.md
+    - Implementation: AITERM-IMPLEMENTATION-SUMMARY.md
+    - Development: development/architecture.md
     - Contributing: development/contributing.md
-    - Architecture: development/architecture.md
+  - Documentation Automation:
+    - Index: AUTO-UPDATE-INDEX.md
+    - Tutorial: AUTO-UPDATE-TUTORIAL.md
+    - Quick Reference: AUTO-UPDATE-REFCARD.md
+    - Workflow: AUTO-UPDATE-WORKFLOW.md
+    - Workflow Diagrams: AUTO-UPDATE-WORKFLOW-DIAGRAM.md
 
 extra:
   social:

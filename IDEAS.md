@@ -57,9 +57,22 @@
 
 ## Phase 2: Enhanced Claude Integration (v0.2.0)
 
-**Goal:** Deep Claude Code customization
-**Timeline:** 2 weeks post v0.1.0 release
-**Priorities:** Hook management > MCP integration > StatusLine builder
+**Goal:** Deep Claude Code customization + R-Development MCP consolidation
+**Timeline:** 3-4 weeks post v0.1.0 release
+**Priorities:** R-Development MCP refactoring > MCP creation tools > Hook management
+
+**NEW: R-Development MCP Consolidation** ⭐
+- **Discovery:** 59% of Claude commands (35/59) are R-ecosystem related!
+- **Strategy:** Rename `statistical-research` → `r-development` MCP
+- **Add 6 new R tools:**
+  - r_ecosystem_health (MediationVerse health check)
+  - r_package_check_quick (quick R package check)
+  - manuscript_section_writer (write statistical papers)
+  - reviewer_response_generator (respond to reviewers)
+  - pkgdown_build (R package documentation)
+  - pkgdown_deploy (deploy to GitHub Pages)
+- **Result:** 14 → 20 tools (+43%), comprehensive R toolkit
+- **See:** COMMAND-MCP-REFACTORING-ANALYSIS-REVISED.md
 
 ### NEW KNOWLEDGE: 9 Hook Types Available!
 - PreToolUse (block/approve tools before execution)
@@ -156,6 +169,18 @@
   - `/rpkg:build` (full build pipeline)
 
 #### 3. MCP Server Management (Comprehensive)
+
+**PRIORITY: MCP Creation Wizard** ✨
+- [ ] `aiterm mcp create` - Interactive MCP server creation wizard
+  - Template selection (simple-api, research-tools, r-package-dev, etc.)
+  - Step-by-step configuration
+  - Automatic file structure generation
+  - Test server creation
+- [ ] `aiterm mcp templates list` - Show available MCP templates
+- [ ] `aiterm mcp validate <server>` - Validate MCP server structure
+- [ ] Template library with 10+ starter templates
+
+**MCP Management:**
 - [ ] `aiterm mcp list` - Show configured servers with status
 - [ ] `aiterm mcp search <keyword>` - Search mcp.run, glama.ai
 - [ ] `aiterm mcp install <server>` - Install + configure interactively
@@ -164,15 +189,14 @@
 - [ ] `aiterm mcp credentials <server>` - Secure credential management
 - [ ] `aiterm mcp recommend` - Suggest servers based on project type
 - [ ] `aiterm mcp oauth <server>` - OAuth 2.0 authentication setup
-- [ ] `aiterm mcp validate` - Validate .mcp.json syntax
 - [ ] `aiterm mcp export/import` - Team configuration sharing
 
 **MCP Server Categories:**
 - **Research & Data:**
-  - zotero-mcp (your existing Statistical Research MCP!)
+  - **r-development** (your comprehensive R toolkit - 20 tools!) ✨
   - postgres-mcp, sqlite-mcp (database access)
   - jupyter-mcp (notebook interaction)
-  - r-execution (execute R code)
+  - teaching-toolkit (statistical courses, Canvas integration)
 - **Development:**
   - filesystem (you already use this!)
   - github (issues, PRs)
@@ -305,13 +329,297 @@ aiterm mcp recommend
 
 ---
 
-## Phase 3: Gemini & Multi-Tool (v0.3.0)
+## Phase 2.6: Workflow Commands & Documentation Automation (v0.2.6)
 
-**Goal:** Support multiple AI tools
+**Goal:** ADHD-friendly session management + automated documentation updates
+**Timeline:** 2-3 weeks
+**Status:** ✅ `/workflow:done` command created (2025-12-21)
+
+### Background
+
+**Problem Discovered:**
+- `/workflow:done` was referenced 14+ times in ADHD guide but **file didn't exist**!
+- Documentation rot happens at session boundaries (README updated, CLAUDE.md forgotten)
+- Website docs (mkdocs.yml, docs/*.md) diverge from README
+- CLAUDE.md staleness causes AI assistants to hallucinate
+
+**Solution:**
+- Created `/workflow:done` command (474 lines, comprehensive)
+- Planned enhancements for automatic documentation detection/updates
+- Three-phase rollout: Detection → Auto-updates → AI generation
 
 ### Features
 
-#### 1. Gemini CLI Integration
+#### 1. `/workflow:done` - Session Completion Command ✅ CREATED
+
+**Core Functionality (Implemented):**
+- [ ] Captures session progress from git changes
+- [ ] Updates .STATUS file with accomplishments
+- [ ] Generates commit message from changes
+- [ ] Preserves context for next session
+- [ ] Interactive summary with 4 options (A/B/C/D)
+- [ ] Works even if user "forgot what they did"
+
+**Location:** `~/.claude/commands/workflow/done.md`
+
+**ADHD-Optimized:**
+- 30-second fast path (press Enter to accept)
+- Auto-detects accomplishments from git
+- Prevents context loss at session boundaries
+- Forgiveness mode for forgotten work
+
+**Integration:**
+- Complements `/workflow:recap` (start session)
+- Works with `/workflow:next` (decide next task)
+- Integrates with shell `finish` command
+
+#### 2. Documentation Detection (Phase 1 - Planned)
+
+**Auto-detect documentation needs:**
+
+**Tier 1: Always Check**
+- [ ] CHANGELOG.md - Generate entry from git diff
+- [ ] NEWS.md - User-facing changes
+- [ ] .STATUS file - Progress tracking (already in done.md)
+
+**Tier 2: Conditional Checks**
+- [ ] README.md - If new features/commands added
+- [ ] CLAUDE.md - If architecture/patterns changed
+- [ ] Planning docs - ROADMAP.md, IDEAS.md, TODO.md
+- [ ] Website docs (docs/*.md) - If user-facing changes
+- [ ] mkdocs.yml - If new pages created (orphan detection)
+
+**Tier 3: Smart Detection**
+- [ ] API docs - If public interfaces changed
+- [ ] Test coverage - If added code but no tests
+- [ ] Migration guides - If breaking changes detected
+
+**Detection Methods:**
+```bash
+# CLAUDE.md staleness
+CLAUDE_AGE=$(git log -1 --format=%at CLAUDE.md)
+if [ $DAYS_OLD -gt 14 ]; then warn; fi
+
+# Orphaned website pages
+find docs -name "*.md" | while read doc; do
+  grep -q "$doc" mkdocs.yml || echo "Orphaned: $doc"
+done
+
+# README vs docs/ divergence
+diff <(extract_section README.md Installation) \
+     <(extract_section docs/installation.md Installation)
+```
+
+#### 3. Documentation Auto-Updates (Phase 2 - Planned)
+
+**Auto-fixable Documentation:**
+
+**CHANGELOG.md:**
+```markdown
+## [Unreleased]
+
+### Added
+- [Inferred from new files/functions]
+
+### Changed
+- [Modified files with descriptions]
+
+### Fixed
+- [If commit messages contain "fix"]
+```
+
+**CLAUDE.md Section Updates:**
+- New directories → Update "Project Structure"
+- New CLI commands → Update "Commands" section
+- New dependencies → Update "Tech Stack"
+- Architecture changes → Update "Architecture"
+
+**mkdocs.yml Navigation:**
+```yaml
+# Auto-add new pages to nav
+nav:
+  - Guide:
++   - Authentication: guide/authentication.md  # Auto-detected
+```
+
+**README ↔ docs/ Sync:**
+- Detect divergence in key sections
+- Offer to sync (bidirectional)
+- Shared includes for single source of truth
+
+#### 4. AI-Powered Documentation (Phase 3 - Future)
+
+- [ ] GPT-4 generates doc updates from code
+- [ ] Analyzes semantic changes (not just diffs)
+- [ ] Writes tutorial content automatically
+- [ ] Multi-file coordination
+
+### Implementation Plan
+
+**Phase 1: Detection & Warnings (Week 1)** ⭐
+- Add Step 2.5 to `/workflow:done` (meta-documentation check)
+- CLAUDE.md staleness warning
+- Orphaned page detector
+- README ↔ docs/ divergence check
+- **Effort:** 3-4 hours
+
+**Phase 2: Auto-Updates (Week 2-3)**
+- CHANGELOG auto-generation
+- CLAUDE.md section updates
+- mkdocs.yml nav additions
+- Shared content system (docs/snippets/)
+- **Effort:** 8-12 hours
+
+**Phase 3: AI Enhancement (v0.3.0)**
+- LLM-powered doc generation
+- Semantic change analysis
+- Full automation
+- **Effort:** 2-3 weeks
+
+### Integration with Workflow
+
+**Updated Session Pattern:**
+```bash
+START:  /workflow:recap      # "Where was I?"
+WORK:   [code happens]
+END:    /workflow:done        # New comprehensive end:
+        ├─ Detect changes
+        ├─ Check ALL docs (code + meta + website)
+        ├─ Auto-update what we can
+        ├─ Prompt for review
+        ├─ Update .STATUS
+        └─ Generate commit (includes doc updates)
+```
+
+**Shell Integration:**
+```bash
+finish() {
+  claude "/workflow:done"     # Checks code + all docs now
+  git commit -m "$MESSAGE"    # Includes doc updates
+  git push
+}
+```
+
+### Success Criteria
+
+**Phase 1 (Detection):**
+- ✅ 0 orphaned website pages
+- ✅ CLAUDE.md never >14 days stale
+- ✅ 100% divergence detection
+
+**Phase 2 (Auto-Updates):**
+- ✅ 80% of CHANGELOG entries auto-generated
+- ✅ 90% of mkdocs.yml nav updates automatic
+- ✅ CLAUDE.md sections auto-updated
+
+**Phase 3 (AI):**
+- ✅ 95% of documentation auto-generated
+- ✅ Zero manual doc maintenance
+
+### Files
+
+**Created:**
+- `~/.claude/commands/workflow/done.md` (474 lines)
+
+**Planning Documents:**
+- Session brainstorm: `/workflow:done` documentation features
+- CLAUDE.md & website sync strategies
+- Three-phase implementation plan
+
+**To Update:**
+- This file (IDEAS.md) - Document the plan
+- CHANGELOG.md - Note command creation
+- aiterm CLAUDE.md - Document Homebrew + workflow:done
+
+---
+
+## Phase 2.7: Distribution & Installation (v0.2.7)
+
+**Goal:** Professional distribution via Homebrew
+**Timeline:** 1-2 weeks (setup + testing)
+**Status:** ✅ Homebrew formula created & deployed (2025-12-21)
+
+### Features
+
+#### 1. Homebrew Formula (Primary macOS Distribution) ⭐
+- [ ] `Formula/aiterm.rb` - Python formula with virtualenv
+- [ ] Private tap testing (data-wise/homebrew-tap)
+- [ ] Installation: `brew install data-wise/tap/aiterm`
+- [ ] Auto-dependency management (Python 3.10+)
+- [ ] Update workflow: `brew upgrade aiterm`
+
+**Benefits:**
+- One-line installation for Mac users
+- Automatic Python dependency handling
+- Familiar workflow (`brew install/upgrade`)
+- Professional appearance for public release
+
+**Technical Approach:**
+- Use `Language::Python::Virtualenv` pattern
+- Install from GitHub releases (tarball)
+- Automated SHA256 computation
+- Test block for validation
+
+#### 2. Automated Release Workflow
+- [ ] `.github/workflows/release.yml` - Automated releases
+- [ ] GitHub Release → PyPI upload (automatic)
+- [ ] GitHub Release → Homebrew formula update (PR to tap)
+- [ ] Auto-generate release notes from commits
+- [ ] Version bump automation (`bump2version`)
+
+**Workflow:**
+```bash
+# Single command triggers everything
+git tag v0.2.7
+git push --tags
+
+# GitHub Action handles:
+# 1. Build Python package
+# 2. Upload to PyPI
+# 3. Update Homebrew formula
+# 4. Generate release notes
+```
+
+#### 3. Updated Installation Documentation
+- [ ] README.md - Add Homebrew as primary method (macOS)
+- [ ] Keep pip/UV as cross-platform option
+- [ ] Installation comparison table
+- [ ] Platform-specific instructions
+
+**Installation Options:**
+| Platform | Primary Method | Alternative |
+|----------|---------------|-------------|
+| macOS | `brew install data-wise/tap/aiterm` | `pip install aiterm` |
+| Linux | `pip install aiterm` | `uv pip install aiterm` |
+| All | `pip install aiterm` | - |
+
+#### 4. Multi-Version Support (Future)
+- [ ] Versioned installs: `brew install aiterm@0.2`
+- [ ] Pin to specific version
+- [ ] Rollback support via Homebrew
+
+**Timeline:**
+- **Week 1:** Create formula, test in private tap
+- **Week 2:** Automated release workflow, update docs
+- **v0.3.0:** Public tap release
+- **v0.5.0+:** Submit to homebrew-core (official Homebrew)
+
+---
+
+## Phase 3: Gemini & Multi-Tool (v0.3.0)
+
+**Goal:** Support multiple AI tools + Public Homebrew Release
+
+### Features
+
+#### 1. Public Homebrew Distribution ⭐
+- [ ] Make tap repository public
+- [ ] Homebrew formula tested with 10+ users
+- [ ] Installation becomes: `brew tap data-wise/tap && brew install aiterm`
+- [ ] Announce on Twitter/HN
+- [ ] Add Homebrew badge to README
+
+#### 2. Gemini CLI Integration
 - [ ] Gemini-specific profiles
 - [ ] Gemini triggers
 - [ ] `aiterm gemini init`
@@ -377,7 +685,53 @@ aiterm mcp recommend
 
 ---
 
+## Phase 4.5: Official Homebrew Core (v0.5.0+)
+
+**Goal:** Get aiterm into official Homebrew
+**Timeline:** After 100+ GitHub stars, 30+ days history
+
+### Requirements for homebrew-core
+
+#### Prerequisites
+- [ ] 75+ GitHub stars (show community interest)
+- [ ] 30+ days since first release (stability)
+- [ ] Active maintenance (regular commits)
+- [ ] Comprehensive documentation
+- [ ] No reported installation issues
+
+#### Submission Process
+- [ ] Review homebrew-core contribution guidelines
+- [ ] Ensure formula follows all best practices
+- [ ] Create PR to `homebrew/homebrew-core`
+- [ ] Respond to review feedback
+- [ ] Maintain formula in core repo
+
+**Benefits:**
+- Installation becomes just: `brew install aiterm` (no tap needed)
+- Maximum discoverability
+- Homebrew team validates quality
+- Automatic updates for all users
+- Featured in `brew search` results
+
+**Success Metrics:**
+- Merged into homebrew-core
+- No installation issues reported
+- Regular updates via automated PR
+
+---
+
 ## Future Ideas (Post-v1.0)
+
+### Cross-Platform Packaging
+- [ ] Linuxbrew support (use existing formula)
+- [ ] apt PPA for Ubuntu/Debian
+- [ ] chocolatey for Windows
+- [ ] Standalone binary distribution (PyInstaller/Nuitka)
+
+**Benefits:**
+- Windows/Linux users get native installers
+- No Python dependency conflicts
+- Professional multi-platform support
 
 ### AI Workflow Optimizer
 - Analyze usage patterns

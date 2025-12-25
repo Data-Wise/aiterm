@@ -23,15 +23,36 @@ This file provides guidance to Claude Code when working with the aiterm project.
 - **Terminal:** Rich (beautiful terminal output)
 - **Prompts:** Questionary (interactive prompts)
 - **Testing:** pytest
-- **Distribution:** pip/PyPI
+- **Distribution:** Homebrew (macOS primary), pip/PyPI (cross-platform)
 
 ---
 
-## Project Status: v0.1.0-dev COMPLETE ✅
+## Project Status: v0.1.0-dev - Documentation First! 📚
 
-**Current Phase:** Ready for v0.1.0 release!
+**Current Phase:** Phase 0 - Comprehensive Documentation (Before Feature Expansion)
 
-**Completed:**
+**NEW PRIORITY (Dec 21, 2025):**
+After completing RForge MCP auto-detection documentation (7 docs, ~80 pages, 15 diagrams), we've validated a critical insight:
+
+> **Comprehensive documentation BEFORE feature expansion prevents confusion and accelerates development.**
+
+**Phase 0 Plan (3 weeks):**
+- [ ] Complete documentation suite (7 documents, ~100 pages)
+- [ ] 20+ Mermaid architecture diagrams
+- [ ] 60+ code examples (Python + CLI)
+- [ ] Deploy to GitHub Pages
+- [ ] Use docs as specification for Phase 1 implementation
+
+**See:**
+- `DOCUMENTATION-PLAN.md` - Complete documentation roadmap
+- `RFORGE-LEARNINGS.md` - Lessons from RForge success
+- `IMPLEMENTATION-PRIORITIES.md` - Updated with documentation-first approach
+
+---
+
+## v0.1.0 Achievements ✅
+
+**Completed (Dec 2024):**
 - [x] UV build system and virtual environment
 - [x] Python project structure (hatchling, src/ layout)
 - [x] Core CLI commands (doctor, detect, switch)
@@ -39,15 +60,37 @@ This file provides guidance to Claude Code when working with the aiterm project.
 - [x] Claude Code settings management
 - [x] Auto-approval presets (8 presets)
 - [x] Testing & documentation (51 tests, 83% coverage)
-- [x] Comprehensive docs (2,647 lines, deployed to GitHub Pages)
+- [x] Basic docs (2,647 lines, deployed to GitHub Pages)
 - [x] Repository renamed to "aiterm"
+- [x] **Homebrew distribution** (private tap: data-wise/tap)
+
+**Installation:**
+```bash
+# macOS (Recommended - Homebrew)
+brew install data-wise/tap/aiterm
+
+# All Platforms (UV - fastest)
+uv tool install git+https://github.com/Data-Wise/aiterm
+
+# All Platforms (pipx)
+pipx install git+https://github.com/Data-Wise/aiterm
+```
 
 **Links:**
 - **Repo:** https://github.com/Data-Wise/aiterm
 - **Docs:** https://Data-Wise.github.io/aiterm/
-- **Status:** Ready for release 🚀
+- **Homebrew Tap:** https://github.com/Data-Wise/homebrew-tap
+- **Status:** v0.1.0 released, v0.2.0 in planning
 
-See `TESTING-REPORT.md` for complete test results.
+---
+
+## Next: Phase 1 Implementation (After Docs)
+
+**After Phase 0 documentation complete:**
+- Implement `rforge:plan` (main ideation tool)
+- Implement `rforge:plan:quick-fix` (fast iterations)
+- 2 weeks to working MVP
+- Validate pattern with real usage
 
 ---
 
@@ -73,6 +116,7 @@ cd ~/test-dir
 - `ARCHITECTURE.md` - Technical design
 - `.STATUS` - Current progress
 - `zsh/` and `scripts/` - Existing code (reference)
+- `MCP-MIGRATION-PLAN.md` - Complete MCP organization plan (2025-12-19)
 
 ---
 
@@ -85,13 +129,17 @@ cd ~/test-dir
 
 **Workflow Commands:**
 - `/recap`, `/next`, `/focus` - ADHD-friendly workflow (will enhance)
+- `/workflow:done` - Session completion with documentation automation (NEW!)
 - `work`, `finish`, `dash`, `pp` - Project management (will integrate with context)
 
-**MCP Servers:**
-- Statistical Research MCP (14 tools, 17 skills)
-- Shell MCP server
-- Filesystem MCP
-- (aiterm will help configure these)
+**MCP Servers (Now Organized!):**
+- **Location:** `~/projects/dev-tools/mcp-servers/` (unified, 2025-12-19)
+- **Servers:** statistical-research, shell, project-refactor
+- **ZSH Tools:** `mcp-list`, `mcp-cd`, `mcp-test`, `mcp-status` (+ 6 more)
+- **Aliases:** `ml` (list), `mc` (cd), `mcps` (status), `mcpp` (picker)
+- **Index:** `~/projects/dev-tools/_MCP_SERVERS.md`
+- **Config:** `~/.claude/settings.json`, `claude-mcp/MCP_SERVER_CONFIG.json`
+- **Planned for aiterm v0.2.0:** `aiterm mcp list|test|validate`
 
 **@smart Feature (NEW!):**
 - UserPromptSubmit hook: `~/.claude/hooks/prompt-optimizer.sh`
@@ -113,8 +161,16 @@ cd ~/test-dir
 ### Planned for v0.2.0 (Phase 2)
 - Hook management system
 - Command template library
-- MCP server integration
+- **MCP server integration** (foundation ready: zsh-configuration/zsh/functions/mcp-utils.zsh)
+  - `aiterm mcp list` - Show all configured servers
+  - `aiterm mcp status` - Check server health
+  - `aiterm mcp test <server>` - Validate server runs
+  - `aiterm mcp validate` - Check configs are valid
 - Advanced status bar builder
+- **Workflow & Documentation Automation** (Phase 2.6)
+  - Enhanced `/workflow:done` with documentation detection
+  - Automatic CHANGELOG, CLAUDE.md, mkdocs.yml updates
+  - 3-phase roadmap: Detection → Auto-updates → AI generation
 
 ---
 
@@ -125,6 +181,35 @@ cd ~/test-dir
 3. **No Regressions:** Must work as well as v2.5.0 zsh version
 4. **Python 3.10+:** Modern Python, type hints, async-ready
 5. **Medium Integration:** Active control, not just config files
+
+---
+
+## Project Standards
+
+**See:** `STANDARDS-SUMMARY.md` - Comprehensive standards for aiterm project
+
+**Based on:** zsh-configuration standards (`~/projects/dev-tools/zsh-configuration/standards/`)
+
+**Key Standards:**
+- **Project Organization:** .STATUS file, directory structure, universal files
+- **Documentation:** QUICK-START, REFCARD, TUTORIAL templates (ADHD-friendly)
+- **Commit Messages:** Conventional commits (type(scope): subject)
+- **Testing:** 80%+ coverage goal, arrange-act-assert pattern
+- **Development:** Branch strategy, pre-commit checklist, release process
+
+**Quick Access:**
+```bash
+# View all standards
+cat STANDARDS-SUMMARY.md
+
+# Reference templates
+cat standards/adhd/QUICK-START-TEMPLATE.md
+cat standards/adhd/REFCARD-TEMPLATE.md
+cat standards/adhd/TUTORIAL-TEMPLATE.md
+
+# Code standards
+cat standards/code/COMMIT-MESSAGES.md
+```
 
 ---
 
