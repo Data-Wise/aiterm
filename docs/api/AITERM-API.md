@@ -20,7 +20,7 @@
 3. [Configuration](#configuration)
    - [Settings File](#settings-file)
    - [Environment Variables](#environment-variables)
-4. [Return Types & Errors](#return-types--errors)
+4. [Return Types & Errors](#return-types-errors)
 
 ---
 
