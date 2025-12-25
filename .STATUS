@@ -2,9 +2,9 @@ project: aiterm
 status: active
 priority: P1
 progress: 100
-version: 0.2.0
+version: 0.2.1-dev
 updated: 2025-12-24
-next: User testing and feedback collection
+next: Bug fixes and PyPI publication preparation
 
 ## ✅ Just Completed (Documentation Pre-flight & Deployment - Dec 24, 2025)
 - ✅ **DOCUMENTATION PRE-FLIGHT CHECK COMPLETE**
