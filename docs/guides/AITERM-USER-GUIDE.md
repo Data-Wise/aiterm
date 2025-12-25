@@ -20,7 +20,7 @@ This guide will help you get started with aiterm, the terminal optimizer for AI-
 3. [First-Time Setup](#first-time-setup)
 4. [Daily Workflows](#daily-workflows)
 5. [Advanced Features](#advanced-features)
-6. [Tips & Tricks](#tips--tricks)
+6. [Tips & Tricks](#tips-tricks)
 7. [FAQ](#faq)
 
 ---

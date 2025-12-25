@@ -79,6 +79,9 @@ nav:
     - Configuration: reference/configuration.md
     - Troubleshooting: reference/troubleshooting.md
     - Advanced Troubleshooting: troubleshooting/AITERM-TROUBLESHOOTING.md
+  - Features:
+    - MCP Integration: MCP-INTEGRATION.md
+    - Documentation Helpers: DOCS-HELPERS.md
   - Architecture:
     - Overview: architecture/AITERM-ARCHITECTURE.md
     - Implementation: AITERM-IMPLEMENTATION-SUMMARY.md
