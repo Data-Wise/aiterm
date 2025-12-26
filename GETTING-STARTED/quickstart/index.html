@@ -12,13 +12,13 @@
         <meta name="author" content="Data-Wise">
       
       
-        <link rel="canonical" href="https://data-wise.github.io/aiterm/reference/troubleshooting/">
+        <link rel="canonical" href="https://data-wise.github.io/aiterm/getting-started/quickstart/">
       
       
-        <link rel="prev" href="../configuration/">
+        <link rel="prev" href="../installation/">
       
       
-        <link rel="next" href="../../troubleshooting/AITERM-TROUBLESHOOTING/">
+        <link rel="next" href="../../guide/shell-completion/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Troubleshooting - aiterm</title>
+        <title>Quick Tutorial - aiterm</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#troubleshooting" class="md-skip">
+        <a href="#quick-start" class="md-skip">
           Skip to content
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Troubleshooting
+              Quick Tutorial
             
           </span>
         </div>
@@ -320,11 +320,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../getting-started/installation/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../installation/" class="md-tabs__link">
           
   
   
@@ -360,13 +362,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../commands/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../reference/commands/" class="md-tabs__link">
           
   
   
@@ -662,26 +662,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
             
   
   
@@ -699,7 +704,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -717,7 +722,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/installation/" class="md-nav__link">
+      <a href="../installation/" class="md-nav__link">
         
   
   
@@ -742,10 +747,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../getting-started/quickstart/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Tutorial
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -761,6 +793,248 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#install-choose-your-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install (Choose Your Method)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Install (Choose Your Method)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#macos-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        macOS (Recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#all-platforms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        All Platforms
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify Installation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#try-it-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Try It Out
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Try It Out">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-detect-your-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Detect Your Context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-check-claude-code-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Check Claude Code Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-add-auto-approvals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Add Auto-Approvals
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-happens" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Happens
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What Happens">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#context-detection-8-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context Detection (8 Types)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-approvals-8-presets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto-Approvals (8 Presets)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Commands
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Next Steps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#learn-more" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learn More
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workflows
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reference
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting Help
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1088,31 +1362,26 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
         
           
-          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
             
   
   
@@ -1130,7 +1399,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1148,7 +1417,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../commands/" class="md-nav__link">
+      <a href="../../reference/commands/" class="md-nav__link">
         
   
   
@@ -1176,7 +1445,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../REFCARD-CLAUDE/" class="md-nav__link">
+      <a href="../../reference/REFCARD-CLAUDE/" class="md-nav__link">
         
   
   
@@ -1204,7 +1473,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../REFCARD-MCP/" class="md-nav__link">
+      <a href="../../reference/REFCARD-MCP/" class="md-nav__link">
         
   
   
@@ -1232,7 +1501,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../REFCARD-HOOKS/" class="md-nav__link">
+      <a href="../../reference/REFCARD-HOOKS/" class="md-nav__link">
         
   
   
@@ -1260,7 +1529,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../REFCARD-CONTEXT/" class="md-nav__link">
+      <a href="../../reference/REFCARD-CONTEXT/" class="md-nav__link">
         
   
   
@@ -1288,7 +1557,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../REFCARD-OPENCODE/" class="md-nav__link">
+      <a href="../../reference/REFCARD-OPENCODE/" class="md-nav__link">
         
   
   
@@ -1344,7 +1613,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../configuration/" class="md-nav__link">
+      <a href="../../reference/configuration/" class="md-nav__link">
         
   
   
@@ -1369,37 +1638,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Troubleshooting
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../reference/troubleshooting/" class="md-nav__link">
         
   
   
@@ -1415,120 +1657,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#common-issues" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Common Issues
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Common Issues">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#profiles-not-switching" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Profiles Not Switching
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#title-not-showing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Title Not Showing
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#title-shows-briefly-then-disappears" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Title Shows Briefly Then Disappears
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#loops-terminal-hangs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Loops / Terminal Hangs
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#wrong-profile-detected" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Wrong Profile Detected
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#diagnostic-script" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Diagnostic Script
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#reset-everything" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Reset Everything
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2367,22 +2495,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#common-issues" class="md-nav__link">
+  <a href="#install-choose-your-method" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Common Issues
+        Install (Choose Your Method)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Common Issues">
+    <nav class="md-nav" aria-label="Install (Choose Your Method)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#profiles-not-switching" class="md-nav__link">
+  <a href="#macos-recommended" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Profiles Not Switching
+        macOS (Recommended)
       
     </span>
   </a>
@@ -2390,43 +2518,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#title-not-showing" class="md-nav__link">
+  <a href="#all-platforms" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Title Not Showing
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#title-shows-briefly-then-disappears" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Title Shows Briefly Then Disappears
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#loops-terminal-hangs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Loops / Terminal Hangs
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#wrong-profile-detected" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Wrong Profile Detected
+        All Platforms
       
     </span>
   </a>
@@ -2439,10 +2534,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#diagnostic-script" class="md-nav__link">
+  <a href="#verify-installation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Diagnostic Script
+        Verify Installation
       
     </span>
   </a>
@@ -2450,10 +2545,171 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#reset-everything" class="md-nav__link">
+  <a href="#try-it-out" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Reset Everything
+        Try It Out
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Try It Out">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-detect-your-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Detect Your Context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-check-claude-code-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Check Claude Code Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-add-auto-approvals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Add Auto-Approvals
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-happens" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Happens
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What Happens">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#context-detection-8-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context Detection (8 Types)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-approvals-8-presets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto-Approvals (8 Presets)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Commands
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Next Steps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#learn-more" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learn More
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workflows
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reference
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting Help
       
     </span>
   </a>
@@ -2480,107 +2736,198 @@
   
 
 
-<h1 id="troubleshooting">Troubleshooting</h1>
-<h2 id="common-issues">Common Issues</h2>
-<h3 id="profiles-not-switching">Profiles Not Switching</h3>
-<p><strong>Symptom:</strong> Colors don't change when you <code>cd</code> to a project.</p>
-<p><strong>Check:</strong></p>
-<ol>
-<li>
-<p>Verify you're in iTerm2:
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$TERM_PROGRAM</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Should show: iTerm.app</span>
-</code></pre></div></p>
-</li>
-<li>
-<p>Verify profiles exist (exact names, case-sensitive):</p>
-</li>
-<li>R-Dev</li>
-<li>Python-Dev</li>
-<li>Node-Dev</li>
-<li>AI-Session</li>
-<li>
-<p>Production</p>
-</li>
-<li>
-<p>Verify integration is loaded:
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">typeset</span><span class="w"> </span>-f<span class="w"> </span>_iterm_detect_context
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># Should show function definition</span>
-</code></pre></div></p>
-</li>
-<li>
-<p>If not loaded, source it:
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">source</span><span class="w"> </span>~/.config/zsh/.zshrc
-</code></pre></div></p>
-</li>
-</ol>
-<h3 id="title-not-showing">Title Not Showing</h3>
-<p><strong>Symptom:</strong> Tab shows "zsh" or directory instead of icon + name.</p>
-<p><strong>Check:</strong></p>
-<ol>
-<li>iTerm2 title setting:</li>
-<li>Settings → Profiles → General → Title</li>
-<li>
-<p>Set to: <strong>Session Name</strong></p>
-</li>
-<li>
-<p>OMZ auto-title disabled:
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$DISABLE_AUTO_TITLE</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1"># Should show: true</span>
-</code></pre></div></p>
-</li>
-<li>
-<p>If not set, add <strong>before</strong> antidote/OMZ in .zshrc:
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nv">DISABLE_AUTO_TITLE</span><span class="o">=</span><span class="s2">&quot;true&quot;</span>
-</code></pre></div></p>
-</li>
-</ol>
-<h3 id="title-shows-briefly-then-disappears">Title Shows Briefly Then Disappears</h3>
-<p><strong>Symptom:</strong> Title flashes correct value then changes.</p>
-<p><strong>Cause:</strong> Something else is overwriting the title (usually OMZ).</p>
-<p><strong>Fix:</strong> Ensure <code>DISABLE_AUTO_TITLE="true"</code> is set <strong>before</strong> plugins load.</p>
-<h3 id="loops-terminal-hangs">Loops / Terminal Hangs</h3>
-<p><strong>Symptom:</strong> Terminal freezes after <code>cd</code>.</p>
-<p><strong>Fix:</strong></p>
-<ol>
-<li>
-<p>Disable integration temporarily:
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Comment out in .zshrc</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1"># source ~/path/to/iterm2-integration.zsh</span>
-</code></pre></div></p>
-</li>
-<li>
-<p>Open new terminal</p>
-</li>
-<li>
-<p>Check for conflicting hooks:
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$chpwd_functions</span>
-</code></pre></div></p>
-</li>
-</ol>
-<h3 id="wrong-profile-detected">Wrong Profile Detected</h3>
-<p><strong>Symptom:</strong> Shows R-Dev but it's a Python project.</p>
-<p><strong>Cause:</strong> Detection priority - R is checked before Python.</p>
-<p><strong>Check:</strong> Does the directory have a <code>DESCRIPTION</code> file?</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>ls<span class="w"> </span>DESCRIPTION
+<h1 id="quick-start">Quick Start</h1>
+<p>Get up and running with <strong>aiterm</strong> in 2 minutes.</p>
+<hr />
+<h2 id="install-choose-your-method">Install (Choose Your Method)</h2>
+<h3 id="macos-recommended">macOS (Recommended)</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># One command installation</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>brew<span class="w"> </span>install<span class="w"> </span>data-wise/tap/aiterm
 </code></pre></div>
-<p>If yes, R detection wins. This is by design for R packages with Python scripts.</p>
-<h2 id="diagnostic-script">Diagnostic Script</h2>
-<p>Run the included diagnostic:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>~/path/to/aiterm/scripts/diagnose.sh
+<h3 id="all-platforms">All Platforms</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Install with UV (fastest)</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>git+https://github.com/Data-Wise/aiterm
 </code></pre></div>
-<h2 id="reset-everything">Reset Everything</h2>
-<p>If all else fails:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># 1. Comment out integration in .zshrc</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="c1"># 2. Restart terminal</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="c1"># 3. Clear caches</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="nb">unset</span><span class="w"> </span>_ITERM_CURRENT_PROFILE
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="nb">unset</span><span class="w"> </span>_ITERM_CURRENT_TITLE
-<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="nb">unset</span><span class="w"> </span>_ITERM_HOOK_REGISTERED
-<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>
-<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="c1"># 4. Re-source</span>
-<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="nb">source</span><span class="w"> </span>~/.config/zsh/.zshrc
+<hr />
+<h2 id="verify-installation">Verify Installation</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Check version</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>aiterm<span class="w"> </span>--version
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># or use short alias</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>ait<span class="w"> </span>--version
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1"># Run health check</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>ait<span class="w"> </span>doctor
 </code></pre></div>
+<p>Expected output:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>✅ Terminal: iTerm.app
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>✅ Shell: /bin/zsh
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>✅ Python: 3.12.0
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>✅ aiterm: 0.1.0
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>All systems go!
+</code></pre></div></p>
+<hr />
+<h2 id="try-it-out">Try It Out</h2>
+<h3 id="1-detect-your-context">1. Detect Your Context</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Navigate to any project</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nb">cd</span><span class="w"> </span>~/projects/my-r-package
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># Detect project type</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>ait<span class="w"> </span>detect
+</code></pre></div>
+<p>Output:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Context: R-Pkg 📦
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Profile: R-Dev (blue theme)
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Git: main (clean)
+</code></pre></div></p>
+<h3 id="2-check-claude-code-settings">2. Check Claude Code Settings</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># View current settings</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>ait<span class="w"> </span>claude<span class="w"> </span>settings
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># List available auto-approval presets</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>ait<span class="w"> </span>claude<span class="w"> </span>approvals<span class="w"> </span>presets
+</code></pre></div>
+<h3 id="3-add-auto-approvals">3. Add Auto-Approvals</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Add safe file reading permissions</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>ait<span class="w"> </span>claude<span class="w"> </span>approvals<span class="w"> </span>preset<span class="w"> </span>--name<span class="w"> </span>safe-reads
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># Add git operations permissions</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>ait<span class="w"> </span>claude<span class="w"> </span>approvals<span class="w"> </span>preset<span class="w"> </span>--name<span class="w"> </span>git-ops
+</code></pre></div>
+<hr />
+<h2 id="what-happens">What Happens</h2>
+<h3 id="context-detection-8-types">Context Detection (8 Types)</h3>
+<table>
+<thead>
+<tr>
+<th>When you <code>cd</code> to...</th>
+<th>Context</th>
+<th>Icon</th>
+<th>Profile</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R package (DESCRIPTION)</td>
+<td>R-Pkg</td>
+<td>📦</td>
+<td>R-Dev (blue)</td>
+</tr>
+<tr>
+<td>Python project (pyproject.toml)</td>
+<td>Python</td>
+<td>🐍</td>
+<td>Python-Dev (green)</td>
+</tr>
+<tr>
+<td>Node project (package.json)</td>
+<td>Node</td>
+<td>📦</td>
+<td>Node-Dev (dark)</td>
+</tr>
+<tr>
+<td>Quarto project (_quarto.yml)</td>
+<td>Quarto</td>
+<td>📊</td>
+<td>R-Dev (blue)</td>
+</tr>
+<tr>
+<td>MCP server (mcp-server/)</td>
+<td>AI-Session</td>
+<td>🤖</td>
+<td>AI-Session (purple)</td>
+</tr>
+<tr>
+<td>Production path (<em>/production/</em>)</td>
+<td>Production</td>
+<td>🚨</td>
+<td>Production (red)</td>
+</tr>
+<tr>
+<td>Dev tools (.git + scripts/)</td>
+<td>Dev-Tools</td>
+<td>🔧</td>
+<td>Dev-Tools (amber)</td>
+</tr>
+<tr>
+<td>Claude sessions (<em>/claude-sessions/</em>)</td>
+<td>AI-Session</td>
+<td>🤖</td>
+<td>AI-Session (purple)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="auto-approvals-8-presets">Auto-Approvals (8 Presets)</h3>
+<p>After adding presets, Claude Code will auto-approve:</p>
+<ul>
+<li><strong>safe-reads</strong>: Read files (cat, ls, grep)</li>
+<li><strong>git-ops</strong>: Git commands (status, diff, log, add, commit, push)</li>
+<li><strong>github-cli</strong>: GitHub CLI (gh pr, gh issue)</li>
+<li><strong>python-dev</strong>: Python tools (pytest, black, ruff)</li>
+<li><strong>node-dev</strong>: Node tools (npm, npx)</li>
+<li><strong>r-dev</strong>: R tools (Rscript, R CMD)</li>
+<li><strong>web-tools</strong>: Web search, fetch</li>
+<li><strong>minimal</strong>: Only read + git status</li>
+</ul>
+<hr />
+<h2 id="common-commands">Common Commands</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Health check</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>ait<span class="w"> </span>doctor
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># Detect current context</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>ait<span class="w"> </span>detect
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="c1"># Switch profile (manual override)</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>ait<span class="w"> </span>switch
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="c1"># View all profiles</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>ait<span class="w"> </span>profile<span class="w"> </span>list
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="c1"># Claude Code integration</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>ait<span class="w"> </span>claude<span class="w"> </span>settings<span class="w">           </span><span class="c1"># View settings</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>ait<span class="w"> </span>claude<span class="w"> </span>backup<span class="w">             </span><span class="c1"># Backup settings</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>ait<span class="w"> </span>claude<span class="w"> </span>approvals<span class="w"> </span>list<span class="w">     </span><span class="c1"># Show current approvals</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>ait<span class="w"> </span>claude<span class="w"> </span>approvals<span class="w"> </span>presets<span class="w">  </span><span class="c1"># List available presets</span>
+</code></pre></div>
+<hr />
+<h2 id="next-steps">Next Steps</h2>
+<h3 id="learn-more">Learn More</h3>
+<ul>
+<li>📖 <strong><a href="../installation/">Full Installation Guide</a></strong> - All installation methods</li>
+<li>🎯 <strong><a href="../../guide/context-detection/">Context Detection</a></strong> - How detection works</li>
+<li>⚙️ <strong><a href="../../guide/claude-integration/">Claude Integration</a></strong> - Auto-approvals explained</li>
+<li>🎨 <strong><a href="../../guide/profiles/">Profiles</a></strong> - Customize colors</li>
+</ul>
+<h3 id="workflows">Workflows</h3>
+<ul>
+<li>📊 <strong><a href="../../guide/workflows/">Common Workflows</a></strong> - Real-world examples</li>
+<li>🔧 <strong><a href="../../guide/status-bar/">Status Bar</a></strong> - Customize your status bar</li>
+</ul>
+<h3 id="reference">Reference</h3>
+<ul>
+<li>💻 <strong><a href="../../reference/commands/">Command Reference</a></strong> - All commands</li>
+<li>🐛 <strong><a href="../../reference/troubleshooting/">Troubleshooting</a></strong> - Common issues</li>
+</ul>
+<hr />
+<h2 id="update">Update</h2>
+<p>Keep aiterm up to date:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Homebrew</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>brew<span class="w"> </span>upgrade<span class="w"> </span>aiterm
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># UV</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>uv<span class="w"> </span>tool<span class="w"> </span>upgrade<span class="w"> </span>aiterm
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="c1"># pipx</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>pipx<span class="w"> </span>upgrade<span class="w"> </span>aiterm
+</code></pre></div>
+<hr />
+<h2 id="getting-help">Getting Help</h2>
+<ul>
+<li><strong>Documentation:</strong> <a href="https://data-wise.github.io/aiterm">https://data-wise.github.io/aiterm</a></li>
+<li><strong>Issues:</strong> <a href="https://github.com/Data-Wise/aiterm/issues">GitHub Issues</a></li>
+<li><strong>Discussions:</strong> <a href="https://github.com/Data-Wise/aiterm/discussions">GitHub Discussions</a></li>
+</ul>
 
 
 

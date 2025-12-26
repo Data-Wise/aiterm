@@ -12,13 +12,13 @@
         <meta name="author" content="Data-Wise">
       
       
-        <link rel="canonical" href="https://data-wise.github.io/aiterm/reference/troubleshooting/">
+        <link rel="canonical" href="https://data-wise.github.io/aiterm/guide/shell-completion/">
       
       
-        <link rel="prev" href="../configuration/">
+        <link rel="prev" href="../../getting-started/quickstart/">
       
       
-        <link rel="next" href="../../troubleshooting/AITERM-TROUBLESHOOTING/">
+        <link rel="next" href="../../guides/AITERM-USER-GUIDE/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Troubleshooting - aiterm</title>
+        <title>Shell Completion - aiterm</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#troubleshooting" class="md-skip">
+        <a href="#shell-completion" class="md-skip">
           Skip to content
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Troubleshooting
+              Shell Completion
             
           </span>
         </div>
@@ -320,10 +320,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../../getting-started/installation/" class="md-tabs__link">
           
   
@@ -360,13 +362,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../commands/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../reference/commands/" class="md-tabs__link">
           
   
   
@@ -662,26 +662,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
             
   
   
@@ -699,7 +704,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -770,10 +775,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../guide/shell-completion/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shell Completion
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -789,6 +821,170 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Setup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#zsh-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zsh (Recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bash
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fish" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fish
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-gets-completed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Gets Completed
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage Examples
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#completion-not-working" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completion Not Working
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-installation-zsh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual Installation (Zsh)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-installation-bash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual Installation (Bash)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alias-completion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alias Completion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -916,7 +1112,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guide/claude-integration/" class="md-nav__link">
+      <a href="../claude-integration/" class="md-nav__link">
         
   
   
@@ -944,7 +1140,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guide/workflows/" class="md-nav__link">
+      <a href="../workflows/" class="md-nav__link">
         
   
   
@@ -972,7 +1168,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guide/context-detection/" class="md-nav__link">
+      <a href="../context-detection/" class="md-nav__link">
         
   
   
@@ -1000,7 +1196,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guide/profiles/" class="md-nav__link">
+      <a href="../profiles/" class="md-nav__link">
         
   
   
@@ -1028,7 +1224,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guide/status-bar/" class="md-nav__link">
+      <a href="../status-bar/" class="md-nav__link">
         
   
   
@@ -1056,7 +1252,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guide/triggers/" class="md-nav__link">
+      <a href="../triggers/" class="md-nav__link">
         
   
   
@@ -1088,31 +1284,26 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
         
           
-          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
             
   
   
@@ -1130,7 +1321,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1148,7 +1339,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../commands/" class="md-nav__link">
+      <a href="../../reference/commands/" class="md-nav__link">
         
   
   
@@ -1176,7 +1367,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../REFCARD-CLAUDE/" class="md-nav__link">
+      <a href="../../reference/REFCARD-CLAUDE/" class="md-nav__link">
         
   
   
@@ -1204,7 +1395,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../REFCARD-MCP/" class="md-nav__link">
+      <a href="../../reference/REFCARD-MCP/" class="md-nav__link">
         
   
   
@@ -1232,7 +1423,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../REFCARD-HOOKS/" class="md-nav__link">
+      <a href="../../reference/REFCARD-HOOKS/" class="md-nav__link">
         
   
   
@@ -1260,7 +1451,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../REFCARD-CONTEXT/" class="md-nav__link">
+      <a href="../../reference/REFCARD-CONTEXT/" class="md-nav__link">
         
   
   
@@ -1288,7 +1479,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../REFCARD-OPENCODE/" class="md-nav__link">
+      <a href="../../reference/REFCARD-OPENCODE/" class="md-nav__link">
         
   
   
@@ -1344,7 +1535,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../configuration/" class="md-nav__link">
+      <a href="../../reference/configuration/" class="md-nav__link">
         
   
   
@@ -1369,37 +1560,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Troubleshooting
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../reference/troubleshooting/" class="md-nav__link">
         
   
   
@@ -1415,120 +1579,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#common-issues" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Common Issues
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Common Issues">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#profiles-not-switching" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Profiles Not Switching
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#title-not-showing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Title Not Showing
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#title-shows-briefly-then-disappears" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Title Shows Briefly Then Disappears
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#loops-terminal-hangs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Loops / Terminal Hangs
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#wrong-profile-detected" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Wrong Profile Detected
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#diagnostic-script" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Diagnostic Script
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#reset-everything" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Reset Everything
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2367,22 +2417,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#common-issues" class="md-nav__link">
+  <a href="#quick-setup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Common Issues
+        Quick Setup
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Common Issues">
+    <nav class="md-nav" aria-label="Quick Setup">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#profiles-not-switching" class="md-nav__link">
+  <a href="#zsh-recommended" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Profiles Not Switching
+        Zsh (Recommended)
       
     </span>
   </a>
@@ -2390,10 +2440,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#title-not-showing" class="md-nav__link">
+  <a href="#bash" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Title Not Showing
+        Bash
       
     </span>
   </a>
@@ -2401,32 +2451,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#title-shows-briefly-then-disappears" class="md-nav__link">
+  <a href="#fish" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Title Shows Briefly Then Disappears
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#loops-terminal-hangs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Loops / Terminal Hangs
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#wrong-profile-detected" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Wrong Profile Detected
+        Fish
       
     </span>
   </a>
@@ -2439,10 +2467,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#diagnostic-script" class="md-nav__link">
+  <a href="#what-gets-completed" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Diagnostic Script
+        What Gets Completed
       
     </span>
   </a>
@@ -2450,10 +2478,82 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#reset-everything" class="md-nav__link">
+  <a href="#usage-examples" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Reset Everything
+        Usage Examples
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#completion-not-working" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completion Not Working
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-installation-zsh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual Installation (Zsh)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-installation-bash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual Installation (Bash)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alias-completion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alias Completion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related
       
     </span>
   </a>
@@ -2480,107 +2580,114 @@
   
 
 
-<h1 id="troubleshooting">Troubleshooting</h1>
-<h2 id="common-issues">Common Issues</h2>
-<h3 id="profiles-not-switching">Profiles Not Switching</h3>
-<p><strong>Symptom:</strong> Colors don't change when you <code>cd</code> to a project.</p>
-<p><strong>Check:</strong></p>
-<ol>
-<li>
-<p>Verify you're in iTerm2:
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$TERM_PROGRAM</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Should show: iTerm.app</span>
-</code></pre></div></p>
-</li>
-<li>
-<p>Verify profiles exist (exact names, case-sensitive):</p>
-</li>
-<li>R-Dev</li>
-<li>Python-Dev</li>
-<li>Node-Dev</li>
-<li>AI-Session</li>
-<li>
-<p>Production</p>
-</li>
-<li>
-<p>Verify integration is loaded:
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">typeset</span><span class="w"> </span>-f<span class="w"> </span>_iterm_detect_context
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># Should show function definition</span>
-</code></pre></div></p>
-</li>
-<li>
-<p>If not loaded, source it:
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">source</span><span class="w"> </span>~/.config/zsh/.zshrc
-</code></pre></div></p>
-</li>
-</ol>
-<h3 id="title-not-showing">Title Not Showing</h3>
-<p><strong>Symptom:</strong> Tab shows "zsh" or directory instead of icon + name.</p>
-<p><strong>Check:</strong></p>
-<ol>
-<li>iTerm2 title setting:</li>
-<li>Settings → Profiles → General → Title</li>
-<li>
-<p>Set to: <strong>Session Name</strong></p>
-</li>
-<li>
-<p>OMZ auto-title disabled:
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$DISABLE_AUTO_TITLE</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1"># Should show: true</span>
-</code></pre></div></p>
-</li>
-<li>
-<p>If not set, add <strong>before</strong> antidote/OMZ in .zshrc:
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nv">DISABLE_AUTO_TITLE</span><span class="o">=</span><span class="s2">&quot;true&quot;</span>
-</code></pre></div></p>
-</li>
-</ol>
-<h3 id="title-shows-briefly-then-disappears">Title Shows Briefly Then Disappears</h3>
-<p><strong>Symptom:</strong> Title flashes correct value then changes.</p>
-<p><strong>Cause:</strong> Something else is overwriting the title (usually OMZ).</p>
-<p><strong>Fix:</strong> Ensure <code>DISABLE_AUTO_TITLE="true"</code> is set <strong>before</strong> plugins load.</p>
-<h3 id="loops-terminal-hangs">Loops / Terminal Hangs</h3>
-<p><strong>Symptom:</strong> Terminal freezes after <code>cd</code>.</p>
-<p><strong>Fix:</strong></p>
-<ol>
-<li>
-<p>Disable integration temporarily:
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Comment out in .zshrc</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1"># source ~/path/to/iterm2-integration.zsh</span>
-</code></pre></div></p>
-</li>
-<li>
-<p>Open new terminal</p>
-</li>
-<li>
-<p>Check for conflicting hooks:
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$chpwd_functions</span>
-</code></pre></div></p>
-</li>
-</ol>
-<h3 id="wrong-profile-detected">Wrong Profile Detected</h3>
-<p><strong>Symptom:</strong> Shows R-Dev but it's a Python project.</p>
-<p><strong>Cause:</strong> Detection priority - R is checked before Python.</p>
-<p><strong>Check:</strong> Does the directory have a <code>DESCRIPTION</code> file?</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>ls<span class="w"> </span>DESCRIPTION
+<h1 id="shell-completion">Shell Completion</h1>
+<p>aiterm provides tab completion for all commands, subcommands, and options.</p>
+<h2 id="quick-setup">Quick Setup</h2>
+<h3 id="zsh-recommended">Zsh (Recommended)</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Install completion</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>aiterm<span class="w"> </span>--install-completion<span class="w"> </span>zsh
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Or manually add to ~/.zshrc</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>aiterm<span class="w"> </span>--show-completion<span class="w"> </span>zsh<span class="k">)</span><span class="s2">&quot;</span>
 </code></pre></div>
-<p>If yes, R detection wins. This is by design for R packages with Python scripts.</p>
-<h2 id="diagnostic-script">Diagnostic Script</h2>
-<p>Run the included diagnostic:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>~/path/to/aiterm/scripts/diagnose.sh
+<h3 id="bash">Bash</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Install completion</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>aiterm<span class="w"> </span>--install-completion<span class="w"> </span>bash
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Or manually add to ~/.bashrc</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>aiterm<span class="w"> </span>--show-completion<span class="w"> </span>bash<span class="k">)</span><span class="s2">&quot;</span>
 </code></pre></div>
-<h2 id="reset-everything">Reset Everything</h2>
-<p>If all else fails:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># 1. Comment out integration in .zshrc</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="c1"># 2. Restart terminal</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="c1"># 3. Clear caches</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="nb">unset</span><span class="w"> </span>_ITERM_CURRENT_PROFILE
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="nb">unset</span><span class="w"> </span>_ITERM_CURRENT_TITLE
-<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="nb">unset</span><span class="w"> </span>_ITERM_HOOK_REGISTERED
-<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>
-<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="c1"># 4. Re-source</span>
-<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="nb">source</span><span class="w"> </span>~/.config/zsh/.zshrc
+<h3 id="fish">Fish</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Install completion</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>aiterm<span class="w"> </span>--install-completion<span class="w"> </span>fish
 </code></pre></div>
+<h2 id="what-gets-completed">What Gets Completed</h2>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Commands</td>
+<td><code>ait cl&lt;TAB&gt;</code> → <code>claude</code></td>
+</tr>
+<tr>
+<td>Subcommands</td>
+<td><code>ait claude ap&lt;TAB&gt;</code> → <code>approvals</code></td>
+</tr>
+<tr>
+<td>Options</td>
+<td><code>ait --&lt;TAB&gt;</code> → <code>--help</code>, <code>--version</code></td>
+</tr>
+<tr>
+<td>Arguments</td>
+<td><code>ait hooks install &lt;TAB&gt;</code> → template names</td>
+</tr>
+</tbody>
+</table>
+<h2 id="usage-examples">Usage Examples</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Complete commands</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>ait<span class="w"> </span>&lt;TAB&gt;
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># → claude  context  detect  doctor  docs  hooks  init  mcp  profile  switch</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1"># Complete subcommands</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>ait<span class="w"> </span>claude<span class="w"> </span>&lt;TAB&gt;
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># → approvals  backup  settings</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="c1"># Complete nested subcommands</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>ait<span class="w"> </span>claude<span class="w"> </span>approvals<span class="w"> </span>&lt;TAB&gt;
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="c1"># → add  list  presets</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="c1"># Complete options</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>ait<span class="w"> </span>doctor<span class="w"> </span>--&lt;TAB&gt;
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="c1"># → --help</span>
+</code></pre></div>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="completion-not-working">Completion Not Working</h3>
+<ol>
+<li><strong>Restart shell</strong> after installing completion</li>
+<li><strong>Check shell type</strong>: <code>echo $SHELL</code></li>
+<li><strong>Verify installation</strong>:
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Zsh</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>grep<span class="w"> </span>-l<span class="w"> </span><span class="s2">&quot;aiterm&quot;</span><span class="w"> </span>~/.zfunc/*<span class="w"> </span><span class="m">2</span>&gt;/dev/null
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># Bash</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>grep<span class="w"> </span><span class="s2">&quot;aiterm&quot;</span><span class="w"> </span>~/.bash_completion<span class="w"> </span><span class="m">2</span>&gt;/dev/null
+</code></pre></div></li>
+</ol>
+<h3 id="manual-installation-zsh">Manual Installation (Zsh)</h3>
+<p>If <code>--install-completion</code> doesn't work:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Create completion directory</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/.zfunc
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Generate completion script</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>aiterm<span class="w"> </span>--show-completion<span class="w"> </span>zsh<span class="w"> </span>&gt;<span class="w"> </span>~/.zfunc/_aiterm
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># Add to ~/.zshrc (before compinit)</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="nv">fpath</span><span class="o">=(</span>~/.zfunc<span class="w"> </span><span class="nv">$fpath</span><span class="o">)</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>autoload<span class="w"> </span>-Uz<span class="w"> </span>compinit<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>compinit
+</code></pre></div>
+<h3 id="manual-installation-bash">Manual Installation (Bash)</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Generate completion script</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>aiterm<span class="w"> </span>--show-completion<span class="w"> </span>bash<span class="w"> </span>&gt;<span class="w"> </span>~/.aiterm-complete.bash
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># Add to ~/.bashrc</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="nb">source</span><span class="w"> </span>~/.aiterm-complete.bash
+</code></pre></div>
+<h2 id="alias-completion">Alias Completion</h2>
+<p>If using the <code>ait</code> alias, completion works automatically because <code>ait</code> is a symlink to <code>aiterm</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Both work the same</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>aiterm<span class="w"> </span>&lt;TAB&gt;
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>ait<span class="w"> </span>&lt;TAB&gt;
+</code></pre></div>
+<h2 id="related">Related</h2>
+<ul>
+<li><a href="../../QUICK-START/">Quick Start</a> - Get started with aiterm</li>
+<li><a href="../../REFCARD/">Reference Card</a> - Command quick reference</li>
+</ul>
 
 
 
