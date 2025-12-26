@@ -70,8 +70,33 @@
 
 ## Phase 2: Option B (Balanced Power User)
 
-**Status:** Planned
-**When:** After validating Option A improvements
+**Status:** CLI Implementation Complete ✅
+**When:** Ready for agent creation
+
+### CLI Commands (Implemented Dec 26, 2025)
+
+```bash
+# View config
+ait opencode config              # Show current configuration
+ait opencode config --raw        # Show raw JSON
+ait opencode validate            # Check config validity
+ait opencode backup              # Create timestamped backup
+
+# Manage models
+ait opencode models              # List recommended models
+ait opencode set-model <model>   # Set primary model
+ait opencode set-model <model> --small  # Set small model
+
+# Manage agents
+ait opencode agents list         # List custom agents
+ait opencode agents add r-dev --desc "R development" --model anthropic/claude-sonnet-4-5
+ait opencode agents remove r-dev
+
+# Manage MCP servers
+ait opencode servers list        # List all servers
+ait opencode servers enable github
+ait opencode servers disable playwright
+```
 
 ### Proposed Additions
 
