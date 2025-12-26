@@ -4,9 +4,19 @@ priority: P1
 progress: 100
 version: 0.2.1
 updated: 2025-12-26
-next: PyPI publishing or v0.3.0 feature planning (workflow automation, enhanced MCP)
+next: v0.3.0 feature planning (workflow automation, enhanced MCP, IDE integrations)
 
-## ✅ Just Completed (v0.2.1 Release & Homebrew Fix - Dec 26, 2025)
+## ✅ Just Completed (v0.2.1 Release, Homebrew & PyPI - Dec 26, 2025)
+- ✅ **PyPI PUBLISHING COMPLETE**
+  - **Package Published:** https://pypi.org/project/aiterm-dev/0.2.1/
+  - **Name:** `aiterm-dev` (aiterm was blocked - too similar to existing `aiterm-cli`)
+  - **Install:** `pip install aiterm-dev`
+  - **GitHub Actions Workflow:**
+    - Created `.github/workflows/workflow.yml` for trusted publishing
+    - Created `pypi` environment on GitHub
+    - Ready for automated releases on new tags
+  - **Verified:** pip install works, provides `aiterm` and `ait` commands
+
 - ✅ **v0.2.1 OFFICIAL RELEASE**
   - **Documentation Standards Adoption (flow-cli based):**
     - Created docs/REFCARD.md (ASCII box quick reference)
@@ -48,10 +58,18 @@ next: PyPI publishing or v0.3.0 feature planning (workflow automation, enhanced 
 - **New Documentation:** 9 new reference/guide files
 - **CLI Improvements:** 19 commands with epilog examples
 - **Homebrew:** Fixed, 12 dependencies properly installed
-- **Installation:** `brew install data-wise/tap/aiterm` confirmed working
-- **Time:** ~2 hours (release + Homebrew debugging)
+- **PyPI:** Published as `aiterm-dev` v0.2.1
+- **Installation Methods:** 3 (Homebrew, PyPI, source)
+- **Time:** ~3 hours (release + Homebrew + PyPI debugging)
 
-🎉 **v0.2.1 RELEASED & HOMEBREW WORKING!** 🎉
+🎉 **v0.2.1 FULLY DISTRIBUTED: Homebrew + PyPI!** 🎉
+
+**Install Options:**
+```bash
+brew install data-wise/tap/aiterm  # macOS (Homebrew)
+pip install aiterm-dev              # Cross-platform (PyPI)
+pip install git+https://github.com/Data-Wise/aiterm  # From source
+```
 
 ## ✅ Previously Completed (OpenCode Performance Optimization - Dec 25, 2025)
 - ✅ **OpenCode v1.0.201 Configuration Audit & Enhancement**
