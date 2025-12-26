@@ -8,54 +8,45 @@ Optimize your terminal (iTerm2+) for AI coding with Claude Code and Gemini CLI. 
 
 ## 🚀 Installation
 
-### macOS (Recommended)
+### macOS (Homebrew - Recommended)
 
 ```bash
-# Install from Homebrew tap
 brew install data-wise/tap/aiterm
-
-# Update to latest version
-brew upgrade aiterm
 ```
 
-### All Platforms (uv - fastest)
+### Cross-Platform (PyPI)
 
 ```bash
-# Install uv first (if needed)
-curl -LsSf https://astral.sh/uv/install.sh | sh
-
-# Install aiterm globally
-uv tool install aiterm                    # from PyPI (after publish)
-uv tool install git+https://github.com/Data-Wise/aiterm
+pip install aiterm-dev
 ```
 
-### Alternative: pipx
+### Using uv (fastest)
 
 ```bash
-# Install pipx first (if needed)
-brew install pipx && pipx ensurepath
-
-# Install aiterm globally
-pipx install aiterm                       # from PyPI (after publish)
-pipx install git+https://github.com/Data-Wise/aiterm
+uv tool install aiterm-dev
 ```
 
-### From source (development)
+### Using pipx
 
 ```bash
-git clone https://github.com/Data-Wise/aiterm.git
-cd aiterm
-uv tool install .                         # or: pip install -e .
+pipx install aiterm-dev
+```
+
+### From Source
+
+```bash
+pip install git+https://github.com/Data-Wise/aiterm
 ```
 
 ### Installation Methods Comparison
 
-| Method | Platform | Speed | Updates | Best For |
-|--------|----------|-------|---------|----------|
-| **Homebrew** | macOS | Fast | `brew upgrade` | Mac users (recommended) |
-| **uv** | All | Fastest | `uv tool upgrade` | All platforms |
-| **pipx** | All | Fast | `pipx upgrade` | Python developers |
-| **Source** | All | Slow | `git pull` | Contributors |
+| Method | Command | Platform | Best For |
+|--------|---------|----------|----------|
+| **Homebrew** | `brew install data-wise/tap/aiterm` | macOS | Mac users |
+| **pip** | `pip install aiterm-dev` | All | Quick install |
+| **uv** | `uv tool install aiterm-dev` | All | Speed |
+| **pipx** | `pipx install aiterm-dev` | All | Isolation |
+| **Source** | `pip install git+...` | All | Latest dev |
 
 ---
 
@@ -108,7 +99,7 @@ Build custom status bars with:
 
 ## 💡 Features
 
-### Implemented (v0.1.0-dev)
+### Implemented (v0.2.1)
 
 - [x] **Context Detection** - 8 project types with auto-switching
 - [x] **iTerm2 Integration** - Profiles, titles, user variables
@@ -140,12 +131,18 @@ ait claude approvals presets   # Show 8 presets
 ait claude approvals add <preset>  # Add preset
 ```
 
-### Coming Soon (v0.2+)
+### Also Available (v0.2.1)
 
-- Hook management system
-- Command template library
-- MCP server integration
+- [x] **Hook Management** - List, install, validate hooks
+- [x] **Command Templates** - Browse and install command templates
+- [x] **MCP Server Integration** - List, test, validate MCP servers
+- [x] **Documentation Helpers** - Validate docs, test code examples
+
+### Coming Soon (v0.3+)
+
 - Gemini CLI support
+- IDE integrations (Positron, Zed, VS Code)
+- Workflow automation
 
 See [IDEAS.md](IDEAS.md) for full roadmap.
 
@@ -232,11 +229,11 @@ aiterm --help
 ```
 
 ### Project Status
-**Version:** 0.1.0-dev (95% complete)
-**Tests:** 51 passing, 83% coverage
-**Status:** Active development
+**Version:** 0.2.1
+**Tests:** 55 passing
+**Status:** Released on Homebrew & PyPI
 
-See [ROADMAP.md](ROADMAP.md) for current progress.
+See [CHANGELOG.md](CHANGELOG.md) for version history.
 
 ---
 
@@ -291,6 +288,6 @@ Built for AI-assisted development workflows with:
 
 ---
 
-**Status:** 🚧 Active Development (95% complete)
-**Tests:** 51 passing, 83% coverage
-**See:** [ROADMAP.md](ROADMAP.md) for current tasks
+**Status:** ✅ v0.2.1 Released
+**Install:** `brew install data-wise/tap/aiterm` or `pip install aiterm-dev`
+**Docs:** https://data-wise.github.io/aiterm/
