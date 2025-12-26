@@ -500,3 +500,178 @@ def instructions_list() -> None:
     console.print("  • .claude/rules/*.md (per-project)")
 
     console.print("\n[dim]Tip: OpenCode reads CLAUDE.md via 'instructions' config.[/]")
+
+
+# ─── Keybinds command ────────────────────────────────────────────────────────
+
+
+@app.command(
+    "keybinds",
+    epilog="""
+[bold]Examples:[/]
+  ait opencode keybinds           # List keyboard shortcuts
+""",
+)
+def keybinds_list() -> None:
+    """List configured keyboard shortcuts."""
+    config = load_config()
+    if not config:
+        console.print("[red]No OpenCode configuration found.[/]")
+        return
+
+    console.print("[bold cyan]Keyboard Shortcuts[/]\n")
+
+    if not config.keybinds:
+        console.print("[dim]No keybinds configured.[/]")
+        console.print("\nAdd to config.json:")
+        console.print('  "keybinds": { "ctrl+r": "agent:r-dev" }')
+        return
+
+    table = Table(border_style="cyan")
+    table.add_column("Shortcut", style="bold")
+    table.add_column("Action")
+
+    for key, action in config.keybinds.items():
+        table.add_row(key, action)
+
+    console.print(table)
+
+
+# ─── Commands command ────────────────────────────────────────────────────────
+
+
+@app.command(
+    "commands",
+    epilog="""
+[bold]Examples:[/]
+  ait opencode commands           # List custom commands
+""",
+)
+def commands_list() -> None:
+    """List configured custom commands."""
+    config = load_config()
+    if not config:
+        console.print("[red]No OpenCode configuration found.[/]")
+        return
+
+    console.print("[bold cyan]Custom Commands[/]\n")
+
+    if not config.commands:
+        console.print("[dim]No custom commands configured.[/]")
+        return
+
+    table = Table(border_style="cyan")
+    table.add_column("Command", style="bold")
+    table.add_column("Description")
+    table.add_column("Shell Command")
+
+    for name, cmd in config.commands.items():
+        table.add_row(name, cmd.description or "[dim]no description[/]", cmd.command or "[dim]none[/]")
+
+    console.print(table)
+
+
+# ─── Tools command ───────────────────────────────────────────────────────────
+
+
+@app.command(
+    "tools",
+    epilog="""
+[bold]Examples:[/]
+  ait opencode tools              # List tool permissions
+""",
+)
+def tools_list() -> None:
+    """List configured tool permissions."""
+    config = load_config()
+    if not config:
+        console.print("[red]No OpenCode configuration found.[/]")
+        return
+
+    console.print("[bold cyan]Tool Permissions[/]\n")
+
+    if not config.tools:
+        console.print("[dim]No tool permissions configured.[/]")
+        console.print("\nAdd to config.json:")
+        console.print('  "tools": { "bash": { "permission": "auto" } }')
+        return
+
+    table = Table(border_style="cyan")
+    table.add_column("Tool", style="bold")
+    table.add_column("Permission")
+
+    for name, tool_config in config.tools.items():
+        perm = tool_config.get("permission", "default")
+        perm_display = {
+            "auto": "[green]auto[/]",
+            "ask": "[yellow]ask[/]",
+            "deny": "[red]deny[/]",
+        }.get(perm, perm)
+        table.add_row(name, perm_display)
+
+    console.print(table)
+    console.print("\n[dim]Permissions: auto (no prompt), ask (confirm), deny (blocked)[/]")
+
+
+# ─── Summary command ─────────────────────────────────────────────────────────
+
+
+@app.command(
+    "summary",
+    epilog="""
+[bold]Examples:[/]
+  ait opencode summary            # Full configuration summary
+""",
+)
+def config_summary() -> None:
+    """Show complete configuration summary."""
+    config = load_config()
+    if not config:
+        console.print("[red]No OpenCode configuration found.[/]")
+        return
+
+    console.print("[bold cyan]OpenCode Configuration Summary[/]\n")
+
+    # Models
+    console.print("[bold]Models:[/]")
+    console.print(f"  Primary: {config.model or '[dim]not set[/]'}")
+    console.print(f"  Small: {config.small_model or '[dim]not set[/]'}")
+
+    # Agents
+    console.print(f"\n[bold]Agents:[/] ({len(config.agents)} custom)")
+    for name, agent in config.agents.items():
+        model_short = agent.model.split("/")[-1] if agent.model else "default"
+        console.print(f"  • {name}: {model_short} ({len(agent.tools)} tools)")
+
+    # Keybinds
+    if config.keybinds:
+        console.print(f"\n[bold]Keybinds:[/] ({len(config.keybinds)})")
+        for key, action in config.keybinds.items():
+            console.print(f"  {key} → {action}")
+
+    # Commands
+    if config.commands:
+        console.print(f"\n[bold]Commands:[/] ({len(config.commands)})")
+        for name in config.commands:
+            console.print(f"  • {name}")
+
+    # Tool Permissions
+    if config.tools:
+        auto_tools = [n for n, t in config.tools.items() if t.get("permission") == "auto"]
+        ask_tools = [n for n, t in config.tools.items() if t.get("permission") == "ask"]
+        console.print(f"\n[bold]Tool Permissions:[/]")
+        if auto_tools:
+            console.print(f"  Auto: {', '.join(auto_tools)}")
+        if ask_tools:
+            console.print(f"  Ask: {', '.join(ask_tools)}")
+
+    # MCP Servers
+    console.print(f"\n[bold]MCP Servers:[/] ({len(config.enabled_servers)} enabled)")
+    for name in config.enabled_servers:
+        console.print(f"  [green]●[/] {name}")
+
+    # Instructions
+    if config.instructions:
+        console.print(f"\n[bold]Instructions:[/] ({len(config.instructions)} files)")
+        for instr in config.instructions:
+            console.print(f"  • {instr}")

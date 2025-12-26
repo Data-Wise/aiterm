@@ -8,6 +8,16 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- **OpenCode Phase 3: Full Configuration System** ✅ COMPLETE
+  - `research` agent: Academic research & manuscript writing (Opus 4.5, 7 tools + web search)
+  - Keyboard shortcuts: `ctrl+r` (r-dev), `ctrl+q` (quick), `ctrl+s` (research)
+  - Custom commands: rpkg-check, rpkg-document, rpkg-test, sync, status
+  - Tool permissions: auto (bash/read/glob/grep), ask (write/edit)
+  - Time MCP server enabled for timezone & deadline tracking
+  - New CLI commands: `keybinds`, `commands`, `tools`, `summary`
+  - 28 Phase 3 tests (`test_opencode_phase3.py`)
+  - 131 total OpenCode tests (103 passing)
+
 - **OpenCode CLI Integration** (`ait opencode`)
   - `ait opencode config` - View current OpenCode configuration
   - `ait opencode validate` - Validate configuration file
@@ -16,8 +26,11 @@ All notable changes to this project will be documented in this file.
   - `ait opencode set-model` - Set primary or small model
   - `ait opencode agents list|add|remove` - Manage custom agents
   - `ait opencode servers list|enable|disable` - Manage MCP servers
-  - `ait opencode instructions` - Show CLAUDE.md sync status (NEW)
-  - 20 new tests for OpenCode CLI (155 total tests)
+  - `ait opencode instructions` - Show CLAUDE.md sync status
+  - `ait opencode keybinds` - List keyboard shortcuts (NEW)
+  - `ait opencode commands` - List custom commands (NEW)
+  - `ait opencode tools` - List tool permissions (NEW)
+  - `ait opencode summary` - Complete configuration summary (NEW)
 
 - **OpenCode Phase 2: Custom Agents & GitHub Integration**
   - `r-dev` agent: R package development specialist (Sonnet 4.5, 6 tools)
@@ -28,12 +41,11 @@ All notable changes to this project will be documented in this file.
   - Instructions config: Reads `CLAUDE.md` and `.claude/rules/*.md`
   - 14-test validation suite for agent configuration
 
-- **OpenCode Agent Test Suite** (`tests/test_opencode_agents.py`)
-  - Config validation (model, small_model, schema)
-  - Agent validation (r-dev, quick, tools)
-  - MCP validation (GitHub, essential, heavy servers)
-  - Sync validation (instructions, AGENTS.md symlink)
-  - Environment validation (GITHUB_TOKEN, opencode CLI)
+- **OpenCode Test Suite**
+  - `tests/test_opencode_config.py` - Core config tests (55 tests)
+  - `tests/test_opencode_cli.py` - CLI command tests (20 tests)
+  - `tests/test_opencode_agents.py` - Agent validation (14 tests)
+  - `tests/test_opencode_phase3.py` - Phase 3 features (28 tests)
 
 - **CI/CD Pipeline**
   - Added GitHub Actions test workflow (`test.yml`)

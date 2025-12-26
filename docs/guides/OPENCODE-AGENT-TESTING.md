@@ -8,15 +8,34 @@ Verify setup:
 ```bash
 ait opencode config      # Check agents configured
 ait opencode instructions # Verify CLAUDE.md sync
-python tests/test_opencode_agents.py  # Run 14-test validation
+ait opencode summary     # Complete configuration overview
+python -m pytest tests/test_opencode*.py  # Run all OpenCode tests (103 tests)
 ```
 
 ## Available Agents
 
-| Agent | Model | Tools | Use Case |
-|-------|-------|-------|----------|
-| `r-dev` | Sonnet 4.5 | bash, read, write, edit, glob, grep | R package development |
-| `quick` | Haiku 4.5 | read, glob, grep | Fast answers, simple queries |
+| Agent | Model | Tools | Shortcut | Use Case |
+|-------|-------|-------|----------|----------|
+| `r-dev` | Sonnet 4.5 | bash, read, write, edit, glob, grep | `ctrl+r` | R package development |
+| `quick` | Haiku 4.5 | read, glob, grep | `ctrl+q` | Fast answers, simple queries |
+| `research` | Opus 4.5 | read, write, edit, glob, grep, websearch, webfetch | `ctrl+s` | Academic research & manuscripts |
+
+## Custom Commands
+
+| Command | Description | Usage |
+|---------|-------------|-------|
+| `rpkg-check` | Run R CMD check | R package validation |
+| `rpkg-document` | Generate R docs | roxygen2 documentation |
+| `rpkg-test` | Run R tests | testthat execution |
+| `sync` | Git add, commit, push | Quick save & sync |
+| `status` | Git status + log | Check repo state |
+
+## Tool Permissions
+
+| Tool | Permission | Description |
+|------|------------|-------------|
+| bash, read, glob, grep | `auto` | Read-only, always allowed |
+| write, edit | `ask` | Modifying files, requires confirmation |
 
 ## Testing Agents in OpenCode
 

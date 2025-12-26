@@ -4,9 +4,33 @@ priority: P1
 progress: 100
 version: 0.2.1
 updated: 2025-12-26
-next: v0.3.0 feature planning (workflow automation, enhanced MCP, IDE integrations)
+next: v0.3.0 release (OpenCode Phase 3 complete, workflow automation, enhanced MCP, IDE integrations)
 
-## ✅ Just Completed (v0.2.1 Release, Homebrew & PyPI - Dec 26, 2025)
+## ✅ Just Completed (OpenCode Phase 3: Full Configuration System - Dec 26, 2025)
+- ✅ **OpenCode Phase 3 COMPLETE - All Features Implemented**
+  - **Phase 3.1:** Research agent (Opus 4.5, 7 tools + websearch/webfetch)
+  - **Phase 3.2:** Keyboard shortcuts (`ctrl+r/q/s` for agent switching)
+  - **Phase 3.3:** Custom commands (rpkg-check, rpkg-document, rpkg-test, sync, status)
+  - **Phase 3.4:** Tool permissions (auto for reads, ask for writes)
+  - **Phase 3.5:** Time MCP server enabled
+  - **Phase 3.6:** CLI commands (keybinds, commands, tools, summary)
+  - **Phase 3.7:** 28 Phase 3 tests (103 total OpenCode tests passing)
+  - **Phase 3.8:** Documentation updated (CHANGELOG, agent testing guide)
+
+📊 **OpenCode Phase 3 Stats:**
+- **Agents:** 3 custom (r-dev, quick, research)
+- **Keybinds:** 3 shortcuts for instant agent switching
+- **Commands:** 5 custom R & git commands
+- **Tool Permissions:** 6 configured (auto/ask)
+- **MCP Servers:** 4 enabled (filesystem, memory, time, github)
+- **Tests:** 103 passing (55 config + 20 CLI + 14 agents + 28 phase3)
+
+🎉 **OpenCode Integration Complete - Full Configuration Management!**
+
+**Config Location:** `~/.config/opencode/config.json`
+**CLI Commands:** `ait opencode summary` for complete overview
+
+## ✅ Previously Completed (v0.2.1 Release, Homebrew & PyPI - Dec 26, 2025)
 - ✅ **PyPI PUBLISHING COMPLETE**
   - **Package Published:** https://pypi.org/project/aiterm-dev/0.2.1/
   - **Name:** `aiterm-dev` (aiterm was blocked - too similar to existing `aiterm-cli`)

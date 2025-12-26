@@ -169,6 +169,24 @@ class Agent:
 
 
 @dataclass
+class Command:
+    """Represents a custom OpenCode command."""
+
+    name: str
+    description: str = ""
+    command: str = ""
+
+    def to_dict(self) -> dict[str, Any]:
+        """Convert to dictionary for JSON serialization."""
+        result: dict[str, Any] = {}
+        if self.description:
+            result["description"] = self.description
+        if self.command:
+            result["command"] = self.command
+        return result
+
+
+@dataclass
 class OpenCodeConfig:
     """Represents a complete OpenCode configuration."""
 
@@ -180,6 +198,8 @@ class OpenCodeConfig:
     agents: dict[str, Agent] = field(default_factory=dict)
     tools: dict[str, dict[str, str]] = field(default_factory=dict)
     instructions: list[dict[str, str]] = field(default_factory=list)
+    keybinds: dict[str, str] = field(default_factory=dict)
+    commands: dict[str, Command] = field(default_factory=dict)
     tui: dict[str, Any] = field(default_factory=dict)
     raw: dict[str, Any] = field(default_factory=dict)
 
@@ -248,14 +268,18 @@ class OpenCodeConfig:
             result["small_model"] = self.small_model
         if self.default_agent:
             result["default_agent"] = self.default_agent
-        if self.tui:
-            result["tui"] = self.tui
-        if self.agents:
-            result["agents"] = {name: agent.to_dict() for name, agent in self.agents.items()}
-        if self.tools:
-            result["tools"] = self.tools
         if self.instructions:
             result["instructions"] = self.instructions
+        if self.tui:
+            result["tui"] = self.tui
+        if self.keybinds:
+            result["keybinds"] = self.keybinds
+        if self.commands:
+            result["commands"] = {name: cmd.to_dict() for name, cmd in self.commands.items()}
+        if self.tools:
+            result["tools"] = self.tools
+        if self.agents:
+            result["agents"] = {name: agent.to_dict() for name, agent in self.agents.items()}
         if self.mcp_servers:
             result["mcp"] = {name: server.to_dict() for name, server in self.mcp_servers.items()}
 
@@ -315,6 +339,16 @@ def load_config(path: Path | None = None) -> OpenCodeConfig | None:
                 tools=agent_data.get("tools", []),
             )
 
+    # Parse commands
+    commands = {}
+    for name, cmd_data in raw.get("commands", {}).items():
+        if isinstance(cmd_data, dict):
+            commands[name] = Command(
+                name=name,
+                description=cmd_data.get("description", ""),
+                command=cmd_data.get("command", ""),
+            )
+
     return OpenCodeConfig(
         path=path,
         model=raw.get("model", ""),
@@ -324,6 +358,8 @@ def load_config(path: Path | None = None) -> OpenCodeConfig | None:
         agents=agents,
         tools=raw.get("tools", {}),
         instructions=raw.get("instructions", []),
+        keybinds=raw.get("keybinds", {}),
+        commands=commands,
         tui=raw.get("tui", {}),
         raw=raw,
     )
