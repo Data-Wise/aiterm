@@ -126,6 +126,22 @@ ait sessions history --date 2025-12-25
 ait sessions history --days 7
 ```
 
+### `ait sessions prune`
+
+Archive stale sessions whose processes are no longer running.
+
+```bash
+# Preview what would be archived
+ait sessions prune --dry-run
+
+# Archive stale sessions
+ait sessions prune
+```
+
+This is useful when Claude Code exits unexpectedly (crash, force quit, terminal
+close) and the cleanup hook doesn't fire. Stale sessions are moved to history
+with status "pruned".
+
 ## Session Manifest Format
 
 Manifests are stored as JSON in `~/.claude/sessions/active/`:
@@ -228,15 +244,18 @@ Session tracking supports focus by:
 
 ### Stale sessions
 
-If sessions aren't cleaned up (e.g., Claude Code crashed):
+If sessions aren't cleaned up (e.g., Claude Code crashed, force quit, terminal closed):
 
 ```bash
-# Manually archive stale sessions
-ait sessions cleanup --stale
+# Preview stale sessions (checks PIDs)
+ait sessions prune --dry-run
 
-# Or remove all active sessions
-rm ~/.claude/sessions/active/*.json
+# Archive stale sessions to history
+ait sessions prune
 ```
+
+The `prune` command checks each active session's process ID (PID) and archives
+any sessions whose processes are no longer running.
 
 ### Permission errors
 

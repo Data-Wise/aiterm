@@ -11,6 +11,7 @@ Quick reference for aiterm session coordination commands.
 | `ait sessions task "desc"` | Set/view task for current session |
 | `ait sessions conflicts` | Detect parallel session conflicts |
 | `ait sessions history` | Browse archived sessions |
+| `ait sessions prune` | Archive stale sessions (PID check) |
 
 ## Live Sessions
 
@@ -64,6 +65,25 @@ ait sessions history --days 7
 ait sessions history --project aiterm
 ```
 
+## Stale Session Cleanup
+
+When Claude Code exits unexpectedly (crash, force quit, terminal close), the
+cleanup hook may not run. Use `prune` to archive orphaned sessions:
+
+```bash
+# Preview stale sessions (dry run)
+ait sessions prune --dry-run
+
+# Archive stale sessions
+ait sessions prune
+```
+
+**How it works:**
+
+1. Checks each active session's PID
+2. If process is no longer running → session is stale
+3. Moves stale sessions to `history/YYYY-MM-DD/` with status "pruned"
+
 ## File Locations
 
 | Path | Purpose |
@@ -86,7 +106,7 @@ ait sessions history --project aiterm
 | `ended` | datetime | Session end time (if archived) |
 | `pid` | int | Process ID |
 | `task` | string | Current task description |
-| `status` | string | Session status (active/completed) |
+| `status` | string | Session status (active/completed/pruned) |
 
 ## Hook Events
 
