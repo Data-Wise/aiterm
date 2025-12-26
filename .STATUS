@@ -2,11 +2,58 @@ project: aiterm
 status: active
 priority: P1
 progress: 100
-version: 0.2.1-dev
-updated: 2025-12-25
-next: Continue OpenCode optimization (Option B: agents, permissions) or PyPI setup
+version: 0.2.1
+updated: 2025-12-26
+next: PyPI publishing or v0.3.0 feature planning (workflow automation, enhanced MCP)
 
-## ✅ Just Completed (OpenCode Performance Optimization - Dec 25, 2025)
+## ✅ Just Completed (v0.2.1 Release & Homebrew Fix - Dec 26, 2025)
+- ✅ **v0.2.1 OFFICIAL RELEASE**
+  - **Documentation Standards Adoption (flow-cli based):**
+    - Created docs/REFCARD.md (ASCII box quick reference)
+    - Created docs/QUICK-START.md (30-second setup guide)
+    - Created docs/GETTING-STARTED.md (10-minute hands-on tutorial)
+    - Created docs/guide/shell-completion.md (Zsh/Bash/Fish setup)
+  - **Domain-Specific Reference Cards:**
+    - docs/reference/REFCARD-CLAUDE.md (Claude Code commands)
+    - docs/reference/REFCARD-MCP.md (MCP server management)
+    - docs/reference/REFCARD-HOOKS.md (Hook management)
+    - docs/reference/REFCARD-CONTEXT.md (Context detection)
+    - docs/reference/REFCARD-OPENCODE.md (OpenCode integration)
+  - **CLI Improvements:**
+    - Added epilog examples to 19 commands (main.py, hooks.py, mcp.py)
+    - Rich formatted help with usage examples
+  - **Video Walkthrough Guide:**
+    - Created docs/guides/VIDEO-WALKTHROUGH.md (planning template)
+  - **docs-check Validation & Fixes:**
+    - Fixed version mismatch (0.2.1-dev → 0.2.1)
+    - Added 6 orphan pages to mkdocs.yml navigation
+    - Gemini CLI section properly organized
+  - **GitHub Pages Deployment:**
+    - Live at: https://Data-Wise.github.io/aiterm/
+    - All new documentation published
+  - **Release Workflow:**
+    - Merged dev → main
+    - Created v0.2.1 tag and GitHub release
+    - Updated Homebrew formula with correct SHA256
+  - **Homebrew Formula Fix (Critical):**
+    - Fixed transitive dependency installation
+    - Added all deps explicitly (Homebrew doesn't resolve them):
+      - click, shellingham, typing_extensions (for typer)
+      - mdurl, markdown-it-py, pygments (for rich)
+      - wcwidth, prompt_toolkit (for questionary)
+    - Verified: `brew install data-wise/tap/aiterm` works ✅
+    - Both `aiterm` and `ait` commands functional
+
+📊 **v0.2.1 Release Stats:**
+- **New Documentation:** 9 new reference/guide files
+- **CLI Improvements:** 19 commands with epilog examples
+- **Homebrew:** Fixed, 12 dependencies properly installed
+- **Installation:** `brew install data-wise/tap/aiterm` confirmed working
+- **Time:** ~2 hours (release + Homebrew debugging)
+
+🎉 **v0.2.1 RELEASED & HOMEBREW WORKING!** 🎉
+
+## ✅ Previously Completed (OpenCode Performance Optimization - Dec 25, 2025)
 - ✅ **OpenCode v1.0.201 Configuration Audit & Enhancement**
   - **Analysis Complete:**
     - Reviewed current config (4 MCP servers enabled)
