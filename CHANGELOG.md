@@ -6,6 +6,40 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+- **OpenCode CLI Integration** (`ait opencode`)
+  - `ait opencode config` - View current OpenCode configuration
+  - `ait opencode validate` - Validate configuration file
+  - `ait opencode backup` - Create timestamped backup
+  - `ait opencode models` - List recommended models
+  - `ait opencode set-model` - Set primary or small model
+  - `ait opencode agents list|add|remove` - Manage custom agents
+  - `ait opencode servers list|enable|disable` - Manage MCP servers
+  - 20 new tests for OpenCode CLI (155 total tests)
+
+- **CI/CD Pipeline**
+  - Added GitHub Actions test workflow (`test.yml`)
+  - Test matrix: Python 3.10, 3.11, 3.12 on Ubuntu and macOS
+  - Coverage reporting with pytest-cov
+  - Automatic PR checks
+
+### Changed
+
+- **Project Organization**
+  - Moved planning docs to `archive/planning/`
+  - Moved phase docs to `archive/phases/`
+  - Moved session notes to `archive/sessions/`
+  - Moved setup guides to `archive/guides/`
+  - Moved technical docs to `docs/reference/`
+  - Root directory now contains only README, CHANGELOG, and CLAUDE.md
+
+### Fixed
+
+- **Test Suite**
+  - Fixed `test_hooks_list` to accept empty hooks state
+  - Fixed `test_all_commands_have_help` for Typer CLI help format
+
 ---
 
 ## [0.2.1] - 2025-12-26 - PyPI & Distribution Release 🚀

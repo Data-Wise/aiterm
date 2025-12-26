@@ -2,10 +2,11 @@
 
 **Terminal optimizer CLI for AI-assisted development with Claude Code and Gemini CLI.**
 
-![Version](https://img.shields.io/badge/version-0.2.0-blue)
+![Version](https://img.shields.io/badge/version-0.2.1-blue)
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
-![Tests](https://img.shields.io/badge/tests-51%20passing-green)
-![Coverage](https://img.shields.io/badge/coverage-83%25-green)
+![Tests](https://img.shields.io/badge/tests-155%20passing-green)
+![Coverage](https://img.shields.io/badge/coverage-85%25-green)
+[![CI](https://github.com/Data-Wise/aiterm/actions/workflows/test.yml/badge.svg)](https://github.com/Data-Wise/aiterm/actions/workflows/test.yml)
 
 ---
 
@@ -16,8 +17,9 @@
 - 🎯 **Smart Context Detection** - Automatically detects project type (Python, R, Node.js, etc.)
 - 🎨 **Auto Profile Switching** - Changes iTerm2 colors based on context (production = red!)
 - ⚙️ **Claude Code Integration** - Manages settings, hooks, and auto-approvals
+- 🔧 **OpenCode Integration** - Configure agents, MCP servers, and models
 - 📊 **Status Bar** - Shows project info, git status, and session metrics
-- 🚀 **Fast Setup** - Install in < 5 minutes with `uv` or `pipx`
+- 🚀 **Fast Setup** - Install in < 5 minutes with `uv` or Homebrew
 
 ---
 
@@ -222,21 +224,44 @@ ait detect    # Shows: 📦 r-package → R-Dev profile
 
 ---
 
-## What's Next?
+## What's New in v0.2.1
 
-### v0.2.0 (Coming Soon)
+### OpenCode CLI Integration
 
-- **Hook Management** - Install and manage Claude Code hooks
-- **MCP Server Integration** - Configure and test MCP servers
-- **StatusLine Builder** - Interactive status bar generator
-- **Multi-Terminal Support** - Beyond iTerm2
+```bash
+# View configuration
+ait opencode config
 
-### Long Term (v1.0.0)
+# Manage agents
+ait opencode agents list
+ait opencode agents add my-agent --model anthropic:claude-sonnet-4-20250514
 
-- **Gemini CLI Integration**
+# Manage MCP servers
+ait opencode servers list
+ait opencode servers enable filesystem
+
+# Set models
+ait opencode set-model anthropic:claude-sonnet-4-20250514
+```
+
+### CI/CD Pipeline
+
+- GitHub Actions test workflow
+- Python 3.10, 3.11, 3.12 on Ubuntu and macOS
+- 155 tests passing
+
+## Roadmap
+
+### v0.3.0
+
+- **Gemini CLI Integration** - Support for Google's Gemini CLI
+- **Multi-Terminal Support** - Beyond iTerm2 (Kitty, Alacritty, etc.)
 - **Profile Templates** - Community-contributed themes
-- **Web UI** - Visual configuration tool
+
+### v1.0.0
+
 - **Plugin System** - Extend with custom contexts
+- **Web UI** - Visual configuration tool
 
 ---
 
@@ -256,7 +281,7 @@ ait detect    # Shows: 📦 r-package → R-Dev profile
 - 🎯 Single-purpose commands (no analysis paralysis)
 - 🎨 Visual context cues (production = red!)
 - 📝 Comprehensive docs with examples
-- 🧪 Well-tested (51 tests, 83% coverage)
+- 🧪 Well-tested (155 tests, 85% coverage)
 
 **Perfect for:**
 
