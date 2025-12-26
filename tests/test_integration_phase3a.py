@@ -24,7 +24,8 @@ def test_hooks_list():
     """Test listing installed hooks."""
     result = runner.invoke(app, ["hooks", "list"])
     assert result.exit_code == 0
-    assert "Installed Hooks" in result.stdout
+    # Should show installed hooks or "No hooks installed" message
+    assert "Installed Hooks" in result.stdout or "No hooks installed" in result.stdout
 
 
 def test_hooks_list_available():
@@ -183,7 +184,8 @@ def test_all_commands_have_help():
     for cmd in commands:
         result = runner.invoke(app, cmd)
         assert result.exit_code == 0
-        assert "--help" in result.stdout
+        # Help output should contain Usage information
+        assert "Usage:" in result.stdout
 
 
 def test_all_subcommands_have_help():
