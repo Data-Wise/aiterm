@@ -72,6 +72,7 @@ nav:
     - Complete Guide: guides/AITERM-USER-GUIDE.md
     - Integration Guide: guides/AITERM-INTEGRATION.md
     - Claude Integration: guide/claude-integration.md
+    - Session Coordination: guide/sessions.md
     - Workflows: guide/workflows.md
     - Context Detection: guide/context-detection.md
     - Profiles: guide/profiles.md
@@ -80,6 +81,7 @@ nav:
   - Reference:
     - Commands: reference/commands.md
     - Claude Commands: reference/REFCARD-CLAUDE.md
+    - Session Commands: reference/REFCARD-SESSIONS.md
     - MCP Commands: reference/REFCARD-MCP.md
     - Hooks Commands: reference/REFCARD-HOOKS.md
     - Context Detection: reference/REFCARD-CONTEXT.md
