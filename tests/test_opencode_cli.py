@@ -144,8 +144,13 @@ class TestOpenCodeBackup:
         """Should create backup file."""
         config_path = tmp_path / "config.json"
         config_path.write_text('{"model": "test"}')
+        # Need to patch both the source module AND the CLI module's imported reference
         monkeypatch.setattr(
             "aiterm.opencode.config.get_config_path",
+            lambda: config_path,
+        )
+        monkeypatch.setattr(
+            "aiterm.cli.opencode.get_config_path",
             lambda: config_path,
         )
         result = runner.invoke(app, ["opencode", "backup"])
