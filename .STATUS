@@ -1,12 +1,43 @@
 project: aiterm
 status: active
 priority: P1
-progress: 100
-version: 0.3.1
+progress: 0
+version: 0.4.0-dev
 updated: 2025-12-26
-next: Plan v0.4.0 features (workflow automation, AI recipe integration)
+next: Implement Phase 1 - Workflow Templates (ait recipes)
 
-## ✅ Just Completed (v0.3.0 Release - Dec 26, 2025)
+## 🎯 v0.4.0 Plan: Workflow Automation & Craft Integration
+
+**See:** `V0.4.0-PLAN.md` for full details
+
+### Phase 1: Workflow Templates (Week 1-2) - IN PROGRESS
+- [ ] Create `workflow_recipes.py` CLI module
+- [ ] Define recipe format (YAML)
+- [ ] Implement 6 built-in recipes (fullstack, release, feature, debug, docs, r-dev)
+- [ ] Add recipe storage in `~/.config/aiterm/recipes/`
+- [ ] Write tests (target: 20+ tests)
+
+### Phase 2: Craft Management (Week 3)
+- [ ] Create `craft.py` CLI module
+- [ ] Implement install/update/sync commands
+- [ ] Add craft command passthrough
+
+### Phase 3: Session-Aware Workflows (Week 4)
+- [ ] Session checks in workflow runner
+- [ ] Task auto-update during workflows
+
+**Integration with craft v1.2.0:**
+- 46 commands available for recipes
+- 8 skills for intelligent routing
+- Mode system (default, debug, optimize, release)
+
+## ✅ Just Completed (v0.3.1 Release - Dec 26, 2025)
+
+- ✅ **v0.3.1 RELEASED** - Session prune + test fix
+  - Added `ait sessions prune` command
+  - Fixed CI test failure (backup test patching)
+
+## ✅ Previously Completed (v0.3.0 Release - Dec 26, 2025)
 
 - ✅ **v0.3.0 RELEASED** - IDE Integrations & Session Coordination
   - **GitHub Release:** https://github.com/Data-Wise/aiterm/releases/tag/v0.3.0
