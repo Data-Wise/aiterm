@@ -508,6 +508,92 @@ def sessions_task(
         console.print("[red]Session file not found.[/]")
 
 
+@app.command("prune")
+def sessions_prune(
+    dry_run: bool = typer.Option(False, "--dry-run", "-n", help="Show what would be archived."),
+) -> None:
+    """Archive stale sessions whose processes are no longer running.
+
+    Checks each active session's PID and moves stale ones to history.
+    Useful when Claude Code exits without triggering the cleanup hook
+    (crash, force quit, terminal close).
+    """
+    import subprocess
+    from datetime import date
+
+    active_dir = get_live_sessions_dir() / "active"
+    if not active_dir.exists():
+        console.print("[dim]No active sessions directory.[/]")
+        return
+
+    session_files = list(active_dir.glob("*.json"))
+    if not session_files:
+        console.print("[green]✓ No active sessions to check.[/]")
+        return
+
+    stale = []
+    alive = []
+
+    for session_file in session_files:
+        session = LiveSession.from_file(session_file)
+        if not session:
+            continue
+
+        # Check if PID is still running
+        try:
+            result = subprocess.run(
+                ["ps", "-p", str(session.pid)],
+                capture_output=True,
+            )
+            if result.returncode == 0:
+                alive.append((session, session_file))
+            else:
+                stale.append((session, session_file))
+        except Exception:
+            # Can't check, assume stale
+            stale.append((session, session_file))
+
+    if not stale:
+        console.print(f"[green]✓ All {len(alive)} session(s) are active.[/]")
+        return
+
+    console.print(f"Found [yellow]{len(stale)}[/] stale session(s):\n")
+
+    for session, _ in stale:
+        console.print(f"  • {session.project} (PID {session.pid}) - {session.duration_str}")
+
+    if dry_run:
+        console.print(f"\n[dim]Use without --dry-run to archive these.[/]")
+        return
+
+    # Archive stale sessions
+    today = date.today().isoformat()
+    history_dir = get_live_sessions_dir() / "history" / today
+    history_dir.mkdir(parents=True, exist_ok=True)
+
+    archived = 0
+    for session, session_file in stale:
+        try:
+            # Update session with ended time
+            data = json.loads(session_file.read_text())
+            data["ended"] = datetime.now().astimezone().isoformat()
+            data["status"] = "pruned"
+
+            # Write to history
+            dest = history_dir / session_file.name
+            dest.write_text(json.dumps(data, indent=2))
+
+            # Remove from active
+            session_file.unlink()
+            archived += 1
+        except OSError as e:
+            console.print(f"[red]Failed to archive {session.session_id}: {e}[/]")
+
+    console.print(f"\n[green]✓ Archived {archived} stale session(s) to history/{today}/[/]")
+    if alive:
+        console.print(f"[dim]{len(alive)} session(s) still active.[/]")
+
+
 @app.command("current")
 def sessions_current() -> None:
     """Show the current live session for this directory.
