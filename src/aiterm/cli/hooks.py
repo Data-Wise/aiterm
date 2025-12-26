@@ -13,7 +13,12 @@ app = typer.Typer(help="Manage Claude Code hooks")
 console = Console()
 
 
-@app.command()
+@app.command(
+    epilog="""
+[bold]Examples:[/]
+  ait hooks list          # Show installed and available hooks
+"""
+)
 def list():
     """List all installed hooks."""
     manager = HookManager()
@@ -67,7 +72,13 @@ def list():
         console.print("[yellow]No templates available[/yellow]")
 
 
-@app.command()
+@app.command(
+    epilog="""
+[bold]Examples:[/]
+  ait hooks install prompt-optimizer    # Install optimizer hook
+  ait hooks install context-auto -f     # Force reinstall
+"""
+)
 def install(
     template: str = typer.Argument(..., help="Template name to install"),
     force: bool = typer.Option(False, "--force", "-f", help="Overwrite if exists")
@@ -104,7 +115,13 @@ def install(
         raise typer.Exit(1)
 
 
-@app.command()
+@app.command(
+    epilog="""
+[bold]Examples:[/]
+  ait hooks validate                    # Validate all hooks
+  ait hooks validate prompt-optimizer   # Validate specific hook
+"""
+)
 def validate(
     hook: Optional[str] = typer.Argument(None, help="Specific hook to validate")
 ):
@@ -144,7 +161,12 @@ def validate(
         console.print("\n[dim]Fix executable: chmod +x ~/.claude/hooks/<hook>[/dim]")
 
 
-@app.command()
+@app.command(
+    epilog="""
+[bold]Examples:[/]
+  ait hooks test prompt-optimizer   # Test hook execution
+"""
+)
 def test(
     hook: str = typer.Argument(..., help="Hook name to test")
 ):
@@ -184,7 +206,13 @@ def test(
         raise typer.Exit(1)
 
 
-@app.command()
+@app.command(
+    epilog="""
+[bold]Examples:[/]
+  ait hooks uninstall prompt-optimizer      # Uninstall with prompt
+  ait hooks uninstall prompt-optimizer -y   # Skip confirmation
+"""
+)
 def uninstall(
     hook: str = typer.Argument(..., help="Hook name to uninstall"),
     yes: bool = typer.Option(False, "--yes", "-y", help="Skip confirmation")

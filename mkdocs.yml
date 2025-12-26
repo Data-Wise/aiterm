@@ -60,10 +60,14 @@ markdown_extensions:
 
 nav:
   - Home: index.md
+  - Quick Start: QUICK-START.md
+  - Getting Started: GETTING-STARTED.md
+  - Reference Card: REFCARD.md
   - Documentation Index: AITERM-DOCS-INDEX.md
-  - Getting Started:
-    - Installation: getting-started/installation.md
-    - Quick Start: getting-started/quickstart.md
+  - Installation:
+    - Install Guide: getting-started/installation.md
+    - Quick Tutorial: getting-started/quickstart.md
+    - Shell Completion: guide/shell-completion.md
   - User Guide:
     - Complete Guide: guides/AITERM-USER-GUIDE.md
     - Integration Guide: guides/AITERM-INTEGRATION.md
@@ -75,10 +79,23 @@ nav:
     - Triggers: guide/triggers.md
   - Reference:
     - Commands: reference/commands.md
+    - Claude Commands: reference/REFCARD-CLAUDE.md
+    - MCP Commands: reference/REFCARD-MCP.md
+    - Hooks Commands: reference/REFCARD-HOOKS.md
+    - Context Detection: reference/REFCARD-CONTEXT.md
+    - OpenCode Integration: reference/REFCARD-OPENCODE.md
     - API Documentation: api/AITERM-API.md
     - Configuration: reference/configuration.md
     - Troubleshooting: reference/troubleshooting.md
     - Advanced Troubleshooting: troubleshooting/AITERM-TROUBLESHOOTING.md
+  - Guides:
+    - Video Walkthrough: guides/VIDEO-WALKTHROUGH.md
+    - Claude Code Tutorial: CLAUDE-CODE-TUTORIAL.md
+  - Gemini CLI:
+    - Reference Card: gemini-cli/GEMINI_REFCARD.md
+    - Tutorial: gemini-cli/GEMINI_TUTORIAL.md
+    - Prompt Engineering (ADHD): gemini-cli/PROMPT_ENGINEERING_ADHD.md
+    - Workflow Guide: gemini-cli/WORKFLOW_GUIDE.md
   - Features:
     - MCP Integration: MCP-INTEGRATION.md
     - Documentation Helpers: DOCS-HELPERS.md

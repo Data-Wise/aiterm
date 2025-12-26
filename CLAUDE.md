@@ -4,49 +4,44 @@ This file provides guidance to Claude Code when working with the aiterm project.
 
 ## Project Overview
 
-**aiterm** (formerly aiterm) - Terminal optimizer CLI for AI-assisted development with Claude Code and Gemini CLI.
+**aiterm** - AI Terminal Optimizer CLI for Claude Code, OpenCode, and Gemini CLI workflows.
 
 **What it does:**
 - Optimizes terminal setup (iTerm2 primarily) for AI coding workflows
 - Manages terminal profiles, context detection, and visual customization
 - Integrates with Claude Code CLI (hooks, commands, auto-approvals, MCP servers)
+- **NEW: OpenCode configuration management** (models, agents, MCP servers)
 - Supports Gemini CLI integration
 - Provides workflow templates for different dev contexts
 
 **Target Users:**
 - Primary: DT (power user, R developer, statistician, ADHD-friendly workflows)
-- Secondary: Public release (developers using Claude Code/Gemini CLI)
+- Secondary: Public release (developers using Claude Code/Gemini CLI/OpenCode)
 
 **Tech Stack:**
 - **Language:** Python 3.10+
 - **CLI Framework:** Typer (modern CLI with type hints)
 - **Terminal:** Rich (beautiful terminal output)
 - **Prompts:** Questionary (interactive prompts)
-- **Testing:** pytest
+- **Testing:** pytest (135 tests, 85%+ coverage)
 - **Distribution:** Homebrew (macOS primary), pip/PyPI (cross-platform)
 
 ---
 
-## Project Status: v0.1.0-dev - Documentation First! 📚
+## Project Status: v0.2.1-dev
 
-**Current Phase:** Phase 0 - Comprehensive Documentation (Before Feature Expansion)
+**Current Phase:** Feature expansion with comprehensive testing
 
-**NEW PRIORITY (Dec 21, 2025):**
-After completing RForge MCP auto-detection documentation (7 docs, ~80 pages, 15 diagrams), we've validated a critical insight:
-
-> **Comprehensive documentation BEFORE feature expansion prevents confusion and accelerates development.**
-
-**Phase 0 Plan (3 weeks):**
-- [ ] Complete documentation suite (7 documents, ~100 pages)
-- [ ] 20+ Mermaid architecture diagrams
-- [ ] 60+ code examples (Python + CLI)
-- [ ] Deploy to GitHub Pages
-- [ ] Use docs as specification for Phase 1 implementation
+**Recent Additions (Dec 25, 2025):**
+- [x] OpenCode configuration module (`src/aiterm/opencode/`)
+- [x] 55 new tests for OpenCode config validation
+- [x] OpenCode performance optimization (Option A applied)
+- [x] v0.2.0 released with 4 major feature systems
 
 **See:**
-- `DOCUMENTATION-PLAN.md` - Complete documentation roadmap
-- `RFORGE-LEARNINGS.md` - Lessons from RForge success
-- `IMPLEMENTATION-PRIORITIES.md` - Updated with documentation-first approach
+- `OPENCODE-OPTIMIZATION-PLAN.md` - OpenCode enhancement roadmap
+- `.STATUS` - Current progress and session history
+- `RELEASE-NOTES-v0.2.0-dev.md` - Latest release notes
 
 ---
 
@@ -96,18 +91,46 @@ pipx install git+https://github.com/Data-Wise/aiterm
 
 ## Quick Reference
 
+### Shell Aliases
+
+```bash
+ait          # → aiterm (main CLI via UV symlink)
+oc           # → opencode (OpenCode CLI)
+```
+
+**Location:** `~/.config/zsh/.zshrc`
+
 ### Common Commands
 
 ```bash
-# Development
-aiterm --help                    # See available commands
-aiterm doctor                    # Check installation
-python -m pytest                 # Run tests
+# Essential
+ait doctor                       # Check installation
+ait detect                       # Show project context
+ait switch                       # Apply context to terminal
 
-# Testing existing functionality
-cd ~/test-dir
-# (zsh integration still works for now)
+# Claude Code
+ait claude settings              # View settings
+ait claude backup                # Backup settings
+ait claude approvals list        # Show auto-approvals
+ait claude approvals add safe    # Apply safe preset
+
+# MCP Servers
+ait mcp list                     # List configured servers
+ait mcp test filesystem          # Test specific server
+ait mcp validate                 # Check configuration
+
+# Development
+python -m pytest                 # Run tests
 ```
+
+### Quick Help Docs
+
+| Doc | Purpose |
+|-----|---------|
+| `docs/REFCARD.md` | One-page quick reference |
+| `docs/QUICK-START.md` | 30-second setup guide |
+| `ait --help` | All CLI commands |
+| `ait <cmd> --help` | Command-specific help |
 
 ### Key Files
 
@@ -146,6 +169,103 @@ cd ~/test-dir
 - Optimizes prompts with project context
 - Interactive menu: Submit/Revise/Delegate/Cancel
 - Docs: `~/.claude/PROMPT-OPTIMIZER-GUIDE.md`
+
+---
+
+## OpenCode Integration (NEW - Dec 25, 2025)
+
+**Module:** `src/aiterm/opencode/`
+**Tests:** 55 tests in `tests/test_opencode_config.py`
+**Config:** `~/.config/opencode/config.json`
+
+### Current Config (Option A - Lean & Fast)
+```json
+{
+  "model": "anthropic/claude-sonnet-4-5",
+  "small_model": "anthropic/claude-haiku-4-5",
+  "tui": { "scroll_acceleration": { "enabled": true } },
+  "mcp": {
+    "filesystem": { "enabled": true },
+    "memory": { "enabled": true }
+  }
+}
+```
+
+### Python API
+```python
+from aiterm.opencode import load_config, validate_config, backup_config
+
+# Load and validate
+config = load_config()
+valid, errors = validate_config()
+
+# Check properties
+print(config.enabled_servers)  # ['filesystem', 'memory']
+print(config.has_scroll_acceleration)  # True
+```
+
+### Enhancement Roadmap
+- **Option A (Applied):** Explicit models, scroll acceleration, lean MCP
+- **Option B (Planned):** Custom agents, tool permissions, CLAUDE.md loading
+- **Option C (Future):** Keybinds, custom commands, GitHub MCP
+
+**See:** `OPENCODE-OPTIMIZATION-PLAN.md` for full details.
+
+---
+
+## Shell Integration Standards (flow-cli)
+
+When modifying `.zshrc` or shell configuration, follow these standards from flow-cli:
+
+### Configuration Location
+```
+~/.config/zsh/           # Main ZSH config directory (XDG compliant)
+├── .zshrc               # Main config file
+├── .zshenv              # Sets ZDOTDIR
+├── functions/           # Function libraries (separate files)
+└── .zsh_plugins.txt     # Antidote plugin list
+```
+
+### ZDOTDIR Pattern (Preferred)
+```bash
+# In ~/.zshenv - redirect ZSH to ~/.config/zsh
+echo 'export ZDOTDIR="$HOME/.config/zsh"' >> ~/.zshenv
+```
+
+### Installation Standards
+```bash
+# 1. Check if already installed (idempotent)
+if grep -q "aiterm" "$ZSHRC"; then
+    echo "Already installed"
+fi
+
+# 2. Create timestamped backup
+backup="$ZSHRC.backup.$(date +%Y%m%d%H%M%S)"
+cp "$ZSHRC" "$backup"
+
+# 3. Use heredoc with markers
+cat >> "$ZSHRC" << 'EOF'
+
+# ============================================
+# AITERM SHELL INTEGRATION
+# ============================================
+source ~/.config/aiterm/shell.zsh
+
+EOF
+
+# 4. Uninstall: grep -v pattern
+grep -v "AITERM" "$ZSHRC" > "${ZSHRC}.tmp" && mv "${ZSHRC}.tmp" "$ZSHRC"
+```
+
+### Key Principles
+| Concern | Standard |
+|---------|----------|
+| Location | `~/.config/zsh/` (XDG compliant) |
+| Backups | Timestamped `.backup.YYYYMMDDHHMMSS` |
+| Idempotent | Check with `grep -q` before adding |
+| Markers | Comment blocks with project name |
+| Functions | Separate files in `functions/` dir |
+| Reload | `source ~/.zshrc` or `reload` alias |
 
 ---
 

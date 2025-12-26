@@ -14,7 +14,12 @@ app = typer.Typer(help="Manage MCP servers for Claude Code")
 console = Console()
 
 
-@app.command()
+@app.command(
+    epilog="""
+[bold]Examples:[/]
+  ait mcp list            # Show all configured servers
+"""
+)
 def list():
     """List all configured MCP servers."""
     manager = MCPManager()
@@ -52,7 +57,13 @@ def list():
     console.print("[dim]Test a server: aiterm mcp test <name>[/dim]")
 
 
-@app.command()
+@app.command(
+    epilog="""
+[bold]Examples:[/]
+  ait mcp test filesystem        # Test specific server
+  ait mcp test memory -t 10      # Test with 10s timeout
+"""
+)
 def test(
     server_name: str = typer.Argument(..., help="Server name to test"),
     timeout: float = typer.Option(5.0, "--timeout", "-t", help="Timeout in seconds")
@@ -101,7 +112,12 @@ def test(
         ))
 
 
-@app.command()
+@app.command(
+    epilog="""
+[bold]Examples:[/]
+  ait mcp validate       # Check configuration syntax
+"""
+)
 def validate():
     """Validate MCP server configuration."""
     manager = MCPManager()
@@ -145,7 +161,13 @@ def validate():
     console.print(f"[dim]Config: {manager.settings_path}[/dim]")
 
 
-@app.command()
+@app.command(
+    epilog="""
+[bold]Examples:[/]
+  ait mcp info filesystem   # Show server details
+  ait mcp info memory       # Show env vars, command
+"""
+)
 def info(
     server_name: str = typer.Argument(..., help="Server name to show info for")
 ):
@@ -185,7 +207,13 @@ def info(
     console.print(f"[dim]Config: {info['config_path']}[/dim]")
 
 
-@app.command()
+@app.command(
+    epilog="""
+[bold]Examples:[/]
+  ait mcp test-all           # Test all servers
+  ait mcp test-all -t 10     # 10s timeout per server
+"""
+)
 def test_all(
     timeout: float = typer.Option(5.0, "--timeout", "-t", help="Timeout per server")
 ):

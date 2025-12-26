@@ -122,7 +122,15 @@
       "Bash(~/.claude/commands/workflow/lib/update-changelog.sh:*)",
       "Bash(~/.claude/commands/workflow/lib/update-mkdocs-nav.sh:*)",
       "Bash(~/.claude/commands/workflow/lib/update-claude-md.sh)",
-      "Bash(~/.claude/commands/workflow/lib/run-all-updaters.sh:*)"
+      "Bash(~/.claude/commands/workflow/lib/run-all-updaters.sh:*)",
+      "Bash(opencode --help:*)",
+      "WebFetch(domain:opencode.ai)",
+      "Bash(opencode:*)",
+      "Bash(ait mcp list:*)",
+      "Bash(ait --show-completion:*)",
+      "Bash(python -c \"from aiterm.cli.main import app; import typer; typer.main.get_command\\(app\\).shell_complete\")",
+      "Bash(for f in index.md QUICK-START.md GETTING-STARTED.md REFCARD.md AITERM-DOCS-INDEX.md getting-started/installation.md guide/shell-completion.md guides/AITERM-USER-GUIDE.md guides/AITERM-INTEGRATION.md guide/claude-integration.md guide/workflows.md guide/context-detection.md guide/profiles.md guide/status-bar.md guide/triggers.md reference/commands.md reference/REFCARD-CLAUDE.md reference/REFCARD-MCP.md reference/REFCARD-HOOKS.md reference/REFCARD-CONTEXT.md reference/REFCARD-OPENCODE.md api/AITERM-API.md reference/configuration.md reference/troubleshooting.md troubleshooting/AITERM-TROUBLESHOOTING.md guides/VIDEO-WALKTHROUGH.md MCP-INTEGRATION.md DOCS-HELPERS.md architecture/AITERM-ARCHITECTURE.md AITERM-IMPLEMENTATION-SUMMARY.md development/architecture.md development/contributing.md AUTO-UPDATE-INDEX.md AUTO-UPDATE-TUTORIAL.md AUTO-UPDATE-REFCARD.md AUTO-UPDATE-WORKFLOW.md AUTO-UPDATE-WORKFLOW-DIAGRAM.md)",
+      "Bash(do [ -f \"docs/$f\" ])"
     ]
   },
   "statusLine": {

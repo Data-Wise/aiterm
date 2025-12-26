@@ -4,9 +4,40 @@ priority: P1
 progress: 100
 version: 0.2.1-dev
 updated: 2025-12-25
-next: Begin PyPI publication preparation (TestPyPI setup and validation)
+next: Continue OpenCode optimization (Option B: agents, permissions) or PyPI setup
 
-## ✅ Just Completed (v0.2.0 Release Completion & Plugin Documentation - Dec 25, 2025)
+## ✅ Just Completed (OpenCode Performance Optimization - Dec 25, 2025)
+- ✅ **OpenCode v1.0.201 Configuration Audit & Enhancement**
+  - **Analysis Complete:**
+    - Reviewed current config (4 MCP servers enabled)
+    - Analyzed usage stats (12 sessions, 11M tokens, $0.00 cost)
+    - Identified 95.5M cache read (excellent cache hit rate)
+    - Tool usage breakdown: bash 48.7%, edit 17.9%, read 14.8%
+  - **Option A Applied (Lean & Fast):**
+    - ✅ Added explicit model: `anthropic/claude-sonnet-4-5`
+    - ✅ Added small_model: `anthropic/claude-haiku-4-5`
+    - ✅ Enabled TUI scroll acceleration
+    - ✅ Disabled heavy MCP servers (playwright, sequential-thinking)
+    - ✅ Kept essential servers (filesystem, memory)
+    - ✅ Created backup: `config.json.backup-YYYYMMDD-HHMMSS`
+  - **Performance Improvements Expected:**
+    - Faster startup (fewer MCP servers to initialize)
+    - Lower latency per response (explicit model selection)
+    - Better macOS scrolling (scroll_acceleration)
+    - Cheaper summaries (haiku for small_model tasks)
+  - **Documentation Created:**
+    - Created OPENCODE-OPTIMIZATION-PLAN.md (enhancement roadmap)
+    - Options B & C documented for future expansion
+  - **Config Backups Available:**
+    - `config-recommended.json` (balanced)
+    - `config-advanced-dev.json` (full server catalog)
+
+📊 **OpenCode Session Stats:**
+- **Changes:** 4 config improvements applied
+- **Time:** ~15 minutes
+- **Next:** Option B (agents, permissions, instructions) when ready
+
+## ✅ Previously Completed (v0.2.0 Release Completion & Plugin Documentation - Dec 25, 2025)
 - ✅ **v0.2.0 RELEASE COMPLETION & DOCUMENTATION**
   - **CHANGELOG.md Update:**
     - ✅ Added comprehensive v0.2.0 section (53 lines)

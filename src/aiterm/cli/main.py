@@ -55,7 +55,13 @@ def main(
     pass
 
 
-@app.command()
+@app.command(
+    epilog="""
+[bold]Examples:[/]
+  ait init              # Run interactive setup
+  ait init --skip-test  # Skip verification tests
+"""
+)
 def init() -> None:
     """Interactive setup wizard for aiterm."""
     console.print("[bold cyan]aiterm init[/] - Setup wizard")
@@ -66,7 +72,13 @@ def init() -> None:
     console.print("  - Test installation")
 
 
-@app.command()
+@app.command(
+    epilog="""
+[bold]Examples:[/]
+  ait doctor       # Full health check
+  ait doctor -v    # Verbose output
+"""
+)
 def doctor() -> None:
     """Check aiterm installation and configuration."""
     console.print("[bold cyan]aiterm doctor[/] - Health check")
@@ -126,7 +138,14 @@ def _context_detect_impl(path: Optional[Path], apply: bool) -> None:
 # ─── Top-level shortcuts ─────────────────────────────────────────────────────
 
 
-@app.command()
+@app.command(
+    epilog="""
+[bold]Examples:[/]
+  ait detect              # Current directory
+  ait detect ~/my-project # Specific path
+  ait detect .            # Explicit current dir
+"""
+)
 def detect(
     path: Optional[Path] = typer.Argument(None, help="Directory to analyze."),
 ) -> None:
@@ -134,7 +153,14 @@ def detect(
     _context_detect_impl(path, apply=False)
 
 
-@app.command()
+@app.command(
+    epilog="""
+[bold]Examples:[/]
+  ait switch              # Apply context for current dir
+  ait switch ~/my-project # Apply context for path
+  cd ~/project && ait switch  # Common workflow
+"""
+)
 def switch(
     path: Optional[Path] = typer.Argument(None, help="Directory to analyze."),
 ) -> None:
@@ -201,7 +227,13 @@ def profile_list() -> None:
 # ─── Claude settings commands ────────────────────────────────────────────────
 
 
-@claude_app.command("settings")
+@claude_app.command(
+    "settings",
+    epilog="""
+[bold]Examples:[/]
+  ait claude settings    # View all settings
+"""
+)
 def claude_settings_show() -> None:
     """Display current Claude Code settings."""
     from aiterm.claude.settings import load_settings, find_settings_file
@@ -235,7 +267,13 @@ def claude_settings_show() -> None:
             console.print(f"  [dim]... and {len(settings.allow_list) - 10} more[/]")
 
 
-@claude_app.command("backup")
+@claude_app.command(
+    "backup",
+    epilog="""
+[bold]Examples:[/]
+  ait claude backup      # Create timestamped backup
+"""
+)
 def claude_backup() -> None:
     """Backup Claude Code settings."""
     from aiterm.claude.settings import backup_settings, find_settings_file
@@ -257,7 +295,13 @@ approvals_app = typer.Typer(help="Manage auto-approval permissions.")
 claude_app.add_typer(approvals_app, name="approvals")
 
 
-@approvals_app.command("list")
+@approvals_app.command(
+    "list",
+    epilog="""
+[bold]Examples:[/]
+  ait claude approvals list   # Show all approvals
+"""
+)
 def approvals_list() -> None:
     """List current auto-approval permissions."""
     from aiterm.claude.settings import load_settings
@@ -282,7 +326,13 @@ def approvals_list() -> None:
             console.print(f"  ✗ {perm}")
 
 
-@approvals_app.command("presets")
+@approvals_app.command(
+    "presets",
+    epilog="""
+[bold]Examples:[/]
+  ait claude approvals presets   # List all presets
+"""
+)
 def approvals_presets() -> None:
     """List available approval presets."""
     from aiterm.claude.settings import list_presets
@@ -305,7 +355,15 @@ def approvals_presets() -> None:
     console.print("\n[dim]Use 'aiterm claude approvals add <preset>' to add a preset.[/]")
 
 
-@approvals_app.command("add")
+@approvals_app.command(
+    "add",
+    epilog="""
+[bold]Examples:[/]
+  ait claude approvals add safe      # Add safe preset
+  ait claude approvals add moderate  # Add moderate preset
+  ait claude approvals add full      # Add all permissions
+"""
+)
 def approvals_add(
     preset_name: str = typer.Argument(..., help="Name of preset to add."),
 ) -> None:
