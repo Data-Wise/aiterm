@@ -6,6 +6,108 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+- **Phase 2.5: Advanced Claude Features** ✅ COMPLETE (9 new CLI modules)
+  - **Subagent Management** (`ait agents`): Create, list, validate Claude Code subagents
+    - Templates: research, coding, review, quick, statistical
+    - Commands: list, templates, create, show, remove, validate, test
+  - **Memory System** (`ait memory`): Manage CLAUDE.md hierarchy
+    - Commands: hierarchy, validate, create, show, stats, rules
+    - Tracks global/project/rules precedence
+  - **Output Styles** (`ait styles`): Manage Claude response styles
+    - Presets: default, concise, detailed, academic, teaching, code-review
+    - Commands: list, show, set, create, remove, preview
+  - **Plugin Management** (`ait plugins`): Bundle commands/agents/skills/hooks
+    - Commands: list, show, create, validate, remove, package, import
+
+- **Phase 3: Multi-Tool Integration** ✅ COMPLETE
+  - **Gemini CLI Integration** (`ait gemini`): Full Gemini CLI management
+    - Commands: status, settings, init, models, set, mcp, compare, sync-mcp
+    - Model support: gemini-2.0-flash, gemini-1.5-pro, etc.
+  - **Status Bar Builder** (`ait statusbar`): Build custom status bars
+    - Templates: minimal, powerlevel10k, developer, stats
+    - Commands: status, templates, preview, set, list, create, test, components, disable
+
+- **Phase 4: Advanced Features** ✅ COMPLETE
+  - **Multi-Terminal Support** (`ait terminals`): Unified terminal management
+    - Backends: iTerm2, Kitty, Alacritty, WezTerm, Ghostty
+    - Commands: detect, list, features, config, title, profile, compare
+    - Auto-detection via environment variables
+  - **Workflow Templates** (`ait workflows`): Pre-configured workflow profiles
+    - Templates: r-development, python-development, node-development, research, teaching, mcp-development, documentation, adhd-friendly
+    - Commands: list, show, apply, create, remove, detect, export, import
+  - **Session Management** (`ait sessions`): Track development sessions
+    - Commands: start, end, status, list, show, stats, delete, export, cleanup
+    - Auto-tracks: duration, commits, workflow, tags
+
+- **93 New Tests** for Phase 2.5-4 modules
+  - `tests/test_phase2_5_cli.py`: 25 tests for agents/memory/styles/plugins
+  - `tests/test_phase3_4_cli.py`: 34 tests for gemini/statusbar/terminals/workflows/sessions
+  - `tests/test_cli_integration.py`: 34 tests for full CLI integration
+  - All tests include self-diagnostic validation
+
+- **OpenCode Phase 3: Full Configuration System** ✅ COMPLETE
+  - `research` agent: Academic research & manuscript writing (Opus 4.5, 7 tools + web search)
+  - Keyboard shortcuts: `ctrl+r` (r-dev), `ctrl+q` (quick), `ctrl+s` (research)
+  - Custom commands: rpkg-check, rpkg-document, rpkg-test, sync, status
+  - Tool permissions: auto (bash/read/glob/grep), ask (write/edit)
+  - Time MCP server enabled for timezone & deadline tracking
+  - New CLI commands: `keybinds`, `commands`, `tools`, `summary`
+  - 28 Phase 3 tests (`test_opencode_phase3.py`)
+  - 131 total OpenCode tests (103 passing)
+
+- **OpenCode CLI Integration** (`ait opencode`)
+  - `ait opencode config` - View current OpenCode configuration
+  - `ait opencode validate` - Validate configuration file
+  - `ait opencode backup` - Create timestamped backup
+  - `ait opencode models` - List recommended models
+  - `ait opencode set-model` - Set primary or small model
+  - `ait opencode agents list|add|remove` - Manage custom agents
+  - `ait opencode servers list|enable|disable` - Manage MCP servers
+  - `ait opencode instructions` - Show CLAUDE.md sync status
+  - `ait opencode keybinds` - List keyboard shortcuts (NEW)
+  - `ait opencode commands` - List custom commands (NEW)
+  - `ait opencode tools` - List tool permissions (NEW)
+  - `ait opencode summary` - Complete configuration summary (NEW)
+
+- **OpenCode Phase 2: Custom Agents & GitHub Integration**
+  - `r-dev` agent: R package development specialist (Sonnet 4.5, 6 tools)
+  - `quick` agent: Fast responses for simple questions (Haiku 4.5, 3 tools)
+  - GitHub MCP server enabled with automatic GITHUB_TOKEN from gh CLI
+  - CLAUDE.md sync: OpenCode reads same instructions as Claude Code
+  - AGENTS.md symlink: `~/.config/opencode/AGENTS.md` → `~/.claude/CLAUDE.md`
+  - Instructions config: Reads `CLAUDE.md` and `.claude/rules/*.md`
+  - 14-test validation suite for agent configuration
+
+- **OpenCode Test Suite**
+  - `tests/test_opencode_config.py` - Core config tests (55 tests)
+  - `tests/test_opencode_cli.py` - CLI command tests (20 tests)
+  - `tests/test_opencode_agents.py` - Agent validation (14 tests)
+  - `tests/test_opencode_phase3.py` - Phase 3 features (28 tests)
+
+- **CI/CD Pipeline**
+  - Added GitHub Actions test workflow (`test.yml`)
+  - Test matrix: Python 3.10, 3.11, 3.12 on Ubuntu and macOS
+  - Coverage reporting with pytest-cov
+  - Automatic PR checks
+
+### Changed
+
+- **Project Organization**
+  - Moved planning docs to `archive/planning/`
+  - Moved phase docs to `archive/phases/`
+  - Moved session notes to `archive/sessions/`
+  - Moved setup guides to `archive/guides/`
+  - Moved technical docs to `docs/reference/`
+  - Root directory now contains only README, CHANGELOG, and CLAUDE.md
+
+### Fixed
+
+- **Test Suite**
+  - Fixed `test_hooks_list` to accept empty hooks state
+  - Fixed `test_all_commands_have_help` for Typer CLI help format
+
 ---
 
 ## [0.2.1] - 2025-12-26 - PyPI & Distribution Release 🚀

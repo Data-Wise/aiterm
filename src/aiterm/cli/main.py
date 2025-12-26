@@ -413,16 +413,39 @@ def approvals_add(
         raise typer.Exit(1)
 
 
-# ─── Register hooks, commands, MCP, and docs CLIs (must be after app is fully defined) ───
+# ─── Register hooks, commands, MCP, docs, and opencode CLIs (must be after app is fully defined) ───
 from aiterm.cli import hooks as hooks_cli
 from aiterm.cli import commands as commands_cli
 from aiterm.cli import mcp as mcp_cli
 from aiterm.cli import docs as docs_cli
+from aiterm.cli import opencode as opencode_cli
 
 app.add_typer(hooks_cli.app, name="hooks")
 app.add_typer(commands_cli.app, name="commands")
 app.add_typer(mcp_cli.app, name="mcp")
 app.add_typer(docs_cli.app, name="docs")
+app.add_typer(opencode_cli.app, name="opencode")
+
+# ─── Phase 2.5-4: Advanced CLI modules ──────────────────────────────────────────
+from aiterm.cli import agents as agents_cli
+from aiterm.cli import memory as memory_cli
+from aiterm.cli import styles as styles_cli
+from aiterm.cli import plugins as plugins_cli
+from aiterm.cli import gemini as gemini_cli
+from aiterm.cli import statusbar as statusbar_cli
+from aiterm.cli import terminals as terminals_cli
+from aiterm.cli import workflows as workflows_cli
+from aiterm.cli import sessions as sessions_cli
+
+app.add_typer(agents_cli.app, name="agents")
+app.add_typer(memory_cli.app, name="memory")
+app.add_typer(styles_cli.app, name="styles")
+app.add_typer(plugins_cli.app, name="plugins")
+app.add_typer(gemini_cli.app, name="gemini")
+app.add_typer(statusbar_cli.app, name="statusbar")
+app.add_typer(terminals_cli.app, name="terminals")
+app.add_typer(workflows_cli.app, name="workflows")
+app.add_typer(sessions_cli.app, name="sessions")
 
 
 if __name__ == "__main__":

@@ -1,7 +1,8 @@
 # OpenCode Performance Optimization Plan
 
 **Created:** 2025-12-25
-**Status:** Phase 1 (Option A) Complete
+**Updated:** 2025-12-26
+**Status:** Phase 2 (Option B) Complete ✅
 **OpenCode Version:** 1.0.201
 
 ---
@@ -68,10 +69,10 @@
 
 ---
 
-## Phase 2: Option B (Balanced Power User)
+## Phase 2: Option B (Balanced Power User) ✅ COMPLETE
 
-**Status:** CLI Implementation Complete ✅
-**When:** Ready for agent creation
+**Status:** Fully Implemented
+**Completed:** Dec 26, 2025
 
 ### CLI Commands (Implemented Dec 26, 2025)
 
@@ -98,11 +99,10 @@ ait opencode servers enable github
 ait opencode servers disable playwright
 ```
 
-### Proposed Additions
+### Applied Configuration ✅
 
 ```json
 {
-  "default_agent": "build",
   "agents": {
     "r-dev": {
       "description": "R package development specialist",
@@ -115,31 +115,52 @@ ait opencode servers disable playwright
       "tools": ["read", "glob", "grep"]
     }
   },
-  "tools": {
-    "bash": { "permission": "auto" },
-    "write": { "permission": "auto" },
-    "edit": { "permission": "auto" }
-  },
-  "instructions": [
-    { "path": "CLAUDE.md" },
-    { "path": ".claude/rules/*.md" }
-  ]
+  "mcp": {
+    "github": {
+      "type": "local",
+      "enabled": true,
+      "command": ["npx", "-y", "@modelcontextprotocol/server-github"],
+      "env": { "GITHUB_TOKEN": "{env:GITHUB_TOKEN}" }
+    }
+  }
 }
 ```
 
-### Benefits
+### Environment Setup ✅
 
-- Custom agents for different workflows
-- Auto-approve safe tools (no dialogs)
-- Reads CLAUDE.md files like Claude Code
-- Time server for deadline tracking
+Added to `~/.config/zsh/.zshrc`:
+```bash
+# Export GITHUB_TOKEN from gh CLI for MCP servers (OpenCode, Claude Code)
+if command -v gh >/dev/null 2>&1 && gh auth status >/dev/null 2>&1; then
+    export GITHUB_TOKEN=$(gh auth token 2>/dev/null)
+fi
+```
+
+### Benefits Achieved
+
+- ✅ Custom agents for different workflows (r-dev, quick)
+- ✅ GitHub MCP for PR/issue management
+- ✅ Automatic GITHUB_TOKEN from gh CLI auth
+- ⏳ Auto-approve safe tools (future - tool permissions)
+- ⏳ CLAUDE.md file loading (future - instructions)
 
 ---
 
 ## Phase 3: Option C (Full Ecosystem Integration)
 
-**Status:** Future
-**When:** After Option B validation
+**Status:** Planning
+**When:** After Phase 2 validation complete ✅
+**Estimated:** 2-3 hours
+
+### Phase 3 Features
+
+| Feature | Priority | Effort | Benefit |
+|---------|----------|--------|---------|
+| Research agent (Opus) | High | 10 min | Academic writing |
+| Keyboard shortcuts | Medium | 30 min | Fast agent switching |
+| Custom commands | Medium | 30 min | Workflow automation |
+| Tool permissions | Low | 1 hour | Auto-approve safe tools |
+| Time MCP | Low | 10 min | Deadline tracking |
 
 ### Proposed Additions
 
@@ -283,7 +304,46 @@ cp ~/.config/opencode/config-advanced-dev.json ~/.config/opencode/config.json
 
 ## Next Steps
 
-1. **Validate Option A** - Use OpenCode for a day, note improvements
-2. **Apply Option B** - When ready for agents and permissions
-3. **Consider GitHub MCP** - For PR workflow integration
-4. **Sync with Claude Code** - Share CLAUDE.md files between tools
+1. ~~**Validate Option A** - Use OpenCode for a day, note improvements~~ ✅
+2. ~~**Apply Option B** - When ready for agents and permissions~~ ✅
+3. ~~**Consider GitHub MCP** - For PR workflow integration~~ ✅
+4. ~~**Sync with Claude Code** - Share CLAUDE.md files between tools~~ ✅
+5. **Test agents in OpenCode** - Try `r-dev` and `quick` agents
+6. **Consider Phase 3** - Keybinds, custom commands, research agent
+
+---
+
+## CLAUDE.md Sync Setup ✅
+
+**Completed:** Dec 26, 2025
+
+### Configuration
+
+Added to `~/.config/opencode/config.json`:
+```json
+{
+  "instructions": [
+    "CLAUDE.md",
+    ".claude/rules/*.md"
+  ]
+}
+```
+
+### Global Symlink
+
+```bash
+ln -s ~/.claude/CLAUDE.md ~/.config/opencode/AGENTS.md
+```
+
+### How It Works
+
+| Tool | Global Instructions | Project Instructions |
+|------|---------------------|---------------------|
+| Claude Code | `~/.claude/CLAUDE.md` | `CLAUDE.md`, `.claude/rules/*.md` |
+| OpenCode | `~/.config/opencode/AGENTS.md` → symlink | `instructions` array in config |
+
+### CLI Command
+
+```bash
+ait opencode instructions   # Show all instruction files
+```
