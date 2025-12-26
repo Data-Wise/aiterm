@@ -7,23 +7,72 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- Session coordination documentation (`docs/guide/sessions.md`)
+- IDE integration documentation (`docs/guide/ide-integration.md`)
+- Session commands reference (`docs/reference/REFCARD-SESSIONS.md`)
+- IDE commands reference (`docs/reference/REFCARD-IDE.md`)
 
-- **Phase 4.2: Session Coordination** (`ait sessions live/conflicts/history/task/current`) - NEW
-  - **Hook-based auto-registration:** Sessions auto-register on Claude Code start
-  - **Conflict detection:** Warns when same project has multiple active sessions
-  - **Session archival:** Auto-archives sessions to `~/.claude/sessions/history/` by date
-  - **Task tracking:** Set/view current task description for active sessions
-  - New hooks: `session-register.sh` (SessionStart), `session-cleanup.sh` (Stop)
-  - New CLI commands: `live`, `conflicts`, `history`, `task`, `current`
-  - Session manifest includes: project, path, git branch, dirty status, start time, task
+---
 
-- **Phase 4.1: IDE Integrations** (`ait ide`) - NEW
-  - Multi-IDE support: VS Code, Positron, Zed, Cursor, Windsurf
-  - Commands: `list`, `status`, `extensions`, `configure`, `terminal-profile`, `sync-theme`, `open`, `compare`
+## [0.3.0] - 2025-12-26 - IDE Integrations & Session Coordination 🎉
+
+**Status:** Released
+**Tag:** v0.3.0
+**PyPI:** https://pypi.org/project/aiterm-dev/0.3.0/
+**Homebrew:** `brew upgrade data-wise/tap/aiterm`
+**Documentation:** https://Data-Wise.github.io/aiterm/
+
+### 🎉 Major Features
+
+#### Phase 4.1: IDE Integrations (`ait ide`)
+Multi-IDE support for AI-assisted development workflows.
+
+- **Supported IDEs:** VS Code, Positron, Zed, Cursor, Windsurf
+- **Commands:** `list`, `status`, `extensions`, `configure`, `terminal-profile`, `sync-theme`, `open`, `compare`
+- **Features:**
   - AI development extension recommendations per IDE
   - Terminal profile generation for aiterm integration
   - Theme synchronization across IDEs
-  - 32 unit tests (100% passing)
+  - Configuration management (load/save settings)
+  - IDE installation detection
+
+#### Phase 4.2: Session Coordination (`ait sessions`)
+Automatic tracking and coordination of parallel Claude Code sessions.
+
+- **Hook-based auto-registration:** Sessions auto-register when Claude Code starts
+- **Conflict detection:** Warns when same project has multiple active sessions
+- **Session archival:** Auto-archives sessions to `~/.claude/sessions/history/` by date
+- **Task tracking:** Set/view current task description for active sessions
+- **New hooks:**
+  - `~/.claude/hooks/session-register.sh` (SessionStart)
+  - `~/.claude/hooks/session-cleanup.sh` (Stop)
+- **New CLI commands:** `live`, `conflicts`, `history`, `task`, `current`
+
+### 📊 Statistics
+
+| Category | Count |
+|----------|-------|
+| New CLI Commands | 13 (8 IDE + 5 sessions) |
+| New Tests | 47 (32 IDE + 15 sessions) |
+| New Documentation | 4 guides/refcards |
+| IDEs Supported | 5 |
+
+### Installation
+
+```bash
+# macOS (Homebrew)
+brew upgrade data-wise/tap/aiterm
+
+# PyPI
+pip install --upgrade aiterm-dev
+
+# uv
+uv tool upgrade aiterm-dev
+```
+
+---
+
+## [0.2.1] - 2025-12-26 - PyPI & Distribution Release 🚀
 
 - **Phase 2.5: Advanced Claude Features** ✅ COMPLETE (9 new CLI modules)
   - **Subagent Management** (`ait agents`): Create, list, validate Claude Code subagents

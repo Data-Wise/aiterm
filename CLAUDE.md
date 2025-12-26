@@ -28,21 +28,28 @@ This file provides guidance to Claude Code when working with the aiterm project.
 
 ---
 
-## Project Status: v0.2.1 ✅ RELEASED
+## Project Status: v0.3.0 ✅ RELEASED
 
-**Current Phase:** Distribution complete, planning v0.3.0
+**Current Phase:** v0.3.0 complete, planning v0.4.0
+
+**v0.3.0 Release (Dec 26, 2025):**
+- [x] **IDE Integrations:** VS Code, Cursor, Zed, Positron, Windsurf support
+- [x] **Session Coordination:** Hook-based session tracking & conflict detection
+- [x] **PyPI:** https://pypi.org/project/aiterm-dev/0.3.0/
+- [x] **Homebrew:** Updated formula with v0.3.0
+- [x] **Documentation:** 4 new guides/refcards (sessions, IDE)
+- [x] **Tests:** 47 new tests (32 IDE + 15 sessions)
 
 **v0.2.1 Release (Dec 26, 2025):**
 - [x] **PyPI Published:** https://pypi.org/project/aiterm-dev/
 - [x] **Homebrew Fixed:** All transitive dependencies resolved
 - [x] **Trusted Publishing:** GitHub Actions OIDC configured
-- [x] **Documentation:** 9 new REFCARDs and guides
-- [x] **CLI:** 19 commands with epilog examples
 
 **See:**
 - `CHANGELOG.md` - Full release history
 - `.STATUS` - Current progress and session history
-- `OPENCODE-OPTIMIZATION-PLAN.md` - OpenCode enhancement roadmap
+- `docs/guide/sessions.md` - Session coordination guide
+- `docs/guide/ide-integration.md` - IDE integration guide
 
 ---
 
@@ -80,7 +87,7 @@ pipx install aiterm-dev
 - **Docs:** https://Data-Wise.github.io/aiterm/
 - **PyPI:** https://pypi.org/project/aiterm-dev/
 - **Homebrew Tap:** https://github.com/Data-Wise/homebrew-tap
-- **Status:** v0.2.1 released, v0.3.0 in planning
+- **Status:** v0.3.0 released, v0.4.0 in planning
 
 ---
 

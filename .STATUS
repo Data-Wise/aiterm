@@ -2,11 +2,31 @@ project: aiterm
 status: active
 priority: P1
 progress: 100
-version: 0.3.0-dev
+version: 0.3.0
 updated: 2025-12-26
-next: v0.3.0 release preparation (test IDE commands, finalize)
+next: Plan v0.4.0 features (workflow automation, AI recipe integration)
 
-## ✅ Just Completed (Phase 4.2: Session Coordination - Dec 26, 2025)
+## ✅ Just Completed (v0.3.0 Release - Dec 26, 2025)
+
+- ✅ **v0.3.0 RELEASED** - IDE Integrations & Session Coordination
+  - **GitHub Release:** https://github.com/Data-Wise/aiterm/releases/tag/v0.3.0
+  - **PyPI:** https://pypi.org/project/aiterm-dev/0.3.0/
+  - **Homebrew:** Updated formula in data-wise/tap
+  - **Docs:** https://Data-Wise.github.io/aiterm/
+
+- ✅ **Documentation Added**
+  - `docs/guide/sessions.md` - Session coordination guide
+  - `docs/guide/ide-integration.md` - IDE integration guide
+  - `docs/reference/REFCARD-SESSIONS.md` - Session commands reference
+  - `docs/reference/REFCARD-IDE.md` - IDE commands reference
+
+📊 **v0.3.0 Release Stats:**
+- **New Features:** 2 major (IDE integrations, Session coordination)
+- **New CLI Commands:** 13 (8 IDE + 5 sessions)
+- **New Tests:** 47 (32 IDE + 15 sessions)
+- **New Documentation:** 4 guides/refcards (847 lines)
+
+## ✅ Previously Completed (Phase 4.2: Session Coordination - Dec 26, 2025)
 
 - ✅ **Phase 4.2: Session Coordination COMPLETE** (`ait sessions live/conflicts/history/task/current`)
   - **Hook-based auto-registration:** Sessions auto-register on Claude Code start
@@ -19,11 +39,6 @@ next: v0.3.0 release preparation (test IDE commands, finalize)
   - **New CLI commands:** `live`, `conflicts`, `history`, `task`, `current`
   - **Session manifest:** project, path, git branch, dirty status, start time, task
   - **Integration:** Hooks registered in `~/.claude/settings.json`
-
-📊 **Phase 4.2 Stats:**
-- **New Hooks:** 2 (SessionStart, Stop)
-- **New CLI Commands:** 5 (live, conflicts, history, task, current)
-- **Session Data:** active/ and history/ directories
 
 ## ✅ Previously Completed (Phase 4.1: IDE Integrations - Dec 26, 2025)
 
