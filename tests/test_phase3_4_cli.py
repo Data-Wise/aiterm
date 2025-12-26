@@ -372,6 +372,203 @@ class TestSessionsCLI:
 
 
 # =============================================================================
+# Session Coordination Tests (Phase 4.2)
+# =============================================================================
+
+
+class TestLiveSessionCLI:
+    """Tests for hook-based live session coordination."""
+
+    def test_import_live_session(self):
+        """Test LiveSession class imports correctly."""
+        from aiterm.cli.sessions import LiveSession
+        assert LiveSession is not None
+
+    def test_live_session_dataclass(self):
+        """Test LiveSession dataclass creation."""
+        from aiterm.cli.sessions import LiveSession
+
+        session = LiveSession(
+            session_id="1766786256-71941",
+            project="aiterm",
+            path="/Users/test/projects/aiterm",
+            started=datetime.now(),
+            git_branch="dev",
+            git_dirty=True,
+            pid=12345,
+        )
+        assert session.session_id == "1766786256-71941"
+        assert session.project == "aiterm"
+        assert session.git_branch == "dev"
+        assert session.git_dirty is True
+        assert session.status == "active"
+
+    def test_live_session_duration(self):
+        """Test LiveSession.duration property."""
+        from aiterm.cli.sessions import LiveSession
+
+        start = datetime.now() - timedelta(hours=1, minutes=15)
+        session = LiveSession(
+            session_id="test",
+            project="proj",
+            path="/test/path",
+            started=start,
+        )
+        duration = session.duration
+        assert duration.total_seconds() >= 75 * 60  # At least 1h 15m
+
+    def test_live_session_duration_str(self):
+        """Test LiveSession.duration_str property."""
+        from aiterm.cli.sessions import LiveSession
+
+        start = datetime.now() - timedelta(minutes=30)
+        session = LiveSession(
+            session_id="test",
+            project="proj",
+            path="/test/path",
+            started=start,
+        )
+        assert "30m" in session.duration_str or "29m" in session.duration_str
+
+    def test_live_session_from_file(self, tmp_path):
+        """Test LiveSession.from_file() method."""
+        from aiterm.cli.sessions import LiveSession
+
+        # Create a test session file
+        session_data = {
+            "session_id": "test-123",
+            "project": "testproj",
+            "path": "/test/path",
+            "started": datetime.now().isoformat(),
+            "git_branch": "main",
+            "git_dirty": False,
+            "pid": 99999,
+            "task": "Testing feature",
+        }
+        session_file = tmp_path / "test-123.json"
+        session_file.write_text(json.dumps(session_data))
+
+        session = LiveSession.from_file(session_file)
+        assert session is not None
+        assert session.session_id == "test-123"
+        assert session.project == "testproj"
+        assert session.task == "Testing feature"
+
+    def test_live_session_from_file_invalid(self, tmp_path):
+        """Test LiveSession.from_file() with invalid JSON."""
+        from aiterm.cli.sessions import LiveSession
+
+        invalid_file = tmp_path / "invalid.json"
+        invalid_file.write_text("not valid json")
+
+        session = LiveSession.from_file(invalid_file)
+        assert session is None
+
+    def test_load_live_sessions_empty(self, mock_home):
+        """Test load_live_sessions with no sessions."""
+        from aiterm.cli.sessions import load_live_sessions
+
+        sessions = load_live_sessions()
+        assert sessions == []
+
+    def test_load_live_sessions(self, mock_home):
+        """Test load_live_sessions with active sessions."""
+        from aiterm.cli.sessions import load_live_sessions
+
+        # Create active sessions directory
+        active_dir = mock_home / ".claude" / "sessions" / "active"
+        active_dir.mkdir(parents=True)
+
+        # Create test session
+        session_data = {
+            "session_id": "test-sess-1",
+            "project": "proj1",
+            "path": "/test/proj1",
+            "started": datetime.now().isoformat(),
+            "git_branch": "main",
+            "git_dirty": False,
+            "pid": 11111,
+            "task": None,
+        }
+        (active_dir / "test-sess-1.json").write_text(json.dumps(session_data))
+
+        sessions = load_live_sessions()
+        assert len(sessions) == 1
+        assert sessions[0].session_id == "test-sess-1"
+
+    def test_find_conflicts_none(self, mock_home):
+        """Test find_conflicts with no conflicts."""
+        from aiterm.cli.sessions import find_conflicts
+
+        conflicts = find_conflicts()
+        assert conflicts == {}
+
+    def test_find_conflicts_detected(self, mock_home):
+        """Test find_conflicts detects same-project sessions."""
+        from aiterm.cli.sessions import find_conflicts
+
+        # Create active sessions directory
+        active_dir = mock_home / ".claude" / "sessions" / "active"
+        active_dir.mkdir(parents=True)
+
+        # Create two sessions for same project path
+        for i in range(2):
+            session_data = {
+                "session_id": f"test-sess-{i}",
+                "project": "same-project",
+                "path": "/test/same-path",  # Same path = conflict
+                "started": datetime.now().isoformat(),
+                "git_branch": "main",
+                "git_dirty": False,
+                "pid": 10000 + i,
+                "task": None,
+            }
+            (active_dir / f"test-sess-{i}.json").write_text(json.dumps(session_data))
+
+        conflicts = find_conflicts()
+        assert len(conflicts) == 1
+        assert "/test/same-path" in conflicts
+        assert len(conflicts["/test/same-path"]) == 2
+
+    def test_sessions_live_command(self, runner):
+        """Test sessions live command."""
+        from aiterm.cli.sessions import app
+
+        result = runner.invoke(app, ["live"])
+        assert result.exit_code == 0
+
+    def test_sessions_conflicts_command(self, runner):
+        """Test sessions conflicts command."""
+        from aiterm.cli.sessions import app
+
+        result = runner.invoke(app, ["conflicts"])
+        assert result.exit_code == 0
+        assert "No conflicts" in result.output or "conflict" in result.output.lower()
+
+    def test_sessions_history_command(self, runner):
+        """Test sessions history command."""
+        from aiterm.cli.sessions import app
+
+        result = runner.invoke(app, ["history"])
+        assert result.exit_code == 0
+
+    def test_sessions_current_command(self, runner):
+        """Test sessions current command."""
+        from aiterm.cli.sessions import app
+
+        result = runner.invoke(app, ["current"])
+        assert result.exit_code == 0
+
+    def test_sessions_task_command(self, runner):
+        """Test sessions task command (no active session)."""
+        from aiterm.cli.sessions import app
+
+        result = runner.invoke(app, ["task", "test task"])
+        assert result.exit_code == 0
+        # Should report no active session found
+
+
+# =============================================================================
 # Self-Diagnostic Tests
 # =============================================================================
 
