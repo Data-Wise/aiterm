@@ -12,13 +12,13 @@
         <meta name="author" content="Data-Wise">
       
       
-        <link rel="canonical" href="https://data-wise.github.io/aiterm/reference/troubleshooting/">
+        <link rel="canonical" href="https://data-wise.github.io/aiterm/guide/sessions/">
       
       
-        <link rel="prev" href="../configuration/">
+        <link rel="prev" href="../claude-integration/">
       
       
-        <link rel="next" href="../../troubleshooting/AITERM-TROUBLESHOOTING/">
+        <link rel="next" href="../workflows/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Troubleshooting - aiterm</title>
+        <title>Session Coordination - aiterm</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#troubleshooting" class="md-skip">
+        <a href="#session-coordination" class="md-skip">
           Skip to content
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Troubleshooting
+              Session Coordination
             
           </span>
         </div>
@@ -340,10 +340,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../../guides/AITERM-USER-GUIDE/" class="md-tabs__link">
           
   
@@ -360,13 +362,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../commands/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../reference/commands/" class="md-tabs__link">
           
   
   
@@ -773,7 +773,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guide/shell-completion/" class="md-nav__link">
+      <a href="../shell-completion/" class="md-nav__link">
         
   
   
@@ -805,26 +805,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
             
   
   
@@ -842,7 +847,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
@@ -916,7 +921,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guide/claude-integration/" class="md-nav__link">
+      <a href="../claude-integration/" class="md-nav__link">
         
   
   
@@ -941,10 +946,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../guide/sessions/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Session Coordination
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -960,6 +992,292 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How It Works">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#automatic-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automatic Registration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automatic-cleanup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automatic Cleanup
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ait-sessions-live" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ait sessions live
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ait-sessions-current" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ait sessions current
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ait-sessions-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ait sessions task
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ait-sessions-conflicts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ait sessions conflicts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ait-sessions-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ait sessions history
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#session-manifest-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session Manifest Format
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hook-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hook Installation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directory-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Directory Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Cases
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Use Cases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multi-project-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Project Development
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#team-coordination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Team Coordination
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adhd-friendly-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ADHD-Friendly Workflow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sessions-not-appearing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sessions not appearing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stale-sessions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stale sessions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permission-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permission errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -972,7 +1290,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guide/workflows/" class="md-nav__link">
+      <a href="../workflows/" class="md-nav__link">
         
   
   
@@ -1000,7 +1318,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guide/context-detection/" class="md-nav__link">
+      <a href="../context-detection/" class="md-nav__link">
         
   
   
@@ -1028,7 +1346,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guide/profiles/" class="md-nav__link">
+      <a href="../profiles/" class="md-nav__link">
         
   
   
@@ -1056,7 +1374,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guide/status-bar/" class="md-nav__link">
+      <a href="../status-bar/" class="md-nav__link">
         
   
   
@@ -1084,7 +1402,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guide/triggers/" class="md-nav__link">
+      <a href="../triggers/" class="md-nav__link">
         
   
   
@@ -1116,31 +1434,26 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
         
           
-          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
             
   
   
@@ -1158,7 +1471,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1176,7 +1489,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../commands/" class="md-nav__link">
+      <a href="../../reference/commands/" class="md-nav__link">
         
   
   
@@ -1204,7 +1517,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../REFCARD-CLAUDE/" class="md-nav__link">
+      <a href="../../reference/REFCARD-CLAUDE/" class="md-nav__link">
         
   
   
@@ -1232,7 +1545,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../REFCARD-SESSIONS/" class="md-nav__link">
+      <a href="../../reference/REFCARD-SESSIONS/" class="md-nav__link">
         
   
   
@@ -1260,7 +1573,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../REFCARD-MCP/" class="md-nav__link">
+      <a href="../../reference/REFCARD-MCP/" class="md-nav__link">
         
   
   
@@ -1288,7 +1601,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../REFCARD-HOOKS/" class="md-nav__link">
+      <a href="../../reference/REFCARD-HOOKS/" class="md-nav__link">
         
   
   
@@ -1316,7 +1629,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../REFCARD-CONTEXT/" class="md-nav__link">
+      <a href="../../reference/REFCARD-CONTEXT/" class="md-nav__link">
         
   
   
@@ -1344,7 +1657,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../REFCARD-OPENCODE/" class="md-nav__link">
+      <a href="../../reference/REFCARD-OPENCODE/" class="md-nav__link">
         
   
   
@@ -1400,7 +1713,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../configuration/" class="md-nav__link">
+      <a href="../../reference/configuration/" class="md-nav__link">
         
   
   
@@ -1425,37 +1738,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Troubleshooting
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../reference/troubleshooting/" class="md-nav__link">
         
   
   
@@ -1471,120 +1757,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#common-issues" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Common Issues
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Common Issues">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#profiles-not-switching" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Profiles Not Switching
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#title-not-showing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Title Not Showing
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#title-shows-briefly-then-disappears" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Title Shows Briefly Then Disappears
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#loops-terminal-hangs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Loops / Terminal Hangs
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#wrong-profile-detected" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Wrong Profile Detected
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#diagnostic-script" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Diagnostic Script
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#reset-everything" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Reset Everything
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2423,22 +2595,44 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#common-issues" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Common Issues
+        Overview
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Common Issues">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How It Works">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#profiles-not-switching" class="md-nav__link">
+  <a href="#automatic-registration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Profiles Not Switching
+        Automatic Registration
       
     </span>
   </a>
@@ -2446,43 +2640,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#title-not-showing" class="md-nav__link">
+  <a href="#automatic-cleanup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Title Not Showing
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#title-shows-briefly-then-disappears" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Title Shows Briefly Then Disappears
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#loops-terminal-hangs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Loops / Terminal Hangs
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#wrong-profile-detected" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Wrong Profile Detected
+        Automatic Cleanup
       
     </span>
   </a>
@@ -2495,10 +2656,82 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#diagnostic-script" class="md-nav__link">
+  <a href="#commands" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Diagnostic Script
+        Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ait-sessions-live" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ait sessions live
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ait-sessions-current" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ait sessions current
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ait-sessions-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ait sessions task
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ait-sessions-conflicts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ait sessions conflicts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ait-sessions-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ait sessions history
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#session-manifest-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session Manifest Format
       
     </span>
   </a>
@@ -2506,13 +2739,124 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#reset-everything" class="md-nav__link">
+  <a href="#hook-installation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Reset Everything
+        Hook Installation
       
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directory-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Directory Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Cases
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Use Cases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multi-project-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Project Development
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#team-coordination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Team Coordination
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adhd-friendly-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ADHD-Friendly Workflow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sessions-not-appearing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sessions not appearing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stale-sessions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stale sessions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permission-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permission errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2536,106 +2880,198 @@
   
 
 
-<h1 id="troubleshooting">Troubleshooting</h1>
-<h2 id="common-issues">Common Issues</h2>
-<h3 id="profiles-not-switching">Profiles Not Switching</h3>
-<p><strong>Symptom:</strong> Colors don't change when you <code>cd</code> to a project.</p>
-<p><strong>Check:</strong></p>
-<ol>
-<li>
-<p>Verify you're in iTerm2:
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$TERM_PROGRAM</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Should show: iTerm.app</span>
-</code></pre></div></p>
-</li>
-<li>
-<p>Verify profiles exist (exact names, case-sensitive):</p>
-</li>
-<li>R-Dev</li>
-<li>Python-Dev</li>
-<li>Node-Dev</li>
-<li>AI-Session</li>
-<li>
-<p>Production</p>
-</li>
-<li>
-<p>Verify integration is loaded:
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">typeset</span><span class="w"> </span>-f<span class="w"> </span>_iterm_detect_context
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># Should show function definition</span>
-</code></pre></div></p>
-</li>
-<li>
-<p>If not loaded, source it:
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">source</span><span class="w"> </span>~/.config/zsh/.zshrc
-</code></pre></div></p>
-</li>
-</ol>
-<h3 id="title-not-showing">Title Not Showing</h3>
-<p><strong>Symptom:</strong> Tab shows "zsh" or directory instead of icon + name.</p>
-<p><strong>Check:</strong></p>
-<ol>
-<li>iTerm2 title setting:</li>
-<li>Settings → Profiles → General → Title</li>
-<li>
-<p>Set to: <strong>Session Name</strong></p>
-</li>
-<li>
-<p>OMZ auto-title disabled:
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$DISABLE_AUTO_TITLE</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1"># Should show: true</span>
-</code></pre></div></p>
-</li>
-<li>
-<p>If not set, add <strong>before</strong> antidote/OMZ in .zshrc:
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nv">DISABLE_AUTO_TITLE</span><span class="o">=</span><span class="s2">&quot;true&quot;</span>
-</code></pre></div></p>
-</li>
-</ol>
-<h3 id="title-shows-briefly-then-disappears">Title Shows Briefly Then Disappears</h3>
-<p><strong>Symptom:</strong> Title flashes correct value then changes.</p>
-<p><strong>Cause:</strong> Something else is overwriting the title (usually OMZ).</p>
-<p><strong>Fix:</strong> Ensure <code>DISABLE_AUTO_TITLE="true"</code> is set <strong>before</strong> plugins load.</p>
-<h3 id="loops-terminal-hangs">Loops / Terminal Hangs</h3>
-<p><strong>Symptom:</strong> Terminal freezes after <code>cd</code>.</p>
-<p><strong>Fix:</strong></p>
-<ol>
-<li>
-<p>Disable integration temporarily:
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Comment out in .zshrc</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1"># source ~/path/to/iterm2-integration.zsh</span>
-</code></pre></div></p>
-</li>
-<li>
-<p>Open new terminal</p>
-</li>
-<li>
-<p>Check for conflicting hooks:
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$chpwd_functions</span>
-</code></pre></div></p>
-</li>
-</ol>
-<h3 id="wrong-profile-detected">Wrong Profile Detected</h3>
-<p><strong>Symptom:</strong> Shows R-Dev but it's a Python project.</p>
-<p><strong>Cause:</strong> Detection priority - R is checked before Python.</p>
-<p><strong>Check:</strong> Does the directory have a <code>DESCRIPTION</code> file?</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>ls<span class="w"> </span>DESCRIPTION
+<h1 id="session-coordination">Session Coordination</h1>
+<p>Track and coordinate parallel Claude Code sessions across projects.</p>
+<h2 id="overview">Overview</h2>
+<p>When running multiple Claude Code sessions simultaneously, aiterm provides automatic session tracking via Claude Code hooks. This helps you:</p>
+<ul>
+<li><strong>See all active sessions</strong> at a glance</li>
+<li><strong>Detect conflicts</strong> when multiple sessions work on the same project</li>
+<li><strong>Track task context</strong> for each session</li>
+<li><strong>Review session history</strong> for past work</li>
+</ul>
+<h2 id="quick-start">Quick Start</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Install the hooks (one-time setup)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>ait<span class="w"> </span>hooks<span class="w"> </span>install<span class="w"> </span>session-register
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>ait<span class="w"> </span>hooks<span class="w"> </span>install<span class="w"> </span>session-cleanup
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># View all active sessions</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>ait<span class="w"> </span>sessions<span class="w"> </span>live
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1"># Check for conflicts</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>ait<span class="w"> </span>sessions<span class="w"> </span>conflicts
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1"># Set task for current session</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>ait<span class="w"> </span>sessions<span class="w"> </span>task<span class="w"> </span><span class="s2">&quot;Implementing user auth&quot;</span>
 </code></pre></div>
-<p>If yes, R detection wins. This is by design for R packages with Python scripts.</p>
-<h2 id="diagnostic-script">Diagnostic Script</h2>
-<p>Run the included diagnostic:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>~/path/to/aiterm/scripts/diagnose.sh
+<h2 id="how-it-works">How It Works</h2>
+<h3 id="automatic-registration">Automatic Registration</h3>
+<p>When Claude Code starts in a project, the <code>session-register.sh</code> hook:</p>
+<ol>
+<li>Creates a manifest file in <code>~/.claude/sessions/active/</code></li>
+<li>Records: session ID, project path, git branch, start time</li>
+<li>Detects if another session is already working on the same project</li>
+</ol>
+<h3 id="automatic-cleanup">Automatic Cleanup</h3>
+<p>When Claude Code exits, the <code>session-cleanup.sh</code> hook:</p>
+<ol>
+<li>Moves the manifest to <code>~/.claude/sessions/history/YYYY-MM-DD/</code></li>
+<li>Records end time and final status</li>
+<li>Preserves task description for history</li>
+</ol>
+<h2 id="commands">Commands</h2>
+<h3 id="ait-sessions-live"><code>ait sessions live</code></h3>
+<p>Show all currently active Claude Code sessions.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$<span class="w"> </span>ait<span class="w"> </span>sessions<span class="w"> </span>live
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>╭─────────────────────────────────────────────────────────╮
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>│<span class="w"> </span>Active<span class="w"> </span>Claude<span class="w"> </span>Code<span class="w"> </span>Sessions<span class="w">                             </span>│
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>├─────────────────────────────────────────────────────────┤
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>│<span class="w"> </span><span class="m">1</span>.<span class="w"> </span>aiterm<span class="w"> </span><span class="o">(</span>main<span class="o">)</span><span class="w"> </span>-<span class="w"> </span>45m<span class="w">                                  </span>│
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>│<span class="w">    </span>/Users/dt/projects/dev-tools/aiterm<span class="w">                  </span>│
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>│<span class="w">    </span>Task:<span class="w"> </span>Implementing<span class="w"> </span>session<span class="w"> </span>coordination<span class="w">              </span>│
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>│<span class="w">                                                         </span>│
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>│<span class="w"> </span><span class="m">2</span>.<span class="w"> </span>atlas<span class="w"> </span><span class="o">(</span>feature/auth<span class="o">)</span><span class="w"> </span>-<span class="w"> </span>12m<span class="w">                           </span>│
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>│<span class="w">    </span>/Users/dt/projects/apps/atlas<span class="w">                        </span>│
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>│<span class="w">    </span>Task:<span class="w"> </span>Adding<span class="w"> </span>OAuth<span class="w"> </span>support<span class="w">                           </span>│
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>╰─────────────────────────────────────────────────────────╯
 </code></pre></div>
-<h2 id="reset-everything">Reset Everything</h2>
-<p>If all else fails:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># 1. Comment out integration in .zshrc</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="c1"># 2. Restart terminal</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="c1"># 3. Clear caches</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="nb">unset</span><span class="w"> </span>_ITERM_CURRENT_PROFILE
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="nb">unset</span><span class="w"> </span>_ITERM_CURRENT_TITLE
-<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="nb">unset</span><span class="w"> </span>_ITERM_HOOK_REGISTERED
-<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>
-<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="c1"># 4. Re-source</span>
-<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="nb">source</span><span class="w"> </span>~/.config/zsh/.zshrc
+<h3 id="ait-sessions-current"><code>ait sessions current</code></h3>
+<p>Show the session for the current directory (if any).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$<span class="w"> </span>ait<span class="w"> </span>sessions<span class="w"> </span>current
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>Session:<span class="w"> </span>abc123
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>Project:<span class="w"> </span>aiterm
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>Branch:<span class="w">  </span>main<span class="w"> </span><span class="o">(</span>dirty<span class="o">)</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>Started:<span class="w"> </span><span class="m">45</span><span class="w"> </span>minutes<span class="w"> </span>ago
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>Task:<span class="w">    </span>Implementing<span class="w"> </span>session<span class="w"> </span>coordination
+</code></pre></div>
+<h3 id="ait-sessions-task"><code>ait sessions task</code></h3>
+<p>Set or view the task description for the current session.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Set task</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>ait<span class="w"> </span>sessions<span class="w"> </span>task<span class="w"> </span><span class="s2">&quot;Fixing login bug&quot;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># View current task</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>ait<span class="w"> </span>sessions<span class="w"> </span>task
+</code></pre></div>
+<h3 id="ait-sessions-conflicts"><code>ait sessions conflicts</code></h3>
+<p>Detect when multiple sessions are working on the same project.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>$<span class="w"> </span>ait<span class="w"> </span>sessions<span class="w"> </span>conflicts
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>⚠️<span class="w">  </span>Conflict<span class="w"> </span>Detected!
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>Project:<span class="w"> </span>aiterm
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>Sessions:
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">  </span>-<span class="w"> </span>abc123<span class="w"> </span><span class="o">(</span>main<span class="o">)</span><span class="w"> </span>started<span class="w"> </span>2h<span class="w"> </span>ago
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span>-<span class="w"> </span>def456<span class="w"> </span><span class="o">(</span>dev<span class="o">)</span><span class="w"> </span>started<span class="w"> </span>15m<span class="w"> </span>ago
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>Risk:<span class="w"> </span>Parallel<span class="w"> </span>edits<span class="w"> </span>may<span class="w"> </span>cause<span class="w"> </span>merge<span class="w"> </span>conflicts.
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>Recommendation:<span class="w"> </span>Coordinate<span class="w"> </span>work<span class="w"> </span>or<span class="w"> </span>close<span class="w"> </span>one<span class="w"> </span>session.
+</code></pre></div>
+<h3 id="ait-sessions-history"><code>ait sessions history</code></h3>
+<p>Browse archived sessions by date.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Today&#39;s sessions</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>ait<span class="w"> </span>sessions<span class="w"> </span><span class="nb">history</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Specific date</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>ait<span class="w"> </span>sessions<span class="w"> </span><span class="nb">history</span><span class="w"> </span>--date<span class="w"> </span><span class="m">2025</span>-12-25
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># Last 7 days</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>ait<span class="w"> </span>sessions<span class="w"> </span><span class="nb">history</span><span class="w"> </span>--days<span class="w"> </span><span class="m">7</span>
+</code></pre></div>
+<h2 id="session-manifest-format">Session Manifest Format</h2>
+<p>Manifests are stored as JSON in <code>~/.claude/sessions/active/</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p">{</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="nt">&quot;session_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abc123&quot;</span><span class="p">,</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;aiterm&quot;</span><span class="p">,</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/Users/dt/projects/dev-tools/aiterm&quot;</span><span class="p">,</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span><span class="nt">&quot;git_branch&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;main&quot;</span><span class="p">,</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">  </span><span class="nt">&quot;git_dirty&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">  </span><span class="nt">&quot;started&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-12-26T14:30:00Z&quot;</span><span class="p">,</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">  </span><span class="nt">&quot;pid&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12345</span><span class="p">,</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">  </span><span class="nt">&quot;task&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Implementing session coordination&quot;</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="p">}</span>
+</code></pre></div>
+<h2 id="hook-installation">Hook Installation</h2>
+<p>The session hooks are installed via aiterm:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Install both hooks</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>ait<span class="w"> </span>hooks<span class="w"> </span>install<span class="w"> </span>session-register
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>ait<span class="w"> </span>hooks<span class="w"> </span>install<span class="w"> </span>session-cleanup
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="c1"># Verify installation</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>ait<span class="w"> </span>hooks<span class="w"> </span>list
+</code></pre></div>
+<p>Or manually add to <code>~/.claude/settings.json</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="p">{</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span><span class="nt">&quot;hooks&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="nt">&quot;SessionStart&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">      </span><span class="p">{</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;command&quot;</span><span class="p">,</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">        </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;~/.claude/hooks/session-register.sh&quot;</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">      </span><span class="p">}</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span><span class="p">],</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">    </span><span class="nt">&quot;Stop&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">      </span><span class="p">{</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;command&quot;</span><span class="p">,</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">        </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;~/.claude/hooks/session-cleanup.sh&quot;</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w">      </span><span class="p">}</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="w">    </span><span class="p">]</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="p">}</span>
+</code></pre></div>
+<h2 id="directory-structure">Directory Structure</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>~/.claude/sessions/
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>├── active/                    # Currently running sessions
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>│   ├── abc123.json
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>│   └── def456.json
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>└── history/                   # Archived sessions by date
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>    ├── 2025-12-25/
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>    │   ├── session1.json
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>    │   └── session2.json
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>    └── 2025-12-26/
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>        └── session3.json
+</code></pre></div>
+<h2 id="use-cases">Use Cases</h2>
+<h3 id="multi-project-development">Multi-Project Development</h3>
+<p>When working on related projects (e.g., backend + frontend), session coordination helps you:</p>
+<ul>
+<li>Track which projects have active sessions</li>
+<li>Quickly switch context between projects</li>
+<li>Review what you worked on across projects</li>
+</ul>
+<h3 id="team-coordination">Team Coordination</h3>
+<p>If multiple team members use aiterm, session history provides:</p>
+<ul>
+<li>Record of who worked on what</li>
+<li>Timeline of project activity</li>
+<li>Context for code review discussions</li>
+</ul>
+<h3 id="adhd-friendly-workflow">ADHD-Friendly Workflow</h3>
+<p>Session tracking supports focus by:</p>
+<ul>
+<li>Showing your current task prominently</li>
+<li>Reminding you of active work when switching projects</li>
+<li>Providing history when you need to remember "what was I doing?"</li>
+</ul>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="sessions-not-appearing">Sessions not appearing</h3>
+<ol>
+<li>Verify hooks are installed: <code>ait hooks list</code></li>
+<li>Check hook execution: <code>cat ~/.claude/sessions/active/*.json</code></li>
+<li>Ensure directory exists: <code>mkdir -p ~/.claude/sessions/{active,history}</code></li>
+</ol>
+<h3 id="stale-sessions">Stale sessions</h3>
+<p>If sessions aren't cleaned up (e.g., Claude Code crashed):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Manually archive stale sessions</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>ait<span class="w"> </span>sessions<span class="w"> </span>cleanup<span class="w"> </span>--stale
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1"># Or remove all active sessions</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>rm<span class="w"> </span>~/.claude/sessions/active/*.json
+</code></pre></div>
+<h3 id="permission-errors">Permission errors</h3>
+<p>Ensure write permissions:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>chmod<span class="w"> </span><span class="m">755</span><span class="w"> </span>~/.claude/sessions
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>chmod<span class="w"> </span><span class="m">755</span><span class="w"> </span>~/.claude/sessions/active
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>chmod<span class="w"> </span><span class="m">755</span><span class="w"> </span>~/.claude/sessions/history
 </code></pre></div>
 
 
