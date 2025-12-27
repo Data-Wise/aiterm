@@ -2,11 +2,11 @@
 
 **Terminal optimizer CLI for AI-assisted development with Claude Code and Gemini CLI.**
 
-![Version](https://img.shields.io/badge/version-0.2.1-blue)
+[![PyPI](https://img.shields.io/pypi/v/aiterm-dev)](https://pypi.org/project/aiterm-dev/)
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
-![Tests](https://img.shields.io/badge/tests-155%20passing-green)
-![Coverage](https://img.shields.io/badge/coverage-85%25-green)
 [![CI](https://github.com/Data-Wise/aiterm/actions/workflows/test.yml/badge.svg)](https://github.com/Data-Wise/aiterm/actions/workflows/test.yml)
+![Coverage](https://img.shields.io/badge/coverage-85%25-green)
+[![License](https://img.shields.io/github/license/Data-Wise/aiterm)](https://github.com/Data-Wise/aiterm/blob/main/LICENSE)
 
 ---
 
@@ -26,11 +26,14 @@
 ## Quick Example
 
 ```bash
-# macOS - Install with Homebrew (recommended)
+# Quick Install (auto-detects best method)
+curl -fsSL https://raw.githubusercontent.com/Data-Wise/aiterm/main/install.sh | bash
+
+# Or with Homebrew (macOS)
 brew install data-wise/tap/aiterm
 
-# All Platforms - Install with UV (fastest)
-uv tool install git+https://github.com/Data-Wise/aiterm
+# Or with UV (fastest)
+uv tool install aiterm-dev
 
 # Check health
 aiterm doctor

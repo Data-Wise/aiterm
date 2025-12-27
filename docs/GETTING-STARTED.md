@@ -22,6 +22,12 @@ echo $TERM_PROGRAM
 
 Choose your preferred method:
 
+=== "Quick Install (Recommended)"
+    ```bash
+    curl -fsSL https://raw.githubusercontent.com/Data-Wise/aiterm/main/install.sh | bash
+    ```
+    Auto-detects best method: uv → pipx → brew → pip
+
 === "Homebrew (macOS)"
     ```bash
     brew install data-wise/tap/aiterm
@@ -29,12 +35,17 @@ Choose your preferred method:
 
 === "UV (All Platforms)"
     ```bash
-    uv tool install git+https://github.com/Data-Wise/aiterm
+    uv tool install aiterm-dev
     ```
 
 === "pipx (All Platforms)"
     ```bash
-    pipx install git+https://github.com/Data-Wise/aiterm
+    pipx install aiterm-dev
+    ```
+
+=== "pip"
+    ```bash
+    pip install aiterm-dev
     ```
 
 ### Verify Installation
@@ -50,7 +61,7 @@ aiterm doctor - Health check
 Terminal: iTerm.app
 Shell: /bin/zsh
 Python: 3.12.0
-aiterm: 0.2.1
+aiterm: 0.3.5
 
 Basic checks passed!
 ```
