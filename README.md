@@ -1,5 +1,10 @@
 # aiterm
 
+[![PyPI](https://img.shields.io/pypi/v/aiterm-dev)](https://pypi.org/project/aiterm-dev/)
+[![CI](https://img.shields.io/github/actions/workflow/status/Data-Wise/aiterm/test.yml?branch=main&label=CI)](https://github.com/Data-Wise/aiterm/actions/workflows/test.yml)
+[![Python](https://img.shields.io/pypi/pyversions/aiterm-dev)](https://pypi.org/project/aiterm-dev/)
+[![License](https://img.shields.io/github/license/Data-Wise/aiterm)](https://github.com/Data-Wise/aiterm/blob/main/LICENSE)
+
 **Terminal Optimizer for AI-Assisted Development**
 
 Optimize your terminal (iTerm2+) for AI coding with Claude Code and Gemini CLI. Manage profiles, contexts, hooks, commands, and auto-approvals from one powerful CLI.
