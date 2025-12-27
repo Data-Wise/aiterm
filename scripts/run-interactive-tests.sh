@@ -119,25 +119,21 @@ run_ghostty() {
             end tell"
             ;;
         window|*)
-            # New Ghostty window - cleanest approach
+            # New Ghostty window - use CLI directly
+            local ghostty_bin=""
             if command -v ghostty &> /dev/null; then
+                ghostty_bin="ghostty"
+            elif [[ -x "/Applications/Ghostty.app/Contents/MacOS/ghostty" ]]; then
+                ghostty_bin="/Applications/Ghostty.app/Contents/MacOS/ghostty"
+            fi
+
+            if [[ -n "$ghostty_bin" ]]; then
                 # Use Ghostty CLI to spawn new window
-                ghostty --working-directory="$PROJECT_DIR" -e bash "$TEST_SCRIPT" &
+                "$ghostty_bin" --working-directory="$PROJECT_DIR" -e "bash" "$PROJECT_DIR/$TEST_SCRIPT" &
+                disown
             else
-                # Fallback: use AppleScript to open new window
-                osascript -e 'tell application "Ghostty" to activate'
-                osascript -e 'tell application "System Events"
-                    tell process "ghostty"
-                        keystroke "n" using {command down}
-                        delay 0.3
-                    end tell
-                end tell'
-                osascript -e "tell application \"System Events\"
-                    tell process \"ghostty\"
-                        keystroke \"$cmd\"
-                        keystroke return
-                    end tell
-                end tell"
+                echo "Error: Ghostty binary not found"
+                exit 1
             fi
             ;;
     esac
