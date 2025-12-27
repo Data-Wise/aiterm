@@ -185,6 +185,6 @@ Performance Summary:
 ## Success Metrics
 
 - [x] JUnit XML generates valid output
-- [ ] GitHub Actions shows test summary (needs CI integration)
+- [x] GitHub Actions shows test summary (CI workflow updated)
 - [x] Performance benchmarks catch slow commands
 - [x] No regressions in existing tests (34/34 pass)
