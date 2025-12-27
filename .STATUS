@@ -53,6 +53,39 @@ next: Plan v0.4.0 - Workflow Templates (ait recipes)
 - [ ] Session checks in workflow runner
 - [ ] Task auto-update during workflows
 
+## ✅ Just Completed (Session Dec 27, 2025 - craft v1.7.0 Site Commands)
+
+- ✅ **craft v1.7.0 RELEASED** - Site Commands Redesign
+  - 5 new site commands: create, update, status, theme, add
+  - 8 design presets (4 standard + 4 ADHD-friendly)
+  - Total craft stats: 61 commands, 15 skills, 7 agents
+
+- ✅ **aiterm Docs Theme Updated**
+  - Applied `adhd-focus` preset to aiterm documentation
+  - Forest green primary (#2d6a4f), sage accent (#40916c)
+  - ADHD-friendly features: reduced animations, larger targets, clear hierarchy
+  - Verified light and dark modes working correctly
+  - Deployed to GitHub Pages: https://Data-Wise.github.io/aiterm/
+
+- ✅ **Design Presets System**
+  - Standard presets: data-wise, minimal, open-source, corporate
+  - ADHD-friendly presets: adhd-focus, adhd-calm, adhd-dark, adhd-light
+  - Created PRESET-GALLERY.md with visual reference
+  - Updated site:theme to show all available presets
+
+- ✅ **Site Command Features**
+  - `/craft:site:create` - Full wizard with 9 preset options
+  - `/craft:site:update` - Smart content sync from code
+  - `/craft:site:status` - Dashboard and health check
+  - `/craft:site:theme` - Quick theme changes with preset list
+  - `/craft:site:add` - Add new pages with templates
+
+📊 **Session Stats:**
+- 6 commits
+- craft v1.7.0 released (tagged)
+- aiterm docs theme updated
+- 8 design presets created
+
 ## ✅ Just Completed (Session Dec 27, 2025 - craft v1.6.0 docs workflow)
 
 - ✅ **craft v1.6.0-dev IMPLEMENTED** - Docs workflow commands
