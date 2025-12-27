@@ -14,9 +14,8 @@ set -euo pipefail
 
 PASS=0
 FAIL=0
-SKIP=0
 TOTAL=0
-EXITED=0
+TOTAL_TESTS=27  # Update when adding tests
 
 # Logging
 LOG_DIR="${LOG_DIR:-tests/cli/logs}"
@@ -44,13 +43,11 @@ NC='\033[0m'
 # ============================================
 
 print_header() {
-    clear
     echo -e "${BOLD}═══════════════════════════════════════════════════════════════${NC}"
-    echo -e "${BOLD}  INTERACTIVE CLI TEST SUITE: aiterm${NC}"
+    echo -e "${BOLD}  INTERACTIVE CLI TEST SUITE: aiterm ($TOTAL_TESTS tests)${NC}"
     echo -e "${BOLD}═══════════════════════════════════════════════════════════════${NC}"
-    echo ""
-    echo "  Progress: $PASS passed, $FAIL failed, $SKIP skipped"
-    echo "  Press Ctrl+C to abort at any time."
+    echo -e "  ${BLUE}Keys:${NC} y=pass, n=fail, q=quit"
+    echo -e "  ${BLUE}Log:${NC}  $LOG_FILE"
     echo ""
 }
 
@@ -62,111 +59,69 @@ run_test() {
 
     TOTAL=$((TOTAL + 1))
 
+    # Header
     echo ""
     echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-    echo -e "${BOLD}▶ TEST $test_num: $test_name${NC}"
+    echo -e "${BOLD}TEST $test_num/$TOTAL_TESTS: $test_name${NC}"
     echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-    echo ""
-    echo -e "  ${BLUE}Command:${NC}  $command"
-    echo ""
-    echo -e "${BLUE}┌─────────────────────────────────────────────────────────────┐${NC}"
-    echo -e "${BLUE}│${NC} ${BOLD}EXPECTED:${NC}                                                   ${BLUE}│${NC}"
-    echo -e "${BLUE}│${NC}   $expected"
-    echo -e "${BLUE}└─────────────────────────────────────────────────────────────┘${NC}"
+    echo -e "  ${BLUE}Command:${NC} $command"
     echo ""
 
-    read -p "Run this test? (y/n/s=skip/q=quit) " -n 1 -r
+    log "TEST $test_num: $test_name"
+    log "  Command: $command"
+
+    # Run command and capture output
+    local output
+    output=$(bash -c "$command" 2>&1) || true
+    log "  Output: $output"
+
+    # Show expected vs actual side by side
+    echo -e "${BLUE}EXPECTED:${NC} $expected"
+    echo ""
+    echo -e "${GREEN}ACTUAL:${NC}"
+    echo "$output"
     echo ""
 
-    # Exit option
-    if [[ $REPLY =~ ^[Qq]$ ]]; then
-        EXITED=1
-        log "User quit at test $test_num"
-        echo ""
-        echo -e "${YELLOW}Exiting test session...${NC}"
-        print_summary
-        log "=== Session ended by user ==="
-        log "Log saved to: $LOG_FILE"
-        echo -e "Log saved to: ${BLUE}$LOG_FILE${NC}"
-        exit 0
-    fi
+    # Single prompt: pass/fail/quit
+    read -p "[y=pass, n=fail, q=quit] " -n 1 -r
+    echo ""
 
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-        log "TEST $test_num: $test_name - Running"
-        log "  Command: $command"
-        log "  Expected: $expected"
-
-        echo ""
-        echo -e "${GREEN}┌─────────────────────────────────────────────────────────────┐${NC}"
-        echo -e "${GREEN}│${NC} ${BOLD}ACTUAL OUTPUT:${NC}                                              ${GREEN}│${NC}"
-        echo -e "${GREEN}├─────────────────────────────────────────────────────────────┤${NC}"
-        echo ""
-
-        # Run the command and capture output for logging
-        local output
-        output=$(bash -c "$command" 2>&1) || true
-        echo "$output"
-        log "  Output: $output"
-
-        echo ""
-        echo -e "${GREEN}└─────────────────────────────────────────────────────────────┘${NC}"
-        echo ""
-
-        read -p "Did this match expected? (y/n) " -n 1 -r
-        echo ""
-
-        if [[ $REPLY =~ ^[Yy]$ ]]; then
+    case "$REPLY" in
+        [Yy])
             PASS=$((PASS + 1))
             log "  Result: PASS"
             echo -e "${GREEN}✅ PASS${NC}"
-        else
+            ;;
+        [Qq])
+            log "User quit at test $test_num"
+            echo -e "${YELLOW}Exiting...${NC}"
+            print_summary
+            exit 0
+            ;;
+        *)
             FAIL=$((FAIL + 1))
+            log "  Result: FAIL"
             echo -e "${RED}❌ FAIL${NC}"
-            read -p "Add a note? (or press Enter to skip) " note
-            if [[ -n "$note" ]]; then
-                echo "  Note: $note"
-                log "  Result: FAIL - Note: $note"
-            else
-                log "  Result: FAIL"
-            fi
-        fi
-    elif [[ $REPLY =~ ^[Ss]$ ]]; then
-        SKIP=$((SKIP + 1))
-        log "TEST $test_num: $test_name - SKIPPED"
-        echo -e "${YELLOW}⏭️  SKIPPED${NC}"
-    else
-        SKIP=$((SKIP + 1))
-        log "TEST $test_num: $test_name - SKIPPED"
-        echo -e "${YELLOW}⏭️  SKIPPED${NC}"
-    fi
+            ;;
+    esac
 }
 
 print_summary() {
     echo ""
     echo -e "${BOLD}═══════════════════════════════════════════════════════════════${NC}"
-    echo -e "${BOLD}  FINAL RESULTS${NC}"
+    echo -e "${BOLD}  RESULTS: $PASS passed, $FAIL failed (of $TOTAL run)${NC}"
     echo -e "${BOLD}═══════════════════════════════════════════════════════════════${NC}"
-    echo ""
-    echo -e "  ${GREEN}Passed:${NC}  $PASS"
-    echo -e "  ${RED}Failed:${NC}  $FAIL"
-    echo -e "  ${YELLOW}Skipped:${NC} $SKIP"
-    echo -e "  Total:   $TOTAL"
-    echo ""
 
-    if [[ $FAIL -eq 0 && $SKIP -eq 0 ]]; then
+    if [[ $FAIL -eq 0 ]]; then
         echo -e "${GREEN}${BOLD}🎉 ALL TESTS PASSED!${NC}"
-        log "Final: ALL TESTS PASSED"
-    elif [[ $FAIL -eq 0 ]]; then
-        echo -e "${GREEN}${BOLD}✅ ALL RUN TESTS PASSED${NC} (some skipped)"
-        log "Final: ALL RUN TESTS PASSED ($SKIP skipped)"
+        log "Final: ALL TESTS PASSED ($PASS/$TOTAL)"
     else
         echo -e "${RED}${BOLD}⚠️  $FAIL TEST(S) FAILED${NC}"
         log "Final: $FAIL TESTS FAILED"
     fi
 
-    log "Summary: $PASS passed, $FAIL failed, $SKIP skipped"
-    echo ""
-    echo -e "Log saved to: ${BLUE}$LOG_FILE${NC}"
+    log "Summary: $PASS passed, $FAIL failed"
+    echo -e "Log: ${BLUE}$LOG_FILE${NC}"
     echo ""
 }
 
@@ -175,14 +130,6 @@ print_summary() {
 # ============================================
 
 print_header
-
-echo "Starting interactive test session..."
-echo "You'll be prompted to run each test and verify the output."
-echo ""
-echo -e "  ${BLUE}Keys:${NC} y=run, n/s=skip, q=quit"
-echo -e "  ${BLUE}Log:${NC}  $LOG_FILE"
-echo ""
-read -p "Press Enter to begin..."
 
 # ============================================
 # SMOKE TESTS
@@ -258,19 +205,19 @@ run_test 13 "MCP Test All" \
 
 run_test 14 "Sessions Live" \
     "ait sessions live" \
-    "List of active Claude Code sessions (may be empty)"
+    "Session list OR 'No active sessions' (runs outside Claude Code)"
 
 run_test 15 "Sessions Conflicts" \
     "ait sessions conflicts" \
-    "Projects with multiple active sessions (may be none)"
+    "Conflict check OR 'No conflicts' message"
 
 run_test 16 "Sessions History" \
     "ait sessions history" \
-    "Archived session history (grouped by date)"
+    "Archived session dates (grouped by date)"
 
 run_test 17 "Sessions Current" \
     "ait sessions current" \
-    "Current session for this directory (if any)"
+    "'No active session' (tests run outside Claude Code context)"
 
 # ============================================
 # IDE SUBCOMMANDS
@@ -300,9 +247,9 @@ run_test 22 "OpenCode Config" \
     "ait opencode config" \
     "Current OpenCode configuration (model, MCP servers, etc.)"
 
-run_test 23 "OpenCode Status" \
-    "ait opencode status" \
-    "OpenCode installation and configuration status"
+run_test 23 "OpenCode Summary" \
+    "ait opencode summary" \
+    "Complete OpenCode configuration summary"
 
 # ============================================
 # ERROR HANDLING
@@ -332,8 +279,5 @@ run_test 27 "Profile Display" \
 # Summary
 # ============================================
 
-log "=== Interactive Test Session Completed ==="
+log "=== Session Completed ==="
 print_summary
-
-echo "Test session complete!"
-echo ""
