@@ -1,0 +1,44 @@
+# Site Design Configuration
+# Applied by /craft:site:create
+# Generated: 2025-12-27
+
+preset: "data-wise"
+description: "DT's standard - Material theme with blue/orange accent"
+
+branding:
+  name: "aiterm"
+  tagline: "AI Terminal Optimizer for Claude Code workflows"
+  logo: null
+  favicon: null
+
+colors:
+  primary: "#1a73e8"
+  accent: "#ff6b35"
+  scheme: "auto"
+
+typography:
+  font_text: "Roboto"
+  font_code: "Roboto Mono"
+
+navigation:
+  style: "tabs"
+  max_depth: 3
+  instant: true
+  tracking: true
+
+features:
+  search: true
+  search_suggest: true
+  search_highlight: true
+  dark_mode: true
+  code_copy: true
+  edit_on_github: true
+  navigation_instant: true
+  navigation_tracking: true
+  navigation_top: true
+
+pages:
+  required:
+    - index.md
+    - QUICK-START.md
+    - REFCARD.md
