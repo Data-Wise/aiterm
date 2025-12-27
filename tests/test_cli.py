@@ -29,6 +29,28 @@ def test_init():
     assert "Setup wizard" in result.output
 
 
+def test_hello():
+    """Test hello command."""
+    result = runner.invoke(app, ["hello"])
+    assert result.exit_code == 0
+    assert "Hello, World!" in result.output
+    assert "aiterm is working correctly" in result.output
+
+
+def test_hello_with_name():
+    """Test hello command with --name option."""
+    result = runner.invoke(app, ["hello", "--name", "Claude"])
+    assert result.exit_code == 0
+    assert "Hello, Claude!" in result.output
+
+
+def test_hello_with_short_option():
+    """Test hello command with -n short option."""
+    result = runner.invoke(app, ["hello", "-n", "DT"])
+    assert result.exit_code == 0
+    assert "Hello, DT!" in result.output
+
+
 def test_doctor():
     """Test doctor command."""
     result = runner.invoke(app, ["doctor"])

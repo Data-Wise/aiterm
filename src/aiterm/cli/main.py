@@ -58,6 +58,27 @@ def main(
 @app.command(
     epilog="""
 [bold]Examples:[/]
+  ait hello             # Simple greeting
+  ait hello --name Bob  # Personalized greeting
+"""
+)
+def hello(
+    name: Optional[str] = typer.Option(
+        None,
+        "--name",
+        "-n",
+        help="Name to greet.",
+    ),
+) -> None:
+    """Say hello - a simple test command."""
+    greeting = f"Hello, {name}!" if name else "Hello, World!"
+    console.print(f"[bold cyan]{greeting}[/]")
+    console.print("[dim]aiterm is working correctly.[/]")
+
+
+@app.command(
+    epilog="""
+[bold]Examples:[/]
   ait init              # Run interactive setup
   ait init --skip-test  # Skip verification tests
 """
