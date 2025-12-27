@@ -53,6 +53,36 @@ next: Plan v0.4.0 - Workflow Templates (ait recipes)
 - [ ] Session checks in workflow runner
 - [ ] Task auto-update during workflows
 
+## ✅ Just Completed (Session Dec 27, 2025 - 4hr marathon)
+
+- ✅ **craft v1.5.0 RELEASED** - Distribution commands
+  - `/craft:dist:homebrew` - Homebrew formula validation (rated A+ on aiterm)
+  - `/craft:dist:curl-install` - curl installer generation
+  - 2 new skills: distribution-strategist, homebrew-formula-expert
+  - Total craft stats: 53 commands, 13 skills, 7 agents
+
+- ✅ **aiterm v0.3.5 + v0.3.6 RELEASED** - Back-to-back releases
+  - v0.3.5: curl installer, hello/goodbye/info commands
+  - v0.3.6: Documentation sync, version consistency fixes
+
+- ✅ **Documentation Workflows Validated**
+  - `/craft:docs:generate` - Updated CLAUDE.md, GETTING-STARTED.md
+  - `/craft:docs:sync` - Updated commands reference (+105 lines)
+  - `/craft:docs:nav-update` - Added orphan pages to mkdocs.yml
+  - `/craft:code:docs-check` - Fixed version mismatches across 3 files
+
+- ✅ **Full Release Pipeline Tested**
+  - PyPI publishing via GitHub Actions
+  - Homebrew formula updates with SHA256
+  - GitHub releases with tags
+  - Docs deployment to GitHub Pages
+
+📊 **Session Stats:**
+- 19 commits
+- 35 files changed, +2,980/-505 lines
+- 2 aiterm releases (v0.3.5, v0.3.6)
+- 1 craft release (v1.5.0)
+
 ## ✅ Just Completed (v0.3.6 Release - Dec 27, 2025)
 
 - ✅ **v0.3.6 RELEASED** - Documentation sync + craft v1.5.0 dogfooding
