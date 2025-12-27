@@ -170,12 +170,21 @@ run_ghostty() {
             end tell"
             ;;
         window|*)
-            # New Ghostty window - on macOS must use 'open' command
-            # Direct CLI launch not supported per Ghostty docs
+            # New Ghostty window - use AppleScript for reliability on macOS
             if [[ -d "/Applications/Ghostty.app" ]]; then
-                open -na "Ghostty.app" --args \
-                    --working-directory="$PROJECT_DIR" \
-                    -e "bash $PROJECT_DIR/$TEST_SCRIPT"
+                osascript -e 'tell application "Ghostty"
+                    activate
+                    tell application "System Events"
+                        keystroke "n" using {command down}
+                    end tell
+                end tell'
+                sleep 0.5
+                osascript -e "tell application \"System Events\"
+                    tell process \"ghostty\"
+                        keystroke \"cd '$PROJECT_DIR' && bash '$TEST_SCRIPT'\"
+                        keystroke return
+                    end tell
+                end tell"
             else
                 echo "Error: Ghostty.app not found"
                 exit 1
