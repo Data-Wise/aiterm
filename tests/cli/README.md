@@ -20,9 +20,24 @@ bash tests/cli/automated-tests.sh
 # Run with verbose output
 VERBOSE=1 bash tests/cli/automated-tests.sh
 
-# Run interactive tests (QA mode)
-bash tests/cli/interactive-tests.sh
+# Run interactive tests in a new terminal pane
+./scripts/run-interactive-tests.sh right    # Split right (recommended)
+./scripts/run-interactive-tests.sh below    # Split below
+./scripts/run-interactive-tests.sh tab      # New tab
+./scripts/run-interactive-tests.sh window   # New window
+
+# Force specific terminal
+TERMINAL=iterm2 ./scripts/run-interactive-tests.sh right
+TERMINAL=ghostty ./scripts/run-interactive-tests.sh right
 ```
+
+### Terminal Support
+
+| Terminal | Splits | Tabs | Windows |
+|----------|--------|------|---------|
+| **Ghostty** (default) | ✅ | ✅ | ✅ |
+| **iTerm2** | ✅ | ✅ | ✅ |
+| **Terminal.app** | ❌ | ✅ | ✅ |
 
 ## Test Coverage
 
