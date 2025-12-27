@@ -28,12 +28,15 @@ This file provides guidance to Claude Code when working with the aiterm project.
 
 ---
 
-## Project Status: v0.3.5 ✅ RELEASED
+## Project Status: v0.3.6 ✅ RELEASED
 
-**Current Version:** v0.3.5 (Dec 27, 2025)
+**Current Version:** v0.3.6 (Dec 27, 2025)
+
+**v0.3.6 Release (Dec 27, 2025):**
+- [x] **curl installer:** `install.sh` with smart auto-detection (uv/pipx/brew/pip)
+- [x] **Documentation:** Comprehensive updates to commands reference and guides
 
 **v0.3.5 Release (Dec 27, 2025):**
-- [x] **curl installer:** `install.sh` with smart auto-detection (uv/pipx/brew/pip)
 - [x] **Dogfooding tests:** Via Craft orchestrator v2.1
   - `ait hello` - Diagnostic greeting command
   - `ait goodbye` - Farewell command

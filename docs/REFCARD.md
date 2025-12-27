@@ -2,7 +2,7 @@
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│ AITERM v0.3.5 - Terminal Optimizer for AI Development      │
+│ AITERM v0.3.6 - Terminal Optimizer for AI Development      │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
 │ ESSENTIAL                                                   │
