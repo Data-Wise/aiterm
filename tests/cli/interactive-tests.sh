@@ -47,7 +47,7 @@ run_test() {
     local command=$3
     local expected=$4
 
-    ((TOTAL++))
+    TOTAL=$((TOTAL + 1))
 
     echo ""
     echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
@@ -55,7 +55,11 @@ run_test() {
     echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
     echo ""
     echo -e "  ${BLUE}Command:${NC}  $command"
-    echo -e "  ${BLUE}Expected:${NC} $expected"
+    echo ""
+    echo -e "${BLUE}┌─────────────────────────────────────────────────────────────┐${NC}"
+    echo -e "${BLUE}│${NC} ${BOLD}EXPECTED:${NC}                                                   ${BLUE}│${NC}"
+    echo -e "${BLUE}│${NC}   $expected"
+    echo -e "${BLUE}└─────────────────────────────────────────────────────────────┘${NC}"
     echo ""
 
     read -p "Run this test? (y/n/skip) " -n 1 -r
@@ -63,24 +67,26 @@ run_test() {
 
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         echo ""
-        echo -e "${YELLOW}─── Output ───${NC}"
+        echo -e "${GREEN}┌─────────────────────────────────────────────────────────────┐${NC}"
+        echo -e "${GREEN}│${NC} ${BOLD}ACTUAL OUTPUT:${NC}                                              ${GREEN}│${NC}"
+        echo -e "${GREEN}└─────────────────────────────────────────────────────────────┘${NC}"
         echo ""
 
         # Run the command
         eval "$command" || true
 
         echo ""
-        echo -e "${YELLOW}─── End Output ───${NC}"
+        echo -e "${GREEN}└─────────────────────────────────────────────────────────────┘${NC}"
         echo ""
 
         read -p "Did this match expected? (y/n) " -n 1 -r
         echo ""
 
         if [[ $REPLY =~ ^[Yy]$ ]]; then
-            ((PASS++))
+            PASS=$((PASS + 1))
             echo -e "${GREEN}✅ PASS${NC}"
         else
-            ((FAIL++))
+            FAIL=$((FAIL + 1))
             echo -e "${RED}❌ FAIL${NC}"
             read -p "Add a note? (or press Enter to skip) " note
             if [[ -n "$note" ]]; then
@@ -88,10 +94,10 @@ run_test() {
             fi
         fi
     elif [[ $REPLY =~ ^[Ss]$ ]]; then
-        ((SKIP++))
+        SKIP=$((SKIP + 1))
         echo -e "${YELLOW}⏭️  SKIPPED${NC}"
     else
-        ((SKIP++))
+        SKIP=$((SKIP + 1))
         echo -e "${YELLOW}⏭️  SKIPPED${NC}"
     fi
 }
