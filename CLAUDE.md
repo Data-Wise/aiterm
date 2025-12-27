@@ -28,29 +28,33 @@ This file provides guidance to Claude Code when working with the aiterm project.
 
 ---
 
-## Project Status: v0.4.0-dev 🚧 IN DEVELOPMENT
+## Project Status: v0.3.5 ✅ RELEASED
 
-**Current Phase:** v0.4.0 - Workflow Automation & Craft Integration
+**Current Version:** v0.3.5 (Dec 27, 2025)
 
-**v0.4.0 Plan (In Progress):**
+**v0.3.5 Release (Dec 27, 2025):**
+- [x] **curl installer:** `install.sh` with smart auto-detection (uv/pipx/brew/pip)
+- [x] **Dogfooding tests:** Via Craft orchestrator v2.1
+  - `ait hello` - Diagnostic greeting command
+  - `ait goodbye` - Farewell command
+  - `ait info` - System diagnostics
+  - Enhanced `--version` output
+
+**v0.3.1-0.3.4 Releases (Dec 26, 2025):**
+- [x] **Session Prune:** `ait sessions prune` for stale session cleanup
+- [x] **IDE Integrations:** VS Code, Cursor, Zed, Positron, Windsurf support
+- [x] **Session Coordination:** Hook-based session tracking & conflict detection
+
+**Next Phase:** v0.4.0 - Workflow Automation & Craft Integration
 - [ ] **Phase 1:** Workflow Templates (`ait recipes list/show/apply`)
 - [ ] **Phase 2:** Craft Plugin Management (`ait craft install/sync/run`)
 - [ ] **Phase 3:** Session-Aware Workflows
 
-**Integration with craft plugin v1.2.0:**
-- 46 commands available for workflow recipes
-- 8 skills for intelligent task routing
+**Integration with Craft plugin v1.5.0:**
+- 53 commands available for workflow recipes
+- 13 skills for intelligent task routing
 - Mode system (default, debug, optimize, release)
-
-**v0.3.1 Release (Dec 26, 2025):**
-- [x] **Session Prune:** `ait sessions prune` for stale session cleanup
-- [x] **Test Fix:** Fixed CI backup test patching issue
-
-**v0.3.0 Release (Dec 26, 2025):**
-- [x] **IDE Integrations:** VS Code, Cursor, Zed, Positron, Windsurf support
-- [x] **Session Coordination:** Hook-based session tracking & conflict detection
-- [x] **PyPI:** https://pypi.org/project/aiterm-dev/0.3.1/
-- [x] **Homebrew:** Updated formula with v0.3.1
+- Distribution commands (homebrew, curl-install)
 
 **See:**
 - `V0.4.0-PLAN.md` - Full v0.4.0 implementation plan
@@ -75,6 +79,9 @@ This file provides guidance to Claude Code when working with the aiterm project.
 
 **Installation:**
 ```bash
+# Quick Install (auto-detects best method)
+curl -fsSL https://raw.githubusercontent.com/Data-Wise/aiterm/main/install.sh | bash
+
 # macOS (Homebrew)
 brew install data-wise/tap/aiterm
 
@@ -93,7 +100,7 @@ pipx install aiterm-dev
 - **Docs:** https://Data-Wise.github.io/aiterm/
 - **PyPI:** https://pypi.org/project/aiterm-dev/
 - **Homebrew Tap:** https://github.com/Data-Wise/homebrew-tap
-- **Status:** v0.3.0 released, v0.4.0 in planning
+- **Status:** v0.3.5 released, v0.4.0 in planning
 
 ---
 

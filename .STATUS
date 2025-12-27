@@ -1,10 +1,10 @@
 project: aiterm
 status: active
 priority: P1
-progress: 18
-version: 0.4.0-dev
+progress: 20
+version: 0.3.5
 updated: 2025-12-27
-next: Implement Phase 1 - Workflow Templates (ait recipes)
+next: Plan v0.4.0 - Workflow Templates (ait recipes)
 
 ## 🎯 v0.4.0 Plan: Workflow Automation & Craft Integration
 
@@ -53,12 +53,25 @@ next: Implement Phase 1 - Workflow Templates (ait recipes)
 - [ ] Session checks in workflow runner
 - [ ] Task auto-update during workflows
 
-## ✅ Just Completed (craft ROADMAP - Dec 27, 2025)
+## ✅ Just Completed (v0.3.5 Release - Dec 27, 2025)
 
-- ✅ **craft v1.4.0 ROADMAP created** - Distribution commands planned
-  - `/craft:dist:homebrew` - Homebrew tap creation/update automation
+- ✅ **v0.3.5 RELEASED** - curl installer + dogfooding features
+  - **curl installer:** `install.sh` with smart auto-detection (uv/pipx/brew/pip)
+  - **Dogfooding via Craft Orchestrator v2.1:**
+    - `ait hello` - Diagnostic greeting command
+    - `ait goodbye` - Farewell command
+    - `ait info` - System diagnostics
+    - Enhanced `--version` output
+  - **Distribution:**
+    - PyPI: https://pypi.org/project/aiterm-dev/0.3.5/
+    - Homebrew: Updated formula with v0.3.5
+    - curl: `curl -fsSL .../install.sh | bash`
+
+- ✅ **craft v1.5.0 implemented** - Distribution commands
+  - `/craft:dist:homebrew` - Homebrew formula generation/validation
   - `/craft:dist:curl-install` - curl installation script generation
-  - Future: PyPI, npm, Cargo publishing workflows
+  - 2 new skills: distribution-strategist, homebrew-formula-expert
+  - Total: 53 commands, 13 skills, 7 agents
 
 ## ✅ Just Completed (v0.3.3 Release - Dec 26-27, 2025)
 
