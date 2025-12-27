@@ -1,5 +1,7 @@
 """Main CLI entry point for aiterm."""
 
+import platform
+import sys
 from pathlib import Path
 from typing import Optional
 
@@ -21,13 +23,31 @@ app = typer.Typer(
 console = Console()
 
 
+def get_install_path() -> str:
+    """Get the installation path of aiterm."""
+    import aiterm
+    return str(Path(aiterm.__file__).parent)
+
+
+def get_platform_info() -> str:
+    """Get platform information string."""
+    return f"{platform.system()} {platform.release()} ({platform.machine()})"
+
+
 def version_callback(value: bool) -> None:
     """Print version and exit."""
     if value:
+        python_version = f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}"
+        install_path = get_install_path()
+        platform_info = get_platform_info()
+
         console.print(
             Panel(
                 f"[bold cyan]{__app_name__}[/] version [green]{__version__}[/]\n"
-                f"Terminal optimizer for Claude Code & Gemini CLI",
+                f"Terminal optimizer for Claude Code & Gemini CLI\n\n"
+                f"[dim]Python:[/]   {python_version}\n"
+                f"[dim]Platform:[/] {platform_info}\n"
+                f"[dim]Path:[/]     {install_path}",
                 title="aiterm",
                 border_style="cyan",
             )
@@ -118,6 +138,149 @@ def doctor() -> None:
     console.print()
     console.print("[green]Basic checks passed![/]")
     console.print("[yellow]Full diagnostics coming in v0.2.0[/]")
+
+
+@app.command(
+    epilog="""
+[bold]Examples:[/]
+  ait info         # Show full system diagnostics
+  ait info --json  # Output as JSON (for scripting)
+"""
+)
+def info(
+    json_output: bool = typer.Option(
+        False,
+        "--json",
+        "-j",
+        help="Output as JSON for scripting.",
+    ),
+) -> None:
+    """Show detailed system information and diagnostics."""
+    import json as json_module
+    import os
+    import shutil
+
+    # Gather all system info
+    info_data = {
+        "aiterm": {
+            "version": __version__,
+            "app_name": __app_name__,
+            "install_path": get_install_path(),
+        },
+        "python": {
+            "version": f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}",
+            "executable": sys.executable,
+            "prefix": sys.prefix,
+        },
+        "platform": {
+            "system": platform.system(),
+            "release": platform.release(),
+            "machine": platform.machine(),
+            "platform": platform.platform(),
+        },
+        "environment": {
+            "term_program": os.environ.get("TERM_PROGRAM", "unknown"),
+            "shell": os.environ.get("SHELL", "unknown"),
+            "user": os.environ.get("USER", "unknown"),
+            "home": os.environ.get("HOME", "unknown"),
+        },
+        "dependencies": {},
+        "paths": {
+            "cwd": str(Path.cwd()),
+            "claude_dir": str(Path.home() / ".claude"),
+            "claude_dir_exists": (Path.home() / ".claude").exists(),
+        },
+    }
+
+    # Check dependencies
+    deps = ["typer", "rich", "questionary", "pyyaml"]
+    for dep in deps:
+        try:
+            mod = __import__(dep if dep != "pyyaml" else "yaml")
+            version = getattr(mod, "__version__", "installed")
+            info_data["dependencies"][dep] = version
+        except ImportError:
+            info_data["dependencies"][dep] = "missing"
+
+    # Check for optional tools
+    tools = ["git", "claude", "opencode", "gemini"]
+    info_data["tools"] = {}
+    for tool in tools:
+        info_data["tools"][tool] = shutil.which(tool) is not None
+
+    if json_output:
+        console.print(json_module.dumps(info_data, indent=2))
+        return
+
+    # Rich formatted output
+    console.print(Panel(
+        f"[bold cyan]{__app_name__}[/] v{__version__}",
+        title="System Information",
+        border_style="cyan",
+    ))
+
+    # aiterm info
+    table = Table(title="aiterm", show_header=False, border_style="dim")
+    table.add_column("Key", style="bold")
+    table.add_column("Value")
+    table.add_row("Version", __version__)
+    table.add_row("Install Path", get_install_path())
+    console.print(table)
+
+    # Python info
+    table = Table(title="Python", show_header=False, border_style="dim")
+    table.add_column("Key", style="bold")
+    table.add_column("Value")
+    table.add_row("Version", info_data["python"]["version"])
+    table.add_row("Executable", info_data["python"]["executable"])
+    table.add_row("Prefix", info_data["python"]["prefix"])
+    console.print(table)
+
+    # Platform info
+    table = Table(title="Platform", show_header=False, border_style="dim")
+    table.add_column("Key", style="bold")
+    table.add_column("Value")
+    table.add_row("System", info_data["platform"]["system"])
+    table.add_row("Release", info_data["platform"]["release"])
+    table.add_row("Machine", info_data["platform"]["machine"])
+    console.print(table)
+
+    # Environment info
+    table = Table(title="Environment", show_header=False, border_style="dim")
+    table.add_column("Key", style="bold")
+    table.add_column("Value")
+    table.add_row("Terminal", info_data["environment"]["term_program"])
+    table.add_row("Shell", info_data["environment"]["shell"])
+    table.add_row("User", info_data["environment"]["user"])
+    console.print(table)
+
+    # Dependencies
+    table = Table(title="Dependencies", show_header=True, border_style="dim")
+    table.add_column("Package", style="bold")
+    table.add_column("Version")
+    table.add_column("Status")
+    for dep, version in info_data["dependencies"].items():
+        status = "[green]OK[/]" if version != "missing" else "[red]Missing[/]"
+        table.add_row(dep, version if version != "missing" else "-", status)
+    console.print(table)
+
+    # Tools
+    table = Table(title="External Tools", show_header=True, border_style="dim")
+    table.add_column("Tool", style="bold")
+    table.add_column("Available")
+    for tool, available in info_data["tools"].items():
+        status = "[green]Yes[/]" if available else "[dim]No[/]"
+        table.add_row(tool, status)
+    console.print(table)
+
+    # Paths
+    table = Table(title="Paths", show_header=False, border_style="dim")
+    table.add_column("Key", style="bold")
+    table.add_column("Value")
+    table.add_row("Working Dir", info_data["paths"]["cwd"])
+    claude_status = "[green]exists[/]" if info_data["paths"]["claude_dir_exists"] else "[dim]not found[/]"
+    table.add_row("Claude Dir", f"{info_data['paths']['claude_dir']} ({claude_status})")
+    console.print(table)
 
 
 # ─── Context detection implementation ────────────────────────────────────────
