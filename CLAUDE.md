@@ -53,11 +53,12 @@ This file provides guidance to Claude Code when working with the aiterm project.
 - [ ] **Phase 2:** Craft Plugin Management (`ait craft install/sync/run`)
 - [ ] **Phase 3:** Session-Aware Workflows
 
-**Integration with Craft plugin v1.5.0:**
-- 53 commands available for workflow recipes
-- 13 skills for intelligent task routing
+**Integration with Craft plugin v1.6.0-dev:**
+- 58 commands available for workflow recipes
+- 15 skills for intelligent task routing
 - Mode system (default, debug, optimize, release)
 - Distribution commands (homebrew, curl-install)
+- **NEW:** Docs workflow commands (update, feature, done, site)
 
 **See:**
 - `V0.4.0-PLAN.md` - Full v0.4.0 implementation plan

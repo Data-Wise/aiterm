@@ -53,6 +53,32 @@ next: Plan v0.4.0 - Workflow Templates (ait recipes)
 - [ ] Session checks in workflow runner
 - [ ] Task auto-update during workflows
 
+## ✅ Just Completed (Session Dec 27, 2025 - craft v1.6.0 docs workflow)
+
+- ✅ **craft v1.6.0-dev IMPLEMENTED** - Docs workflow commands
+  - `/craft:docs:update [full]` - Smart universal documentation updater
+  - `/craft:docs:feature [name]` - Comprehensive feature documentation
+  - `/craft:docs:done [summary]` - End-of-session doc updates
+  - `/craft:docs:site [--deploy]` - Website-focused updates with deploy
+  - Total craft stats: 58 commands, 15 skills, 7 agents
+
+- ✅ **craft Plugin Maintenance**
+  - Fixed version metadata drift (plugin.json 1.3.0 → 1.6.0-dev)
+  - Created `scripts/sync-version.sh` for version synchronization
+  - Created `scripts/validate-counts.sh` for count validation
+  - Updated V0.4.0-PLAN.md with current versions
+
+- ✅ **Code Review & Proposals**
+  - Reviewed all 7 existing docs commands (graded A to B+)
+  - Created 4 proposal documents for docs workflow improvements
+  - Implemented ADHD-friendly workflow pattern
+
+📊 **Session Stats:**
+- 10 commits
+- 18 files changed, +1,065/-79 lines
+- 4 new craft commands implemented
+- 2 maintenance scripts created
+
 ## ✅ Just Completed (Session Dec 27, 2025 - 4hr marathon)
 
 - ✅ **craft v1.5.0 RELEASED** - Distribution commands
