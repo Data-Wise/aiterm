@@ -69,11 +69,11 @@ run_test() {
         echo ""
         echo -e "${GREEN}┌─────────────────────────────────────────────────────────────┐${NC}"
         echo -e "${GREEN}│${NC} ${BOLD}ACTUAL OUTPUT:${NC}                                              ${GREEN}│${NC}"
-        echo -e "${GREEN}└─────────────────────────────────────────────────────────────┘${NC}"
+        echo -e "${GREEN}├─────────────────────────────────────────────────────────────┤${NC}"
         echo ""
 
-        # Run the command
-        eval "$command" || true
+        # Run the command (use bash -c for reliable execution)
+        bash -c "$command" 2>&1 || true
 
         echo ""
         echo -e "${GREEN}└─────────────────────────────────────────────────────────────┘${NC}"
