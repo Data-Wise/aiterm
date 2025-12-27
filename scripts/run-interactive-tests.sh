@@ -2,11 +2,12 @@
 # Run interactive CLI tests in a new terminal pane/window
 #
 # Usage:
-#   ./scripts/run-interactive-tests.sh              # Auto-detect terminal, new window
+#   ./scripts/run-interactive-tests.sh              # Auto-detect (run here if in terminal)
+#   ./scripts/run-interactive-tests.sh here         # Run in current terminal (no spawn)
 #   ./scripts/run-interactive-tests.sh right        # Split right (vertical)
 #   ./scripts/run-interactive-tests.sh below        # Split below (horizontal)
 #   ./scripts/run-interactive-tests.sh tab          # New tab
-#   ./scripts/run-interactive-tests.sh window       # New window
+#   ./scripts/run-interactive-tests.sh window       # New window (force spawn)
 #   TERMINAL=iterm2 ./scripts/run-interactive-tests.sh right  # Force iTerm2
 #
 # Supported terminals:
@@ -22,13 +23,50 @@ set -euo pipefail
 
 PROJECT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 TEST_SCRIPT="tests/cli/interactive-tests.sh"
-SPLIT="${1:-window}"  # right, below, tab, window
 
 # Colors
 GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
 BLUE='\033[0;34m'
 NC='\033[0m'
+
+# ============================================
+# Interactive Terminal Detection
+# ============================================
+
+# Check if we're running inside an interactive terminal
+# Returns 0 (true) if in terminal, 1 (false) if spawned from Claude Code or non-interactive
+is_interactive_terminal() {
+    # Must have a tty
+    if [[ ! -t 0 ]] || [[ ! -t 1 ]]; then
+        return 1
+    fi
+
+    # Check for Claude Code environment (should spawn new window)
+    if [[ "${CLAUDECODE:-}" == "1" ]]; then
+        return 1
+    fi
+
+    # Check for known terminal programs
+    case "${TERM_PROGRAM:-}" in
+        ghostty|iTerm.app|Apple_Terminal)
+            return 0
+            ;;
+        *)
+            # Unknown terminal - assume not interactive
+            return 1
+            ;;
+    esac
+}
+
+# Determine default split mode based on context
+get_default_split() {
+    if is_interactive_terminal; then
+        echo "here"  # Run in current terminal
+    else
+        echo "window"  # Spawn new window
+    fi
+}
 
 # ============================================
 # Terminal Detection
@@ -222,8 +260,23 @@ run_terminal() {
 # Main
 # ============================================
 
+# Determine split mode (use arg if provided, otherwise auto-detect)
+SPLIT="${1:-$(get_default_split)}"
 DETECTED_TERMINAL=$(detect_terminal)
 
+# Handle "here" mode - run directly in current terminal
+if [[ "$SPLIT" == "here" ]]; then
+    echo -e "${BLUE}Terminal:${NC} $DETECTED_TERMINAL (current)"
+    echo -e "${BLUE}Mode:${NC} Running in current terminal"
+    echo -e "${BLUE}Project:${NC} $PROJECT_DIR"
+    echo ""
+
+    # Run tests directly
+    cd "$PROJECT_DIR"
+    exec bash "$TEST_SCRIPT"
+fi
+
+# Spawning new window/tab/split
 echo -e "${BLUE}Terminal:${NC} $DETECTED_TERMINAL"
 echo -e "${BLUE}Split:${NC} $SPLIT"
 echo -e "${BLUE}Project:${NC} $PROJECT_DIR"
