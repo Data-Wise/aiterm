@@ -1,9 +1,9 @@
 project: aiterm
 status: active
 priority: P1
-progress: 15
+progress: 18
 version: 0.4.0-dev
-updated: 2025-12-26
+updated: 2025-12-27
 next: Implement Phase 1 - Workflow Templates (ait recipes)
 
 ## 🎯 v0.4.0 Plan: Workflow Automation & Craft Integration
@@ -53,7 +53,29 @@ next: Implement Phase 1 - Workflow Templates (ait recipes)
 - [ ] Session checks in workflow runner
 - [ ] Task auto-update during workflows
 
-## ✅ Just Completed (v0.3.1 Release - Dec 26, 2025)
+## ✅ Just Completed (craft ROADMAP - Dec 27, 2025)
+
+- ✅ **craft v1.4.0 ROADMAP created** - Distribution commands planned
+  - `/craft:dist:homebrew` - Homebrew tap creation/update automation
+  - `/craft:dist:curl-install` - curl installation script generation
+  - Future: PyPI, npm, Cargo publishing workflows
+
+## ✅ Just Completed (v0.3.3 Release - Dec 26-27, 2025)
+
+- ✅ **v0.3.3 RELEASED** - CLI Test Enhancements
+  - **JUnit XML output** for CI (`--junit results.xml`)
+  - **Performance benchmarking** (`--benchmark`)
+  - **GitHub Actions integration** with test result upload
+  - Improved interactive test runner (Ghostty AppleScript)
+  - Simplified interactive test flow (run → show → judge)
+  - **CHANGELOG updated** (v0.3.1, v0.3.2, v0.3.3)
+  - **README badges** (PyPI, CI, Python, License)
+  - **Docs redeployed** to GitHub Pages
+  - **Craft plugin tests** updated with JUnit/benchmarks
+  - **PyPI:** https://pypi.org/project/aiterm-dev/0.3.3/
+  - **Homebrew:** Updated to v0.3.3
+
+## ✅ Previously Completed (v0.3.1 Release - Dec 26, 2025)
 
 - ✅ **v0.3.1 RELEASED** - Session prune + test fix
   - Added `ait sessions prune` command
