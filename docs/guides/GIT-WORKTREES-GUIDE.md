@@ -1154,19 +1154,22 @@ Add these to `~/.config/zsh/.zshrc` or `~/.zshrc`:
 # Quick navigation to worktrees folder
 alias wt='cd ~/.git-worktrees'
 
-# Project-specific aliases
-alias scribe-mch='cd ~/.git-worktrees/scribe/mission-control-hud'
-alias scribe-ww='cd ~/.git-worktrees/scribe/wonderful-wilson'
-alias aiterm-wt='cd ~/.git-worktrees/aiterm'
-
 # List all worktrees for current project
 alias wtl='git worktree list'
+
+# Project-specific aliases (customize for your projects)
+alias scribe-hud='cd ~/.git-worktrees/scribe/mission-control-hud'
+alias scribe-alt='cd ~/.git-worktrees/scribe/wonderful-wilson'
+alias aiterm-wt='cd ~/.git-worktrees/aiterm'
 ```
 
 **Usage:**
 ```bash
-# Jump to scribe mission-control-hud worktree and start Claude
-scribe-mch && claude
+# Jump to scribe HUD worktree and start Claude
+scribe-hud && claude
+
+# Jump to scribe alternate worktree
+scribe-alt && claude
 
 # See all worktrees
 wtl
@@ -1180,13 +1183,13 @@ Here's the complete workflow for working on two features simultaneously:
 
 ```bash
 # Terminal 1: Mission Control HUD feature
-scribe-mch                    # Jump to worktree (alias)
+scribe-hud                    # Jump to worktree (alias)
 claude                        # Start Claude Code
 # Claude sees: feat/mission-control-hud branch
 # npm run dev runs on default port
 
-# Terminal 2: Wonderful Wilson feature
-scribe-ww                     # Jump to worktree (alias)
+# Terminal 2: Alternate feature (Wonderful Wilson)
+scribe-alt                    # Jump to worktree (alias)
 claude                        # Start Claude Code
 # Claude sees: wonderful-wilson branch
 PORT=3001 npm run dev         # Use different port!
