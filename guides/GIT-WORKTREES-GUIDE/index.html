@@ -5136,95 +5136,166 @@
 | <code>~/.git-worktrees/scribe/wonderful-wilson</code> | <code>wonderful-wilson</code> | Other feature |</p>
 <hr />
 <h3 id="installing-dependencies-in-worktrees">Installing Dependencies in Worktrees</h3>
-<p><strong>Each worktree needs its own dependencies.</strong> They're NOT shared between worktrees.</p>
+<p><strong>Different project types need different install commands.</strong> Some need per-worktree installs, others share dependencies globally.</p>
 <table>
 <thead>
 <tr>
 <th>Project Type</th>
 <th>Install Command</th>
+<th>Where Stored</th>
+<th>Per-Worktree?</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><strong>Node.js</strong></td>
 <td><code>npm install</code></td>
+<td><code>node_modules/</code> in project</td>
+<td>✅ Yes</td>
 </tr>
 <tr>
 <td><strong>Python</strong></td>
-<td><code>pip install -e .</code> or <code>uv pip install -e .</code></td>
+<td><code>pip install -e .</code></td>
+<td>venv or global</td>
+<td>✅ Yes (if using venv)</td>
+</tr>
+<tr>
+<td><strong>Python (uv)</strong></td>
+<td><code>uv pip install -e .</code></td>
+<td>venv</td>
+<td>✅ Yes</td>
 </tr>
 <tr>
 <td><strong>Rust</strong></td>
-<td><code>cargo build</code> (fetches automatically)</td>
+<td>Nothing (auto)</td>
+<td><code>~/.cargo/</code> (global cache)</td>
+<td>❌ No</td>
 </tr>
 <tr>
-<td><strong>R</strong></td>
-<td>Usually nothing (packages are global)</td>
+<td><strong>Go</strong></td>
+<td>Nothing (auto)</td>
+<td><code>~/go/pkg/</code> (global cache)</td>
+<td>❌ No</td>
+</tr>
+<tr>
+<td><strong>R packages</strong></td>
+<td>Nothing</td>
+<td><code>~/Library/R/</code> (global)</td>
+<td>❌ No</td>
+</tr>
+<tr>
+<td><strong>R with renv</strong></td>
+<td><code>renv::restore()</code></td>
+<td><code>renv/library/</code> in project</td>
+<td>✅ Yes</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Why not shared?</strong></p>
+<hr />
+<p><strong>Why the difference?</strong></p>
 <pre class="mermaid"><code>graph TD
-    subgraph WT1["Worktree 1: feature-a"]
-        N1["node_modules/&lt;br/&gt;Has package X v1.0"]
+    subgraph LOCAL["📁 Per-Worktree Dependencies"]
+        L1["Node.js → node_modules/"]
+        L2["Python venv → .venv/"]
+        L3["R renv → renv/library/"]
     end
 
-    subgraph WT2["Worktree 2: feature-b"]
-        N2["node_modules/&lt;br/&gt;Has package X v2.0"]
+    subgraph GLOBAL["🌐 Global/Cached Dependencies"]
+        G1["Rust → ~/.cargo/"]
+        G2["Go → ~/go/pkg/"]
+        G3["R → ~/Library/R/"]
     end
 
-    NOTE["Different branches might need&lt;br/&gt;different dependency versions!"]</code></pre>
-<p>Each worktree could have different <code>package.json</code> changes, so they need separate <code>node_modules/</code>.</p>
-<p><strong>After creating a worktree, always install:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># Node.js projects</span>
-<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="nb">cd</span><span class="w"> </span>~/.git-worktrees/project/feature-branch
+    LOCAL --&gt; NEED["Need install per worktree"]
+    GLOBAL --&gt; SHARED["Shared automatically"]</code></pre>
+<hr />
+<p><strong>Per-worktree installs (Node.js, Python):</strong></p>
+<p>Each worktree could have different <code>package.json</code> or <code>requirements.txt</code> changes, so they need separate installs:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># Node.js projects (like scribe)</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="nb">cd</span><span class="w"> </span>~/.git-worktrees/scribe/feature-branch
 <a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>npm<span class="w"> </span>install
 <a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>
-<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="c1"># Python projects</span>
-<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="nb">cd</span><span class="w"> </span>~/.git-worktrees/project/feature-branch
-<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="c1"># Python projects (like aiterm)</span>
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="nb">cd</span><span class="w"> </span>~/.git-worktrees/aiterm/feature-branch
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>
+<a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a><span class="c1"># Python with uv (faster)</span>
+<a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a><span class="nb">cd</span><span class="w"> </span>~/.git-worktrees/aiterm/feature-branch
+<a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>uv<span class="w"> </span>venv
+<a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+<a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
 </code></pre></div>
+<hr />
+<p><strong>Global dependencies (Rust, Go, R):</strong></p>
+<p>These languages cache dependencies globally, so you don't need to install per worktree:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1"># Rust - just build, deps fetched automatically</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="nb">cd</span><span class="w"> </span>~/.git-worktrees/rust-project/feature-branch
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>cargo<span class="w"> </span>build
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="c1"># Go - just build, deps fetched automatically</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="nb">cd</span><span class="w"> </span>~/.git-worktrees/go-project/feature-branch
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>go<span class="w"> </span>build
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="c1"># R packages - nothing to install (uses global library)</span>
+<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="nb">cd</span><span class="w"> </span>~/.git-worktrees/rmediation/feature-branch
+<a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a><span class="c1"># Ready to use! R packages are in ~/Library/R/</span>
+<a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a>
+<a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a><span class="c1"># R with renv (if project uses it)</span>
+<a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a><span class="nb">cd</span><span class="w"> </span>~/.git-worktrees/r-project/feature-branch
+<a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a>R<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;renv::restore()&quot;</span>
+</code></pre></div>
+<hr />
 <p><strong>Quick check — are dependencies installed?</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>ls<span class="w"> </span>node_modules<span class="w">  </span><span class="c1"># Should show packages, not &quot;No such file&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1"># Node.js</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>ls<span class="w"> </span>node_modules<span class="w">  </span><span class="c1"># Should show packages</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="c1"># Python</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>ls<span class="w"> </span>.venv<span class="w">  </span><span class="c1"># Should show venv folder</span>
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>which<span class="w"> </span>python<span class="w">  </span><span class="c1"># Should point to .venv/bin/python</span>
+<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>
+<a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="c1"># R with renv</span>
+<a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a>ls<span class="w"> </span>renv/library<span class="w">  </span><span class="c1"># Should show packages</span>
 </code></pre></div>
 <hr />
 <h3 id="shell-aliases-for-quick-access">Shell Aliases for Quick Access</h3>
 <p>Add these to <code>~/.config/zsh/.zshrc</code> or <code>~/.zshrc</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1"># Quick navigation to worktrees folder</span>
-<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="nb">alias</span><span class="w"> </span><span class="nv">wt</span><span class="o">=</span><span class="s1">&#39;cd ~/.git-worktrees&#39;</span>
-<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>
-<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="c1"># List all worktrees for current project</span>
-<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="nb">alias</span><span class="w"> </span><span class="nv">wtl</span><span class="o">=</span><span class="s1">&#39;git worktree list&#39;</span>
-<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>
-<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="c1"># Project-specific aliases (customize for your projects)</span>
-<a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="nb">alias</span><span class="w"> </span>scribe-hud<span class="o">=</span><span class="s1">&#39;cd ~/.git-worktrees/scribe/mission-control-hud&#39;</span>
-<a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a><span class="nb">alias</span><span class="w"> </span>scribe-alt<span class="o">=</span><span class="s1">&#39;cd ~/.git-worktrees/scribe/wonderful-wilson&#39;</span>
-<a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a><span class="nb">alias</span><span class="w"> </span>aiterm-wt<span class="o">=</span><span class="s1">&#39;cd ~/.git-worktrees/aiterm&#39;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># Quick navigation to worktrees folder</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="nb">alias</span><span class="w"> </span><span class="nv">wt</span><span class="o">=</span><span class="s1">&#39;cd ~/.git-worktrees&#39;</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="c1"># List all worktrees for current project</span>
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="nb">alias</span><span class="w"> </span><span class="nv">wtl</span><span class="o">=</span><span class="s1">&#39;git worktree list&#39;</span>
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>
+<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="c1"># Project-specific aliases (customize for your projects)</span>
+<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a><span class="nb">alias</span><span class="w"> </span>scribe-hud<span class="o">=</span><span class="s1">&#39;cd ~/.git-worktrees/scribe/mission-control-hud&#39;</span>
+<a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a><span class="nb">alias</span><span class="w"> </span>scribe-alt<span class="o">=</span><span class="s1">&#39;cd ~/.git-worktrees/scribe/wonderful-wilson&#39;</span>
+<a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a><span class="nb">alias</span><span class="w"> </span>aiterm-wt<span class="o">=</span><span class="s1">&#39;cd ~/.git-worktrees/aiterm&#39;</span>
 </code></pre></div>
 <p><strong>Usage:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># Jump to scribe HUD worktree and start Claude</span>
-<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>scribe-hud<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>claude
-<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>
-<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="c1"># Jump to scribe alternate worktree</span>
-<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>scribe-alt<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>claude
-<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>
-<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="c1"># See all worktrees</span>
-<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>wtl
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1"># Jump to scribe HUD worktree and start Claude</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>scribe-hud<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>claude
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="c1"># Jump to scribe alternate worktree</span>
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>scribe-alt<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>claude
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>
+<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="c1"># See all worktrees</span>
+<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>wtl
 </code></pre></div></p>
 <hr />
 <h3 id="parallel-development-workflow">Parallel Development Workflow</h3>
 <p>Here's the complete workflow for working on two features simultaneously:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1"># Terminal 1: Mission Control HUD feature</span>
-<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>scribe-hud<span class="w">                    </span><span class="c1"># Jump to worktree (alias)</span>
-<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>claude<span class="w">                        </span><span class="c1"># Start Claude Code</span>
-<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="c1"># Claude sees: feat/mission-control-hud branch</span>
-<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="c1"># npm run dev runs on default port</span>
-<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>
-<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="c1"># Terminal 2: Alternate feature (Wonderful Wilson)</span>
-<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>scribe-alt<span class="w">                    </span><span class="c1"># Jump to worktree (alias)</span>
-<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a>claude<span class="w">                        </span><span class="c1"># Start Claude Code</span>
-<a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a><span class="c1"># Claude sees: wonderful-wilson branch</span>
-<a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a><span class="nv">PORT</span><span class="o">=</span><span class="m">3001</span><span class="w"> </span>npm<span class="w"> </span>run<span class="w"> </span>dev<span class="w">         </span><span class="c1"># Use different port!</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="c1"># Terminal 1: Mission Control HUD feature</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>scribe-hud<span class="w">                    </span><span class="c1"># Jump to worktree (alias)</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>claude<span class="w">                        </span><span class="c1"># Start Claude Code</span>
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="c1"># Claude sees: feat/mission-control-hud branch</span>
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="c1"># npm run dev runs on default port</span>
+<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>
+<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="c1"># Terminal 2: Alternate feature (Wonderful Wilson)</span>
+<a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a>scribe-alt<span class="w">                    </span><span class="c1"># Jump to worktree (alias)</span>
+<a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a>claude<span class="w">                        </span><span class="c1"># Start Claude Code</span>
+<a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a><span class="c1"># Claude sees: wonderful-wilson branch</span>
+<a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a><span class="nv">PORT</span><span class="o">=</span><span class="m">3001</span><span class="w"> </span>npm<span class="w"> </span>run<span class="w"> </span>dev<span class="w">         </span><span class="c1"># Use different port!</span>
 </code></pre></div>
 <p><strong>Key points:</strong>
 - Each Claude Code session is isolated
