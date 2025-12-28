@@ -2383,6 +2383,67 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#part-12-using-worktrees-with-claude-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 12: Using Worktrees with Claude Code
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 12: Using Worktrees with Claude Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#where-to-start-claude-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where to Start Claude Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#moving-an-existing-branch-to-a-worktree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Moving an Existing Branch to a Worktree
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shell-aliases-for-quick-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shell Aliases for Quick Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parallel-development-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parallel Development Workflow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#summary" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3881,6 +3942,67 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#part-12-using-worktrees-with-claude-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 12: Using Worktrees with Claude Code
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 12: Using Worktrees with Claude Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#where-to-start-claude-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where to Start Claude Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#moving-an-existing-branch-to-a-worktree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Moving an Existing Branch to a Worktree
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shell-aliases-for-quick-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shell Aliases for Quick Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parallel-development-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parallel Development Workflow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#summary" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4941,17 +5063,133 @@
 <a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a><span class="c1"># Now it&#39;s backed up on GitHub!</span>
 </code></pre></div>
 <hr />
+<h2 id="part-12-using-worktrees-with-claude-code">Part 12: Using Worktrees with Claude Code</h2>
+<h3 id="where-to-start-claude-code">Where to Start Claude Code</h3>
+<p><strong>Start Claude Code in the worktree folder</strong>, not the main project:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="c1"># ✅ CORRECT: Start in the worktree</span>
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="nb">cd</span><span class="w"> </span>~/.git-worktrees/scribe/mission-control-hud
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>claude
+<a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a>
+<a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a><span class="c1"># ❌ WRONG: Starting in main folder then trying to work on feature branch</span>
+<a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a><span class="nb">cd</span><span class="w"> </span>~/projects/dev-tools/scribe
+<a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a>claude<span class="w">  </span><span class="c1"># This sees &#39;main&#39; branch, not your feature!</span>
+</code></pre></div>
+<p><strong>Why?</strong>
+- Claude sees the correct branch automatically
+- All file changes stay in that worktree
+- No cross-branch interference
+- Each terminal/Claude session is isolated</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>graph TD
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>    subgraph CORRECT[&quot;✅ CORRECT: Each Claude in its worktree&quot;]
+<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a>        T1[&quot;Terminal 1&lt;br/&gt;cd ~/.git-worktrees/scribe/mission-control-hud&lt;br/&gt;claude&lt;br/&gt;→ Works on feat/mission-control-hud&quot;]
+<a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a>        T2[&quot;Terminal 2&lt;br/&gt;cd ~/.git-worktrees/scribe/wonderful-wilson&lt;br/&gt;claude&lt;br/&gt;→ Works on wonderful-wilson&quot;]
+<a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a>    end
+<a id="__codelineno-41-6" name="__codelineno-41-6" href="#__codelineno-41-6"></a>
+<a id="__codelineno-41-7" name="__codelineno-41-7" href="#__codelineno-41-7"></a>    subgraph WRONG[&quot;❌ WRONG: Both in main folder&quot;]
+<a id="__codelineno-41-8" name="__codelineno-41-8" href="#__codelineno-41-8"></a>        T3[&quot;Terminal 1&lt;br/&gt;cd ~/projects/dev-tools/scribe&lt;br/&gt;claude&lt;br/&gt;→ Both see same files!&quot;]
+<a id="__codelineno-41-9" name="__codelineno-41-9" href="#__codelineno-41-9"></a>        T4[&quot;Terminal 2&lt;br/&gt;cd ~/projects/dev-tools/scribe&lt;br/&gt;claude&lt;br/&gt;→ Branches interfere!&quot;]
+<a id="__codelineno-41-10" name="__codelineno-41-10" href="#__codelineno-41-10"></a>    end
+</code></pre></div>
+<hr />
+<h3 id="moving-an-existing-branch-to-a-worktree">Moving an Existing Branch to a Worktree</h3>
+<p>Sometimes you're already working on a branch in your main folder and want to move it to a worktree. Here's the real-world process (used with the scribe project):</p>
+<p><strong>The Problem:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>~/projects/dev-tools/scribe/  →  feat/mission-control-hud (37 uncommitted files!)
+</code></pre></div></p>
+<p>You can't just create a worktree — the branch is already checked out. Here's the solution:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="c1"># Step 1: Stash your uncommitted work (IMPORTANT!)</span>
+<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a><span class="nb">cd</span><span class="w"> </span>~/projects/dev-tools/scribe
+<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a>git<span class="w"> </span>stash<span class="w"> </span>--include-untracked<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;WIP before moving to worktree&quot;</span>
+<a id="__codelineno-43-4" name="__codelineno-43-4" href="#__codelineno-43-4"></a>
+<a id="__codelineno-43-5" name="__codelineno-43-5" href="#__codelineno-43-5"></a><span class="c1"># Step 2: Switch main folder to a stable branch</span>
+<a id="__codelineno-43-6" name="__codelineno-43-6" href="#__codelineno-43-6"></a>git<span class="w"> </span>checkout<span class="w"> </span>main
+<a id="__codelineno-43-7" name="__codelineno-43-7" href="#__codelineno-43-7"></a>
+<a id="__codelineno-43-8" name="__codelineno-43-8" href="#__codelineno-43-8"></a><span class="c1"># Step 3: Create the worktree for your feature branch</span>
+<a id="__codelineno-43-9" name="__codelineno-43-9" href="#__codelineno-43-9"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/.git-worktrees/scribe
+<a id="__codelineno-43-10" name="__codelineno-43-10" href="#__codelineno-43-10"></a>git<span class="w"> </span>worktree<span class="w"> </span>add<span class="w"> </span>~/.git-worktrees/scribe/mission-control-hud<span class="w"> </span>feat/mission-control-hud
+<a id="__codelineno-43-11" name="__codelineno-43-11" href="#__codelineno-43-11"></a>
+<a id="__codelineno-43-12" name="__codelineno-43-12" href="#__codelineno-43-12"></a><span class="c1"># Step 4: Move to the new worktree and restore your work</span>
+<a id="__codelineno-43-13" name="__codelineno-43-13" href="#__codelineno-43-13"></a><span class="nb">cd</span><span class="w"> </span>~/.git-worktrees/scribe/mission-control-hud
+<a id="__codelineno-43-14" name="__codelineno-43-14" href="#__codelineno-43-14"></a>git<span class="w"> </span>stash<span class="w"> </span>pop
+<a id="__codelineno-43-15" name="__codelineno-43-15" href="#__codelineno-43-15"></a>
+<a id="__codelineno-43-16" name="__codelineno-43-16" href="#__codelineno-43-16"></a><span class="c1"># Step 5: Install dependencies</span>
+<a id="__codelineno-43-17" name="__codelineno-43-17" href="#__codelineno-43-17"></a>npm<span class="w"> </span>install
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>flowchart TD
+<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>    START[&quot;Branch checked out in main folder&lt;br/&gt;Can&#39;t create worktree!&quot;]
+<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a>
+<a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a>    START --&gt; STASH[&quot;1️⃣ git stash --include-untracked&lt;br/&gt;Save uncommitted work&quot;]
+<a id="__codelineno-44-5" name="__codelineno-44-5" href="#__codelineno-44-5"></a>
+<a id="__codelineno-44-6" name="__codelineno-44-6" href="#__codelineno-44-6"></a>    STASH --&gt; SWITCH[&quot;2️⃣ git checkout main&lt;br/&gt;Free up the branch&quot;]
+<a id="__codelineno-44-7" name="__codelineno-44-7" href="#__codelineno-44-7"></a>
+<a id="__codelineno-44-8" name="__codelineno-44-8" href="#__codelineno-44-8"></a>    SWITCH --&gt; CREATE[&quot;3️⃣ git worktree add path branch&lt;br/&gt;Create worktree&quot;]
+<a id="__codelineno-44-9" name="__codelineno-44-9" href="#__codelineno-44-9"></a>
+<a id="__codelineno-44-10" name="__codelineno-44-10" href="#__codelineno-44-10"></a>    CREATE --&gt; RESTORE[&quot;4️⃣ cd worktree &amp;&amp; git stash pop&lt;br/&gt;Restore your work&quot;]
+<a id="__codelineno-44-11" name="__codelineno-44-11" href="#__codelineno-44-11"></a>
+<a id="__codelineno-44-12" name="__codelineno-44-12" href="#__codelineno-44-12"></a>    RESTORE --&gt; INSTALL[&quot;5️⃣ npm install&lt;br/&gt;Install dependencies&quot;]
+<a id="__codelineno-44-13" name="__codelineno-44-13" href="#__codelineno-44-13"></a>
+<a id="__codelineno-44-14" name="__codelineno-44-14" href="#__codelineno-44-14"></a>    INSTALL --&gt; DONE[&quot;✅ Ready to work in worktree!&quot;]
+</code></pre></div>
+<p><strong>Result:</strong>
+| Location | Branch | Purpose |
+|----------|--------|---------|
+| <code>~/projects/dev-tools/scribe</code> | <code>main</code> | Stable base |
+| <code>~/.git-worktrees/scribe/mission-control-hud</code> | <code>feat/mission-control-hud</code> | Feature work |
+| <code>~/.git-worktrees/scribe/wonderful-wilson</code> | <code>wonderful-wilson</code> | Other feature |</p>
+<hr />
+<h3 id="shell-aliases-for-quick-access">Shell Aliases for Quick Access</h3>
+<p>Add these to <code>~/.config/zsh/.zshrc</code> or <code>~/.zshrc</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="c1"># Quick navigation to worktrees folder</span>
+<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a><span class="nb">alias</span><span class="w"> </span><span class="nv">wt</span><span class="o">=</span><span class="s1">&#39;cd ~/.git-worktrees&#39;</span>
+<a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a>
+<a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a><span class="c1"># Project-specific aliases</span>
+<a id="__codelineno-45-5" name="__codelineno-45-5" href="#__codelineno-45-5"></a><span class="nb">alias</span><span class="w"> </span>scribe-mch<span class="o">=</span><span class="s1">&#39;cd ~/.git-worktrees/scribe/mission-control-hud&#39;</span>
+<a id="__codelineno-45-6" name="__codelineno-45-6" href="#__codelineno-45-6"></a><span class="nb">alias</span><span class="w"> </span>scribe-ww<span class="o">=</span><span class="s1">&#39;cd ~/.git-worktrees/scribe/wonderful-wilson&#39;</span>
+<a id="__codelineno-45-7" name="__codelineno-45-7" href="#__codelineno-45-7"></a><span class="nb">alias</span><span class="w"> </span>aiterm-wt<span class="o">=</span><span class="s1">&#39;cd ~/.git-worktrees/aiterm&#39;</span>
+<a id="__codelineno-45-8" name="__codelineno-45-8" href="#__codelineno-45-8"></a>
+<a id="__codelineno-45-9" name="__codelineno-45-9" href="#__codelineno-45-9"></a><span class="c1"># List all worktrees for current project</span>
+<a id="__codelineno-45-10" name="__codelineno-45-10" href="#__codelineno-45-10"></a><span class="nb">alias</span><span class="w"> </span><span class="nv">wtl</span><span class="o">=</span><span class="s1">&#39;git worktree list&#39;</span>
+</code></pre></div>
+<p><strong>Usage:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="c1"># Jump to scribe mission-control-hud worktree and start Claude</span>
+<a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a>scribe-mch<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>claude
+<a id="__codelineno-46-3" name="__codelineno-46-3" href="#__codelineno-46-3"></a>
+<a id="__codelineno-46-4" name="__codelineno-46-4" href="#__codelineno-46-4"></a><span class="c1"># See all worktrees</span>
+<a id="__codelineno-46-5" name="__codelineno-46-5" href="#__codelineno-46-5"></a>wtl
+</code></pre></div></p>
+<hr />
+<h3 id="parallel-development-workflow">Parallel Development Workflow</h3>
+<p>Here's the complete workflow for working on two features simultaneously:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="c1"># Terminal 1: Mission Control HUD feature</span>
+<a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a>scribe-mch<span class="w">                    </span><span class="c1"># Jump to worktree (alias)</span>
+<a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a>claude<span class="w">                        </span><span class="c1"># Start Claude Code</span>
+<a id="__codelineno-47-4" name="__codelineno-47-4" href="#__codelineno-47-4"></a><span class="c1"># Claude sees: feat/mission-control-hud branch</span>
+<a id="__codelineno-47-5" name="__codelineno-47-5" href="#__codelineno-47-5"></a><span class="c1"># npm run dev runs on default port</span>
+<a id="__codelineno-47-6" name="__codelineno-47-6" href="#__codelineno-47-6"></a>
+<a id="__codelineno-47-7" name="__codelineno-47-7" href="#__codelineno-47-7"></a><span class="c1"># Terminal 2: Wonderful Wilson feature</span>
+<a id="__codelineno-47-8" name="__codelineno-47-8" href="#__codelineno-47-8"></a>scribe-ww<span class="w">                     </span><span class="c1"># Jump to worktree (alias)</span>
+<a id="__codelineno-47-9" name="__codelineno-47-9" href="#__codelineno-47-9"></a>claude<span class="w">                        </span><span class="c1"># Start Claude Code</span>
+<a id="__codelineno-47-10" name="__codelineno-47-10" href="#__codelineno-47-10"></a><span class="c1"># Claude sees: wonderful-wilson branch</span>
+<a id="__codelineno-47-11" name="__codelineno-47-11" href="#__codelineno-47-11"></a><span class="nv">PORT</span><span class="o">=</span><span class="m">3001</span><span class="w"> </span>npm<span class="w"> </span>run<span class="w"> </span>dev<span class="w">         </span><span class="c1"># Use different port!</span>
+</code></pre></div>
+<p><strong>Key points:</strong>
+- Each Claude Code session is isolated
+- Commits go to the correct branch automatically
+- No branch switching needed
+- Dev servers run on different ports</p>
+<hr />
 <h2 id="summary">Summary</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>graph LR
-<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>    subgraph KEY[&quot;🔑 Key Takeaways&quot;]
-<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>        K1[&quot;Branch = version of code&quot;]
-<a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a>        K2[&quot;Worktree = folder for a branch&quot;]
-<a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a>        K3[&quot;Use worktrees for parallel work&quot;]
-<a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a>        K4[&quot;Each worktree is independent&quot;]
-<a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a>        K5[&quot;They share git history&quot;]
-<a id="__codelineno-40-8" name="__codelineno-40-8" href="#__codelineno-40-8"></a>        K6[&quot;~/.git-worktrees/ is NOT auto-created&quot;]
-<a id="__codelineno-40-9" name="__codelineno-40-9" href="#__codelineno-40-9"></a>        K7[&quot;No need to backup worktree folders&quot;]
-<a id="__codelineno-40-10" name="__codelineno-40-10" href="#__codelineno-40-10"></a>    end
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a>graph LR
+<a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a>    subgraph KEY[&quot;🔑 Key Takeaways&quot;]
+<a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a>        K1[&quot;Branch = version of code&quot;]
+<a id="__codelineno-48-4" name="__codelineno-48-4" href="#__codelineno-48-4"></a>        K2[&quot;Worktree = folder for a branch&quot;]
+<a id="__codelineno-48-5" name="__codelineno-48-5" href="#__codelineno-48-5"></a>        K3[&quot;Use worktrees for parallel work&quot;]
+<a id="__codelineno-48-6" name="__codelineno-48-6" href="#__codelineno-48-6"></a>        K4[&quot;Each worktree is independent&quot;]
+<a id="__codelineno-48-7" name="__codelineno-48-7" href="#__codelineno-48-7"></a>        K5[&quot;They share git history&quot;]
+<a id="__codelineno-48-8" name="__codelineno-48-8" href="#__codelineno-48-8"></a>        K6[&quot;~/.git-worktrees/ is NOT auto-created&quot;]
+<a id="__codelineno-48-9" name="__codelineno-48-9" href="#__codelineno-48-9"></a>        K7[&quot;No need to backup worktree folders&quot;]
+<a id="__codelineno-48-10" name="__codelineno-48-10" href="#__codelineno-48-10"></a>        K8[&quot;Start Claude Code IN the worktree folder&quot;]
+<a id="__codelineno-48-11" name="__codelineno-48-11" href="#__codelineno-48-11"></a>    end
 </code></pre></div>
 <table>
 <thead>
