@@ -1004,6 +1004,154 @@ git push
 
 ---
 
+## Part 12: Using Worktrees with Claude Code
+
+### Where to Start Claude Code
+
+**Start Claude Code in the worktree folder**, not the main project:
+
+```bash
+# ✅ CORRECT: Start in the worktree
+cd ~/.git-worktrees/scribe/mission-control-hud
+claude
+
+# ❌ WRONG: Starting in main folder then trying to work on feature branch
+cd ~/projects/dev-tools/scribe
+claude  # This sees 'main' branch, not your feature!
+```
+
+**Why?**
+- Claude sees the correct branch automatically
+- All file changes stay in that worktree
+- No cross-branch interference
+- Each terminal/Claude session is isolated
+
+```mermaid
+graph TD
+    subgraph CORRECT["✅ CORRECT: Each Claude in its worktree"]
+        T1["Terminal 1<br/>cd ~/.git-worktrees/scribe/mission-control-hud<br/>claude<br/>→ Works on feat/mission-control-hud"]
+        T2["Terminal 2<br/>cd ~/.git-worktrees/scribe/wonderful-wilson<br/>claude<br/>→ Works on wonderful-wilson"]
+    end
+
+    subgraph WRONG["❌ WRONG: Both in main folder"]
+        T3["Terminal 1<br/>cd ~/projects/dev-tools/scribe<br/>claude<br/>→ Both see same files!"]
+        T4["Terminal 2<br/>cd ~/projects/dev-tools/scribe<br/>claude<br/>→ Branches interfere!"]
+    end
+```
+
+---
+
+### Moving an Existing Branch to a Worktree
+
+Sometimes you're already working on a branch in your main folder and want to move it to a worktree. Here's the real-world process (used with the scribe project):
+
+**The Problem:**
+```
+~/projects/dev-tools/scribe/  →  feat/mission-control-hud (37 uncommitted files!)
+```
+
+You can't just create a worktree — the branch is already checked out. Here's the solution:
+
+```bash
+# Step 1: Stash your uncommitted work (IMPORTANT!)
+cd ~/projects/dev-tools/scribe
+git stash --include-untracked -m "WIP before moving to worktree"
+
+# Step 2: Switch main folder to a stable branch
+git checkout main
+
+# Step 3: Create the worktree for your feature branch
+mkdir -p ~/.git-worktrees/scribe
+git worktree add ~/.git-worktrees/scribe/mission-control-hud feat/mission-control-hud
+
+# Step 4: Move to the new worktree and restore your work
+cd ~/.git-worktrees/scribe/mission-control-hud
+git stash pop
+
+# Step 5: Install dependencies
+npm install
+```
+
+```mermaid
+flowchart TD
+    START["Branch checked out in main folder<br/>Can't create worktree!"]
+
+    START --> STASH["1️⃣ git stash --include-untracked<br/>Save uncommitted work"]
+
+    STASH --> SWITCH["2️⃣ git checkout main<br/>Free up the branch"]
+
+    SWITCH --> CREATE["3️⃣ git worktree add path branch<br/>Create worktree"]
+
+    CREATE --> RESTORE["4️⃣ cd worktree && git stash pop<br/>Restore your work"]
+
+    RESTORE --> INSTALL["5️⃣ npm install<br/>Install dependencies"]
+
+    INSTALL --> DONE["✅ Ready to work in worktree!"]
+```
+
+**Result:**
+| Location | Branch | Purpose |
+|----------|--------|---------|
+| `~/projects/dev-tools/scribe` | `main` | Stable base |
+| `~/.git-worktrees/scribe/mission-control-hud` | `feat/mission-control-hud` | Feature work |
+| `~/.git-worktrees/scribe/wonderful-wilson` | `wonderful-wilson` | Other feature |
+
+---
+
+### Shell Aliases for Quick Access
+
+Add these to `~/.config/zsh/.zshrc` or `~/.zshrc`:
+
+```bash
+# Quick navigation to worktrees folder
+alias wt='cd ~/.git-worktrees'
+
+# Project-specific aliases
+alias scribe-mch='cd ~/.git-worktrees/scribe/mission-control-hud'
+alias scribe-ww='cd ~/.git-worktrees/scribe/wonderful-wilson'
+alias aiterm-wt='cd ~/.git-worktrees/aiterm'
+
+# List all worktrees for current project
+alias wtl='git worktree list'
+```
+
+**Usage:**
+```bash
+# Jump to scribe mission-control-hud worktree and start Claude
+scribe-mch && claude
+
+# See all worktrees
+wtl
+```
+
+---
+
+### Parallel Development Workflow
+
+Here's the complete workflow for working on two features simultaneously:
+
+```bash
+# Terminal 1: Mission Control HUD feature
+scribe-mch                    # Jump to worktree (alias)
+claude                        # Start Claude Code
+# Claude sees: feat/mission-control-hud branch
+# npm run dev runs on default port
+
+# Terminal 2: Wonderful Wilson feature
+scribe-ww                     # Jump to worktree (alias)
+claude                        # Start Claude Code
+# Claude sees: wonderful-wilson branch
+PORT=3001 npm run dev         # Use different port!
+```
+
+**Key points:**
+- Each Claude Code session is isolated
+- Commits go to the correct branch automatically
+- No branch switching needed
+- Dev servers run on different ports
+
+---
+
 ## Summary
 
 ```mermaid
@@ -1016,6 +1164,7 @@ graph LR
         K5["They share git history"]
         K6["~/.git-worktrees/ is NOT auto-created"]
         K7["No need to backup worktree folders"]
+        K8["Start Claude Code IN the worktree folder"]
     end
 ```
 
