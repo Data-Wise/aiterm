@@ -1,0 +1,5072 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="AI-powered terminal optimizer for Claude Code and Gemini CLI workflows">
+      
+      
+        <meta name="author" content="Data-Wise">
+      
+      
+        <link rel="canonical" href="https://data-wise.github.io/aiterm/guides/GIT-WORKTREES-GUIDE/">
+      
+      
+        <link rel="prev" href="../../CLAUDE-CODE-TUTORIAL/">
+      
+      
+        <link rel="next" href="../OPENCODE-AGENT-TESTING/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Git Worktrees Guide - aiterm</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#git-worktrees-a-beginners-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="aiterm" class="md-header__button md-logo" aria-label="aiterm" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            aiterm
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Git Worktrees Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Data-Wise/aiterm" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Data-Wise/aiterm
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../QUICK-START/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Quick Start
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../GETTING-STARTED/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Getting Started
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../REFCARD/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Reference Card
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../AITERM-DOCS-INDEX/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Documentation Index
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../getting-started/installation/" class="md-tabs__link">
+          
+  
+  
+  Installation
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../AITERM-USER-GUIDE/" class="md-tabs__link">
+          
+  
+  
+  User Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../reference/commands/" class="md-tabs__link">
+          
+  
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../VIDEO-WALKTHROUGH/" class="md-tabs__link">
+          
+  
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../gemini-cli/GEMINI_REFCARD/" class="md-tabs__link">
+          
+  
+  
+  Gemini CLI
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../MCP-INTEGRATION/" class="md-tabs__link">
+          
+  
+  
+  Features
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../architecture/AITERM-ARCHITECTURE/" class="md-tabs__link">
+          
+  
+  
+  Architecture
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../AUTO-UPDATE-INDEX/" class="md-tabs__link">
+          
+  
+  
+  Documentation Automation
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="aiterm" class="md-nav__button md-logo" aria-label="aiterm" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    aiterm
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Data-Wise/aiterm" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Data-Wise/aiterm
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../QUICK-START/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../GETTING-STARTED/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../REFCARD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference Card
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AITERM-DOCS-INDEX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation Index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Installation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Tutorial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guide/shell-completion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shell Completion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AITERM-USER-GUIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AITERM-INTEGRATION/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integration Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guide/claude-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claude Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guide/sessions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Session Coordination
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guide/ide-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IDE Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guide/workflows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workflows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guide/context-detection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Context Detection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guide/profiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guide/status-bar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Status Bar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guide/triggers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Triggers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/REFCARD-CLAUDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claude Commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/REFCARD-SESSIONS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Session Commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/REFCARD-IDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IDE Commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/REFCARD-MCP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/REFCARD-HOOKS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hooks Commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/REFCARD-CONTEXT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Context Detection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/REFCARD-OPENCODE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenCode Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/AITERM-API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/AITERM-TROUBLESHOOTING/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../VIDEO-WALKTHROUGH/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Video Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CLAUDE-CODE-TUTORIAL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claude Code Tutorial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git Worktrees Guide
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git Worktrees Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started-a-practical-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting Started: A Practical Example
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting Started: A Practical Example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scenario-two-features-for-aiterm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario: Two Features for Aiterm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#whats-automatically-created-vs-what-you-create" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What's Automatically Created vs What You Create
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#does-git-worktree-have-a-default-location" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Does Git Worktree Have a Default Location?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avoiding-cross-project-interference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Avoiding Cross-Project Interference
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-start-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Start Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-1-understanding-branches-the-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 1: Understanding Branches (The Basics)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 1: Understanding Branches (The Basics)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-a-branch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is a Branch?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-traditional-way-one-folder-many-branches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Traditional Way: One Folder, Many Branches
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-2-the-problem-with-branch-switching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 2: The Problem with Branch Switching
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 2: The Problem with Branch Switching">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-real-world-disaster" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A Real-World Disaster
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-3-worktrees-the-solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 3: Worktrees (The Solution)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 3: Worktrees (The Solution)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-a-worktree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is a Worktree?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#branches-vs-worktrees-the-difference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Branches vs Worktrees: The Difference
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-magic-they-share-git-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Magic: They Share Git History
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-4-when-to-use-what" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 4: When to Use What
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 4: When to Use What">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-regular-branches-when" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Regular Branches When:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-worktrees-when" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Worktrees When:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-5-how-worktree-folders-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 5: How Worktree Folders Work
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 5: How Worktree Folders Work">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-are-worktrees-outside-the-project-folder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Are Worktrees OUTSIDE the Project Folder?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-a-parent-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is a "Parent Directory"?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#real-example-the-aiterm-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real Example: The Aiterm Project
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-manual-worktree-for-aiterm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating a Manual Worktree for Aiterm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-path-breakdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Path Breakdown
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#do-you-need-to-create-folders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Do You Need to Create Folders?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#your-current-worktree-locations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Your Current Worktree Locations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#do-i-need-to-create-git-worktrees" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Do I Need to Create ~/.git-worktrees/?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-mkdir-p-flag-explained" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The mkdir -p Flag Explained
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recommended-folder-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Folder Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-6-worktrees-in-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 6: Worktrees in Practice
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 6: Worktrees in Practice">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#before-and-after" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before and After
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-multiple-terminals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting Up Multiple Terminals
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-7-common-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 7: Common Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 7: Common Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-four-commands-you-need" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Four Commands You Need
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workflow-decision-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workflow Decision Tree
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-8-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 8: Best Practices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 8: Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-golden-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Golden Rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#do-this" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DO This ✅
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dont-do-this" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DON'T Do This ❌
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recommended-folder-structure_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Folder Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-9-quick-reference-card" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 9: Quick Reference Card
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 9: Quick Reference Card">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#worktrees-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worktrees Cheat Sheet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-setup-for-new-feature" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Setup for New Feature
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-10-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 10: Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 10: Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#branch-is-already-checked-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "Branch is already checked out"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-deleted-the-folder-but-git-still-thinks-it-exists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "I deleted the folder but git still thinks it exists"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parent-directory-doesnt-exist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "Parent directory doesn't exist"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-made-changes-in-the-wrong-worktree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "I made changes in the wrong worktree"
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-11-backup-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 11: Backup &amp; Recovery
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 11: Backup &amp; Recovery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#do-i-need-to-back-up-the-git-worktrees-folder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Do I Need to Back Up the ~/.git-worktrees/ Folder?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-if-i-lose-a-worktree-folder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What If I Lose a Worktree Folder?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-real-backup-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Real Backup Strategy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avoid-cloud-sync-for-worktrees" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Avoid Cloud Sync for Worktrees
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#golden-rule-for-backups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Golden Rule for Backups
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        See Also
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OPENCODE-AGENT-TESTING/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenCode Agent Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gemini CLI
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Gemini CLI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gemini-cli/GEMINI_REFCARD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference Card
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gemini-cli/GEMINI_TUTORIAL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gemini-cli/PROMPT_ENGINEERING_ADHD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompt Engineering (ADHD)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gemini-cli/WORKFLOW_GUIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workflow Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Features
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MCP-INTEGRATION/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DOCS-HELPERS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation Helpers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/AITERM-ARCHITECTURE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/RFORGE-UNIVERSAL-BACKEND/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RForge Universal Backend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/ARCHITECTURE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Technical Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/CLAUDE-CODE-CAPABILITIES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claude Code Capabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AITERM-IMPLEMENTATION-SUMMARY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation Automation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Documentation Automation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AUTO-UPDATE-INDEX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AUTO-UPDATE-TUTORIAL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AUTO-UPDATE-REFCARD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AUTO-UPDATE-WORKFLOW/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workflow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AUTO-UPDATE-WORKFLOW-DIAGRAM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workflow Diagrams
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started-a-practical-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting Started: A Practical Example
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting Started: A Practical Example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scenario-two-features-for-aiterm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario: Two Features for Aiterm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#whats-automatically-created-vs-what-you-create" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What's Automatically Created vs What You Create
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#does-git-worktree-have-a-default-location" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Does Git Worktree Have a Default Location?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avoiding-cross-project-interference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Avoiding Cross-Project Interference
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-start-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Start Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-1-understanding-branches-the-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 1: Understanding Branches (The Basics)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 1: Understanding Branches (The Basics)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-a-branch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is a Branch?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-traditional-way-one-folder-many-branches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Traditional Way: One Folder, Many Branches
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-2-the-problem-with-branch-switching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 2: The Problem with Branch Switching
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 2: The Problem with Branch Switching">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-real-world-disaster" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A Real-World Disaster
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-3-worktrees-the-solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 3: Worktrees (The Solution)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 3: Worktrees (The Solution)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-a-worktree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is a Worktree?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#branches-vs-worktrees-the-difference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Branches vs Worktrees: The Difference
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-magic-they-share-git-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Magic: They Share Git History
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-4-when-to-use-what" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 4: When to Use What
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 4: When to Use What">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-regular-branches-when" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Regular Branches When:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-worktrees-when" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Worktrees When:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-5-how-worktree-folders-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 5: How Worktree Folders Work
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 5: How Worktree Folders Work">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-are-worktrees-outside-the-project-folder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Are Worktrees OUTSIDE the Project Folder?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-a-parent-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is a "Parent Directory"?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#real-example-the-aiterm-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real Example: The Aiterm Project
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-manual-worktree-for-aiterm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating a Manual Worktree for Aiterm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-path-breakdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Path Breakdown
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#do-you-need-to-create-folders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Do You Need to Create Folders?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#your-current-worktree-locations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Your Current Worktree Locations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#do-i-need-to-create-git-worktrees" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Do I Need to Create ~/.git-worktrees/?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-mkdir-p-flag-explained" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The mkdir -p Flag Explained
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recommended-folder-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Folder Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-6-worktrees-in-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 6: Worktrees in Practice
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 6: Worktrees in Practice">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#before-and-after" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before and After
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-multiple-terminals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting Up Multiple Terminals
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-7-common-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 7: Common Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 7: Common Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-four-commands-you-need" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Four Commands You Need
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workflow-decision-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workflow Decision Tree
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-8-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 8: Best Practices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 8: Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-golden-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Golden Rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#do-this" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DO This ✅
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dont-do-this" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DON'T Do This ❌
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recommended-folder-structure_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Folder Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-9-quick-reference-card" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 9: Quick Reference Card
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 9: Quick Reference Card">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#worktrees-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worktrees Cheat Sheet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-setup-for-new-feature" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Setup for New Feature
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-10-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 10: Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 10: Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#branch-is-already-checked-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "Branch is already checked out"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-deleted-the-folder-but-git-still-thinks-it-exists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "I deleted the folder but git still thinks it exists"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parent-directory-doesnt-exist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "Parent directory doesn't exist"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-made-changes-in-the-wrong-worktree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "I made changes in the wrong worktree"
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-11-backup-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 11: Backup &amp; Recovery
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 11: Backup &amp; Recovery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#do-i-need-to-back-up-the-git-worktrees-folder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Do I Need to Back Up the ~/.git-worktrees/ Folder?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-if-i-lose-a-worktree-folder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What If I Lose a Worktree Folder?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-real-backup-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Real Backup Strategy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avoid-cloud-sync-for-worktrees" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Avoid Cloud Sync for Worktrees
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#golden-rule-for-backups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Golden Rule for Backups
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        See Also
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="git-worktrees-a-beginners-guide">Git Worktrees: A Beginner's Guide</h1>
+<p><strong>Level:</strong> Beginner-friendly
+<strong>Time to read:</strong> 15 minutes
+<strong>What you'll learn:</strong> The difference between branches and worktrees, and when to use each</p>
+<hr />
+<h2 id="getting-started-a-practical-example">Getting Started: A Practical Example</h2>
+<h3 id="scenario-two-features-for-aiterm">Scenario: Two Features for Aiterm</h3>
+<p>You want to work on two features for aiterm simultaneously:
+- <strong>Feature A:</strong> Add MCP server support
+- <strong>Feature B:</strong> Improve CLI help messages</p>
+<p>Here's exactly what to do:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Step 1: Go to your project</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>~/projects/dev-tools/aiterm
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Step 2: Create the worktree parent folder (ONE TIME ONLY, per project)</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/.git-worktrees/aiterm
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># Step 3: Create worktree for Feature A</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>git<span class="w"> </span>worktree<span class="w"> </span>add<span class="w"> </span>~/.git-worktrees/aiterm/feature-mcp<span class="w"> </span>feature/mcp
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># Step 4: Create worktree for Feature B</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>git<span class="w"> </span>worktree<span class="w"> </span>add<span class="w"> </span>~/.git-worktrees/aiterm/feature-help<span class="w"> </span>feature/help
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="c1"># Step 5: Install dependencies in each worktree</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="nb">cd</span><span class="w"> </span>~/.git-worktrees/aiterm/feature-mcp<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>npm<span class="w"> </span>install
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="nb">cd</span><span class="w"> </span>~/.git-worktrees/aiterm/feature-help<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>npm<span class="w"> </span>install
+</code></pre></div>
+<p><strong>Result — Three separate folders:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>graph TD
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    subgraph RESULT[&quot;Your Setup After These Commands&quot;]
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>        M[&quot;📁 ~/projects/dev-tools/aiterm/&lt;br/&gt;Branch: dev (main development)&lt;br/&gt;Your primary workspace&quot;]
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        A[&quot;📁 ~/.git-worktrees/aiterm/feature-mcp/&lt;br/&gt;Branch: feature/mcp&lt;br/&gt;Working on MCP support&quot;]
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        B[&quot;📁 ~/.git-worktrees/aiterm/feature-help/&lt;br/&gt;Branch: feature/help&lt;br/&gt;Working on CLI help&quot;]
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    end
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    M --- A
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    M --- B
+</code></pre></div>
+<p>Now you can:
+- <strong>Terminal 1:</strong> Work in <code>~/projects/dev-tools/aiterm/</code> on main dev branch
+- <strong>Terminal 2:</strong> Work in <code>~/.git-worktrees/aiterm/feature-mcp/</code> on MCP feature
+- <strong>Terminal 3:</strong> Work in <code>~/.git-worktrees/aiterm/feature-help/</code> on help feature</p>
+<p><strong>No interference. No branch switching. Each folder is independent.</strong></p>
+<hr />
+<h3 id="whats-automatically-created-vs-what-you-create">What's Automatically Created vs What You Create</h3>
+<p><strong>Important:</strong> The <code>~/.git-worktrees/</code> folder is <strong>NOT created automatically</strong> by git. You must create it yourself. This is just a naming convention — you can call it anything you want.</p>
+<table>
+<thead>
+<tr>
+<th>What</th>
+<th>Who Creates It</th>
+<th>When</th>
+<th>Created Automatically?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>~/.git-worktrees/</code></td>
+<td><strong>You</strong></td>
+<td>First time using worktrees</td>
+<td>❌ No — run <code>mkdir -p ~/.git-worktrees</code></td>
+</tr>
+<tr>
+<td><code>~/.git-worktrees/aiterm/</code></td>
+<td><strong>You</strong></td>
+<td>First worktree for aiterm</td>
+<td>❌ No — run <code>mkdir -p ~/.git-worktrees/aiterm</code></td>
+</tr>
+<tr>
+<td><code>~/.git-worktrees/aiterm/feature-mcp/</code></td>
+<td><strong>Git</strong></td>
+<td>When you run <code>git worktree add</code></td>
+<td>✅ Yes</td>
+</tr>
+<tr>
+<td>Files inside (src/, docs/, etc.)</td>
+<td><strong>Git</strong></td>
+<td>When you run <code>git worktree add</code></td>
+<td>✅ Yes</td>
+</tr>
+<tr>
+<td><code>node_modules/</code></td>
+<td><strong>You</strong></td>
+<td>After creating worktree</td>
+<td>❌ No — run <code>npm install</code></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>flowchart TD
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    subgraph YOU[&quot;🧑 You Create Manually (NOT automatic)&quot;]
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>        Y1[&quot;~/.git-worktrees/&lt;br/&gt;Create once: mkdir -p ~/.git-worktrees&quot;]
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>        Y2[&quot;~/.git-worktrees/aiterm/&lt;br/&gt;Create once per project: mkdir -p ~/.git-worktrees/aiterm&quot;]
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    end
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    subgraph GIT[&quot;🤖 Git Creates Automatically&quot;]
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>        G1[&quot;~/.git-worktrees/aiterm/feature-mcp/&lt;br/&gt;Created by: git worktree add&quot;]
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>        G2[&quot;All files inside (src/, docs/, tests/, etc.)&quot;]
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    end
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    subgraph NPM[&quot;📦 You Run After&quot;]
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>        N1[&quot;node_modules/&lt;br/&gt;Created by: npm install&quot;]
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>    end
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>    Y1 --&gt; Y2
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>    Y2 --&gt;|&quot;git worktree add&quot;| G1
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>    G1 --&gt; G2
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>    G2 --&gt;|&quot;npm install&quot;| N1
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>    N1 --&gt; DONE[&quot;✅ Ready to work!&quot;]
+</code></pre></div>
+<p><strong>Why this naming?</strong>
+- <code>~/.git-worktrees/</code> — The <code>.</code> makes it hidden, <code>git-worktrees</code> is descriptive
+- You could use <code>~/.worktrees/</code>, <code>~/.wt/</code>, or any name you prefer
+- The important thing is consistency and keeping it outside your projects</p>
+<hr />
+<h3 id="does-git-worktree-have-a-default-location">Does Git Worktree Have a Default Location?</h3>
+<p><strong>No!</strong> Git worktree has NO default location. You specify the full path every time:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>git<span class="w"> </span>worktree<span class="w"> </span>add<span class="w"> </span>/any/path/you/want<span class="w"> </span>branch-name
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1">#                ↑</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1">#                YOU decide where it goes</span>
+</code></pre></div>
+<p>Different tools use different conventions:</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Worktree Location</th>
+<th>How Created</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Manual (you)</strong></td>
+<td><code>~/.git-worktrees/project/branch/</code></td>
+<td>You choose the path</td>
+</tr>
+<tr>
+<td><strong>claude-squad</strong></td>
+<td><code>~/.claude-squad/worktrees/hash.../</code></td>
+<td>Auto-created by tool</td>
+</tr>
+<tr>
+<td><strong>Other tools</strong></td>
+<td>Varies</td>
+<td>Depends on tool</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The key point:</strong> YOU control where worktrees go. There's no magic default.</p>
+<hr />
+<h3 id="avoiding-cross-project-interference">Avoiding Cross-Project Interference</h3>
+<p><strong>Question:</strong> If aiterm and flow-cli both have worktrees, can they interfere?</p>
+<p><strong>Answer:</strong> Only if you put them in the SAME folder without project separation.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>graph TD
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    subgraph BAD[&quot;❌ BAD: Flat structure (can cause confusion)&quot;]
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>        B1[&quot;~/.worktrees/&quot;]
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>        B2[&quot;  ├── feature-mcp/      ← Which project?&quot;]
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>        B3[&quot;  ├── feature-help/     ← aiterm or flow-cli?&quot;]
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>        B4[&quot;  └── hotfix/           ← No way to tell!&quot;]
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    end
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    subgraph GOOD[&quot;✅ GOOD: Project subfolders (isolated)&quot;]
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>        G1[&quot;~/.git-worktrees/&quot;]
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>        G2[&quot;  ├── aiterm/&quot;]
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>        G3[&quot;  │     ├── feature-mcp/&quot;]
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>        G4[&quot;  │     └── feature-help/&quot;]
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>        G5[&quot;  └── flow-cli/&quot;]
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>        G6[&quot;        ├── feature-mcp/    ← Same branch name, different project!&quot;]
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>        G7[&quot;        └── refactor/&quot;]
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>    end
+</code></pre></div>
+<p><strong>With project subfolders:</strong>
+- <code>aiterm/feature-mcp/</code> and <code>flow-cli/feature-mcp/</code> are completely separate
+- Same branch name in different projects = no conflict
+- Easy to see which worktrees belong to which project</p>
+<p><strong>Rule:</strong> Always use the pattern <code>~/.git-worktrees/PROJECT/BRANCH/</code></p>
+<hr />
+<h3 id="quick-start-commands">Quick Start Commands</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># === FIRST TIME EVER ===</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1"># Create the top-level worktrees folder (once, ever)</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/.git-worktrees
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1"># === FIRST TIME FOR A PROJECT ===</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="c1"># Create project subfolder (once per project)</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/.git-worktrees/aiterm
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="c1"># === EACH NEW WORKTREE ===</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="c1"># Create the worktree (git creates the branch folder)</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="nb">cd</span><span class="w"> </span>~/projects/dev-tools/aiterm
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>git<span class="w"> </span>worktree<span class="w"> </span>add<span class="w"> </span>~/.git-worktrees/aiterm/BRANCH-NAME<span class="w"> </span>BRANCH-NAME
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="c1"># Install dependencies</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="nb">cd</span><span class="w"> </span>~/.git-worktrees/aiterm/BRANCH-NAME
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>npm<span class="w"> </span>install<span class="w">  </span><span class="c1"># or pip install, etc.</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="c1"># === WHEN DONE WITH A WORKTREE ===</span>
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>git<span class="w"> </span>worktree<span class="w"> </span>remove<span class="w"> </span>~/.git-worktrees/aiterm/BRANCH-NAME
+</code></pre></div>
+<hr />
+<p>Now that you've seen the practical example, let's understand <strong>why</strong> this works...</p>
+<hr />
+<h2 id="part-1-understanding-branches-the-basics">Part 1: Understanding Branches (The Basics)</h2>
+<h3 id="what-is-a-branch">What is a Branch?</h3>
+<p>Think of your project like a <strong>book you're writing</strong>. The <code>main</code> branch is the published version. When you want to try a new chapter without messing up the original, you create a branch.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>graph TD
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    subgraph &quot;Your Project&quot;
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>        MAIN[&quot;📖 main branch&lt;br/&gt;(the &#39;real&#39; version)&lt;br/&gt;Chapter 1 ✓ Chapter 2 ✓ Chapter 3 ✓&quot;]
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    end
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    MAIN --&gt;|&quot;I want to try&lt;br/&gt;a new ending...&quot;| FEATURE[&quot;📝 feature/new-ending&lt;br/&gt;(experimental version)&lt;br/&gt;Chapter 1 ✓ Chapter 2 ✓ Chapter 3...&quot;]
+</code></pre></div>
+<p><strong>Key point:</strong> A branch is just a <strong>different version</strong> of your code. It's like "Save As" for your entire project.</p>
+<hr />
+<h3 id="the-traditional-way-one-folder-many-branches">The Traditional Way: One Folder, Many Branches</h3>
+<p>Normally, you have <strong>one folder</strong> and you <strong>switch between branches</strong>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>graph TD
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    subgraph FOLDER[&quot;📁 ~/my-project/ (your ONE folder)&quot;]
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>        A[&quot;You&#39;re on: main&lt;br/&gt;(working, working...)&quot;]
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>        B[&quot;git checkout feature-a&lt;br/&gt;⚡ SWITCH! Files change!&quot;]
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>        C[&quot;Now on: feature-a&lt;br/&gt;(working, working...)&quot;]
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>        D[&quot;git checkout main&lt;br/&gt;⚡ SWITCH BACK! Files change again!&quot;]
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    end
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>    A --&gt; B --&gt; C --&gt; D
+</code></pre></div>
+<p><strong>The problem:</strong> When you switch branches, <strong>all your files change</strong>. If you have:
+- Unsaved work → It might get lost or mixed up
+- A dev server running → It gets confused
+- Two terminals open → They fight over the same files</p>
+<hr />
+<h2 id="part-2-the-problem-with-branch-switching">Part 2: The Problem with Branch Switching</h2>
+<h3 id="a-real-world-disaster">A Real-World Disaster</h3>
+<p>Imagine this scenario:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>graph TB
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    subgraph FOLDER[&quot;📁 ~/my-project/ (ONE folder for everything)&quot;]
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>        direction LR
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>        subgraph T1[&quot;Terminal 1&quot;]
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>            T1A[&quot;&#39;I&#39;m on feature-a&#39;&quot;]
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>            T1B[&quot;editing App.js&quot;]
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>            T1C[&quot;made some changes&quot;]
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>            T1D[&quot;didn&#39;t commit yet&quot;]
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>        end
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>        subgraph T2[&quot;Terminal 2&quot;]
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>            T2A[&quot;&#39;I&#39;m on feature-b&#39;&quot;]
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>            T2B[&quot;also editing App.js&quot;]
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>            T2C[&quot;made different changes&quot;]
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>            T2D[&quot;didn&#39;t commit yet&quot;]
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>        end
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>    end
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>    T1 &lt;--&gt;|&quot;💥 CONFLICT! 💥&lt;br/&gt;Same folder, same files!&quot;| T2
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>
+<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>    FOLDER --&gt; PROBLEM[&quot;Both terminals looking at SAME folder!&lt;br/&gt;When one switches branches,&lt;br/&gt;the other&#39;s work disappears!&quot;]
+</code></pre></div>
+<p><strong>What goes wrong:</strong>
+- Changes from feature-a appear in feature-b
+- Uncommitted work vanishes when switching
+- You accidentally commit feature-a code to feature-b
+- Dev servers crash because files keep changing</p>
+<hr />
+<h2 id="part-3-worktrees-the-solution">Part 3: Worktrees (The Solution)</h2>
+<h3 id="what-is-a-worktree">What is a Worktree?</h3>
+<p>A worktree is simple: <strong>each branch gets its own folder</strong>.</p>
+<p>Instead of switching branches in one folder, you have multiple folders—each permanently connected to one branch.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>graph TB
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    subgraph W1[&quot;📁 ~/my-project/&quot;]
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>        W1A[&quot;Always on: main&quot;]
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>        W1B[&quot;Has its own files&quot;]
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>    end
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>    subgraph W2[&quot;📁 ~/worktrees/feature-a/&quot;]
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>        W2A[&quot;Always on: feature-a&quot;]
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>        W2B[&quot;Has its own files&quot;]
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>    end
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>    subgraph W3[&quot;📁 ~/worktrees/feature-b/&quot;]
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>        W3A[&quot;Always on: feature-b&quot;]
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>        W3B[&quot;Has its own files&quot;]
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>    end
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>    RESULT[&quot;✅ No switching needed!&lt;br/&gt;Each folder = One branch. Forever.&quot;]
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>
+<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>    W1 --&gt; RESULT
+<a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a>    W2 --&gt; RESULT
+<a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a>    W3 --&gt; RESULT
+</code></pre></div>
+<hr />
+<h3 id="branches-vs-worktrees-the-difference">Branches vs Worktrees: The Difference</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>graph LR
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>    subgraph BRANCHES[&quot;🔀 BRANCHES (Traditional)&quot;]
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>        B1[&quot;📁 ONE folder&quot;]
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>        B2[&quot;Switch between versions&quot;]
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>        B3[&quot;Less disk space&quot;]
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>        B4[&quot;⚠️ Must commit before switch&quot;]
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>        B5[&quot;Good for: solo work&quot;]
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>    end
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>    subgraph WORKTREES[&quot;🌳 WORKTREES (Parallel)&quot;]
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>        W1[&quot;📁📁📁 Multiple folders&quot;]
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>        W2[&quot;Each folder locked to branch&quot;]
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>        W3[&quot;More disk space&quot;]
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>        W4[&quot;✅ Work on many at once&quot;]
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>        W5[&quot;Good for: parallel work&quot;]
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>    end
+</code></pre></div>
+<hr />
+<h3 id="the-magic-they-share-git-history">The Magic: They Share Git History</h3>
+<p>Here's the clever part: worktrees share the same <code>.git</code> database. They're not copies—they're <strong>views</strong> into the same repository.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>graph TB
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    subgraph GIT[&quot;🗄️ Shared Git Database&quot;]
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>        DB[&quot;.git repository&lt;br/&gt;(commits, branches, history)&quot;]
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>    end
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>    subgraph WT1[&quot;Worktree 1&quot;]
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>        F1[&quot;📁 ~/my-project/&lt;br/&gt;Branch: main&lt;br/&gt;Own working files&quot;]
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>    end
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>    subgraph WT2[&quot;Worktree 2&quot;]
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>        F2[&quot;📁 ~/worktrees/feature-a/&lt;br/&gt;Branch: feature-a&lt;br/&gt;Own working files&quot;]
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>    end
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>    subgraph WT3[&quot;Worktree 3&quot;]
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>        F3[&quot;📁 ~/worktrees/feature-b/&lt;br/&gt;Branch: feature-b&lt;br/&gt;Own working files&quot;]
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>    end
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>    DB &lt;--&gt; F1
+<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>    DB &lt;--&gt; F2
+<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>    DB &lt;--&gt; F3
+</code></pre></div>
+<p><strong>What this means:</strong>
+- Commits in one worktree are visible in all others
+- Branches are shared across all worktrees
+- But each worktree has its own files (uncommitted changes are isolated)</p>
+<hr />
+<h2 id="part-4-when-to-use-what">Part 4: When to Use What</h2>
+<h3 id="use-regular-branches-when">Use Regular Branches When:</h3>
+<ul>
+<li>✅ You only work on one thing at a time</li>
+<li>✅ You always commit before switching</li>
+<li>✅ You have limited disk space</li>
+<li>✅ You're working solo</li>
+</ul>
+<h3 id="use-worktrees-when">Use Worktrees When:</h3>
+<ul>
+<li>✅ You work on multiple features simultaneously</li>
+<li>✅ You have multiple terminals/editors open</li>
+<li>✅ You run dev servers that shouldn't be interrupted</li>
+<li>✅ You often forget to commit before switching</li>
+<li>✅ You're reviewing a PR while working on something else</li>
+<li>✅ You use AI coding assistants in parallel terminals</li>
+</ul>
+<hr />
+<h2 id="part-5-how-worktree-folders-work">Part 5: How Worktree Folders Work</h2>
+<h3 id="why-are-worktrees-outside-the-project-folder">Why Are Worktrees OUTSIDE the Project Folder?</h3>
+<p>This is important! Worktrees should <strong>never</strong> live inside your project. Here's why:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>graph TD
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>    subgraph BAD[&quot;❌ BAD: Worktree Inside Project&quot;]
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>        B1[&quot;~/projects/dev-tools/aiterm/&quot;]
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>        B2[&quot;  ├── src/&quot;]
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>        B3[&quot;  ├── docs/&quot;]
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>        B4[&quot;  ├── worktrees/           ← INSIDE PROJECT&quot;]
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>        B5[&quot;  │     └── feature-x/     ← This is a FULL COPY&quot;]
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>        B6[&quot;  │           ├── src/     ← Duplicate!&quot;]
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>        B7[&quot;  │           ├── docs/    ← Duplicate!&quot;]
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>        B8[&quot;  │           └── ...&quot;]
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>        B9[&quot;  └── package.json&quot;]
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>    end
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>    BAD --&gt; PROBLEMS[&quot;Problems:&lt;br/&gt;• Shows in git status&lt;br/&gt;• Could accidentally commit&lt;br/&gt;• Confusing nested structure&lt;br/&gt;• Might delete with project&quot;]
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>graph TD
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>    subgraph GOOD[&quot;✅ GOOD: Worktree Outside Project&quot;]
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>        G1[&quot;~/projects/dev-tools/aiterm/    (your project)&quot;]
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>        G2[&quot;  ├── src/&quot;]
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>        G3[&quot;  ├── docs/&quot;]
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>        G4[&quot;  └── package.json&quot;]
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>        G5[&quot;~/.git-worktrees/aiterm/     (separate location)&quot;]
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>        G6[&quot;  └── feature-x/&quot;]
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>        G7[&quot;        ├── src/&quot;]
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>        G8[&quot;        └── docs/&quot;]
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>    end
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>    GOOD --&gt; BENEFITS[&quot;Benefits:&lt;br/&gt;• Completely separate&lt;br/&gt;• Can&#39;t accidentally commit&lt;br/&gt;• Clean project folder&lt;br/&gt;• Easy to find all worktrees&quot;]
+</code></pre></div>
+<p><strong>Key insight:</strong> A worktree is a <strong>complete copy</strong> of all your project files. It's not just a small config file — it's everything (src/, docs/, node_modules/, etc.). That's why it needs its own space outside your project.</p>
+<hr />
+<h3 id="what-is-a-parent-directory">What is a "Parent Directory"?</h3>
+<p>A <strong>parent directory</strong> is simply the folder that contains another folder. Think of it like a filing cabinet:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>graph TD
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>    subgraph ANALOGY[&quot;📁 Folder Hierarchy&quot;]
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>        CABINET[&quot;🗄️ ~/.git-worktrees/&lt;br/&gt;(cabinet for ALL worktrees)&quot;]
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>        DRAWER[&quot;📂 aiterm/&lt;br/&gt;(drawer for aiterm project)&quot;]
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>        FOLDER[&quot;📁 feature-x/&lt;br/&gt;(one worktree)&quot;]
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>    end
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>    CABINET --&gt;|&quot;contains&quot;| DRAWER
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>    DRAWER --&gt;|&quot;contains&quot;| FOLDER
+</code></pre></div>
+<hr />
+<h3 id="real-example-the-aiterm-project">Real Example: The Aiterm Project</h3>
+<p>Your aiterm project lives at:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>~/projects/dev-tools/aiterm/     ← Main project (on &#39;dev&#39; branch)
+</code></pre></div></p>
+<p>It already has worktrees created by claude-squad:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>~/.claude-squad/worktrees/
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>├── aiterm-test_18832329dc9647d0/   ← branch: dt/aiterm-test
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>├── claude_1883239521946900/        ← branch: dt/claude
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>└── test_1883233f925c8880/          ← branch: dt/test
+</code></pre></div></p>
+<p>Here's the full picture:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>graph TB
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>    subgraph PROJECT[&quot;📁 Your Project Location&quot;]
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>        MAIN[&quot;~/projects/dev-tools/aiterm/&quot;]
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>        MAIN_BR[&quot;Branch: dev&quot;]
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>        MAIN_FILES[&quot;Contains: src/, docs/, tests/, etc.&quot;]
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>    end
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>    subgraph WORKTREES[&quot;📁 Worktrees Location (SEPARATE!)&quot;]
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>        WT_LOC[&quot;~/.claude-squad/worktrees/&quot;]
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>        WT1[&quot;aiterm-test.../&quot;]
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>        WT1_BR[&quot;Branch: dt/aiterm-test&quot;]
+<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a>
+<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>        WT2[&quot;claude.../&quot;]
+<a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a>        WT2_BR[&quot;Branch: dt/claude&quot;]
+<a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a>
+<a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a>        WT3[&quot;test.../&quot;]
+<a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a>        WT3_BR[&quot;Branch: dt/test&quot;]
+<a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a>    end
+<a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a>
+<a id="__codelineno-17-21" name="__codelineno-17-21" href="#__codelineno-17-21"></a>    subgraph SHARED[&quot;🗄️ Shared Git Database&quot;]
+<a id="__codelineno-17-22" name="__codelineno-17-22" href="#__codelineno-17-22"></a>        GIT[&quot;.git repository&lt;br/&gt;All commits, all branches&quot;]
+<a id="__codelineno-17-23" name="__codelineno-17-23" href="#__codelineno-17-23"></a>    end
+<a id="__codelineno-17-24" name="__codelineno-17-24" href="#__codelineno-17-24"></a>
+<a id="__codelineno-17-25" name="__codelineno-17-25" href="#__codelineno-17-25"></a>    MAIN &lt;--&gt; GIT
+<a id="__codelineno-17-26" name="__codelineno-17-26" href="#__codelineno-17-26"></a>    WT1 &lt;--&gt; GIT
+<a id="__codelineno-17-27" name="__codelineno-17-27" href="#__codelineno-17-27"></a>    WT2 &lt;--&gt; GIT
+<a id="__codelineno-17-28" name="__codelineno-17-28" href="#__codelineno-17-28"></a>    WT3 &lt;--&gt; GIT
+</code></pre></div>
+<p><strong>Notice:</strong> The worktrees are in <code>~/.claude-squad/worktrees/</code>, completely separate from <code>~/projects/dev-tools/aiterm/</code>. This keeps your project clean!</p>
+<hr />
+<h3 id="creating-a-manual-worktree-for-aiterm">Creating a Manual Worktree for Aiterm</h3>
+<p>If you wanted to create your own worktree (not via claude-squad):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># 1. Go to your project</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="nb">cd</span><span class="w"> </span>~/projects/dev-tools/aiterm
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="c1"># 2. Create the parent folder (only needed once per project)</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/.git-worktrees/aiterm
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="c1"># 3. Create a worktree for a new feature</span>
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>git<span class="w"> </span>worktree<span class="w"> </span>add<span class="w"> </span>~/.git-worktrees/aiterm/feature-mcp<span class="w"> </span>feature/mcp
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="c1">#                ↑                         ↑            ↑</span>
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="c1">#                │                         │            └── branch name</span>
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="c1">#                │                         └── folder name (Git creates this)</span>
+<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="c1">#                └── parent (you created with mkdir)</span>
+<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>
+<a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a><span class="c1"># Result:</span>
+<a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a><span class="c1"># ~/projects/dev-tools/aiterm/              → dev branch (main)</span>
+<a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a><span class="c1"># ~/.git-worktrees/aiterm/feature-mcp/   → feature/mcp branch (worktree)</span>
+</code></pre></div>
+<hr />
+<h3 id="the-path-breakdown">The Path Breakdown</h3>
+<p>In the path <code>~/.git-worktrees/aiterm/feature-mcp/</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>What It Is</th>
+<th>Who Creates It</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>~/</code></td>
+<td>Your home folder</td>
+<td>Already exists</td>
+</tr>
+<tr>
+<td><code>.git-worktrees/</code></td>
+<td>Hidden folder for all worktrees</td>
+<td>You (once, ever)</td>
+</tr>
+<tr>
+<td><code>aiterm/</code></td>
+<td>Subfolder for aiterm project</td>
+<td>You (once per project)</td>
+</tr>
+<tr>
+<td><code>feature-mcp/</code></td>
+<td>The actual worktree folder</td>
+<td><strong>Git</strong> (automatically)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="do-you-need-to-create-folders">Do You Need to Create Folders?</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>flowchart TD
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>    START[&quot;Want to create a worktree for aiterm&quot;]
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>    START --&gt; Q1{&quot;Does ~/.git-worktrees/aiterm/ exist?&quot;}
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>    Q1 --&gt;|&quot;YES&quot;| DIRECT[&quot;Just run:&lt;br/&gt;git worktree add ~/.git-worktrees/aiterm/BRANCH BRANCH&quot;]
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>    Q1 --&gt;|&quot;NO (first time)&quot;| MKDIR[&quot;First run:&lt;br/&gt;mkdir -p ~/.git-worktrees/aiterm&lt;br/&gt;&lt;br/&gt;Then:&lt;br/&gt;git worktree add ~/.git-worktrees/aiterm/BRANCH BRANCH&quot;]
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>    DIRECT --&gt; DONE[&quot;✅ Worktree created!&quot;]
+<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>    MKDIR --&gt; DONE
+</code></pre></div>
+<p><strong>Quick check:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># See if the parent folder exists</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>ls<span class="w"> </span>~/.git-worktrees/
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="c1"># If it doesn&#39;t exist, create it</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/.git-worktrees/aiterm
+</code></pre></div></p>
+<hr />
+<h3 id="your-current-worktree-locations">Your Current Worktree Locations</h3>
+<table>
+<thead>
+<tr>
+<th>Project</th>
+<th>Main Location</th>
+<th>Worktrees Location</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>aiterm</strong></td>
+<td><code>~/projects/dev-tools/aiterm/</code></td>
+<td><code>~/.claude-squad/worktrees/</code> (claude-squad)</td>
+</tr>
+<tr>
+<td><strong>scribe</strong></td>
+<td><code>~/projects/dev-tools/scribe/</code></td>
+<td><code>~/.git-worktrees/scribe/</code> (manual)</td>
+</tr>
+</tbody>
+</table>
+<p>You can use either location pattern — the important thing is that worktrees are <strong>outside</strong> the project folder.</p>
+<hr />
+<h3 id="do-i-need-to-create-git-worktrees">Do I Need to Create ~/.git-worktrees/?</h3>
+<p><strong>Short answer:</strong> Maybe not — it might already exist!</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># Check if it exists</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>ls<span class="w"> </span>~/.git-worktrees/
+</code></pre></div>
+<p>If you see folders listed, it already exists. If you get "No such file or directory", you need to create it once.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>flowchart TD
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>    Q[&quot;Does ~/.git-worktrees/ exist?&quot;]
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>    Q --&gt;|&quot;Yes, shows folders&quot;| EXISTS[&quot;✅ Already set up!&lt;br/&gt;Just add project subfolders as needed&quot;]
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>    Q --&gt;|&quot;No such file or directory&quot;| CREATE[&quot;Create it once:&lt;br/&gt;mkdir -p ~/.git-worktrees/&quot;]
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>    CREATE --&gt; DONE[&quot;✅ Now you&#39;re set up forever&quot;]
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>    EXISTS --&gt; USE[&quot;To add a new project&#39;s worktrees:&lt;br/&gt;mkdir -p ~/.git-worktrees/PROJECT-NAME&quot;]
+</code></pre></div>
+<p><strong>Important clarifications:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Is <code>~/.git-worktrees/</code> required?</strong></td>
+<td>No — it's just a convention. You could use <code>~/.worktrees/</code> or any name</td>
+</tr>
+<tr>
+<td><strong>Do I create it manually?</strong></td>
+<td>Yes, once. Or <code>mkdir -p</code> creates it automatically when you create a project subfolder</td>
+</tr>
+<tr>
+<td><strong>What about <code>~/.claude-squad/worktrees/</code>?</strong></td>
+<td>That's created automatically by claude-squad tool — different system</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="the-mkdir-p-flag-explained">The mkdir -p Flag Explained</h3>
+<p>The <code>-p</code> flag means "create parent directories as needed":</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1"># Without -p: FAILS if ~/.git-worktrees/ doesn&#39;t exist</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>mkdir<span class="w"> </span>~/.git-worktrees/aiterm/
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="c1"># Error: No such file or directory</span>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="c1"># With -p: Creates ALL missing folders in the path</span>
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/.git-worktrees/aiterm/
+<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="c1"># Creates:</span>
+<a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="c1">#   ~/.git-worktrees/           (if missing)</span>
+<a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a><span class="c1">#   └── aiterm/                    (the one you wanted)</span>
+</code></pre></div>
+<p><strong>Tip:</strong> Always use <code>mkdir -p</code> — it's safe even if folders already exist.</p>
+<hr />
+<h3 id="recommended-folder-structure">Recommended Folder Structure</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>graph TD
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>    subgraph HOME[&quot;Your Home Directory ~&quot;]
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>        subgraph PROJECTS[&quot;📁 ~/projects/dev-tools/ (your code)&quot;]
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>            P1[&quot;aiterm/        (main: dev)&quot;]
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>            P2[&quot;scribe/        (main: feat/mission-control-hud)&quot;]
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>            P3[&quot;other-project/&quot;]
+<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>        end
+<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>
+<a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a>        subgraph WORKTREES[&quot;📁 ~/.git-worktrees/ (worktrees)&quot;]
+<a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a>            W1[&quot;aiterm/&quot;]
+<a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a>            W1A[&quot;  └── feature-mcp/&quot;]
+<a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a>            W2[&quot;scribe/&quot;]
+<a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a>            W2A[&quot;  ├── wonderful-wilson/&quot;]
+<a id="__codelineno-24-14" name="__codelineno-24-14" href="#__codelineno-24-14"></a>            W2B[&quot;  └── hotfix/&quot;]
+<a id="__codelineno-24-15" name="__codelineno-24-15" href="#__codelineno-24-15"></a>        end
+<a id="__codelineno-24-16" name="__codelineno-24-16" href="#__codelineno-24-16"></a>
+<a id="__codelineno-24-17" name="__codelineno-24-17" href="#__codelineno-24-17"></a>        subgraph SQUAD[&quot;📁 ~/.claude-squad/worktrees/ (claude-squad)&quot;]
+<a id="__codelineno-24-18" name="__codelineno-24-18" href="#__codelineno-24-18"></a>            S1[&quot;aiterm-test.../&quot;]
+<a id="__codelineno-24-19" name="__codelineno-24-19" href="#__codelineno-24-19"></a>            S2[&quot;claude.../&quot;]
+<a id="__codelineno-24-20" name="__codelineno-24-20" href="#__codelineno-24-20"></a>        end
+<a id="__codelineno-24-21" name="__codelineno-24-21" href="#__codelineno-24-21"></a>    end
+</code></pre></div>
+<p><strong>Why separate locations?</strong>
+- Projects stay clean — only your main branch
+- Worktrees are organized by project
+- Easy to find: <code>ls ~/.git-worktrees/</code>
+- Won't accidentally delete with project cleanup</p>
+<hr />
+<h2 id="part-6-worktrees-in-practice">Part 6: Worktrees in Practice</h2>
+<h3 id="before-and-after">Before and After</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>graph TD
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>    subgraph BEFORE[&quot;❌ BEFORE: One folder, switching branches&quot;]
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>        B1[&quot;📁 ~/projects/my-app/&quot;]
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>        B2[&quot;on main... switch to feature... switch back...&quot;]
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>        B3[&quot;(files keep changing!)&quot;]
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>        B4[&quot;😵 Confusing!&quot;]
+<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>    end
+<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>
+<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a>    subgraph AFTER[&quot;✅ AFTER: Worktrees&quot;]
+<a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a>        A1[&quot;📁 ~/projects/my-app/&quot;]
+<a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a>        A1N[&quot;← Always main&quot;]
+<a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a>
+<a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a>        A2[&quot;📁 ~/.git-worktrees/my-app/login/&quot;]
+<a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a>        A2N[&quot;← Always feature/login&quot;]
+<a id="__codelineno-25-15" name="__codelineno-25-15" href="#__codelineno-25-15"></a>
+<a id="__codelineno-25-16" name="__codelineno-25-16" href="#__codelineno-25-16"></a>        A3[&quot;📁 ~/.git-worktrees/my-app/dashboard/&quot;]
+<a id="__codelineno-25-17" name="__codelineno-25-17" href="#__codelineno-25-17"></a>        A3N[&quot;← Always feature/dashboard&quot;]
+<a id="__codelineno-25-18" name="__codelineno-25-18" href="#__codelineno-25-18"></a>
+<a id="__codelineno-25-19" name="__codelineno-25-19" href="#__codelineno-25-19"></a>        A4[&quot;😌 Each folder = One job. No confusion!&quot;]
+<a id="__codelineno-25-20" name="__codelineno-25-20" href="#__codelineno-25-20"></a>    end
+</code></pre></div>
+<hr />
+<h3 id="setting-up-multiple-terminals">Setting Up Multiple Terminals</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>graph LR
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>    subgraph T1[&quot;Terminal 1&quot;]
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>        T1A[&quot;📁 ~/projects/my-app/&quot;]
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>        T1B[&quot;$ npm run dev&quot;]
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>        T1C[&quot;Running on :3000&quot;]
+<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>        T1D[&quot;Working on: main&quot;]
+<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a>        T1E[&quot;✅ Independent!&quot;]
+<a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a>    end
+<a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a>
+<a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a>    subgraph T2[&quot;Terminal 2&quot;]
+<a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a>        T2A[&quot;📁 ~/.git-worktrees/my-app/login/&quot;]
+<a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a>        T2B[&quot;$ PORT=3001 npm run dev&quot;]
+<a id="__codelineno-26-13" name="__codelineno-26-13" href="#__codelineno-26-13"></a>        T2C[&quot;Running on :3001&quot;]
+<a id="__codelineno-26-14" name="__codelineno-26-14" href="#__codelineno-26-14"></a>        T2D[&quot;Working on: feature/login&quot;]
+<a id="__codelineno-26-15" name="__codelineno-26-15" href="#__codelineno-26-15"></a>        T2E[&quot;✅ Independent!&quot;]
+<a id="__codelineno-26-16" name="__codelineno-26-16" href="#__codelineno-26-16"></a>    end
+<a id="__codelineno-26-17" name="__codelineno-26-17" href="#__codelineno-26-17"></a>
+<a id="__codelineno-26-18" name="__codelineno-26-18" href="#__codelineno-26-18"></a>    T1 &lt;--&gt;|&quot;Can&#39;t interfere!&quot;| T2
+</code></pre></div>
+<p><strong>Remember:</strong> Use different ports for dev servers (<code>PORT=3001 npm run dev</code>)</p>
+<hr />
+<h2 id="part-7-common-commands">Part 7: Common Commands</h2>
+<h3 id="the-four-commands-you-need">The Four Commands You Need</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="c1"># 1. List your worktrees</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>git<span class="w"> </span>worktree<span class="w"> </span>list
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="c1"># Output:</span>
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="c1"># /home/you/projects/my-app           abc1234 [main]</span>
+<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="c1"># /home/you/worktrees/my-app-login    def5678 [feature/login]</span>
+<a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a>
+<a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a>
+<a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a><span class="c1"># 2. Create a new worktree</span>
+<a id="__codelineno-27-10" name="__codelineno-27-10" href="#__codelineno-27-10"></a>git<span class="w"> </span>worktree<span class="w"> </span>add<span class="w"> </span>&lt;folder-path&gt;<span class="w"> </span>&lt;branch-name&gt;
+<a id="__codelineno-27-11" name="__codelineno-27-11" href="#__codelineno-27-11"></a>
+<a id="__codelineno-27-12" name="__codelineno-27-12" href="#__codelineno-27-12"></a><span class="c1"># Example:</span>
+<a id="__codelineno-27-13" name="__codelineno-27-13" href="#__codelineno-27-13"></a>git<span class="w"> </span>worktree<span class="w"> </span>add<span class="w"> </span>~/.git-worktrees/my-app/login<span class="w"> </span>feature/login
+<a id="__codelineno-27-14" name="__codelineno-27-14" href="#__codelineno-27-14"></a>
+<a id="__codelineno-27-15" name="__codelineno-27-15" href="#__codelineno-27-15"></a>
+<a id="__codelineno-27-16" name="__codelineno-27-16" href="#__codelineno-27-16"></a><span class="c1"># 3. Remove a worktree (when done with the branch)</span>
+<a id="__codelineno-27-17" name="__codelineno-27-17" href="#__codelineno-27-17"></a>git<span class="w"> </span>worktree<span class="w"> </span>remove<span class="w"> </span>~/.git-worktrees/my-app/login
+<a id="__codelineno-27-18" name="__codelineno-27-18" href="#__codelineno-27-18"></a>
+<a id="__codelineno-27-19" name="__codelineno-27-19" href="#__codelineno-27-19"></a>
+<a id="__codelineno-27-20" name="__codelineno-27-20" href="#__codelineno-27-20"></a><span class="c1"># 4. Clean up broken worktrees (folder deleted but git remembers)</span>
+<a id="__codelineno-27-21" name="__codelineno-27-21" href="#__codelineno-27-21"></a>git<span class="w"> </span>worktree<span class="w"> </span>prune
+</code></pre></div>
+<hr />
+<h3 id="workflow-decision-tree">Workflow Decision Tree</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>flowchart TD
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>    Start[&quot;🤔 Want to work on&lt;br/&gt;a new feature?&quot;]
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>    Start --&gt; Q1{&quot;Will you work on&lt;br/&gt;multiple things&lt;br/&gt;at once?&quot;}
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>
+<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>    Q1 --&gt;|&quot;No, just one thing&quot;| Branch[&quot;Use regular branch&lt;br/&gt;&lt;code&gt;git checkout -b feature-x&lt;/code&gt;&quot;]
+<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>
+<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a>    Q1 --&gt;|&quot;Yes, parallel work&quot;| Worktree[&quot;Create a worktree&quot;]
+<a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a>
+<a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a>    Worktree --&gt; Step1[&quot;1. Create parent dir (if needed)&lt;br/&gt;&lt;code&gt;mkdir -p ~/.git-worktrees/project/&lt;/code&gt;&quot;]
+<a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a>
+<a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a>    Step1 --&gt; Step2[&quot;2. Add worktree&lt;br/&gt;&lt;code&gt;git worktree add ~/.git-worktrees/project/feature-x feature-x&lt;/code&gt;&quot;]
+<a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a>
+<a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a>    Step2 --&gt; Step3[&quot;3. Install dependencies&lt;br/&gt;&lt;code&gt;cd ~/.git-worktrees/project/feature-x &amp;&amp; npm install&lt;/code&gt;&quot;]
+<a id="__codelineno-28-15" name="__codelineno-28-15" href="#__codelineno-28-15"></a>
+<a id="__codelineno-28-16" name="__codelineno-28-16" href="#__codelineno-28-16"></a>    Step3 --&gt; Work[&quot;4. Work in that folder&lt;br/&gt;Each folder = one branch&quot;]
+<a id="__codelineno-28-17" name="__codelineno-28-17" href="#__codelineno-28-17"></a>
+<a id="__codelineno-28-18" name="__codelineno-28-18" href="#__codelineno-28-18"></a>    Work --&gt; Done{&quot;Done with&lt;br/&gt;the feature?&quot;}
+<a id="__codelineno-28-19" name="__codelineno-28-19" href="#__codelineno-28-19"></a>
+<a id="__codelineno-28-20" name="__codelineno-28-20" href="#__codelineno-28-20"></a>    Done --&gt;|&quot;No&quot;| Work
+<a id="__codelineno-28-21" name="__codelineno-28-21" href="#__codelineno-28-21"></a>    Done --&gt;|&quot;Yes&quot;| Cleanup[&quot;Remove worktree&lt;br/&gt;&lt;code&gt;git worktree remove path&lt;/code&gt;&quot;]
+<a id="__codelineno-28-22" name="__codelineno-28-22" href="#__codelineno-28-22"></a>
+<a id="__codelineno-28-23" name="__codelineno-28-23" href="#__codelineno-28-23"></a>    Branch --&gt; BranchDone[&quot;Work, commit, merge&lt;br/&gt;as usual&quot;]
+</code></pre></div>
+<hr />
+<h2 id="part-8-best-practices">Part 8: Best Practices</h2>
+<h3 id="the-golden-rules">The Golden Rules</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>graph TD
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>    subgraph RULES[&quot;🏆 Best Practices&quot;]
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>        R1[&quot;🌳 ONE FOLDER = ONE BRANCH = ONE PURPOSE&quot;]
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>        R2[&quot;📍 Never switch branches in a worktree&quot;]
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>        R3[&quot;💾 Commit before leaving any worktree&quot;]
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a>        R4[&quot;🔢 Use different ports for dev servers&quot;]
+<a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a>        R5[&quot;🏷️ Name terminal tabs by branch&quot;]
+<a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a>        R6[&quot;📁 Keep worktrees in a consistent location&quot;]
+<a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a>    end
+</code></pre></div>
+<h3 id="do-this">DO This ✅</h3>
+<table>
+<thead>
+<tr>
+<th>Practice</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Use a consistent worktree location</strong></td>
+<td>Easy to find: <code>~/.worktrees/</code> or <code>~/.git-worktrees/</code></td>
+</tr>
+<tr>
+<td><strong>Name folders clearly</strong></td>
+<td><code>project-feature-name</code> not <code>temp1</code>, <code>temp2</code></td>
+</tr>
+<tr>
+<td><strong>Run <code>git status</code> first</strong></td>
+<td>Always know which branch you're on</td>
+</tr>
+<tr>
+<td><strong>Commit often</strong></td>
+<td>Even WIP commits prevent data loss</td>
+</tr>
+<tr>
+<td><strong>Use different ports</strong></td>
+<td><code>PORT=3001 npm run dev</code> for second server</td>
+</tr>
+<tr>
+<td><strong>Label terminal tabs</strong></td>
+<td>"main", "feature-login", "hotfix"</td>
+</tr>
+<tr>
+<td><strong>Clean up when done</strong></td>
+<td><code>git worktree remove</code> + delete branch</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dont-do-this">DON'T Do This ❌</h3>
+<table>
+<thead>
+<tr>
+<th>Anti-Pattern</th>
+<th>Why It's Bad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Switching branches in a worktree</strong></td>
+<td>Defeats the purpose! Make another worktree instead</td>
+</tr>
+<tr>
+<td><strong>Creating worktrees inside the project</strong></td>
+<td>Gets messy, might accidentally commit worktree</td>
+</tr>
+<tr>
+<td><strong>Forgetting to install dependencies</strong></td>
+<td>Each worktree needs its own <code>node_modules/</code></td>
+</tr>
+<tr>
+<td><strong>Leaving worktrees forever</strong></td>
+<td>Clutters disk, confuses future you</td>
+</tr>
+<tr>
+<td><strong>Same port for multiple servers</strong></td>
+<td>They'll conflict and crash</td>
+</tr>
+<tr>
+<td><strong>Not naming folders clearly</strong></td>
+<td>"Which worktree was feature-x again?"</td>
+</tr>
+</tbody>
+</table>
+<h3 id="recommended-folder-structure_1">Recommended Folder Structure</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>~/.git-worktrees/              # All worktrees live here
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>├── project-a/
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>│   ├── feature-login/            # One feature
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>│   ├── feature-dashboard/        # Another feature
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a>│   └── hotfix-urgent/            # Hotfix
+<a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a>└── project-b/
+<a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a>    └── refactor-api/             # Different project
+<a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a>
+<a id="__codelineno-30-9" name="__codelineno-30-9" href="#__codelineno-30-9"></a>~/projects/                       # Your main repos
+<a id="__codelineno-30-10" name="__codelineno-30-10" href="#__codelineno-30-10"></a>├── project-a/                    # Main branch lives here
+<a id="__codelineno-30-11" name="__codelineno-30-11" href="#__codelineno-30-11"></a>└── project-b/                    # Main branch lives here
+</code></pre></div>
+<hr />
+<h2 id="part-9-quick-reference-card">Part 9: Quick Reference Card</h2>
+<h3 id="worktrees-cheat-sheet">Worktrees Cheat Sheet</h3>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>See all worktrees</strong></td>
+<td><code>git worktree list</code></td>
+</tr>
+<tr>
+<td><strong>Create worktree</strong></td>
+<td><code>git worktree add &lt;path&gt; &lt;branch&gt;</code></td>
+</tr>
+<tr>
+<td><strong>Remove worktree</strong></td>
+<td><code>git worktree remove &lt;path&gt;</code></td>
+</tr>
+<tr>
+<td><strong>Fix broken references</strong></td>
+<td><code>git worktree prune</code></td>
+</tr>
+<tr>
+<td><strong>Create parent dir</strong></td>
+<td><code>mkdir -p ~/.git-worktrees/project/</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="quick-setup-for-new-feature">Quick Setup for New Feature</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="c1"># One-liner: create worktree + cd + install</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/.git-worktrees/myapp<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>git<span class="w"> </span>worktree<span class="w"> </span>add<span class="w"> </span>~/.git-worktrees/myapp/feature-x<span class="w"> </span>feature-x<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="nb">cd</span><span class="w"> </span>~/.git-worktrees/myapp/feature-x<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>npm<span class="w"> </span>install
+</code></pre></div>
+<hr />
+<h2 id="part-10-troubleshooting">Part 10: Troubleshooting</h2>
+<h3 id="branch-is-already-checked-out">"Branch is already checked out"</h3>
+<p>You can't have the same branch in two worktrees. If you see this error:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>fatal: &#39;feature/login&#39; is already checked out at &#39;/home/you/worktrees/my-app-login&#39;
+</code></pre></div>
+<p><strong>Solution:</strong> Use the existing worktree, or checkout a different branch.</p>
+<hr />
+<h3 id="i-deleted-the-folder-but-git-still-thinks-it-exists">"I deleted the folder but git still thinks it exists"</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="c1"># Clean up references to deleted worktrees</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>git<span class="w"> </span>worktree<span class="w"> </span>prune
+</code></pre></div>
+<hr />
+<h3 id="parent-directory-doesnt-exist">"Parent directory doesn't exist"</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="c1"># Error: fatal: cannot mkdir &#39;path&#39;: No such file or directory</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>
+<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="c1"># Solution: Create the parent first</span>
+<a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/.git-worktrees/my-project/
+<a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a>git<span class="w"> </span>worktree<span class="w"> </span>add<span class="w"> </span>~/.git-worktrees/my-project/feature<span class="w"> </span>feature-x
+</code></pre></div>
+<hr />
+<h3 id="i-made-changes-in-the-wrong-worktree">"I made changes in the wrong worktree"</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="c1"># In the WRONG worktree, stash your changes</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>git<span class="w"> </span>stash<span class="w"> </span>push<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;oops, meant for other branch&quot;</span>
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>
+<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="c1"># Go to the CORRECT worktree</span>
+<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="nb">cd</span><span class="w"> </span>~/.git-worktrees/correct-branch
+<a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a>
+<a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a><span class="c1"># Apply the stash</span>
+<a id="__codelineno-35-8" name="__codelineno-35-8" href="#__codelineno-35-8"></a>git<span class="w"> </span>stash<span class="w"> </span>pop
+</code></pre></div>
+<hr />
+<h2 id="part-11-backup-recovery">Part 11: Backup &amp; Recovery</h2>
+<h3 id="do-i-need-to-back-up-the-git-worktrees-folder">Do I Need to Back Up the ~/.git-worktrees/ Folder?</h3>
+<p><strong>Short answer: No.</strong> Worktree folders are disposable. Here's why:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>graph TD
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>    subgraph BACKED_UP[&quot;✅ Already Backed Up (via git push to GitHub)&quot;]
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>        B1[&quot;All your commits&quot;]
+<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a>        B2[&quot;All your branches&quot;]
+<a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a>        B3[&quot;All code history&quot;]
+<a id="__codelineno-36-6" name="__codelineno-36-6" href="#__codelineno-36-6"></a>        B4[&quot;Everything on remote (GitHub/GitLab)&quot;]
+<a id="__codelineno-36-7" name="__codelineno-36-7" href="#__codelineno-36-7"></a>    end
+<a id="__codelineno-36-8" name="__codelineno-36-8" href="#__codelineno-36-8"></a>
+<a id="__codelineno-36-9" name="__codelineno-36-9" href="#__codelineno-36-9"></a>    subgraph RECREATABLE[&quot;🔄 Easily Recreated (30 seconds)&quot;]
+<a id="__codelineno-36-10" name="__codelineno-36-10" href="#__codelineno-36-10"></a>        R1[&quot;~/.git-worktrees/ folder&quot;]
+<a id="__codelineno-36-11" name="__codelineno-36-11" href="#__codelineno-36-11"></a>        R2[&quot;Any worktree folder&quot;]
+<a id="__codelineno-36-12" name="__codelineno-36-12" href="#__codelineno-36-12"></a>        R3[&quot;node_modules/ (npm install)&quot;]
+<a id="__codelineno-36-13" name="__codelineno-36-13" href="#__codelineno-36-13"></a>    end
+<a id="__codelineno-36-14" name="__codelineno-36-14" href="#__codelineno-36-14"></a>
+<a id="__codelineno-36-15" name="__codelineno-36-15" href="#__codelineno-36-15"></a>    subgraph AT_RISK[&quot;⚠️ Only Thing At Risk&quot;]
+<a id="__codelineno-36-16" name="__codelineno-36-16" href="#__codelineno-36-16"></a>        A1[&quot;Uncommitted changes&quot;]
+<a id="__codelineno-36-17" name="__codelineno-36-17" href="#__codelineno-36-17"></a>        A2[&quot;Unstaged files&quot;]
+<a id="__codelineno-36-18" name="__codelineno-36-18" href="#__codelineno-36-18"></a>    end
+<a id="__codelineno-36-19" name="__codelineno-36-19" href="#__codelineno-36-19"></a>
+<a id="__codelineno-36-20" name="__codelineno-36-20" href="#__codelineno-36-20"></a>    BACKED_UP --&gt; SAFE[&quot;Safe on GitHub&quot;]
+<a id="__codelineno-36-21" name="__codelineno-36-21" href="#__codelineno-36-21"></a>    RECREATABLE --&gt; EASY[&quot;Just run git worktree add again&quot;]
+<a id="__codelineno-36-22" name="__codelineno-36-22" href="#__codelineno-36-22"></a>    AT_RISK --&gt; FIX[&quot;Solution: Commit and push regularly!&quot;]
+</code></pre></div>
+<h3 id="what-if-i-lose-a-worktree-folder">What If I Lose a Worktree Folder?</h3>
+<p>No problem! Recreate it in 30 seconds:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="c1"># Worktree folder got deleted somehow? Just recreate it:</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="nb">cd</span><span class="w"> </span>~/projects/dev-tools/aiterm
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>git<span class="w"> </span>worktree<span class="w"> </span>add<span class="w"> </span>~/.git-worktrees/aiterm/feature-mcp<span class="w"> </span>feature/mcp
+<a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="nb">cd</span><span class="w"> </span>~/.git-worktrees/aiterm/feature-mcp
+<a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a>npm<span class="w"> </span>install
+<a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a>
+<a id="__codelineno-37-7" name="__codelineno-37-7" href="#__codelineno-37-7"></a><span class="c1"># Done! All your COMMITTED work is restored.</span>
+</code></pre></div>
+<p><strong>The only thing you lose:</strong> Uncommitted changes in that worktree.</p>
+<hr />
+<h3 id="the-real-backup-strategy">The Real Backup Strategy</h3>
+<table>
+<thead>
+<tr>
+<th>What</th>
+<th>How to Back Up</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Committed code</strong></td>
+<td><code>git push</code></td>
+<td>Already on GitHub!</td>
+</tr>
+<tr>
+<td><strong>Uncommitted work</strong></td>
+<td><code>git commit -m "WIP"</code> then <code>git push</code></td>
+<td>Do this before leaving</td>
+</tr>
+<tr>
+<td><strong>Worktree structure</strong></td>
+<td>Don't bother</td>
+<td>Recreate in 30 seconds</td>
+</tr>
+<tr>
+<td><strong>~/.git-worktrees/ folder</strong></td>
+<td>Don't bother</td>
+<td>Just folders pointing to branches</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="avoid-cloud-sync-for-worktrees">Avoid Cloud Sync for Worktrees</h3>
+<p><strong>⚠️ Don't put worktrees in cloud-synced folders:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th>Cloud Synced?</th>
+<th>Recommendation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>~/.git-worktrees/</code></td>
+<td>❌ No</td>
+<td>✅ <strong>Recommended</strong></td>
+</tr>
+<tr>
+<td><code>~/Documents/worktrees/</code></td>
+<td>✅ Yes (iCloud)</td>
+<td>❌ Avoid</td>
+</tr>
+<tr>
+<td><code>~/Dropbox/worktrees/</code></td>
+<td>✅ Yes</td>
+<td>❌ Avoid</td>
+</tr>
+<tr>
+<td><code>~/Desktop/worktrees/</code></td>
+<td>✅ Yes (iCloud)</td>
+<td>❌ Avoid</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Why avoid cloud sync?</strong>
+- Git's internal files don't sync well
+- Partial syncs can corrupt repositories
+- Huge bandwidth (node_modules syncing constantly)
+- Sync conflicts when files change rapidly</p>
+<hr />
+<h3 id="golden-rule-for-backups">Golden Rule for Backups</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>graph LR
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>    RULE[&quot;🏆 Golden Rule&quot;]
+<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a>    RULE --&gt; COMMITTED[&quot;If it&#39;s committed + pushed&lt;br/&gt;= Backed up on GitHub&quot;]
+<a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a>    RULE --&gt; NOT[&quot;If it&#39;s NOT committed&lt;br/&gt;= NOT backed up anywhere&quot;]
+<a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a>    RULE --&gt; WORKTREE[&quot;Worktree folders&lt;br/&gt;= Don&#39;t need backup (disposable)&quot;]
+</code></pre></div>
+<p><strong>Before leaving any worktree:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="c1"># Quick save (even if not finished)</span>
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>git<span class="w"> </span>add<span class="w"> </span>-A
+<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;WIP: [what you were working on]&quot;</span>
+<a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a>git<span class="w"> </span>push
+<a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a>
+<a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a><span class="c1"># Now it&#39;s backed up on GitHub!</span>
+</code></pre></div>
+<hr />
+<h2 id="summary">Summary</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>graph LR
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>    subgraph KEY[&quot;🔑 Key Takeaways&quot;]
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>        K1[&quot;Branch = version of code&quot;]
+<a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a>        K2[&quot;Worktree = folder for a branch&quot;]
+<a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a>        K3[&quot;Use worktrees for parallel work&quot;]
+<a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a>        K4[&quot;Each worktree is independent&quot;]
+<a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a>        K5[&quot;They share git history&quot;]
+<a id="__codelineno-40-8" name="__codelineno-40-8" href="#__codelineno-40-8"></a>        K6[&quot;~/.git-worktrees/ is NOT auto-created&quot;]
+<a id="__codelineno-40-9" name="__codelineno-40-9" href="#__codelineno-40-9"></a>        K7[&quot;No need to backup worktree folders&quot;]
+<a id="__codelineno-40-10" name="__codelineno-40-10" href="#__codelineno-40-10"></a>    end
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Branches</th>
+<th>Worktrees</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>📁 One folder</td>
+<td>📁📁📁 Multiple folders</td>
+</tr>
+<tr>
+<td>🔀 Switch between versions</td>
+<td>🔒 Each folder locked to branch</td>
+</tr>
+<tr>
+<td>💾 Less disk space</td>
+<td>💾 More disk space</td>
+</tr>
+<tr>
+<td>⚠️ Must commit before switch</td>
+<td>✅ Work on many things at once</td>
+</tr>
+<tr>
+<td>👤 Good for solo work</td>
+<td>👥 Good for parallel work, AI assistants</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="https://git-scm.com/docs/git-worktree">Official Git Worktree Documentation</a></li>
+<li>Run <code>git worktree --help</code> for all options</li>
+</ul>
+<hr />
+<p><em>Remember: Worktrees aren't replacing branches—they're giving each branch its own home.</em> 🏠</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Data-Wise" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
