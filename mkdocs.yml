@@ -102,6 +102,7 @@ nav:
   - Guides:
     - Video Walkthrough: guides/VIDEO-WALKTHROUGH.md
     - Claude Code Tutorial: CLAUDE-CODE-TUTORIAL.md
+    - Git Worktrees Guide: guides/GIT-WORKTREES-GUIDE.md
     - OpenCode Agent Testing: guides/OPENCODE-AGENT-TESTING.md
   - Gemini CLI:
     - Reference Card: gemini-cli/GEMINI_REFCARD.md
