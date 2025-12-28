@@ -4096,11 +4096,11 @@
 <p><strong>Result — Three separate folders:</strong></p>
 <pre class="mermaid"><code>graph TD
     subgraph RESULT["Your Setup After These Commands"]
-        M["📁 ~/projects/dev-tools/aiterm/&lt;br/&gt;Branch: dev (main development)&lt;br/&gt;Your primary workspace"]
+        M["📁 ~/projects/.../aiterm&lt;br/&gt;Branch: dev"]
 
-        A["📁 ~/.git-worktrees/aiterm/feature-mcp/&lt;br/&gt;Branch: feature/mcp&lt;br/&gt;Working on MCP support"]
+        A["📁 ~/.git-worktrees/.../feature-mcp&lt;br/&gt;Branch: feature/mcp"]
 
-        B["📁 ~/.git-worktrees/aiterm/feature-help/&lt;br/&gt;Branch: feature/help&lt;br/&gt;Working on CLI help"]
+        B["📁 ~/.git-worktrees/.../feature-help&lt;br/&gt;Branch: feature/help"]
     end
 
     M --- A
@@ -5080,14 +5080,14 @@
 - No cross-branch interference
 - Each terminal/Claude session is isolated</p>
 <pre class="mermaid"><code>graph TD
-    subgraph CORRECT["✅ CORRECT: Each Claude in its worktree"]
-        T1["Terminal 1&lt;br/&gt;cd ~/.git-worktrees/scribe/mission-control-hud&lt;br/&gt;claude&lt;br/&gt;→ Works on feat/mission-control-hud"]
-        T2["Terminal 2&lt;br/&gt;cd ~/.git-worktrees/scribe/wonderful-wilson&lt;br/&gt;claude&lt;br/&gt;→ Works on wonderful-wilson"]
+    subgraph CORRECT["✅ CORRECT"]
+        T1["Terminal 1: scribe-hud worktree&lt;br/&gt;→ mission-control-hud branch"]
+        T2["Terminal 2: scribe-alt worktree&lt;br/&gt;→ wonderful-wilson branch"]
     end
 
-    subgraph WRONG["❌ WRONG: Both in main folder"]
-        T3["Terminal 1&lt;br/&gt;cd ~/projects/dev-tools/scribe&lt;br/&gt;claude&lt;br/&gt;→ Both see same files!"]
-        T4["Terminal 2&lt;br/&gt;cd ~/projects/dev-tools/scribe&lt;br/&gt;claude&lt;br/&gt;→ Branches interfere!"]
+    subgraph WRONG["❌ WRONG"]
+        T3["Terminal 1: main folder&lt;br/&gt;→ Same files!"]
+        T4["Terminal 2: main folder&lt;br/&gt;→ Interference!"]
     end</code></pre>
 <hr />
 <h3 id="moving-an-existing-branch-to-a-worktree">Moving an Existing Branch to a Worktree</h3>
@@ -5193,21 +5193,21 @@
 </table>
 <hr />
 <p><strong>Why the difference?</strong></p>
-<pre class="mermaid"><code>graph TD
-    subgraph LOCAL["📁 Per-Worktree Dependencies"]
-        L1["Node.js → node_modules/"]
-        L2["Python venv → .venv/"]
-        L3["R renv → renv/library/"]
+<pre class="mermaid"><code>graph LR
+    subgraph GLOBAL["🌐 Global Cache"]
+        G1["Rust"]
+        G2["Go"]
+        G3["R"]
     end
 
-    subgraph GLOBAL["🌐 Global/Cached Dependencies"]
-        G1["Rust → ~/.cargo/"]
-        G2["Go → ~/go/pkg/"]
-        G3["R → ~/Library/R/"]
+    subgraph LOCAL["📁 Per-Worktree"]
+        L1["Node.js"]
+        L2["Python"]
+        L3["R renv"]
     end
 
-    LOCAL --&gt; NEED["Need install per worktree"]
-    GLOBAL --&gt; SHARED["Shared automatically"]</code></pre>
+    GLOBAL --&gt; SHARED["Shared&lt;br/&gt;No install needed"]
+    LOCAL --&gt; NEED["Separate&lt;br/&gt;Install required"]</code></pre>
 <hr />
 <p><strong>Per-worktree installs (Node.js, Python):</strong></p>
 <p>Each worktree could have different <code>package.json</code> or <code>requirements.txt</code> changes, so they need separate installs:</p>
