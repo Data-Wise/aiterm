@@ -1098,6 +1098,54 @@ flowchart TD
 
 ---
 
+### Installing Dependencies in Worktrees
+
+**Each worktree needs its own dependencies.** They're NOT shared between worktrees.
+
+| Project Type | Install Command |
+|--------------|-----------------|
+| **Node.js** | `npm install` |
+| **Python** | `pip install -e .` or `uv pip install -e .` |
+| **Rust** | `cargo build` (fetches automatically) |
+| **R** | Usually nothing (packages are global) |
+
+**Why not shared?**
+
+```mermaid
+graph TD
+    subgraph WT1["Worktree 1: feature-a"]
+        N1["node_modules/<br/>Has package X v1.0"]
+    end
+
+    subgraph WT2["Worktree 2: feature-b"]
+        N2["node_modules/<br/>Has package X v2.0"]
+    end
+
+    NOTE["Different branches might need<br/>different dependency versions!"]
+```
+
+Each worktree could have different `package.json` changes, so they need separate `node_modules/`.
+
+**After creating a worktree, always install:**
+
+```bash
+# Node.js projects
+cd ~/.git-worktrees/project/feature-branch
+npm install
+
+# Python projects
+cd ~/.git-worktrees/project/feature-branch
+pip install -e .
+```
+
+**Quick check — are dependencies installed?**
+
+```bash
+ls node_modules  # Should show packages, not "No such file"
+```
+
+---
+
 ### Shell Aliases for Quick Access
 
 Add these to `~/.config/zsh/.zshrc` or `~/.zshrc`:
