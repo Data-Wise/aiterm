@@ -58,8 +58,15 @@ This file provides guidance to Claude Code when working with the aiterm project.
 
 **Next Phase:** v0.4.0 - Workflow Automation & Craft Integration
 - [ ] **Phase 1:** Workflow Templates (`ait recipes list/show/apply`)
+- [ ] **Phase 1b:** Feature Workflow (`ait feature status/start/cleanup`)
 - [ ] **Phase 2:** Craft Plugin Management (`ait craft install/sync/run`)
 - [ ] **Phase 3:** Session-Aware Workflows
+
+**Feature Branch Workflow Split (aiterm + flow-cli):**
+- **flow-cli** → Shell aliases (`gfs`, `gfp`, `gfr`, `wt*`) - instant, zero overhead
+- **aiterm** → Rich CLI (`ait feature status/start/cleanup`) - visualization, automation
+- **craft** → AI-assisted (`/craft:git:feature`) - tests, changelog, PR templates
+- See: `docs/proposals/FEATURE-WORKFLOW-OWNERSHIP.md`
 
 **Integration with Craft plugin v1.8.0 (Phase 0.5 complete):**
 - 60 commands available for workflow recipes

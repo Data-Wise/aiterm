@@ -53,7 +53,26 @@ next: Plan v0.4.0 - Workflow Templates (ait recipes)
 - [ ] Session checks in workflow runner
 - [ ] Task auto-update during workflows
 
-## ✅ Just Completed (Session Dec 28, 2025 - Docs Workflow & craft v1.9.0)
+## ✅ Just Completed (Session Dec 28, 2025 - Feature Branch Workflow)
+
+- ✅ **Feature Branch + Worktree Workflow Proposal**
+  - Created comprehensive proposal combining feature → dev → main discipline with git worktrees
+  - Analyzed ownership split: flow-cli (shell aliases) vs aiterm (rich CLI)
+  - docs/proposals/FEATURE-BRANCH-WORKFLOW.md - Main proposal
+  - docs/proposals/FEATURE-BRANCH-NEXT-STEPS.md - Implementation plan
+  - docs/proposals/FEATURE-WORKFLOW-OWNERSHIP.md - Ownership analysis
+
+- ✅ **Updated aiterm Planning Docs**
+  - V0.4.0-PLAN.md: Added Phase 1b (Feature Workflow Commands)
+  - CLAUDE.md: Added feature workflow split documentation
+  - Phase table updated with new phases
+
+- ✅ **Created flow-cli Proposal**
+  - docs/decisions/PROPOSAL-GIT-FEATURE-WORKFLOW.md
+  - Updated flow-cli .STATUS with v4.1.0 roadmap
+  - Ready for implementation in separate session
+
+## ✅ Previous Session (Dec 28, 2025 - Docs Workflow & craft v1.9.0)
 
 - ✅ **aiterm Docs Reorganization**
   - Reduced navigation from 12 to 8 top-level sections
