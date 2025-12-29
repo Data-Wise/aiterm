@@ -841,6 +841,157 @@ aiterm terminals profile "Production"
 
 ---
 
+## Ghostty Integration (v0.3.9+)
+
+Commands for managing Ghostty terminal configuration. Ghostty is a fast, GPU-accelerated terminal emulator by Mitchell Hashimoto.
+
+### `aiterm ghostty status`
+
+Show current Ghostty configuration.
+
+```bash
+aiterm ghostty status
+ait ghostty status
+```
+
+**Output:**
+```
+Ghostty Configuration
+========================================
+Config file: /Users/dt/.config/ghostty/config
+
+Font:       JetBrains Mono @ 14pt
+Theme:      catppuccin-mocha
+Padding:    x=10, y=8
+Opacity:    1.0
+Cursor:     block
+```
+
+---
+
+### `aiterm ghostty config`
+
+Display config file location and current values.
+
+```bash
+aiterm ghostty config
+```
+
+**Output:**
+```
+Config Path: ~/.config/ghostty/config
+
+Current values:
+  font-family = JetBrains Mono
+  font-size = 14
+  theme = catppuccin-mocha
+  window-padding-x = 10
+  window-padding-y = 8
+```
+
+---
+
+### `aiterm ghostty theme [name]`
+
+List available themes or set a theme.
+
+```bash
+# List all 14 built-in themes
+aiterm ghostty theme
+
+# Set a theme
+aiterm ghostty theme dracula
+aiterm ghostty theme tokyo-night
+```
+
+**Output (list):**
+```
+Available Ghostty Themes (14)
+
+catppuccin-mocha    catppuccin-latte    catppuccin-frappe
+catppuccin-macchiato dracula            gruvbox-dark
+gruvbox-light       nord               solarized-dark
+solarized-light     tokyo-night        tokyo-night-storm
+one-dark            one-light
+
+Current: catppuccin-mocha
+
+Set theme: aiterm ghostty theme <name>
+```
+
+**Output (set):**
+```
+✓ Theme set to 'dracula'
+  Config updated: ~/.config/ghostty/config
+  Note: Ghostty auto-reloads on config change
+```
+
+---
+
+### `aiterm ghostty font [family] [size]`
+
+Get or set font configuration.
+
+```bash
+# Show current font
+aiterm ghostty font
+
+# Set font family only
+aiterm ghostty font "Fira Code"
+
+# Set font family and size
+aiterm ghostty font "JetBrains Mono" 16
+```
+
+**Output (get):**
+```
+Current Font: JetBrains Mono @ 14pt
+```
+
+**Output (set):**
+```
+✓ Font updated
+  Family: JetBrains Mono
+  Size: 16pt
+```
+
+---
+
+### `aiterm ghostty set <key> <value>`
+
+Set any Ghostty configuration value.
+
+```bash
+# Set window padding
+aiterm ghostty set window-padding-x 12
+aiterm ghostty set window-padding-y 8
+
+# Set background opacity
+aiterm ghostty set background-opacity 0.95
+
+# Set cursor style
+aiterm ghostty set cursor-style underline
+```
+
+**Output:**
+```
+✓ Set window-padding-x = 12
+  Config: ~/.config/ghostty/config
+```
+
+**Common configuration keys:**
+| Key | Values | Description |
+|-----|--------|-------------|
+| `theme` | Theme name | Color scheme |
+| `font-family` | Font name | Monospace font |
+| `font-size` | Integer | Font size in points |
+| `window-padding-x` | Integer | Horizontal padding |
+| `window-padding-y` | Integer | Vertical padding |
+| `background-opacity` | 0.0-1.0 | Window transparency |
+| `cursor-style` | block/bar/underline | Cursor shape |
+
+---
+
 ## Examples
 
 ### Quick Setup for Claude Code
