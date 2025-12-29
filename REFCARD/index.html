@@ -2335,7 +2335,7 @@
 
 <h1 id="aiterm-quick-reference">aiterm Quick Reference</h1>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>┌─────────────────────────────────────────────────────────────┐
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│ AITERM v0.3.8 - Terminal Optimizer for AI Development      │
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│ AITERM v0.3.9 - Terminal Optimizer for AI Development      │
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├─────────────────────────────────────────────────────────────┤
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│                                                             │
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│ ESSENTIAL                                                   │
@@ -2382,39 +2382,55 @@
 <a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>│ ait docs check          Validate documentation              │
 <a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>│ ait docs serve          Preview docs locally                │
 <a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>│                                                             │
-<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>├─────────────────────────────────────────────────────────────┤
-<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>│ COMMON WORKFLOWS                                            │
-<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>│ ────────────────                                            │
-<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>│                                                             │
-<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>│ Quick install:                                              │
-<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>│   curl -fsSL .../install.sh | bash                          │
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>│ TERMINALS                                                   │
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>│ ─────────                                                   │
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>│ ait terminals list      List supported terminals            │
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>│ ait terminals detect    Detect current terminal             │
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>│ ait terminals features  Show terminal features              │
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>│ ait terminals compare   Compare terminal capabilities       │
 <a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>│                                                             │
-<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>│ First-time setup:                                           │
-<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>│   ait doctor &amp;&amp; ait hello                                   │
-<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>│                                                             │
-<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>│ Switch context when entering project:                       │
-<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>│   cd ~/my-project &amp;&amp; ait switch                             │
-<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>│                                                             │
-<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>│ Backup before changes:                                      │
-<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>│   ait claude backup &amp;&amp; ait claude approvals preset safe     │
-<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>│                                                             │
-<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>├─────────────────────────────────────────────────────────────┤
-<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>│ SHELL ALIASES                                               │
-<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>│ ─────────────                                               │
-<a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>│ ait          aiterm (main CLI)                              │
-<a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>│ oc           opencode (OpenCode CLI)                        │
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>│ GHOSTTY (NEW in v0.3.9)                                     │
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>│ ───────────────────────                                     │
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>│ ait ghostty status      Show Ghostty configuration          │
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>│ ait ghostty config      Display config file location        │
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>│ ait ghostty theme       List or set themes (14 built-in)    │
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>│ ait ghostty font        Get or set font configuration       │
+<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>│ ait ghostty set         Set any config value                │
+<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>│                                                             │
+<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>├─────────────────────────────────────────────────────────────┤
+<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>│ COMMON WORKFLOWS                                            │
+<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>│ ────────────────                                            │
+<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>│                                                             │
+<a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>│ Quick install:                                              │
+<a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>│   curl -fsSL .../install.sh | bash                          │
 <a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>│                                                             │
-<a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>├─────────────────────────────────────────────────────────────┤
-<a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>│ CONFIG LOCATIONS                                            │
-<a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>│ ────────────────                                            │
-<a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>│ ~/.claude/settings.json       Claude Code settings          │
-<a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>│ ~/.config/opencode/config.json  OpenCode settings           │
-<a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>│ ~/.config/aiterm/config.json  aiterm settings (future)      │
-<a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>│                                                             │
-<a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>├─────────────────────────────────────────────────────────────┤
-<a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>│ Docs: https://data-wise.github.io/aiterm/                   │
-<a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>│ Repo: https://github.com/Data-Wise/aiterm                   │
-<a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>└─────────────────────────────────────────────────────────────┘
+<a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>│ First-time setup:                                           │
+<a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>│   ait doctor &amp;&amp; ait hello                                   │
+<a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>│                                                             │
+<a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>│ Switch context when entering project:                       │
+<a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>│   cd ~/my-project &amp;&amp; ait switch                             │
+<a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>│                                                             │
+<a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>│ Backup before changes:                                      │
+<a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>│   ait claude backup &amp;&amp; ait claude approvals preset safe     │
+<a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>│                                                             │
+<a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>├─────────────────────────────────────────────────────────────┤
+<a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>│ SHELL ALIASES                                               │
+<a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>│ ─────────────                                               │
+<a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>│ ait          aiterm (main CLI)                              │
+<a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>│ oc           opencode (OpenCode CLI)                        │
+<a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>│                                                             │
+<a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>├─────────────────────────────────────────────────────────────┤
+<a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>│ CONFIG LOCATIONS                                            │
+<a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a>│ ────────────────                                            │
+<a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>│ ~/.claude/settings.json       Claude Code settings          │
+<a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a>│ ~/.config/opencode/config.json  OpenCode settings           │
+<a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a>│ ~/.config/ghostty/config      Ghostty terminal config       │
+<a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>│ ~/.config/aiterm/config.json  aiterm settings (future)      │
+<a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a>│                                                             │
+<a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a>├─────────────────────────────────────────────────────────────┤
+<a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a>│ Docs: https://data-wise.github.io/aiterm/                   │
+<a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a>│ Repo: https://github.com/Data-Wise/aiterm                   │
+<a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a>└─────────────────────────────────────────────────────────────┘
 </code></pre></div>
 <h2 id="domain-specific-reference-cards">Domain-Specific Reference Cards</h2>
 <table>

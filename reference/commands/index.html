@@ -2322,6 +2322,78 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ghostty-integration-v039" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ghostty Integration (v0.3.9+)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ghostty Integration (v0.3.9+)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aiterm-ghostty-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        aiterm ghostty status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aiterm-ghostty-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        aiterm ghostty config
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aiterm-ghostty-theme-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        aiterm ghostty theme [name]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aiterm-ghostty-font-family-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        aiterm ghostty font [family] [size]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aiterm-ghostty-set-key-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        aiterm ghostty set &lt;key&gt; &lt;value&gt;
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#examples" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3634,6 +3706,78 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ghostty-integration-v039" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ghostty Integration (v0.3.9+)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ghostty Integration (v0.3.9+)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aiterm-ghostty-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        aiterm ghostty status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aiterm-ghostty-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        aiterm ghostty config
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aiterm-ghostty-theme-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        aiterm ghostty theme [name]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aiterm-ghostty-font-family-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        aiterm ghostty font [family] [size]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aiterm-ghostty-set-key-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        aiterm ghostty set &lt;key&gt; &lt;value&gt;
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#examples" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4225,7 +4369,7 @@
 - <strong>Kitty</strong> - GPU-accelerated with kitten plugins
 - <strong>Alacritty</strong> - Minimalist, YAML configuration
 - <strong>WezTerm</strong> - Cross-platform with Lua scripting
-- <strong>Ghostty</strong> - Fast, native UI with themes (v0.3.8+)</p>
+- <strong>Ghostty</strong> - Fast, native UI with themes (v0.3.9+)</p>
 <hr />
 <h3 id="aiterm-terminals-detect"><code>aiterm terminals detect</code></h3>
 <p>Detect and display information about the current terminal.</p>
@@ -4321,64 +4465,173 @@
 </code></pre></div>
 <p><strong>Note:</strong> Requires iTerm2 with the named profile configured.</p>
 <hr />
+<h2 id="ghostty-integration-v039">Ghostty Integration (v0.3.9+)</h2>
+<p>Commands for managing Ghostty terminal configuration. Ghostty is a fast, GPU-accelerated terminal emulator by Mitchell Hashimoto.</p>
+<h3 id="aiterm-ghostty-status"><code>aiterm ghostty status</code></h3>
+<p>Show current Ghostty configuration.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a>aiterm<span class="w"> </span>ghostty<span class="w"> </span>status
+<a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>status
+</code></pre></div>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a>Ghostty Configuration
+<a id="__codelineno-64-2" name="__codelineno-64-2" href="#__codelineno-64-2"></a>========================================
+<a id="__codelineno-64-3" name="__codelineno-64-3" href="#__codelineno-64-3"></a>Config file: /Users/dt/.config/ghostty/config
+<a id="__codelineno-64-4" name="__codelineno-64-4" href="#__codelineno-64-4"></a>
+<a id="__codelineno-64-5" name="__codelineno-64-5" href="#__codelineno-64-5"></a>Font:       JetBrains Mono @ 14pt
+<a id="__codelineno-64-6" name="__codelineno-64-6" href="#__codelineno-64-6"></a>Theme:      catppuccin-mocha
+<a id="__codelineno-64-7" name="__codelineno-64-7" href="#__codelineno-64-7"></a>Padding:    x=10, y=8
+<a id="__codelineno-64-8" name="__codelineno-64-8" href="#__codelineno-64-8"></a>Opacity:    1.0
+<a id="__codelineno-64-9" name="__codelineno-64-9" href="#__codelineno-64-9"></a>Cursor:     block
+</code></pre></div></p>
+<hr />
+<h3 id="aiterm-ghostty-config"><code>aiterm ghostty config</code></h3>
+<p>Display config file location and current values.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a>aiterm<span class="w"> </span>ghostty<span class="w"> </span>config
+</code></pre></div>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a>Config Path: ~/.config/ghostty/config
+<a id="__codelineno-66-2" name="__codelineno-66-2" href="#__codelineno-66-2"></a>
+<a id="__codelineno-66-3" name="__codelineno-66-3" href="#__codelineno-66-3"></a>Current values:
+<a id="__codelineno-66-4" name="__codelineno-66-4" href="#__codelineno-66-4"></a>  font-family = JetBrains Mono
+<a id="__codelineno-66-5" name="__codelineno-66-5" href="#__codelineno-66-5"></a>  font-size = 14
+<a id="__codelineno-66-6" name="__codelineno-66-6" href="#__codelineno-66-6"></a>  theme = catppuccin-mocha
+<a id="__codelineno-66-7" name="__codelineno-66-7" href="#__codelineno-66-7"></a>  window-padding-x = 10
+<a id="__codelineno-66-8" name="__codelineno-66-8" href="#__codelineno-66-8"></a>  window-padding-y = 8
+</code></pre></div></p>
+<hr />
+<h3 id="aiterm-ghostty-theme-name"><code>aiterm ghostty theme [name]</code></h3>
+<p>List available themes or set a theme.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a><span class="c1"># List all 14 built-in themes</span>
+<a id="__codelineno-67-2" name="__codelineno-67-2" href="#__codelineno-67-2"></a>aiterm<span class="w"> </span>ghostty<span class="w"> </span>theme
+<a id="__codelineno-67-3" name="__codelineno-67-3" href="#__codelineno-67-3"></a>
+<a id="__codelineno-67-4" name="__codelineno-67-4" href="#__codelineno-67-4"></a><span class="c1"># Set a theme</span>
+<a id="__codelineno-67-5" name="__codelineno-67-5" href="#__codelineno-67-5"></a>aiterm<span class="w"> </span>ghostty<span class="w"> </span>theme<span class="w"> </span>dracula
+<a id="__codelineno-67-6" name="__codelineno-67-6" href="#__codelineno-67-6"></a>aiterm<span class="w"> </span>ghostty<span class="w"> </span>theme<span class="w"> </span>tokyo-night
+</code></pre></div>
+<p><strong>Output (list):</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a>Available Ghostty Themes (14)
+<a id="__codelineno-68-2" name="__codelineno-68-2" href="#__codelineno-68-2"></a>
+<a id="__codelineno-68-3" name="__codelineno-68-3" href="#__codelineno-68-3"></a>catppuccin-mocha    catppuccin-latte    catppuccin-frappe
+<a id="__codelineno-68-4" name="__codelineno-68-4" href="#__codelineno-68-4"></a>catppuccin-macchiato dracula            gruvbox-dark
+<a id="__codelineno-68-5" name="__codelineno-68-5" href="#__codelineno-68-5"></a>gruvbox-light       nord               solarized-dark
+<a id="__codelineno-68-6" name="__codelineno-68-6" href="#__codelineno-68-6"></a>solarized-light     tokyo-night        tokyo-night-storm
+<a id="__codelineno-68-7" name="__codelineno-68-7" href="#__codelineno-68-7"></a>one-dark            one-light
+<a id="__codelineno-68-8" name="__codelineno-68-8" href="#__codelineno-68-8"></a>
+<a id="__codelineno-68-9" name="__codelineno-68-9" href="#__codelineno-68-9"></a>Current: catppuccin-mocha
+<a id="__codelineno-68-10" name="__codelineno-68-10" href="#__codelineno-68-10"></a>
+<a id="__codelineno-68-11" name="__codelineno-68-11" href="#__codelineno-68-11"></a>Set theme: aiterm ghostty theme &lt;name&gt;
+</code></pre></div></p>
+<p><strong>Output (set):</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-69-1" name="__codelineno-69-1" href="#__codelineno-69-1"></a>✓ Theme set to &#39;dracula&#39;
+<a id="__codelineno-69-2" name="__codelineno-69-2" href="#__codelineno-69-2"></a>  Config updated: ~/.config/ghostty/config
+<a id="__codelineno-69-3" name="__codelineno-69-3" href="#__codelineno-69-3"></a>  Note: Ghostty auto-reloads on config change
+</code></pre></div></p>
+<hr />
+<h3 id="aiterm-ghostty-font-family-size"><code>aiterm ghostty font [family] [size]</code></h3>
+<p>Get or set font configuration.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-70-1" name="__codelineno-70-1" href="#__codelineno-70-1"></a><span class="c1"># Show current font</span>
+<a id="__codelineno-70-2" name="__codelineno-70-2" href="#__codelineno-70-2"></a>aiterm<span class="w"> </span>ghostty<span class="w"> </span>font
+<a id="__codelineno-70-3" name="__codelineno-70-3" href="#__codelineno-70-3"></a>
+<a id="__codelineno-70-4" name="__codelineno-70-4" href="#__codelineno-70-4"></a><span class="c1"># Set font family only</span>
+<a id="__codelineno-70-5" name="__codelineno-70-5" href="#__codelineno-70-5"></a>aiterm<span class="w"> </span>ghostty<span class="w"> </span>font<span class="w"> </span><span class="s2">&quot;Fira Code&quot;</span>
+<a id="__codelineno-70-6" name="__codelineno-70-6" href="#__codelineno-70-6"></a>
+<a id="__codelineno-70-7" name="__codelineno-70-7" href="#__codelineno-70-7"></a><span class="c1"># Set font family and size</span>
+<a id="__codelineno-70-8" name="__codelineno-70-8" href="#__codelineno-70-8"></a>aiterm<span class="w"> </span>ghostty<span class="w"> </span>font<span class="w"> </span><span class="s2">&quot;JetBrains Mono&quot;</span><span class="w"> </span><span class="m">16</span>
+</code></pre></div>
+<p><strong>Output (get):</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-71-1" name="__codelineno-71-1" href="#__codelineno-71-1"></a>Current Font: JetBrains Mono @ 14pt
+</code></pre></div></p>
+<p><strong>Output (set):</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-72-1" name="__codelineno-72-1" href="#__codelineno-72-1"></a>✓ Font updated
+<a id="__codelineno-72-2" name="__codelineno-72-2" href="#__codelineno-72-2"></a>  Family: JetBrains Mono
+<a id="__codelineno-72-3" name="__codelineno-72-3" href="#__codelineno-72-3"></a>  Size: 16pt
+</code></pre></div></p>
+<hr />
+<h3 id="aiterm-ghostty-set-key-value"><code>aiterm ghostty set &lt;key&gt; &lt;value&gt;</code></h3>
+<p>Set any Ghostty configuration value.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-73-1" name="__codelineno-73-1" href="#__codelineno-73-1"></a><span class="c1"># Set window padding</span>
+<a id="__codelineno-73-2" name="__codelineno-73-2" href="#__codelineno-73-2"></a>aiterm<span class="w"> </span>ghostty<span class="w"> </span><span class="nb">set</span><span class="w"> </span>window-padding-x<span class="w"> </span><span class="m">12</span>
+<a id="__codelineno-73-3" name="__codelineno-73-3" href="#__codelineno-73-3"></a>aiterm<span class="w"> </span>ghostty<span class="w"> </span><span class="nb">set</span><span class="w"> </span>window-padding-y<span class="w"> </span><span class="m">8</span>
+<a id="__codelineno-73-4" name="__codelineno-73-4" href="#__codelineno-73-4"></a>
+<a id="__codelineno-73-5" name="__codelineno-73-5" href="#__codelineno-73-5"></a><span class="c1"># Set background opacity</span>
+<a id="__codelineno-73-6" name="__codelineno-73-6" href="#__codelineno-73-6"></a>aiterm<span class="w"> </span>ghostty<span class="w"> </span><span class="nb">set</span><span class="w"> </span>background-opacity<span class="w"> </span><span class="m">0</span>.95
+<a id="__codelineno-73-7" name="__codelineno-73-7" href="#__codelineno-73-7"></a>
+<a id="__codelineno-73-8" name="__codelineno-73-8" href="#__codelineno-73-8"></a><span class="c1"># Set cursor style</span>
+<a id="__codelineno-73-9" name="__codelineno-73-9" href="#__codelineno-73-9"></a>aiterm<span class="w"> </span>ghostty<span class="w"> </span><span class="nb">set</span><span class="w"> </span>cursor-style<span class="w"> </span>underline
+</code></pre></div>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-74-1" name="__codelineno-74-1" href="#__codelineno-74-1"></a>✓ Set window-padding-x = 12
+<a id="__codelineno-74-2" name="__codelineno-74-2" href="#__codelineno-74-2"></a>  Config: ~/.config/ghostty/config
+</code></pre></div></p>
+<p><strong>Common configuration keys:</strong>
+| Key | Values | Description |
+|-----|--------|-------------|
+| <code>theme</code> | Theme name | Color scheme |
+| <code>font-family</code> | Font name | Monospace font |
+| <code>font-size</code> | Integer | Font size in points |
+| <code>window-padding-x</code> | Integer | Horizontal padding |
+| <code>window-padding-y</code> | Integer | Vertical padding |
+| <code>background-opacity</code> | 0.0-1.0 | Window transparency |
+| <code>cursor-style</code> | block/bar/underline | Cursor shape |</p>
+<hr />
 <h2 id="examples">Examples</h2>
 <h3 id="quick-setup-for-claude-code">Quick Setup for Claude Code</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a><span class="c1"># 1. Check installation</span>
-<a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a>ait<span class="w"> </span>doctor
-<a id="__codelineno-63-3" name="__codelineno-63-3" href="#__codelineno-63-3"></a>
-<a id="__codelineno-63-4" name="__codelineno-63-4" href="#__codelineno-63-4"></a><span class="c1"># 2. View current settings</span>
-<a id="__codelineno-63-5" name="__codelineno-63-5" href="#__codelineno-63-5"></a>ait<span class="w"> </span>claude<span class="w"> </span>settings
-<a id="__codelineno-63-6" name="__codelineno-63-6" href="#__codelineno-63-6"></a>
-<a id="__codelineno-63-7" name="__codelineno-63-7" href="#__codelineno-63-7"></a><span class="c1"># 3. Backup before changes</span>
-<a id="__codelineno-63-8" name="__codelineno-63-8" href="#__codelineno-63-8"></a>ait<span class="w"> </span>claude<span class="w"> </span>backup
-<a id="__codelineno-63-9" name="__codelineno-63-9" href="#__codelineno-63-9"></a>
-<a id="__codelineno-63-10" name="__codelineno-63-10" href="#__codelineno-63-10"></a><span class="c1"># 4. Add safe permissions</span>
-<a id="__codelineno-63-11" name="__codelineno-63-11" href="#__codelineno-63-11"></a>ait<span class="w"> </span>claude<span class="w"> </span>approvals<span class="w"> </span>add<span class="w"> </span>safe-reads
-<a id="__codelineno-63-12" name="__codelineno-63-12" href="#__codelineno-63-12"></a>ait<span class="w"> </span>claude<span class="w"> </span>approvals<span class="w"> </span>add<span class="w"> </span>git-ops
-<a id="__codelineno-63-13" name="__codelineno-63-13" href="#__codelineno-63-13"></a>ait<span class="w"> </span>claude<span class="w"> </span>approvals<span class="w"> </span>add<span class="w"> </span>python-dev
-<a id="__codelineno-63-14" name="__codelineno-63-14" href="#__codelineno-63-14"></a>
-<a id="__codelineno-63-15" name="__codelineno-63-15" href="#__codelineno-63-15"></a><span class="c1"># 5. Verify</span>
-<a id="__codelineno-63-16" name="__codelineno-63-16" href="#__codelineno-63-16"></a>ait<span class="w"> </span>claude<span class="w"> </span>approvals<span class="w"> </span>list
+<div class="highlight"><pre><span></span><code><a id="__codelineno-75-1" name="__codelineno-75-1" href="#__codelineno-75-1"></a><span class="c1"># 1. Check installation</span>
+<a id="__codelineno-75-2" name="__codelineno-75-2" href="#__codelineno-75-2"></a>ait<span class="w"> </span>doctor
+<a id="__codelineno-75-3" name="__codelineno-75-3" href="#__codelineno-75-3"></a>
+<a id="__codelineno-75-4" name="__codelineno-75-4" href="#__codelineno-75-4"></a><span class="c1"># 2. View current settings</span>
+<a id="__codelineno-75-5" name="__codelineno-75-5" href="#__codelineno-75-5"></a>ait<span class="w"> </span>claude<span class="w"> </span>settings
+<a id="__codelineno-75-6" name="__codelineno-75-6" href="#__codelineno-75-6"></a>
+<a id="__codelineno-75-7" name="__codelineno-75-7" href="#__codelineno-75-7"></a><span class="c1"># 3. Backup before changes</span>
+<a id="__codelineno-75-8" name="__codelineno-75-8" href="#__codelineno-75-8"></a>ait<span class="w"> </span>claude<span class="w"> </span>backup
+<a id="__codelineno-75-9" name="__codelineno-75-9" href="#__codelineno-75-9"></a>
+<a id="__codelineno-75-10" name="__codelineno-75-10" href="#__codelineno-75-10"></a><span class="c1"># 4. Add safe permissions</span>
+<a id="__codelineno-75-11" name="__codelineno-75-11" href="#__codelineno-75-11"></a>ait<span class="w"> </span>claude<span class="w"> </span>approvals<span class="w"> </span>add<span class="w"> </span>safe-reads
+<a id="__codelineno-75-12" name="__codelineno-75-12" href="#__codelineno-75-12"></a>ait<span class="w"> </span>claude<span class="w"> </span>approvals<span class="w"> </span>add<span class="w"> </span>git-ops
+<a id="__codelineno-75-13" name="__codelineno-75-13" href="#__codelineno-75-13"></a>ait<span class="w"> </span>claude<span class="w"> </span>approvals<span class="w"> </span>add<span class="w"> </span>python-dev
+<a id="__codelineno-75-14" name="__codelineno-75-14" href="#__codelineno-75-14"></a>
+<a id="__codelineno-75-15" name="__codelineno-75-15" href="#__codelineno-75-15"></a><span class="c1"># 5. Verify</span>
+<a id="__codelineno-75-16" name="__codelineno-75-16" href="#__codelineno-75-16"></a>ait<span class="w"> </span>claude<span class="w"> </span>approvals<span class="w"> </span>list
 </code></pre></div>
 <h3 id="context-switching-workflow">Context Switching Workflow</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a><span class="c1"># Work on web app</span>
-<a id="__codelineno-64-2" name="__codelineno-64-2" href="#__codelineno-64-2"></a><span class="nb">cd</span><span class="w"> </span>~/projects/webapp
-<a id="__codelineno-64-3" name="__codelineno-64-3" href="#__codelineno-64-3"></a>ait<span class="w"> </span>switch
-<a id="__codelineno-64-4" name="__codelineno-64-4" href="#__codelineno-64-4"></a><span class="c1"># → Node-Dev profile (green)</span>
-<a id="__codelineno-64-5" name="__codelineno-64-5" href="#__codelineno-64-5"></a>
-<a id="__codelineno-64-6" name="__codelineno-64-6" href="#__codelineno-64-6"></a><span class="c1"># Switch to API service</span>
-<a id="__codelineno-64-7" name="__codelineno-64-7" href="#__codelineno-64-7"></a><span class="nb">cd</span><span class="w"> </span>~/projects/api
-<a id="__codelineno-64-8" name="__codelineno-64-8" href="#__codelineno-64-8"></a>ait<span class="w"> </span>switch
-<a id="__codelineno-64-9" name="__codelineno-64-9" href="#__codelineno-64-9"></a><span class="c1"># → Python-Dev profile (blue)</span>
-<a id="__codelineno-64-10" name="__codelineno-64-10" href="#__codelineno-64-10"></a>
-<a id="__codelineno-64-11" name="__codelineno-64-11" href="#__codelineno-64-11"></a><span class="c1"># Deploy to production</span>
-<a id="__codelineno-64-12" name="__codelineno-64-12" href="#__codelineno-64-12"></a><span class="nb">cd</span><span class="w"> </span>~/production/live-site
-<a id="__codelineno-64-13" name="__codelineno-64-13" href="#__codelineno-64-13"></a>ait<span class="w"> </span>switch
-<a id="__codelineno-64-14" name="__codelineno-64-14" href="#__codelineno-64-14"></a><span class="c1"># → Production profile (RED!) 🚨</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-76-1" name="__codelineno-76-1" href="#__codelineno-76-1"></a><span class="c1"># Work on web app</span>
+<a id="__codelineno-76-2" name="__codelineno-76-2" href="#__codelineno-76-2"></a><span class="nb">cd</span><span class="w"> </span>~/projects/webapp
+<a id="__codelineno-76-3" name="__codelineno-76-3" href="#__codelineno-76-3"></a>ait<span class="w"> </span>switch
+<a id="__codelineno-76-4" name="__codelineno-76-4" href="#__codelineno-76-4"></a><span class="c1"># → Node-Dev profile (green)</span>
+<a id="__codelineno-76-5" name="__codelineno-76-5" href="#__codelineno-76-5"></a>
+<a id="__codelineno-76-6" name="__codelineno-76-6" href="#__codelineno-76-6"></a><span class="c1"># Switch to API service</span>
+<a id="__codelineno-76-7" name="__codelineno-76-7" href="#__codelineno-76-7"></a><span class="nb">cd</span><span class="w"> </span>~/projects/api
+<a id="__codelineno-76-8" name="__codelineno-76-8" href="#__codelineno-76-8"></a>ait<span class="w"> </span>switch
+<a id="__codelineno-76-9" name="__codelineno-76-9" href="#__codelineno-76-9"></a><span class="c1"># → Python-Dev profile (blue)</span>
+<a id="__codelineno-76-10" name="__codelineno-76-10" href="#__codelineno-76-10"></a>
+<a id="__codelineno-76-11" name="__codelineno-76-11" href="#__codelineno-76-11"></a><span class="c1"># Deploy to production</span>
+<a id="__codelineno-76-12" name="__codelineno-76-12" href="#__codelineno-76-12"></a><span class="nb">cd</span><span class="w"> </span>~/production/live-site
+<a id="__codelineno-76-13" name="__codelineno-76-13" href="#__codelineno-76-13"></a>ait<span class="w"> </span>switch
+<a id="__codelineno-76-14" name="__codelineno-76-14" href="#__codelineno-76-14"></a><span class="c1"># → Production profile (RED!) 🚨</span>
 </code></pre></div>
 <h3 id="r-package-development">R Package Development</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a><span class="c1"># Navigate to R package</span>
-<a id="__codelineno-65-2" name="__codelineno-65-2" href="#__codelineno-65-2"></a><span class="nb">cd</span><span class="w"> </span>~/r-packages/mypackage
-<a id="__codelineno-65-3" name="__codelineno-65-3" href="#__codelineno-65-3"></a>
-<a id="__codelineno-65-4" name="__codelineno-65-4" href="#__codelineno-65-4"></a><span class="c1"># Check context</span>
-<a id="__codelineno-65-5" name="__codelineno-65-5" href="#__codelineno-65-5"></a>ait<span class="w"> </span>detect
-<a id="__codelineno-65-6" name="__codelineno-65-6" href="#__codelineno-65-6"></a><span class="c1"># Shows: 📦 r-package → R-Dev profile</span>
-<a id="__codelineno-65-7" name="__codelineno-65-7" href="#__codelineno-65-7"></a>
-<a id="__codelineno-65-8" name="__codelineno-65-8" href="#__codelineno-65-8"></a><span class="c1"># Add R dev permissions</span>
-<a id="__codelineno-65-9" name="__codelineno-65-9" href="#__codelineno-65-9"></a>ait<span class="w"> </span>claude<span class="w"> </span>approvals<span class="w"> </span>add<span class="w"> </span>r-dev
-<a id="__codelineno-65-10" name="__codelineno-65-10" href="#__codelineno-65-10"></a>
-<a id="__codelineno-65-11" name="__codelineno-65-11" href="#__codelineno-65-11"></a><span class="c1"># Apply context</span>
-<a id="__codelineno-65-12" name="__codelineno-65-12" href="#__codelineno-65-12"></a>ait<span class="w"> </span>switch
+<div class="highlight"><pre><span></span><code><a id="__codelineno-77-1" name="__codelineno-77-1" href="#__codelineno-77-1"></a><span class="c1"># Navigate to R package</span>
+<a id="__codelineno-77-2" name="__codelineno-77-2" href="#__codelineno-77-2"></a><span class="nb">cd</span><span class="w"> </span>~/r-packages/mypackage
+<a id="__codelineno-77-3" name="__codelineno-77-3" href="#__codelineno-77-3"></a>
+<a id="__codelineno-77-4" name="__codelineno-77-4" href="#__codelineno-77-4"></a><span class="c1"># Check context</span>
+<a id="__codelineno-77-5" name="__codelineno-77-5" href="#__codelineno-77-5"></a>ait<span class="w"> </span>detect
+<a id="__codelineno-77-6" name="__codelineno-77-6" href="#__codelineno-77-6"></a><span class="c1"># Shows: 📦 r-package → R-Dev profile</span>
+<a id="__codelineno-77-7" name="__codelineno-77-7" href="#__codelineno-77-7"></a>
+<a id="__codelineno-77-8" name="__codelineno-77-8" href="#__codelineno-77-8"></a><span class="c1"># Add R dev permissions</span>
+<a id="__codelineno-77-9" name="__codelineno-77-9" href="#__codelineno-77-9"></a>ait<span class="w"> </span>claude<span class="w"> </span>approvals<span class="w"> </span>add<span class="w"> </span>r-dev
+<a id="__codelineno-77-10" name="__codelineno-77-10" href="#__codelineno-77-10"></a>
+<a id="__codelineno-77-11" name="__codelineno-77-11" href="#__codelineno-77-11"></a><span class="c1"># Apply context</span>
+<a id="__codelineno-77-12" name="__codelineno-77-12" href="#__codelineno-77-12"></a>ait<span class="w"> </span>switch
 </code></pre></div>
 <hr />
 <h2 id="short-aliases">Short Aliases</h2>
 <p>All commands support the <code>ait</code> shortalias:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a>ait<span class="w"> </span>--version<span class="w">              </span><span class="c1"># = aiterm --version</span>
-<a id="__codelineno-66-2" name="__codelineno-66-2" href="#__codelineno-66-2"></a>ait<span class="w"> </span>doctor<span class="w">                 </span><span class="c1"># = aiterm doctor</span>
-<a id="__codelineno-66-3" name="__codelineno-66-3" href="#__codelineno-66-3"></a>ait<span class="w"> </span>detect<span class="w">                 </span><span class="c1"># = aiterm detect</span>
-<a id="__codelineno-66-4" name="__codelineno-66-4" href="#__codelineno-66-4"></a>ait<span class="w"> </span>switch<span class="w">                 </span><span class="c1"># = aiterm switch</span>
-<a id="__codelineno-66-5" name="__codelineno-66-5" href="#__codelineno-66-5"></a>ait<span class="w"> </span>claude<span class="w"> </span>settings<span class="w">        </span><span class="c1"># = aiterm claude settings</span>
-<a id="__codelineno-66-6" name="__codelineno-66-6" href="#__codelineno-66-6"></a>ait<span class="w"> </span>claude<span class="w"> </span>approvals<span class="w"> </span>list<span class="w">  </span><span class="c1"># = aiterm claude approvals list</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-78-1" name="__codelineno-78-1" href="#__codelineno-78-1"></a>ait<span class="w"> </span>--version<span class="w">              </span><span class="c1"># = aiterm --version</span>
+<a id="__codelineno-78-2" name="__codelineno-78-2" href="#__codelineno-78-2"></a>ait<span class="w"> </span>doctor<span class="w">                 </span><span class="c1"># = aiterm doctor</span>
+<a id="__codelineno-78-3" name="__codelineno-78-3" href="#__codelineno-78-3"></a>ait<span class="w"> </span>detect<span class="w">                 </span><span class="c1"># = aiterm detect</span>
+<a id="__codelineno-78-4" name="__codelineno-78-4" href="#__codelineno-78-4"></a>ait<span class="w"> </span>switch<span class="w">                 </span><span class="c1"># = aiterm switch</span>
+<a id="__codelineno-78-5" name="__codelineno-78-5" href="#__codelineno-78-5"></a>ait<span class="w"> </span>claude<span class="w"> </span>settings<span class="w">        </span><span class="c1"># = aiterm claude settings</span>
+<a id="__codelineno-78-6" name="__codelineno-78-6" href="#__codelineno-78-6"></a>ait<span class="w"> </span>claude<span class="w"> </span>approvals<span class="w"> </span>list<span class="w">  </span><span class="c1"># = aiterm claude approvals list</span>
 </code></pre></div>
 <hr />
 <h2 id="exit-codes">Exit Codes</h2>
