@@ -6,7 +6,30 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
-*No unreleased changes*
+### Added (feature/ghostty-support branch)
+- **Multi-Terminal Support:** Detection for 6 terminals
+  - iTerm2, Ghostty, Kitty, Alacritty, WezTerm, Apple Terminal
+  - `detect_terminal()` returns `TerminalType` enum
+  - `get_terminal_info()` returns capabilities dict
+- **Ghostty Backend:** Full configuration management
+  - Config parsing (`~/.config/ghostty/config`)
+  - Theme management (14 built-in themes)
+  - Font settings
+  - Generic config value setting
+- **Ghostty CLI Commands:**
+  - `ait ghostty status` - Check detection & version
+  - `ait ghostty config [--edit]` - Show/edit configuration
+  - `ait ghostty theme list` - List available themes
+  - `ait ghostty theme apply <name>` - Apply theme
+  - `ait ghostty theme show` - Current theme
+  - `ait ghostty font show` - Current font settings
+  - `ait ghostty font set <name> [-s SIZE]` - Change font
+  - `ait ghostty set <key> <value>` - Set any config value
+- **19 new tests** for Ghostty functionality
+
+### Development
+- **Git Worktree:** `~/.git-worktrees/aiterm/feature-ghostty-support`
+- **Shell Alias:** `aiterm-ghost` for quick navigation
 
 ---
 
