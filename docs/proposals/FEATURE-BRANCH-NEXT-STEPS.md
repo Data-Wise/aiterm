@@ -313,7 +313,7 @@ graph LR
         C[feature/ui] --> B
     end
     B --> D[main]
-    D --> E[v0.3.8]
+    D --> E[v0.3.9]
 ```
 
 - [ ] Generate Mermaid from git state

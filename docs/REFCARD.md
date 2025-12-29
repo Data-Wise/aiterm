@@ -2,7 +2,7 @@
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│ AITERM v0.3.8 - Terminal Optimizer for AI Development      │
+│ AITERM v0.3.9 - Terminal Optimizer for AI Development      │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
 │ ESSENTIAL                                                   │
@@ -49,6 +49,21 @@
 │ ait docs check          Validate documentation              │
 │ ait docs serve          Preview docs locally                │
 │                                                             │
+│ TERMINALS                                                   │
+│ ─────────                                                   │
+│ ait terminals list      List supported terminals            │
+│ ait terminals detect    Detect current terminal             │
+│ ait terminals features  Show terminal features              │
+│ ait terminals compare   Compare terminal capabilities       │
+│                                                             │
+│ GHOSTTY (NEW in v0.3.9)                                     │
+│ ───────────────────────                                     │
+│ ait ghostty status      Show Ghostty configuration          │
+│ ait ghostty config      Display config file location        │
+│ ait ghostty theme       List or set themes (14 built-in)    │
+│ ait ghostty font        Get or set font configuration       │
+│ ait ghostty set         Set any config value                │
+│                                                             │
 ├─────────────────────────────────────────────────────────────┤
 │ COMMON WORKFLOWS                                            │
 │ ────────────────                                            │
@@ -76,6 +91,7 @@
 │ ────────────────                                            │
 │ ~/.claude/settings.json       Claude Code settings          │
 │ ~/.config/opencode/config.json  OpenCode settings           │
+│ ~/.config/ghostty/config      Ghostty terminal config       │
 │ ~/.config/aiterm/config.json  aiterm settings (future)      │
 │                                                             │
 ├─────────────────────────────────────────────────────────────┤

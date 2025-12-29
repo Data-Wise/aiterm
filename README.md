@@ -81,6 +81,18 @@ ait claude settings
 
 **aiterm** makes your terminal intelligent for AI-assisted development:
 
+### 🖥️ Multi-Terminal Support (NEW in v0.3.9)
+Supports 6 terminals with feature-specific integrations:
+
+| Terminal | Profiles | Themes | Config | Title |
+|----------|----------|--------|--------|-------|
+| **iTerm2** | ✅ | ✅ | ✅ | ✅ |
+| **Ghostty** | - | ✅ (14) | ✅ | ✅ |
+| **Kitty** | - | ✅ | ✅ | ✅ |
+| **Alacritty** | - | ✅ | ✅ | ✅ |
+| **WezTerm** | ✅ | ✅ | ✅ | ✅ |
+| **Terminal.app** | - | - | - | ✅ |
+
 ### 🎨 Context-Aware Profiles
 Automatically switch terminal colors and titles based on your project:
 
@@ -111,14 +123,17 @@ Build custom status bars with:
 
 ## 💡 Features
 
-### Implemented (v0.2.1)
+### Implemented (v0.3.9)
 
+- [x] **Multi-Terminal Support** - 6 terminals (iTerm2, Ghostty, Kitty, Alacritty, WezTerm, Terminal.app)
+- [x] **Ghostty Integration** - Config management, 14 themes, font settings
 - [x] **Context Detection** - 8 project types with auto-switching
 - [x] **iTerm2 Integration** - Profiles, titles, user variables
 - [x] **Claude Code Settings** - View, backup, manage approvals
+- [x] **IDE Integrations** - VS Code, Cursor, Zed, Positron, Windsurf
+- [x] **Session Coordination** - Track active Claude Code sessions
 - [x] **Auto-Approval Presets** - 8 ready-to-use presets
 - [x] **Diagnostics** - `aiterm doctor` health checks
-- [x] **Short Aliases** - `ait` for quick access
 
 ### CLI Commands
 
@@ -143,18 +158,20 @@ ait claude approvals presets   # Show 8 presets
 ait claude approvals add <preset>  # Add preset
 ```
 
-### Also Available (v0.2.1)
+### Also Available
 
 - [x] **Hook Management** - List, install, validate hooks
 - [x] **Command Templates** - Browse and install command templates
 - [x] **MCP Server Integration** - List, test, validate MCP servers
 - [x] **Documentation Helpers** - Validate docs, test code examples
+- [x] **OpenCode Integration** - Configuration management
+- [x] **Gemini CLI Support** - Basic integration
 
-### Coming Soon (v0.3+)
+### Coming Soon (v0.4+)
 
-- Gemini CLI support
-- IDE integrations (Positron, Zed, VS Code)
-- Workflow automation
+- Workflow templates and recipes
+- Craft plugin management
+- Session-aware workflows
 
 See [IDEAS.md](IDEAS.md) for full roadmap.
 

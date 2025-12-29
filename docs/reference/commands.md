@@ -700,7 +700,7 @@ aiterm terminals list
 - **Kitty** - GPU-accelerated with kitten plugins
 - **Alacritty** - Minimalist, YAML configuration
 - **WezTerm** - Cross-platform with Lua scripting
-- **Ghostty** - Fast, native UI with themes (v0.3.8+)
+- **Ghostty** - Fast, native UI with themes (v0.3.9+)
 
 ---
 

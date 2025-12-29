@@ -337,7 +337,7 @@ $ ait feature status
 │  └── feature/config (merged 1 week ago)              │
 │                                                       │
 │  IN MAIN                                              │
-│  └── v0.3.8 (released 1 day ago)                     │
+│  └── v0.3.9 (released 1 day ago)                     │
 │                                                       │
 └───────────────────────────────────────────────────────┘
 

@@ -9,7 +9,7 @@
 | Terminal | macOS | Linux | Windows | aiterm Support |
 |----------|-------|-------|---------|----------------|
 | **iTerm2** | ✅ | - | - | Full (profiles, badge, status) |
-| **Ghostty** | ✅ | ✅ | - | Full (v0.3.8+) |
+| **Ghostty** | ✅ | ✅ | - | Full (v0.3.9+) |
 | **Kitty** | ✅ | ✅ | - | Basic |
 | **Alacritty** | ✅ | ✅ | ✅ | Basic |
 | **WezTerm** | ✅ | ✅ | ✅ | Good |
@@ -31,7 +31,7 @@ ait terminals features ghostty
 
 ---
 
-## Ghostty Support (v0.3.8+)
+## Ghostty Support (v0.3.9+)
 
 [Ghostty](https://ghostty.org/) is a fast, native terminal emulator built with Zig. aiterm provides full support for Ghostty.
 

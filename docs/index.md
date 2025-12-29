@@ -229,7 +229,7 @@ ait detect    # Shows: 📦 r-package → R-Dev profile
 
 ## What's New in v0.3.x
 
-### v0.3.8 (Latest)
+### v0.3.9 (Latest)
 
 - **Git Worktrees Guide** - Comprehensive parallel development documentation
 - **Mermaid Diagrams** - Fixed rendering with proper CSS
