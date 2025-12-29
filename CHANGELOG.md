@@ -4,14 +4,26 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-## [Unreleased]
+## [0.3.9] - 2025-12-29 - Ghostty Terminal Support
+
+**Tag:** v0.3.9
+**PyPI:** https://pypi.org/project/aiterm-dev/0.3.9/
+**Homebrew:** `brew upgrade data-wise/tap/aiterm`
 
 ### Added
 - **Ghostty Terminal Support** - Full integration with Ghostty terminal emulator
-  - Auto-detection when running in Ghostty
+  - Auto-detection when running in Ghostty (`TERM_PROGRAM=ghostty`)
   - Version detection (channel, build config)
-  - Features: `tab_title`, `themes`, `native_ui`
-  - Config path: `~/.config/ghostty/config`
+  - Config parsing and modification (`~/.config/ghostty/config`)
+  - 14 built-in themes (catppuccin, dracula, nord, solarized, tokyo-night, etc.)
+  - Window title setting via OSC escape sequences
+  - Context-aware title updates
+- **Ghostty CLI Commands** - New `ait ghostty` command group
+  - `ghostty status` - Show current Ghostty configuration
+  - `ghostty config` - Display config file location and contents
+  - `ghostty theme [name]` - List or set themes
+  - `ghostty font [name] [size]` - Get or set font configuration
+  - `ghostty set <key> <value>` - Set any config value
 - **Terminals Subcommand** - New `ait terminals` command group
   - `terminals list` - List all supported terminals with installation status
   - `terminals detect` - Detect current terminal with version info
@@ -20,16 +32,25 @@ All notable changes to this project will be documented in this file.
   - `terminals compare` - Side-by-side feature comparison
   - `terminals title <text>` - Set tab/window title
   - `terminals profile <name>` - Switch terminal profile (iTerm2)
-- **New CLI Tests** - 12 new automated tests for terminals
-  - 7 terminals subcommand tests
-  - 5 Ghostty-specific tests
+- **Comprehensive Test Suite** - 25 new Ghostty tests
+  - Subprocess handling (version detection, timeouts, errors)
+  - OSC escape sequence tests (title setting)
+  - Context-to-title mapping tests
+  - Config parsing edge cases (invalid values, malformed lines)
+  - Config path detection tests
+  - Theme list immutability tests
 
 ### Changed
 - **CI Pipelines** - Migrated from pip to uv for faster builds
   - `publish.yml`: Faster PyPI publishing
   - `docs.yml`: Faster documentation builds
-- **Test Suite** - Expanded from 41 to 54 automated tests
-- **Interactive Tests** - Expanded from 33 to 42 tests
+- **Test Suite** - Expanded from 399 to 424 tests (+25)
+- **Terminal Detection** - Now supports 6 terminals (iTerm2, Ghostty, Kitty, Alacritty, WezTerm, Terminal.app)
+
+### Documentation
+- New `docs/guide/terminals.md` - Multi-terminal support guide
+- Updated commands reference with Ghostty CLI
+- Added IDEAS.md with v0.4.0 planning and flow-cli integration brainstorm
 
 ---
 

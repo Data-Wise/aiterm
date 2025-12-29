@@ -2,7 +2,7 @@ project: aiterm
 status: active
 priority: P1
 progress: 28
-version: 0.3.8
+version: 0.3.9
 updated: 2025-12-29
 next: Merge Ghostty → main, then Quick Wins (v0.3.9)
 
