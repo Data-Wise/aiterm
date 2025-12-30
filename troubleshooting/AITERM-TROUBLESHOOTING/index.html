@@ -15,6 +15,10 @@
         <link rel="canonical" href="https://data-wise.github.io/aiterm/troubleshooting/AITERM-TROUBLESHOOTING/">
       
       
+        <link rel="prev" href="../../guides/GIT-WORKTREES-GUIDE/">
+      
+      
+        <link rel="next" href="../../guides/VIDEO-WALKTHROUGH/">
       
       
         
@@ -25,7 +29,7 @@
     
     
       
-        <title>aiterm Troubleshooting Guide - aiterm</title>
+        <title>Troubleshooting Guide - aiterm</title>
       
     
     
@@ -112,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              aiterm Troubleshooting Guide
+              Troubleshooting Guide
             
           </span>
         </div>
@@ -341,10 +345,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../../guides/AITERM-USER-GUIDE/" class="md-tabs__link">
           
   
@@ -1852,26 +1858,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
             
   
   
@@ -1889,7 +1900,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1951,6 +1962,704 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting Guide
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-diagnosis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Diagnosis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diagnostic-flowchart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagnostic Flowchart
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installation-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installation Issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#issue-aiterm-command-not-found" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue: aiterm: command not found
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issue-importerror-no-module-named-aiterm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue: ImportError: No module named 'aiterm'
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profile-switching-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Profile Switching Issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Profile Switching Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#issue-profile-not-switching-automatically" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue: Profile not switching automatically
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issue-profile-exists-but-switch-fails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue: Profile exists but switch fails
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#context-detection-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context Detection Issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Context Detection Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#issue-context-not-detected" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue: Context not detected
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issue-wrong-context-detected" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue: Wrong context detected
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claude-code-integration-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claude Code Integration Issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Claude Code Integration Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#issue-auto-approvals-not-applied" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue: Auto-approvals not applied
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issue-settings-backup-failed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue: Settings backup failed
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terminal-compatibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terminal Compatibility
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Terminal Compatibility">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#macos-terminalapp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        macOS - Terminal.app
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macos-iterm2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        macOS - iTerm2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux-gnome-terminal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linux - gnome-terminal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux-alacritty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linux - Alacritty
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux-wezterm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linux - Wezterm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows-windows-terminal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Windows - Windows Terminal
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#platform-specific-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Platform-Specific Issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Platform-Specific Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#macos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        macOS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="macOS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#issue-operation-not-permitted" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue: "Operation not permitted"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issue-slow-profile-switching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue: Slow profile switching
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linux
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Linux">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#issue-libpython-not-found" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue: libpython not found
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issue-permission-denied-on-config-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue: Permission denied on config directory
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-messages-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Messages Reference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Error Messages Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#profilenotfounderror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ProfileNotFoundError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terminalunsupportederror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TerminalUnsupportedError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configerror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ConfigError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settingserror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SettingsError
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#slow-context-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Slow context detection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#high-cpu-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        High CPU usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diagnostic-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagnostic Tools
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diagnostic Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#complete-diagnostic-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complete diagnostic script
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting Help
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting Help">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#before-asking-for-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before asking for help
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#useful-information-to-include" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Useful information to include
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#support-channels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Support channels
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#faq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FAQ
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FAQ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q-can-i-use-aiterm-without-iterm2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Can I use aiterm without iTerm2?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-why-isnt-my-custom-detector-working" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Why isn't my custom detector working?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-can-i-roll-back-auto-approval-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Can I roll back auto-approval changes?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-how-do-i-reset-aiterm-to-defaults" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: How do I reset aiterm to defaults?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
