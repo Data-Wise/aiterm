@@ -91,6 +91,7 @@ nav:
       - Context Detection: guide/context-detection.md
       - Profile Switching: guide/profiles.md
       - Terminal Support: guide/terminals.md
+      - Feature Workflow: guide/feature-workflow.md
       - Status Bar: guide/status-bar.md
       - Session Coordination: guide/sessions.md
       - IDE Integration: guide/ide-integration.md
@@ -126,6 +127,7 @@ nav:
       - All Commands: reference/commands.md
       - Configuration: reference/configuration.md
       - Context Types: reference/REFCARD-CONTEXT.md
+      - Feature Workflow: reference/REFCARD-FEATURE.md
       - Hooks: reference/REFCARD-HOOKS.md
       - Sessions: reference/REFCARD-SESSIONS.md
       - IDE Reference: reference/REFCARD-IDE.md
