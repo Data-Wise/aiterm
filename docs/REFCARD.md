@@ -2,7 +2,7 @@
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│ AITERM v0.3.9 - Terminal Optimizer for AI Development      │
+│ AITERM v0.3.11 - Terminal Optimizer for AI Development     │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
 │ ESSENTIAL                                                   │
@@ -12,6 +12,14 @@
 │ ait switch              Apply context to terminal           │
 │ ait hello               Diagnostic greeting                 │
 │ ait info                System diagnostics (--json)         │
+│                                                             │
+│ CONFIGURATION (NEW in v0.3.11)                              │
+│ ──────────────────────────────                              │
+│ ait config path         Show config directory               │
+│ ait config path --all   Show all paths with status          │
+│ ait config show         Display current configuration       │
+│ ait config init         Create default config.toml          │
+│ ait config edit         Open config in $EDITOR              │
 │                                                             │
 │ CLAUDE CODE                                                 │
 │ ──────────                                                  │
@@ -56,13 +64,21 @@
 │ ait terminals features  Show terminal features              │
 │ ait terminals compare   Compare terminal capabilities       │
 │                                                             │
-│ GHOSTTY (NEW in v0.3.9)                                     │
-│ ───────────────────────                                     │
+│ GHOSTTY (v0.3.9+)                                           │
+│ ─────────────────                                           │
 │ ait ghostty status      Show Ghostty configuration          │
 │ ait ghostty config      Display config file location        │
 │ ait ghostty theme       List or set themes (14 built-in)    │
 │ ait ghostty font        Get or set font configuration       │
 │ ait ghostty set         Set any config value                │
+│                                                             │
+│ FLOW-CLI INTEGRATION (v0.3.10+)                             │
+│ ───────────────────────────────                             │
+│ tm title <text>         Set tab title (instant)             │
+│ tm profile <name>       Switch iTerm2 profile               │
+│ tm which                Show detected terminal              │
+│ tm detect               Detect project context              │
+│ tm switch               Apply context to terminal           │
 │                                                             │
 ├─────────────────────────────────────────────────────────────┤
 │ COMMON WORKFLOWS                                            │
@@ -72,7 +88,7 @@
 │   curl -fsSL .../install.sh | bash                          │
 │                                                             │
 │ First-time setup:                                           │
-│   ait doctor && ait hello                                   │
+│   ait doctor && ait config init                             │
 │                                                             │
 │ Switch context when entering project:                       │
 │   cd ~/my-project && ait switch                             │
@@ -85,14 +101,17 @@
 │ ─────────────                                               │
 │ ait          aiterm (main CLI)                              │
 │ oc           opencode (OpenCode CLI)                        │
+│ tm           terminal manager (flow-cli dispatcher)         │
 │                                                             │
 ├─────────────────────────────────────────────────────────────┤
 │ CONFIG LOCATIONS                                            │
 │ ────────────────                                            │
-│ ~/.claude/settings.json       Claude Code settings          │
+│ ~/.config/aiterm/config.toml    aiterm config (v0.3.11+)    │
+│ ~/.claude/settings.json         Claude Code settings        │
 │ ~/.config/opencode/config.json  OpenCode settings           │
-│ ~/.config/ghostty/config      Ghostty terminal config       │
-│ ~/.config/aiterm/config.json  aiterm settings (future)      │
+│ ~/.config/ghostty/config        Ghostty terminal config     │
+│                                                             │
+│ Environment: AITERM_CONFIG_HOME overrides config path       │
 │                                                             │
 ├─────────────────────────────────────────────────────────────┤
 │ Docs: https://data-wise.github.io/aiterm/                   │
