@@ -583,6 +583,7 @@ else:
 - [Claude Code Documentation](https://docs.anthropic.com/claude/docs)
 - [Model Context Protocol](https://modelcontextprotocol.io)
 - [aiterm API Reference](api/AITERM-API.md)
+- **flow-cli MCP Dispatcher:** [MCP-DISPATCHER-REFERENCE.md](https://data-wise.github.io/flow-cli/reference/MCP-DISPATCHER-REFERENCE/) - Quick MCP commands (`mcp list`, `mcp test`, `mcp pick`)
 
 ---
 

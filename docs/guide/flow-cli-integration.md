@@ -197,6 +197,22 @@ mcp cd filesystem
 
 ## Links
 
-- **flow-cli:** [https://github.com/Data-Wise/flow-cli](https://github.com/Data-Wise/flow-cli)
-- **aiterm:** [https://github.com/Data-Wise/aiterm](https://github.com/Data-Wise/aiterm)
+### flow-cli Resources
+- **Repository:** [github.com/Data-Wise/flow-cli](https://github.com/Data-Wise/flow-cli)
+- **Documentation:** [data-wise.github.io/flow-cli](https://data-wise.github.io/flow-cli/)
+
+### Dispatcher Reference Pages
+| Dispatcher | Reference |
+|------------|-----------|
+| `g` (Git) | [G-DISPATCHER-REFERENCE.md](https://data-wise.github.io/flow-cli/reference/G-DISPATCHER-REFERENCE/) |
+| `mcp` | [MCP-DISPATCHER-REFERENCE.md](https://data-wise.github.io/flow-cli/reference/MCP-DISPATCHER-REFERENCE/) |
+| `cc` (Claude) | [CC-DISPATCHER-REFERENCE.md](https://data-wise.github.io/flow-cli/reference/CC-DISPATCHER-REFERENCE/) |
+| `wt` (Worktree) | [WT-DISPATCHER-REFERENCE.md](https://data-wise.github.io/flow-cli/reference/WT-DISPATCHER-REFERENCE/) |
+| `tm` (Terminal) | [TM-DISPATCHER-REFERENCE.md](https://data-wise.github.io/flow-cli/reference/TM-DISPATCHER-REFERENCE/) |
+| `r` (R Package) | [R-DISPATCHER-REFERENCE.md](https://data-wise.github.io/flow-cli/reference/R-DISPATCHER-REFERENCE/) |
+| `qu` (Quarto) | [QU-DISPATCHER-REFERENCE.md](https://data-wise.github.io/flow-cli/reference/QU-DISPATCHER-REFERENCE/) |
+| `obs` (Obsidian) | [OBS-DISPATCHER-REFERENCE.md](https://data-wise.github.io/flow-cli/reference/OBS-DISPATCHER-REFERENCE/) |
+
+### aiterm Resources
+- **Repository:** [github.com/Data-Wise/aiterm](https://github.com/Data-Wise/aiterm)
 - **craft plugin:** Claude Code plugin for AI-assisted workflows
