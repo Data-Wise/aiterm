@@ -23,12 +23,14 @@ vhs feature-workflow.tape
 
 ## Available Demos
 
-| Demo | Description | Duration |
-|------|-------------|----------|
-| `feature-workflow.tape` | Feature branch commands (status, start, cleanup) | ~30s |
-| `context-detection.tape` | Context detection and profile switching | ~25s |
-| `worktree-setup.tape` | Creating worktrees with craft + aiterm | ~20s |
-| `craft-finish.tape` | AI-assisted feature completion workflow | ~30s |
+| Demo | Description | Duration | Used In |
+|------|-------------|----------|---------|
+| `feature-workflow.tape` | Feature branch commands (status, start, cleanup) | ~30s | Feature Workflow |
+| `context-detection.tape` | Context detection and profile switching | ~25s | Feature Tutorial |
+| `worktree-setup.tape` | Creating worktrees with craft + aiterm | ~20s | Git Worktrees Guide |
+| `craft-finish.tape` | AI-assisted feature completion workflow | ~30s | Feature Tutorial |
+| `worktree-complete.tape` | Full worktree lifecycle (create → work → cleanup) | ~35s | - |
+| `sessions.tape` | Session coordination (live, current, conflicts) | ~25s | Sessions Guide |
 
 ## Customization
 
