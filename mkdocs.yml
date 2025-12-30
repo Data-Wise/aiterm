@@ -90,6 +90,7 @@ nav:
   - Features:
       - Context Detection: guide/context-detection.md
       - Profile Switching: guide/profiles.md
+      - Terminal Support: guide/terminals.md
       - Status Bar: guide/status-bar.md
       - Session Coordination: guide/sessions.md
       - IDE Integration: guide/ide-integration.md
