@@ -1,12 +1,20 @@
-# flow-integration/aiterm.zsh
-# Terminal dispatcher for flow-cli
-# Symlink to: flow-cli/zsh/functions/aiterm-integration.zsh
+#!/usr/bin/env zsh
+# ══════════════════════════════════════════════════════════════════════════════
+# TM - Terminal Manager Dispatcher (aiterm integration)
+# ══════════════════════════════════════════════════════════════════════════════
 #
-# Usage: tm <command> [args]
+# File:         lib/dispatchers/tm-dispatcher.zsh
+# Version:      1.0
+# Date:         2025-12-30
+# Pattern:      command + keyword + options
+#
+# Usage:        tm <action> [args]
 #
 # This file integrates aiterm into flow-cli's dispatcher system.
 # It provides shell-native commands for speed and delegates to
 # the aiterm Python CLI for rich features.
+#
+# ══════════════════════════════════════════════════════════════════════════════
 
 # ============================================================================
 # VERSION COMPATIBILITY

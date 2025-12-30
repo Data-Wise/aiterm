@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [0.3.14] - 2025-12-30 - Improved Branch State Detection
+
+**Tag:** v0.3.14
+**PyPI:** https://pypi.org/project/aiterm-dev/0.3.14/
+**Homebrew:** `brew upgrade data-wise/tap/aiterm`
+
+### Fixed
+- **Branch State Detection** - Distinguish "new" from "merged" branches
+  - Branches with 0 commits ahead now show `(new)` instead of `(merged)`
+  - Merged status only applies to branches that had commits merged to dev
+  - Summary shows separate counts: "2 in progress, 1 new, 1 merged"
+  - Fixes confusing UX where newly created branches appeared as "merged"
+
+### Documentation
+- **Feature Workflow Docs** - Added comprehensive legend
+  - Legend table explaining all symbols (●, ○, +N, 📁)
+  - Branch States table (active/new/merged) with actions
+  - Status Values table with colors for list command
+  - Updated examples showing all three states
+
+---
+
 ## [0.3.13] - 2025-12-30 - Feature Workflow & Ghost Aliases
 
 **Tag:** v0.3.13

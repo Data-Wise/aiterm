@@ -2,7 +2,7 @@ project: aiterm
 status: active
 priority: P1
 progress: 35
-version: 0.3.13
+version: 0.3.14
 updated: 2025-12-30
 next: Phase 2 Workflow Recipes (ait recipes list/show/apply)
 
