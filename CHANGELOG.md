@@ -4,6 +4,48 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [0.3.13] - 2025-12-30 - Feature Workflow & Ghost Aliases
+
+**Tag:** v0.3.13
+**PyPI:** https://pypi.org/project/aiterm-dev/0.3.13/
+**Homebrew:** `brew upgrade data-wise/tap/aiterm`
+
+### Added
+
+#### Phase 0.7: Quick Wins
+- **Ghost Aliases** - Shortcuts for Ghostty terminal management
+  - `ait ghost` - Show Ghostty status (alias for `ait ghostty status`)
+  - `ait ghost theme [name]` - List or apply Ghostty theme
+  - `ait ghost config [-e]` - Show or edit Ghostty config
+  - `ait ghost font [name] [--size N]` - Show or set Ghostty font
+- **Terminal-Aware Switch** - `ait switch` now auto-detects terminal
+  - Supports iTerm2, Ghostty, Kitty, Alacritty, WezTerm, Apple Terminal
+  - Shows terminal type in context detection output
+  - Uses appropriate backend for each terminal
+
+#### Phase 1b: Feature Workflow Commands
+- **Feature Status** - `ait feature status`
+  - Rich pipeline visualization (main → dev → features)
+  - Shows worktree locations for each feature
+  - Displays merge status and commit counts
+- **Feature List** - `ait feature list [--all]`
+  - Detailed feature branch listing with status
+  - Shows worktree paths and commit counts
+  - Use `--all` to include merged branches
+- **Feature Start** - `ait feature start <name> [-w] [--no-install]`
+  - Creates feature branch from dev (or custom base)
+  - Optional worktree creation with `-w`/`--worktree`
+  - Auto-installs dependencies (Python/Node/R detection)
+- **Feature Cleanup** - `ait feature cleanup [--dry-run] [--force]`
+  - Interactive cleanup of merged feature branches
+  - Removes associated worktrees
+  - Use `--dry-run` to preview deletions
+
+### Tests
+- 17 new tests for feature CLI (all passing)
+
+---
+
 ## [0.3.12] - 2025-12-30 - Version Display Fix
 
 **Tag:** v0.3.12
