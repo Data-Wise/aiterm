@@ -1907,13 +1907,52 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#documentation-commands" class="md-nav__link">
+  <a href="#documentation-commands-v1110-consolidated" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Documentation Commands
+        Documentation Commands (v1.11.0 Consolidated)
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Documentation Commands (v1.11.0 Consolidated)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#super-commands-just-run-it-it-figures-out-whats-needed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Super Commands - Just run it, it figures out what's needed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specialized-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Specialized Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Internal
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2018,10 +2057,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#documentation-update" class="md-nav__link">
+  <a href="#documentation-update-v1110" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Documentation Update
+        Documentation Update (v1.11.0)
       
     </span>
   </a>
@@ -2808,13 +2847,52 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#documentation-commands" class="md-nav__link">
+  <a href="#documentation-commands-v1110-consolidated" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Documentation Commands
+        Documentation Commands (v1.11.0 Consolidated)
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Documentation Commands (v1.11.0 Consolidated)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#super-commands-just-run-it-it-figures-out-whats-needed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Super Commands - Just run it, it figures out what's needed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specialized-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Specialized Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Internal
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2919,10 +2997,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#documentation-update" class="md-nav__link">
+  <a href="#documentation-update-v1110" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Documentation Update
+        Documentation Update (v1.11.0)
       
     </span>
   </a>
@@ -3049,7 +3127,7 @@
 
 
 <h1 id="craft-plugin-quick-reference">Craft Plugin Quick Reference</h1>
-<p><strong>Version:</strong> 1.8.0+
+<p><strong>Version:</strong> 1.11.0
 <strong>Purpose:</strong> AI-assisted development workflows for Claude Code
 <strong>Usage:</strong> <code>/craft:&lt;category&gt;:&lt;command&gt;</code> in Claude Code</p>
 <hr />
@@ -3182,7 +3260,8 @@
 </tbody>
 </table>
 <hr />
-<h2 id="documentation-commands">Documentation Commands</h2>
+<h2 id="documentation-commands-v1110-consolidated">Documentation Commands (v1.11.0 Consolidated)</h2>
+<h3 id="super-commands-just-run-it-it-figures-out-whats-needed">Super Commands - Just run it, it figures out what's needed</h3>
 <table>
 <thead>
 <tr>
@@ -3192,52 +3271,81 @@
 </thead>
 <tbody>
 <tr>
-<td><code>/craft:docs:changelog</code></td>
-<td>Generate CHANGELOG entry</td>
+<td><code>/craft:docs:update</code></td>
+<td><strong>Smart-Full</strong>: Detect → Generate all needed → Check → Changelog</td>
 </tr>
 <tr>
 <td><code>/craft:docs:sync</code></td>
-<td>Sync docs with code</td>
+<td><strong>Detection</strong>: Classify changes, report stale, recommend actions</td>
 </tr>
 <tr>
-<td><code>/craft:docs:update</code></td>
-<td>Update documentation</td>
+<td><code>/craft:docs:check</code></td>
+<td><strong>Validation</strong>: Links + stale + nav + auto-fix (full-by-default)</td>
 </tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># THE ONE COMMAND</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>/craft:docs:update<span class="w">                    </span><span class="c1"># Detect what&#39;s needed, do it all</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>/craft:docs:update<span class="w"> </span><span class="s2">&quot;auth&quot;</span><span class="w">             </span><span class="c1"># Feature-specific full cycle</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>/craft:docs:check<span class="w">                     </span><span class="c1"># Full validation, auto-fixes issues</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>/craft:docs:check<span class="w"> </span>--report-only<span class="w">       </span><span class="c1"># CI mode (no changes)</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>/craft:docs:sync<span class="w">                      </span><span class="c1"># Quick: &quot;3 stale, guide recommended&quot;</span>
+</code></pre></div>
+<h3 id="specialized-commands">Specialized Commands</h3>
+<table>
+<thead>
 <tr>
-<td><code>/craft:docs:generate</code></td>
-<td>Generate docs from code</td>
+<th>Command</th>
+<th>Description</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td><code>/craft:docs:api</code></td>
 <td>Generate API documentation</td>
 </tr>
 <tr>
-<td><code>/craft:docs:claude-md</code></td>
-<td>Update CLAUDE.md</td>
+<td><code>/craft:docs:changelog</code></td>
+<td>Generate CHANGELOG entry</td>
 </tr>
 <tr>
-<td><code>/craft:docs:validate</code></td>
-<td>Validate documentation</td>
-</tr>
-<tr>
-<td><code>/craft:docs:nav-update</code></td>
-<td>Update navigation</td>
+<td><code>/craft:docs:site</code></td>
+<td>Website-focused updates</td>
 </tr>
 <tr>
 <td><code>/craft:docs:mermaid</code></td>
 <td>Create Mermaid diagrams</td>
 </tr>
 <tr>
-<td><code>/craft:docs:feature</code></td>
-<td>Document a feature</td>
-</tr>
-<tr>
-<td><code>/craft:docs:done</code></td>
-<td>Complete docs workflow</td>
+<td><code>/craft:docs:nav-update</code></td>
+<td>Update mkdocs navigation</td>
 </tr>
 <tr>
 <td><code>/craft:docs:prompt</code></td>
 <td>Create prompt documentation</td>
+</tr>
+<tr>
+<td><code>/craft:docs:demo</code></td>
+<td>VHS tape generator for GIF demos</td>
+</tr>
+<tr>
+<td><code>/craft:docs:guide</code></td>
+<td>Feature guide + demo + refcard</td>
+</tr>
+</tbody>
+</table>
+<h3 id="internal">Internal</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/craft:docs:claude-md</code></td>
+<td>Update CLAUDE.md (called by others)</td>
 </tr>
 </tbody>
 </table>
@@ -3496,44 +3604,47 @@
 <hr />
 <h2 id="common-workflows">Common Workflows</h2>
 <h3 id="feature-development">Feature Development</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 1. Start feature</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>/craft:git:worktree<span class="w"> </span>create<span class="w"> </span>feature/my-feature
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># 2. Work on feature...</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># (edit code, run tests)</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># 3. Complete feature</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>/craft:git:worktree<span class="w"> </span>finish
-</code></pre></div>
-<h3 id="documentation-update">Documentation Update</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Update docs after code changes</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>/craft:docs:sync
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 1. Start feature</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>/craft:git:worktree<span class="w"> </span>create<span class="w"> </span>feature/my-feature
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># Generate changelog</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>/craft:docs:changelog
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># 2. Work on feature...</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1"># (edit code, run tests)</span>
 <a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># Deploy site</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>/craft:site:deploy
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># 3. Complete feature</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>/craft:git:worktree<span class="w"> </span>finish
+</code></pre></div>
+<h3 id="documentation-update-v1110">Documentation Update (v1.11.0)</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># THE ONE COMMAND - detects what&#39;s needed, does it all</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>/craft:docs:update
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Feature-specific</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>/craft:docs:update<span class="w"> </span><span class="s2">&quot;auth&quot;</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># Check health</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>/craft:docs:check
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="c1"># Deploy site</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>/craft:site:deploy
 </code></pre></div>
 <h3 id="release-preparation">Release Preparation</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Run all checks</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>/craft:check<span class="w"> </span>release
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Generate changelog</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>/craft:docs:changelog
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># Create release</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>/craft:code:release
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Run all checks</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>/craft:check<span class="w"> </span>release
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># Generate changelog</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>/craft:docs:changelog
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># Create release</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>/craft:code:release
 </code></pre></div>
 <h3 id="test-driven-development">Test-Driven Development</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Generate tests first</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>/craft:test:generate
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># Run tests</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>/craft:test:run
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># Check coverage</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>/craft:test:coverage
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Generate tests first</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>/craft:test:generate
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Run tests</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>/craft:test:run
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># Check coverage</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>/craft:test:coverage
 </code></pre></div>
 <hr />
 <h2 id="project-type-detection">Project Type Detection</h2>
