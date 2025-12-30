@@ -1,10 +1,10 @@
 project: aiterm
 status: active
 priority: P1
-progress: 30
-version: 0.3.12
+progress: 35
+version: 0.3.13
 updated: 2025-12-30
-next: Phase 1b Feature Workflow (ait feature status/start/cleanup) or Phase 0.7 Quick Wins
+next: Phase 2 Workflow Recipes (ait recipes list/show/apply)
 
 ## 🎯 v0.4.0 Plan: Workflow Automation & Craft Integration
 

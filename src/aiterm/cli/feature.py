@@ -38,6 +38,7 @@ class FeatureBranch:
     commits_ahead: int = 0
     worktree_path: Optional[Path] = None
     is_merged: bool = False
+    is_new: bool = False  # True if 0 commits ahead (just created from dev)
     has_pr: bool = False
     pr_number: Optional[int] = None
 
@@ -103,7 +104,13 @@ def _get_feature_branches() -> list[FeatureBranch]:
 
         # Check if merged into dev
         merged_result = _run_git(["branch", "--merged", "dev", "--list", branch_name])
-        is_merged = bool(merged_result and merged_result.strip())
+        is_in_merged_list = bool(merged_result and merged_result.strip())
+
+        # Distinguish "new" (0 commits, just created) from "merged" (had commits, now merged)
+        # A branch is "new" if it has 0 commits ahead of dev
+        # A branch is "merged" if it's in the merged list AND had commits (not new)
+        is_new = commits_ahead == 0
+        is_merged = is_in_merged_list and not is_new
 
         branches.append(
             FeatureBranch(
@@ -112,6 +119,7 @@ def _get_feature_branches() -> list[FeatureBranch]:
                 is_current=(branch_name == current),
                 commits_ahead=commits_ahead,
                 is_merged=is_merged,
+                is_new=is_new,
             )
         )
 
@@ -199,7 +207,12 @@ def feature_status() -> None:
         for feature in sorted(features, key=lambda f: f.name):
             # Build feature label
             icon = "[green]●[/]" if feature.is_current else "[dim]○[/]"
-            merged_badge = " [yellow](merged)[/]" if feature.is_merged else ""
+            if feature.is_merged:
+                status_badge = " [yellow](merged)[/]"
+            elif feature.is_new:
+                status_badge = " [cyan](new)[/]"
+            else:
+                status_badge = ""
             commits = f" [dim]+{feature.commits_ahead}[/]" if feature.commits_ahead else ""
 
             # Check for worktree
@@ -208,7 +221,7 @@ def feature_status() -> None:
             if worktree:
                 wt_badge = f" [blue]📁 {worktree.path}[/]"
 
-            label = f"{icon} {feature.full_name}{commits}{merged_badge}{wt_badge}"
+            label = f"{icon} {feature.full_name}{commits}{status_badge}{wt_badge}"
             dev_node.add(label)
 
     console.print(tree)
@@ -216,10 +229,17 @@ def feature_status() -> None:
     # Summary stats
     total = len(features)
     merged = sum(1 for f in features if f.is_merged)
-    in_progress = total - merged
+    new_count = sum(1 for f in features if f.is_new)
+    in_progress = total - merged - new_count
 
     console.print()
-    console.print(f"[bold]Summary:[/] {total} features ({in_progress} in progress, {merged} merged)")
+    stats = f"[bold]Summary:[/] {total} features ({in_progress} in progress"
+    if new_count > 0:
+        stats += f", {new_count} new"
+    if merged > 0:
+        stats += f", {merged} merged"
+    stats += ")"
+    console.print(stats)
 
     if merged > 0:
         console.print("[yellow]Tip:[/] Run 'ait feature cleanup' to remove merged branches")
@@ -269,6 +289,8 @@ def feature_list(
 
         if feature.is_merged:
             status = "[yellow]merged[/]"
+        elif feature.is_new:
+            status = "[cyan]new[/]"
         else:
             status = "[green]active[/]"
 
