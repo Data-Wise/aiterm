@@ -137,6 +137,7 @@ nav:
   - Guides:
       - Complete User Guide: guides/AITERM-USER-GUIDE.md
       - Git Worktrees: guides/GIT-WORKTREES-GUIDE.md
+      - Troubleshooting Guide: troubleshooting/AITERM-TROUBLESHOOTING.md
       - Video Walkthrough: guides/VIDEO-WALKTHROUGH.md
 
   # ============================================
