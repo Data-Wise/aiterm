@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [Unreleased] - Phase 0.8 Ghostty Enhancements
+
+### Added
+
+#### Phase 0.8.1-0.8.2: Ghostty Profile & Backup Management
+- **Profile Management** - Save and switch between Ghostty configurations
+  - `ait ghostty profile list` - List saved profiles
+  - `ait ghostty profile show <name>` - Show profile details
+  - `ait ghostty profile create <name>` - Create profile from current config
+  - `ait ghostty profile apply <name>` - Apply profile to config
+  - `ait ghostty profile delete <name>` - Delete a profile
+  - Profiles stored in `~/.config/ghostty/profiles/*.conf`
+- **Config Backup** - Timestamped backups matching claude backup pattern
+  - `ait ghostty backup [--suffix]` - Create timestamped backup
+  - `ait ghostty restore [backup]` - Restore from backup (with pre-restore safety)
+  - `ait ghostty restore` (no args) - List available backups
+
+### Tests
+- 18 new Ghostty profile/backup tests (62 total Ghostty tests)
+
+---
+
 ## [0.3.13] - 2025-12-30 - Feature Workflow & Ghost Aliases
 
 **Tag:** v0.3.13
