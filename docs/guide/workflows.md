@@ -412,6 +412,277 @@ ait switch
 
 ---
 
+## Configuration Management Workflow (v0.3.11+)
+
+### First-Time Setup
+
+```bash
+# 1. Initialize config directory
+ait config init
+# → Creates ~/.config/aiterm/config.toml
+
+# 2. View config paths
+ait config path --all
+# Shows all config locations with status
+
+# 3. Customize settings
+ait config edit
+# Opens config.toml in $EDITOR
+```
+
+### Configuration File
+
+```toml
+# ~/.config/aiterm/config.toml
+
+[general]
+default_terminal = "auto"  # auto, iterm2, ghostty
+quiet_mode = false
+
+[profiles]
+default = "default"
+auto_switch = true
+
+[flow_cli]
+enabled = true
+dispatcher = "tm"
+
+[claude]
+manage_settings = true
+backup_on_change = true
+```
+
+### Custom Config Location
+
+```bash
+# Override config directory
+export AITERM_CONFIG_HOME="$HOME/.aiterm"
+
+# Check where config is loaded from
+ait config path
+```
+
+---
+
+## flow-cli Terminal Dispatcher (v0.3.10+)
+
+### Using the `tm` Command
+
+The `tm` dispatcher provides instant terminal control via shell-native commands:
+
+```bash
+# Set tab title (instant, no Python!)
+tm title "Working on API"
+
+# Switch iTerm2 profile
+tm profile "Production"
+
+# Set status bar variable
+tm var project_name "myapp"
+
+# Detect current terminal
+tm which
+# → ghostty (or iterm2)
+```
+
+### Context Switching with tm
+
+```bash
+# Navigate and switch
+cd ~/projects/myapp
+tm switch
+# → Auto-detects context, applies profile, sets title
+
+# Quick detect
+tm detect
+# Shows project type without applying
+```
+
+### Ghostty Commands via tm
+
+```bash
+# Show Ghostty config
+tm ghost status
+
+# Change theme
+tm ghost theme dracula
+
+# Set font
+tm ghost font "Fira Code" 16
+```
+
+### Integration with flow-cli
+
+`tm` integrates with other flow-cli dispatchers:
+
+```bash
+# Combined workflow
+work myapp         # Start work session (flow-cli)
+tm switch          # Apply terminal context
+cc                 # Start Claude Code (flow-cli)
+# → Everything is configured!
+```
+
+---
+
+## Ghostty Terminal Workflow (v0.3.9+)
+
+### Setting Up Ghostty
+
+```bash
+# 1. Check detection
+ait terminals detect
+# → Detected: ghostty (Version: 1.2.3)
+
+# 2. View current config
+ait ghostty status
+
+# 3. Browse themes
+ait ghostty theme
+# Lists all 14 built-in themes
+```
+
+### Theme Switching
+
+```bash
+# Available themes (14 built-in)
+ait ghostty theme
+# catppuccin-mocha, dracula, nord, tokyo-night, gruvbox-dark, ...
+
+# Apply a theme
+ait ghostty theme dracula
+# → Config updated, Ghostty auto-reloads
+
+# Context-aware theming (future)
+# Production dirs could auto-switch to red theme
+```
+
+### Font Configuration
+
+```bash
+# Check current font
+ait ghostty font
+# → JetBrains Mono @ 14pt
+
+# Change font and size
+ait ghostty font "Fira Code" 16
+```
+
+### Custom Settings
+
+```bash
+# Set any Ghostty config value
+ait ghostty set window-padding-x 12
+ait ghostty set background-opacity 0.95
+ait ghostty set cursor-style underline
+```
+
+---
+
+## Session Coordination Workflow
+
+### Multi-Session Development
+
+When working on multiple Claude Code sessions:
+
+```bash
+# Terminal 1: Frontend
+cd ~/projects/frontend
+ait switch
+claude  # Session ID: abc123
+
+# Terminal 2: Backend
+cd ~/projects/backend
+ait switch
+claude  # Session ID: def456
+
+# Check all active sessions
+ait sessions live
+```
+
+**Output:**
+```
+Active Sessions
+┌──────────────┬──────────────┬──────────────┬──────────┐
+│ Session ID   │ Project      │ Branch       │ Duration │
+├──────────────┼──────────────┼──────────────┼──────────┤
+│ abc123       │ frontend     │ feature/ui   │ 45m      │
+│ def456       │ backend      │ develop      │ 12m      │
+└──────────────┴──────────────┴──────────────┴──────────┘
+```
+
+### Conflict Detection
+
+```bash
+# Start second session in same project
+cd ~/projects/backend
+ait sessions conflicts
+# ⚠️ Warning: 1 other session active in this project
+```
+
+### Task Tracking
+
+```bash
+# Set what you're working on
+ait sessions task "Implementing OAuth2 login"
+
+# View current task
+ait sessions current
+```
+
+### Session History
+
+```bash
+# Browse past sessions
+ait sessions history
+ait sessions history --date 2025-12-29
+
+# Cleanup stale sessions
+ait sessions prune
+```
+
+---
+
+## IDE Integration Workflow
+
+### Setting Up IDE Detection
+
+```bash
+# List supported IDEs
+ait ide list
+
+# Check current IDE
+ait ide detect
+```
+
+**Supported IDEs:**
+- VS Code / Cursor
+- Zed
+- Positron
+- Windsurf
+- JetBrains (IntelliJ, PyCharm, etc.)
+
+### IDE-Specific Workflows
+
+**VS Code + Claude Code:**
+```bash
+# Open in VS Code, then switch context
+code ~/projects/myapp
+cd ~/projects/myapp
+ait switch
+claude
+```
+
+**Cursor + Claude Code:**
+```bash
+# Cursor has built-in AI, but Claude Code works alongside
+cursor ~/projects/myapp
+ait switch
+claude  # For complex tasks
+```
+
+---
+
 ## Tips & Tricks
 
 ### Alias for Quick Navigation

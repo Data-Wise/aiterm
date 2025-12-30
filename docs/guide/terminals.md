@@ -96,6 +96,85 @@ window-padding-y = 10
 ait terminals title "Working on aiterm"
 ```
 
+### Ghostty CLI Commands (v0.3.9+)
+
+aiterm provides dedicated commands for managing Ghostty settings:
+
+```bash
+# Check Ghostty status and configuration
+ait ghostty status
+
+# Output:
+# Ghostty Configuration
+# ─────────────────────
+# Config file: ~/.config/ghostty/config
+# Theme: catppuccin-mocha
+# Font: JetBrains Mono @ 14pt
+```
+
+**Theme Management:**
+```bash
+# List all 14 built-in themes
+ait ghostty theme
+# catppuccin-mocha, dracula, nord, tokyo-night,
+# gruvbox-dark, gruvbox-light, solarized-dark,
+# solarized-light, one-dark, one-light,
+# tomorrow-night, monokai, zenburn, github-dark
+
+# Apply a theme
+ait ghostty theme dracula
+# ✅ Theme set: dracula
+# Ghostty auto-reloads on config change
+```
+
+**Font Configuration:**
+```bash
+# View current font settings
+ait ghostty font
+# Font: JetBrains Mono @ 14pt
+
+# Change font family and size
+ait ghostty font "Fira Code" 16
+# ✅ Font set: Fira Code @ 16pt
+
+# Change size only (keeps family)
+ait ghostty font --size 18
+```
+
+**Custom Settings:**
+```bash
+# Set any Ghostty config value
+ait ghostty set window-padding-x 12
+ait ghostty set window-padding-y 12
+ait ghostty set background-opacity 0.95
+ait ghostty set cursor-style underline
+ait ghostty set cursor-style-blink true
+
+# View specific setting
+ait ghostty get background-opacity
+```
+
+**Config File Location:**
+```bash
+# Show config file path
+ait ghostty config
+# ~/.config/ghostty/config
+
+# Open config in $EDITOR
+ait ghostty edit
+```
+
+### flow-cli Integration (tm dispatcher)
+
+For instant Ghostty control via shell:
+
+```bash
+# tm dispatcher commands (no Python overhead)
+tm ghost status          # Same as: ait ghostty status
+tm ghost theme dracula   # Same as: ait ghostty theme dracula
+tm ghost font "Fira Code" 16  # Same as: ait ghostty font
+```
+
 ---
 
 ## iTerm2 Support

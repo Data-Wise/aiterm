@@ -1,15 +1,22 @@
 # aiterm User Guide
 
-**Version:** 0.1.0-dev
-**Last Updated:** 2025-12-21
-**Reading Time:** 15 minutes
-**Difficulty:** Beginner
+**Version:** 0.3.11
+**Last Updated:** 2025-12-29
+**Reading Time:** 20 minutes
+**Difficulty:** Beginner to Intermediate
 
 ---
 
-## Welcome to aiterm! 🎉
+## Welcome to aiterm!
 
-This guide will help you get started with aiterm, the terminal optimizer for AI-assisted development with Claude Code and Gemini CLI.
+This guide will help you get started with aiterm, the terminal optimizer for AI-assisted development with Claude Code, OpenCode, and Gemini CLI.
+
+**What's New in v0.3.x:**
+- XDG-compliant configuration (`~/.config/aiterm/`)
+- flow-cli integration (`tm` dispatcher)
+- Ghostty terminal support
+- Session coordination
+- IDE integrations
 
 ---
 
@@ -19,9 +26,11 @@ This guide will help you get started with aiterm, the terminal optimizer for AI-
 2. [Installation](#installation)
 3. [First-Time Setup](#first-time-setup)
 4. [Daily Workflows](#daily-workflows)
-5. [Advanced Features](#advanced-features)
-6. [Tips & Tricks](#tips-tricks)
-7. [FAQ](#faq)
+5. [Terminal Support](#terminal-support)
+6. [Configuration](#configuration)
+7. [Advanced Features](#advanced-features)
+8. [Tips & Tricks](#tips-tricks)
+9. [FAQ](#faq)
 
 ---
 
@@ -60,21 +69,32 @@ $ cd ~/projects/r-packages/RMediation
 
 ### Key Features
 
-✅ **Automatic Context Detection**
+**Automatic Context Detection**
 - Detects R packages, Python projects, Node.js apps, production paths, AI sessions
 - 8 built-in context types, extensible for custom types
 
-✅ **Automatic Profile Switching**
-- iTerm2 profile changes based on project type
-- Visual cues (colors, themes) for different contexts
-- Production safety mode (red theme, extra confirmations)
+**Multi-Terminal Support**
+- **iTerm2**: Full support (profiles, badges, status bar)
+- **Ghostty**: Full support (themes, fonts, settings)
+- **WezTerm, Kitty, Alacritty**: Basic support
 
-✅ **Claude Code Integration**
+**Claude Code Integration**
 - Auto-approval presets for different workflows
 - 8 built-in presets (minimal, development, production, r-package, etc.)
 - Settings management with automatic backups
+- Session coordination and conflict detection
 
-✅ **ADHD-Friendly Design**
+**flow-cli Integration (v0.3.10+)**
+- `tm` dispatcher for instant terminal control
+- Shell-native commands (no Python overhead)
+- Integrates with flow-cli workflow system
+
+**XDG Configuration (v0.3.11+)**
+- Config at `~/.config/aiterm/config.toml`
+- Override with `AITERM_CONFIG_HOME`
+- Clean separation of config, profiles, themes
+
+**ADHD-Friendly Design**
 - Zero manual configuration needed
 - Visual feedback for all operations
 - Fast operations (< 200ms for everything)
@@ -88,85 +108,68 @@ $ cd ~/projects/r-packages/RMediation
 
 **Required:**
 - Python 3.10 or higher
-- iTerm2 3.4.0+ (macOS) *for full features*
+- macOS or Linux
+
+**Recommended:**
+- iTerm2 or Ghostty (for full terminal features)
 - Claude Code CLI (for Claude integration)
+- flow-cli (for `tm` dispatcher)
 
-**Optional:**
-- UV package manager (10-100x faster than pip)
-- Git (for version-controlled projects)
+### Method 1: Quick Install (Recommended)
 
-### Method 1: UV (Recommended - Fastest!)
-
-**Install UV first:**
 ```bash
-# Install UV (if not already installed)
-curl -LsSf https://astral.sh/uv/install.sh | sh
-
-# Restart terminal for PATH changes
+# Auto-detects best method (uv/pipx/brew/pip)
+curl -fsSL https://raw.githubusercontent.com/Data-Wise/aiterm/main/install.sh | bash
 ```
 
-**Install aiterm:**
-```bash
-# Install from GitHub
-uv pip install git+https://github.com/Data-Wise/aiterm.git
+### Method 2: Homebrew (macOS)
 
-# Or install from PyPI (when published)
-uv pip install aiterm
+```bash
+brew install data-wise/tap/aiterm
 ```
 
-**Time:** ~30 seconds ⚡
-
----
-
-### Method 2: pip (Standard)
+### Method 3: UV/pipx
 
 ```bash
-# Install from GitHub
-pip install git+https://github.com/Data-Wise/aiterm.git
+# With uv (fastest)
+uv tool install aiterm-dev
 
-# Or install from PyPI (when published)
-pip install aiterm
+# With pipx
+pipx install aiterm-dev
 ```
 
-**Time:** ~2-3 minutes
-
----
-
-### Method 3: From Source (Development)
+### Method 4: pip
 
 ```bash
-# Clone repository
+pip install aiterm-dev
+```
+
+### Method 5: From Source (Development)
+
+```bash
 git clone https://github.com/Data-Wise/aiterm.git
 cd aiterm
-
-# Install in development mode
 uv pip install -e ".[dev]"
-
-# Or with pip
-pip install -e ".[dev]"
 ```
-
-**Use this if:** You want to contribute or customize aiterm
-
----
 
 ### Verify Installation
 
 ```bash
-$ aiterm --version
-aiterm version 0.1.0-dev
+$ ait --version
+aiterm 0.3.11
+Python: 3.12.0
+Platform: macOS-15.2-arm64
+Path: /Users/you/.local/bin/aiterm
 
-$ aiterm doctor
-╔════════════════════════════════════════════════════╗
-║  aiterm Installation Check                         ║
-╚════════════════════════════════════════════════════╝
+$ ait doctor
+aiterm doctor - Health check
 
-✅ Python: 3.11.5
-✅ Terminal: iTerm2 (Build 3.5.0)
-✅ Claude Code: 0.2.0 (~/.claude/)
-✅ Settings: ~/.aiterm/config.json
+Terminal: iTerm.app
+Shell: /bin/zsh
+Python: 3.12.0
+aiterm: 0.3.11
 
-System Status: All checks passed!
+Basic checks passed!
 ```
 
 **If any checks fail:** See [Troubleshooting Guide](../troubleshooting/AITERM-TROUBLESHOOTING.md)
@@ -178,35 +181,49 @@ System Status: All checks passed!
 ### Step 1: Run Doctor Check
 
 ```bash
-aiterm doctor
+ait doctor
 ```
 
 This verifies:
 - ✅ Python version (≥ 3.10)
-- ✅ Terminal type (iTerm2 preferred)
+- ✅ Terminal type (iTerm2, Ghostty, or basic)
 - ✅ Claude Code installation
 - ✅ Configuration files
 
 **Example - All Good:**
 ```
-✅ Python: 3.11.5
+✅ Python: 3.12.0
 ✅ Terminal: iTerm2 (Build 3.5.0)
-✅ Claude Code: 0.2.0
-✅ Settings: ~/.aiterm/config.json
+✅ Claude Code: 1.0.0
+✅ Settings: ~/.config/aiterm/config.toml
 
 System Status: All checks passed!
 ```
 
-**Example - Need iTerm2:**
+**Example - Basic Terminal:**
 ```
-✅ Python: 3.11.5
-❌ Terminal: Terminal.app (unsupported)
-   → iTerm2 3.4.0+ required for full features
-   → Download: https://iterm2.com
-✅ Claude Code: 0.2.0
-✅ Settings: ~/.aiterm/config.json
+✅ Python: 3.12.0
+⚠️ Terminal: Terminal.app (basic features only)
+   → For full features, use iTerm2 or Ghostty
+✅ Claude Code: 1.0.0
+✅ Settings: ~/.config/aiterm/config.toml
 
-System Status: 1 check failed
+System Status: All checks passed (some features limited)
+```
+
+### Step 1b: Initialize Configuration (Optional)
+
+```bash
+# Create default config file
+ait config init
+# → Creates ~/.config/aiterm/config.toml
+
+# View config locations
+ait config path --all
+# → Shows all config paths with status
+
+# View current settings
+ait config show
 ```
 
 ---
@@ -501,6 +518,218 @@ $ cd ~/claude-sessions/new-feature
 
 ---
 
+## Terminal Support
+
+aiterm supports multiple terminals with varying feature levels.
+
+### Supported Terminals
+
+| Terminal | Profile Switching | Themes | Tab Titles | Status Bar |
+|----------|------------------|--------|------------|------------|
+| **iTerm2** | ✅ Full | ✅ Full | ✅ Full | ✅ Full |
+| **Ghostty** | ✅ Via themes | ✅ 14 built-in | ✅ Full | ❌ N/A |
+| **WezTerm** | 🔄 Planned | 🔄 Planned | ✅ Basic | 🔄 Planned |
+| **Kitty** | 🔄 Planned | 🔄 Planned | ✅ Basic | 🔄 Planned |
+| **Alacritty** | ❌ N/A | 🔄 Planned | ❌ N/A | ❌ N/A |
+| **Terminal.app** | ❌ Limited | ❌ N/A | ✅ Basic | ❌ N/A |
+
+### Detecting Your Terminal
+
+```bash
+$ ait terminals detect
+Detected: iTerm.app
+Version: 3.5.0
+Features: profiles, themes, badges, status-bar, escape-sequences
+
+$ ait terminals features
+┌────────────────────────────────────────┐
+│ Terminal Features: iTerm.app           │
+├────────────────────────────────────────┤
+│ ✅ Profile switching                   │
+│ ✅ Theme support                       │
+│ ✅ Tab title                           │
+│ ✅ Badge support                       │
+│ ✅ Status bar variables                │
+│ ✅ Escape sequences                    │
+└────────────────────────────────────────┘
+```
+
+### iTerm2 Setup
+
+iTerm2 is the recommended terminal with full feature support.
+
+**Create profiles for each context type:**
+
+1. Open iTerm2 → Preferences → Profiles
+2. Create profiles matching aiterm's expected names:
+   - `R-Dev` - Blue theme for R development
+   - `Python-Dev` - Green theme for Python
+   - `Production` - Red theme (safety warning!)
+   - `AI-Session` - Purple theme for AI coding
+   - `Default` - Your standard profile
+
+**Tab title configuration:**
+- Preferences → Profiles → [Profile] → General
+- Title: "Name (Job)" or custom format
+- Badge: Enable for context info
+
+### Ghostty Setup (v0.3.9+)
+
+Ghostty is a fast, GPU-accelerated terminal with excellent aiterm support.
+
+**Check Ghostty status:**
+```bash
+$ ait ghostty status
+Ghostty Configuration
+─────────────────────
+Config file: ~/.config/ghostty/config
+Theme: catppuccin-mocha
+Font: JetBrains Mono @ 14pt
+```
+
+**Theme management:**
+```bash
+# List available themes (14 built-in)
+$ ait ghostty theme
+Available themes:
+  catppuccin-mocha    dracula         nord
+  tokyo-night         gruvbox-dark    gruvbox-light
+  solarized-dark      solarized-light one-dark
+  ...
+
+# Apply a theme
+$ ait ghostty theme dracula
+✅ Theme set: dracula
+```
+
+**Font configuration:**
+```bash
+# Check current font
+$ ait ghostty font
+Font: JetBrains Mono @ 14pt
+
+# Change font and size
+$ ait ghostty font "Fira Code" 16
+✅ Font set: Fira Code @ 16pt
+```
+
+**Custom settings:**
+```bash
+# Set any Ghostty config value
+$ ait ghostty set window-padding-x 12
+$ ait ghostty set background-opacity 0.95
+$ ait ghostty set cursor-style underline
+```
+
+### flow-cli Integration (v0.3.10+)
+
+The `tm` dispatcher provides instant terminal control from shell:
+
+```bash
+# Set tab title (instant, no Python!)
+$ tm title "Working on API"
+
+# Switch iTerm2 profile
+$ tm profile "Production"
+
+# Detect and apply context
+$ tm switch
+
+# Show detected terminal
+$ tm which
+→ iterm2
+
+# Ghostty commands via tm
+$ tm ghost status
+$ tm ghost theme dracula
+$ tm ghost font "Fira Code" 16
+```
+
+**Benefits of tm dispatcher:**
+- Shell-native (no Python startup overhead)
+- Instant response (~5ms vs ~100ms)
+- Works in shell scripts and aliases
+- Integrates with flow-cli workflow system
+
+---
+
+## Configuration
+
+aiterm uses XDG-compliant configuration paths (v0.3.11+).
+
+### Configuration Paths
+
+| Path | Purpose |
+|------|---------|
+| `~/.config/aiterm/config.toml` | Main configuration |
+| `~/.config/aiterm/profiles/` | Custom profile definitions |
+| `~/.config/aiterm/themes/` | Custom color themes |
+
+**Override with environment variable:**
+```bash
+export AITERM_CONFIG_HOME="$HOME/.aiterm"
+```
+
+### Managing Configuration
+
+```bash
+# Show config directory
+$ ait config path
+~/.config/aiterm
+
+# Show all paths with status
+$ ait config path --all
+Configuration Paths
+───────────────────
+Config home: ~/.config/aiterm (exists)
+Config file: ~/.config/aiterm/config.toml (exists)
+Profiles dir: ~/.config/aiterm/profiles (missing)
+Themes dir: ~/.config/aiterm/themes (missing)
+
+# Create default config
+$ ait config init
+✅ Created: ~/.config/aiterm/config.toml
+
+# View current config
+$ ait config show
+
+# Edit config in $EDITOR
+$ ait config edit
+```
+
+### Configuration File
+
+```toml
+# ~/.config/aiterm/config.toml
+
+[general]
+default_terminal = "auto"  # auto, iterm2, ghostty
+quiet_mode = false
+
+[profiles]
+default = "default"
+auto_switch = true
+
+[flow_cli]
+enabled = true
+dispatcher = "tm"
+
+[claude]
+manage_settings = true
+backup_on_change = true
+```
+
+### Environment Variables
+
+| Variable | Purpose | Default |
+|----------|---------|---------|
+| `AITERM_CONFIG_HOME` | Override config directory | `~/.config/aiterm` |
+| `AITERM_AUTO_SWITCH` | Enable/disable auto-switch | `1` |
+| `AITERM_QUIET` | Suppress output | `0` |
+| `AITERM_TERMINAL` | Force terminal type | auto-detect |
+
+---
+
 ## Advanced Features
 
 ### Context Types
@@ -759,16 +988,28 @@ cp ~/.claude/settings.json.backup.20251221_103045 \
 
 ### Q: Does aiterm work outside iTerm2?
 
-**A:** Partial support. Context detection works everywhere, but profile switching requires iTerm2.
+**A:** Yes! aiterm now supports multiple terminals (v0.3.9+):
 
-**Supported features without iTerm2:**
+**Full support:**
+- **iTerm2** - Profiles, themes, titles, status bar, badges
+- **Ghostty** - Themes (14 built-in), fonts, titles, settings
+
+**Basic support (context detection + titles):**
+- WezTerm
+- Kitty
+- Terminal.app
+
+**Universal features (all terminals):**
 - ✅ Context detection
 - ✅ Auto-approval management
 - ✅ Settings management
-- ❌ Profile switching (terminal-specific)
-- ❌ Title updates (terminal-specific)
+- ✅ Configuration commands
 
-**Planned:** Wezterm, Alacritty, Kitty support (Phase 3)
+Check your terminal's features:
+```bash
+ait terminals detect
+ait terminals features
+```
 
 ---
 
@@ -785,21 +1026,26 @@ cp ~/.claude/settings.json.backup.20251221_103045 \
 
 ### Q: Can I customize profiles?
 
-**A:** Yes! Edit `~/.aiterm/config.json`:
+**A:** Yes! Edit `~/.config/aiterm/config.toml`:
 
-```json
-{
-  "profiles": {
-    "My-Custom": {
-      "theme": "my-theme",
-      "triggers": [".myproject"],
-      "auto_approvals": ["Bash(git *)", "Read(**)"]
-    }
-  }
-}
+```toml
+[profiles.custom.my-project]
+theme = "my-theme"
+triggers = [".myproject"]
+auto_approvals = ["Bash(git *)", "Read(**)"]
 ```
 
-**Coming in Phase 2:** Profile creation wizard
+Or create a profile file in `~/.config/aiterm/profiles/`:
+
+```toml
+# ~/.config/aiterm/profiles/my-project.toml
+name = "My-Project"
+theme = "my-theme"
+triggers = [".myproject", "myproject.json"]
+auto_approvals = ["Bash(git *)", "Read(**)"]
+```
+
+**Coming in Phase 2:** Profile creation wizard (`ait profile create`)
 
 ---
 
@@ -827,20 +1073,30 @@ $ aiterm profile switch R-Dev
 
 **With UV:**
 ```bash
-uv pip uninstall aiterm
+uv tool uninstall aiterm-dev
+```
+
+**With pipx:**
+```bash
+pipx uninstall aiterm-dev
 ```
 
 **With pip:**
 ```bash
-pip uninstall aiterm
+pip uninstall aiterm-dev
+```
+
+**With Homebrew:**
+```bash
+brew uninstall aiterm
 ```
 
 **Remove config files (optional):**
 ```bash
-rm -rf ~/.aiterm
+rm -rf ~/.config/aiterm
 ```
 
-**Note:** Claude Code settings are NOT removed (safe to keep)
+**Note:** Claude Code settings (`~/.claude/`) are NOT removed (safe to keep)
 
 ---
 
@@ -951,5 +1207,5 @@ You're now ready to use aiterm for optimized AI-assisted development!
 
 ---
 
-**Last Updated:** 2025-12-21
+**Last Updated:** 2025-12-29
 **Maintained By:** aiterm Development Team
