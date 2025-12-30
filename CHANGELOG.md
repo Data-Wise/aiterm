@@ -4,6 +4,42 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [0.3.10] - 2025-12-29 - flow-cli Integration
+
+**Tag:** v0.3.10
+**PyPI:** https://pypi.org/project/aiterm-dev/0.3.10/
+**Homebrew:** `brew upgrade data-wise/tap/aiterm`
+
+### Added
+- **flow-cli Integration** - New `tm` dispatcher for flow-cli
+  - `tm title <text>` - Set tab/window title (shell-native, instant)
+  - `tm profile <name>` - Switch iTerm2 profile (shell-native)
+  - `tm var <key> <val>` - Set iTerm2 status bar variable
+  - `tm which` - Show detected terminal
+  - `tm ghost` - Delegate to `ait ghostty` commands
+  - `tm switch` - Delegate to `ait switch`
+  - `tm detect` - Delegate to `ait detect`
+  - `tm doctor` - Delegate to `ait doctor`
+- **Symlink-based Sync** - Automatic integration with flow-cli
+  - `flow-integration/aiterm.zsh` - Main dispatcher file
+  - `flow-integration/install-symlink.sh` - Setup script
+  - Version compatibility checks with graceful fallbacks
+- **Homebrew Integration** - Auto-install flow-cli symlink
+  - `post_install` hook detects flow-cli and creates symlink
+  - Caveats show manual installation instructions
+
+### Removed
+- **Legacy ZSH** - Removed `zsh/iterm2-integration.zsh` (186 lines)
+  - Replaced by `flow-integration/aiterm.zsh`
+  - All functionality preserved in new dispatcher
+
+### Documentation
+- `docs/design/TERMINAL-DISPATCHER-DESIGN.md` - Naming research, escape sequences, sync mechanism
+- `docs/proposals/AITERM-IN-FLOW-CLI.md` - Integration architecture proposal
+- `docs/proposals/ZSH-DELEGATION-FLOW-CLI.md` - Delegation strategy proposal
+
+---
+
 ## [0.3.9] - 2025-12-29 - Ghostty Terminal Support
 
 **Tag:** v0.3.9
