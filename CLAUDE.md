@@ -17,14 +17,27 @@ This file provides guidance to Claude Code when working with the aiterm project.
 **Tech Stack:**
 - **Language:** Python 3.10+
 - **CLI Framework:** Typer + Rich
-- **Testing:** pytest (400+ tests)
+- **Testing:** pytest (611 tests)
 - **Distribution:** Homebrew, PyPI, curl installer
 
 ---
 
 ## Current Version: v0.4.0 (Dec 30, 2025)
 
-### v0.4.0 Features (Just Released)
+### Next Version: v0.5.0 (In Development)
+
+**Release Management** (`ait release`) - Phase 1 Complete:
+- `ait release check` - Validate release readiness
+- `ait release status` - Show version & pending changes
+- `ait release pypi` - Build and publish to PyPI
+- `ait release homebrew` - Update Homebrew formula
+- `ait release tag` - Create annotated git tag
+- `ait release notes` - Generate release notes from commits
+- `ait release full` - Full workflow: check → tag → pypi → homebrew
+
+**Statistics:** 55 tests for release commands
+
+### v0.4.0 Features
 
 **Craft Plugin Management** (`ait craft`):
 - `ait craft status` - Plugin installation status
@@ -40,8 +53,6 @@ This file provides guidance to Claude Code when working with the aiterm project.
 
 **13 Built-in Workflows:**
 test, lint, format, check, build, docs, docs-serve, clean, deploy-docs, release
-
-**Statistics:** 63 new tests (19 craft + 44 workflows)
 
 ### Previous Releases
 
@@ -78,13 +89,19 @@ ait doctor                       # Health check
 ait detect                       # Show project context
 ait switch                       # Apply context to terminal
 
-# Workflows (NEW in v0.4.0)
+# Release Management (v0.5.0)
+ait release check                # Validate release readiness
+ait release status               # Show version & pending changes
+ait release pypi                 # Build and publish to PyPI
+ait release full 0.5.0           # Full release workflow
+
+# Workflows (v0.4.0)
 ait workflows status             # Session + workflow status
 ait workflows run test           # Run test workflow
 ait workflows run lint+test      # Chain workflows
 ait workflows custom list        # List custom workflows
 
-# Craft (NEW in v0.4.0)
+# Craft (v0.4.0)
 ait craft status                 # Plugin status
 ait craft list                   # List commands/skills
 ait craft sync                   # Sync with project
