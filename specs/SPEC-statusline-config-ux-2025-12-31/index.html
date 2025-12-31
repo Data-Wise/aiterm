@@ -15,6 +15,10 @@
         <link rel="canonical" href="https://data-wise.github.io/aiterm/specs/SPEC-statusline-config-ux-2025-12-31/">
       
       
+        <link rel="prev" href="../SPEC-ghostty-enhancements-2025-12-30/">
+      
+      
+        <link rel="next" href="../SPEC-statusline-integration-2025-12-31/">
       
       
         
@@ -25,7 +29,7 @@
     
     
       
-        <title>SPEC: StatusLine Configuration UX - aiterm</title>
+        <title>StatusLine Config UX - aiterm</title>
       
     
     
@@ -112,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              SPEC: StatusLine Configuration UX
+              StatusLine Config UX
             
           </span>
         </div>
@@ -401,10 +405,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../../architecture/AITERM-ARCHITECTURE/" class="md-tabs__link">
           
   
@@ -2458,26 +2464,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
         
           
-          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
             
   
   
@@ -2495,7 +2506,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_9">
             <span class="md-nav__icon md-icon"></span>
             
@@ -2687,17 +2698,20 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_7" >
         
           
-          <label class="md-nav__link" for="__nav_9_7" id="__nav_9_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_9_7" id="__nav_9_7_label" tabindex="">
             
   
   
@@ -2934,26 +2948,31 @@
                 
   
   
+    
   
   
+  
     
     
     
     
       
       
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_8" >
         
           
-          <label class="md-nav__link" for="__nav_9_8" id="__nav_9_8_label" tabindex="0">
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9_8" id="__nav_9_8_label" tabindex="">
             
   
   
@@ -2971,7 +2990,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_8_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_8_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_9_8">
             <span class="md-nav__icon md-icon"></span>
             
@@ -3081,6 +3100,919 @@
     
   
     Ghostty Enhancements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    StatusLine Config UX
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    StatusLine Config UX
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Purpose
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Goals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-non-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Non-Goals
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-user-stories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. User Stories
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. User Stories">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-new-user-exploring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 New User Exploring
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-power-user-tweaking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Power User Tweaking
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-batch-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Batch Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-discovery-by-listing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Discovery by Listing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-command-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Command Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-component-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Component Diagram
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-data-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Data Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-api-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. API Design
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. API Design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-python-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Python API
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1 Python API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#411-statuslineconfig-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1.1 StatusLineConfig Class
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#412-interactive-menu-helper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1.2 Interactive Menu Helper
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-cli-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 CLI Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2 CLI Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#421-main-config-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2.1 Main Config Command
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-tab-completion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Tab Completion
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-uiux-specifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. UI/UX Specifications
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. UI/UX Specifications">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-interactive-menu-no-args" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Interactive Menu (No Args)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-list-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 List Command
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-get-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Get Command
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-set-command-direct" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 Set Command (Direct)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-set-command-interactive-with-fzf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.5 Set Command (Interactive with fzf)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#56-reset-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.6 Reset Command
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#57-edit-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.7 Edit Command
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#58-wizard-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.8 Wizard Command
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#59-tab-completion-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.9 Tab Completion Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Error Handling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Error Handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-invalid-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Invalid Key
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-invalid-value-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Invalid Value Type
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-invalid-choice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 Invalid Choice
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-invalid-json-in-config-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 Invalid JSON in Config File
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-missing-fzf-for-interactive-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5 Missing fzf for Interactive Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Dependencies
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Dependencies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-python-libraries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 Python Libraries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-external-tools-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 External Tools (Optional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-system-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 System Requirements
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-testing-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Testing Strategy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Testing Strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-unit-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Unit Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-cli-integration-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 CLI Integration Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-test-coverage-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 Test Coverage Goals
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-implementation-phases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Implementation Phases
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Implementation Phases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-core-config-system-week-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 1: Core Config System (Week 1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-2-list-command-week-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2: List Command (Week 1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-3-getset-commands-week-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3: Get/Set Commands (Week 2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-4-interactive-menu-week-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 4: Interactive Menu (Week 2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-5-advanced-features-week-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 5: Advanced Features (Week 3)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-6-tab-completion-week-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 6: Tab Completion (Week 3)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101-cli-help-text" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1 CLI Help Text
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102-user-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2 User Documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#103-reference-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3 Reference Documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-acceptance-criteria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Acceptance Criteria
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Acceptance Criteria">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-functional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1 Functional
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-non-functional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2 Non-Functional
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3 Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-future-enhancements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Future Enhancements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Future Enhancements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121-preview-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.1 Preview Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#122-config-profiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.2 Config Profiles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#123-importexport" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.3 Import/Export
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#124-recommended-presets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.4 Recommended Presets
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-a-configuration-schema-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix A: Configuration Schema Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-b-file-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix B: File Paths
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SPEC-statusline-integration-2025-12-31/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    StatusLine Integration
   
 
     
