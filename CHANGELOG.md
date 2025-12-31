@@ -4,6 +4,85 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [0.6.3] - 2025-12-31 - StatusLine System & CI Improvements 🎨
+
+**Tag:** v0.6.3
+**PyPI:** https://pypi.org/project/aiterm-dev/0.6.3/
+**Homebrew:** `brew upgrade data-wise/tap/aiterm`
+
+### 🎉 Major Features
+
+#### StatusLine System
+
+Complete Claude Code statusLine customization system with 32 configuration options.
+
+**Commands:**
+
+| Command | Description |
+|---------|-------------|
+| `ait statusline render` | Display statusLine output |
+| `ait statusline config list` | Show all 32 config options |
+| `ait statusline config get KEY` | Get specific config value |
+| `ait statusline config set KEY VALUE` | Update config value |
+| `ait statusline config reset [KEY]` | Reset to defaults |
+
+**Features:**
+- **6 Configuration Categories:** display, git, project, usage, theme, time
+- **Worktree Display:** 🌳N count when multiple worktrees, `(wt)` marker in non-main
+- **Configurable Spacing:** minimal (1 space), standard (2 spaces), relaxed (3 spaces)
+- **Git Integration:** Branch name, dirty status, ahead/behind indicators, worktree count
+- **Session Tracking:** Duration, current time, cost tracking
+- **Themes:** 3 built-in themes (cool-blues, forest-greens, purple-charcoal)
+
+#### Feature Workflow Enhancements
+
+| Command | Description |
+|---------|-------------|
+| `ait feature promote` | Create PR to dev branch |
+| `ait feature release` | Create PR from dev to main |
+| `ait recipes` | Alias for workflow templates |
+
+**Features:**
+- Automated PR creation using gh CLI
+- Draft PR support (`--draft` flag)
+- Custom titles and bodies
+- Browser opening on creation (`--web` flag)
+- Default titles from branch names
+
+### ✅ CI/CD Improvements
+
+- **Documentation Strict Mode:** Catches orphaned pages and broken links automatically
+- **Enhanced Test Coverage:** 849 tests passing across 6 Python versions (3.10-3.13)
+- **ANSI Handling:** Fixed CLI test assertions to work in CI environments
+- **Cross-Platform:** Tests run on both Ubuntu and macOS
+
+### 📊 Statistics
+
+| Category | Count |
+|----------|-------|
+| New CLI Commands | 5 (statusline) |
+| Config Options | 32 |
+| Tests Added | 164 (statusline + feature) |
+| Total Tests | 849 (all passing) |
+| Python Versions | 6 (3.10-3.13, Ubuntu + macOS) |
+
+### 🐛 Bug Fixes
+
+- Fixed test count assertions for statusline config changes
+- Fixed ANSI color code handling in feature help tests
+- Fixed orphaned documentation pages in navigation
+- Disabled usage tracking (Anthropic API not programmatically accessible)
+
+### 📝 Documentation
+
+- Added comprehensive StatusLine guide
+- Added StatusLine specs (config UX, integration)
+- Updated CLAUDE.md for v0.6.3
+- Added StatusLine section to REFCARD.md
+- Documentation strict mode enabled in CI
+
+---
+
 ## [0.6.0] - 2025-12-30 - Interactive Tutorial System 📚
 
 **Tag:** v0.6.0

@@ -2,7 +2,7 @@
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│ AITERM v0.6.2 - Terminal Optimizer for AI Development      │
+│ AITERM v0.6.3 - Terminal Optimizer for AI Development      │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
 │ ESSENTIAL                                                   │
@@ -97,6 +97,24 @@
 │ ait feature promote     Create PR to dev (uses gh CLI)      │
 │ ait feature release     Create PR dev→main (uses gh CLI)    │
 │ ait feature cleanup     Remove merged feature branches      │
+│ ait recipes             Alias for workflow templates        │
+│                                                             │
+│ STATUSLINE (v0.6.3) 🆕                                      │
+│ ──────────────────────                                      │
+│ ait statusline render   Display statusLine output           │
+│ ait statusline config   Manage 32 configuration options     │
+│   config list           Show all config options             │
+│   config get KEY        Get config value                    │
+│   config set KEY VAL    Set config value                    │
+│   config reset [KEY]    Reset to defaults                   │
+│                                                             │
+│ StatusLine Features:                                        │
+│   • 6 categories: display, git, project, usage, theme, time │
+│   • Worktree display (🌳N count, (wt) marker)               │
+│   • Configurable separator spacing (minimal/standard)       │
+│   • Git status (branch, dirty, ahead/behind, worktrees)     │
+│   • Session tracking (duration, time, cost)                 │
+│   • 3 built-in themes (cool-blues, forest-greens, custom)   │
 │                                                             │
 │ FLOW-CLI INTEGRATION (v0.3.10+)                             │
 │ ───────────────────────────────                             │
