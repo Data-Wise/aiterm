@@ -875,15 +875,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ghostty-support-v039" class="md-nav__link">
+  <a href="#ghostty-support-v039-enhanced-v0315" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Ghostty Support (v0.3.9+)
+        Ghostty Support (v0.3.9+, Enhanced v0.3.15)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Ghostty Support (v0.3.9+)">
+    <nav class="md-nav" aria-label="Ghostty Support (v0.3.9+, Enhanced v0.3.15)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -931,10 +931,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#ghostty-cli-commands-v039" class="md-nav__link">
+  <a href="#ghostty-cli-commands-v039-enhanced-v0315" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Ghostty CLI Commands (v0.3.9+)
+        Ghostty CLI Commands (v0.3.9+, Enhanced v0.3.15)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-in-v0315-full-iterm2-parity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New in v0.3.15: Full iTerm2 Parity
       
     </span>
   </a>
@@ -2995,15 +3006,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ghostty-support-v039" class="md-nav__link">
+  <a href="#ghostty-support-v039-enhanced-v0315" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Ghostty Support (v0.3.9+)
+        Ghostty Support (v0.3.9+, Enhanced v0.3.15)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Ghostty Support (v0.3.9+)">
+    <nav class="md-nav" aria-label="Ghostty Support (v0.3.9+, Enhanced v0.3.15)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3051,10 +3062,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#ghostty-cli-commands-v039" class="md-nav__link">
+  <a href="#ghostty-cli-commands-v039-enhanced-v0315" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Ghostty CLI Commands (v0.3.9+)
+        Ghostty CLI Commands (v0.3.9+, Enhanced v0.3.15)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-in-v0315-full-iterm2-parity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New in v0.3.15: Full iTerm2 Parity
       
     </span>
   </a>
@@ -3450,8 +3472,8 @@
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>ait<span class="w"> </span>terminals<span class="w"> </span>features<span class="w"> </span>ghostty
 </code></pre></div>
 <hr />
-<h2 id="ghostty-support-v039">Ghostty Support (v0.3.9+)</h2>
-<p><a href="https://ghostty.org/">Ghostty</a> is a fast, native terminal emulator built with Zig. aiterm provides full support for Ghostty.</p>
+<h2 id="ghostty-support-v039-enhanced-v0315">Ghostty Support (v0.3.9+, Enhanced v0.3.15)</h2>
+<p><a href="https://ghostty.org/">Ghostty</a> is a fast, native terminal emulator built with Zig. aiterm provides <strong>full iTerm2 parity</strong> for Ghostty as of v0.3.15.</p>
 <h3 id="detection">Detection</h3>
 <p>aiterm detects Ghostty via:
 - <code>GHOSTTY_RESOURCES_DIR</code> environment variable
@@ -3482,7 +3504,7 @@
 <tr>
 <td>Themes</td>
 <td>✅</td>
-<td>Built-in theme support</td>
+<td>14 built-in themes</td>
 </tr>
 <tr>
 <td>Native UI</td>
@@ -3491,8 +3513,23 @@
 </tr>
 <tr>
 <td>Profiles</td>
-<td>❌</td>
-<td>Not supported by Ghostty</td>
+<td>✅ v0.3.15</td>
+<td>aiterm-managed profiles</td>
+</tr>
+<tr>
+<td>Keybinds</td>
+<td>✅ v0.3.15</td>
+<td>With presets (vim/emacs/tmux/macos)</td>
+</tr>
+<tr>
+<td>Sessions</td>
+<td>✅ v0.3.15</td>
+<td>Save/restore terminal layouts</td>
+</tr>
+<tr>
+<td>Backup</td>
+<td>✅ v0.3.15</td>
+<td>Timestamped config backups</td>
 </tr>
 <tr>
 <td>Badge</td>
@@ -3526,7 +3563,7 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Set tab title (works in Ghostty)</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>ait<span class="w"> </span>terminals<span class="w"> </span>title<span class="w"> </span><span class="s2">&quot;Working on aiterm&quot;</span>
 </code></pre></div>
-<h3 id="ghostty-cli-commands-v039">Ghostty CLI Commands (v0.3.9+)</h3>
+<h3 id="ghostty-cli-commands-v039-enhanced-v0315">Ghostty CLI Commands (v0.3.9+, Enhanced v0.3.15)</h3>
 <p>aiterm provides dedicated commands for managing Ghostty settings:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Check Ghostty status and configuration</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>status
@@ -3543,13 +3580,12 @@
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>theme
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1"># catppuccin-mocha, dracula, nord, tokyo-night,</span>
 <a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># gruvbox-dark, gruvbox-light, solarized-dark,</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="c1"># solarized-light, one-dark, one-light,</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="c1"># tomorrow-night, monokai, zenburn, github-dark</span>
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="c1"># Apply a theme</span>
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>theme<span class="w"> </span>dracula
-<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="c1"># ✅ Theme set: dracula</span>
-<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="c1"># Ghostty auto-reloads on config change</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="c1"># solarized-light, one-dark, one-light, etc.</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="c1"># Apply a theme</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>theme<span class="w"> </span>dracula
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="c1"># ✅ Theme set: dracula</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="c1"># Ghostty auto-reloads on config change</span>
 </code></pre></div></p>
 <p><strong>Font Configuration:</strong>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># View current font settings</span>
@@ -3582,12 +3618,59 @@
 <a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="c1"># Open config in $EDITOR</span>
 <a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>edit
 </code></pre></div></p>
+<h3 id="new-in-v0315-full-iterm2-parity">New in v0.3.15: Full iTerm2 Parity</h3>
+<p><strong>Profile Management:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Create profile from current config</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>profile<span class="w"> </span>create<span class="w"> </span>coding<span class="w"> </span><span class="s2">&quot;My dev setup&quot;</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1"># List and apply profiles</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>profile<span class="w"> </span>list
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>profile<span class="w"> </span>apply<span class="w"> </span>coding
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="c1"># Profiles stored in: ~/.config/ghostty/profiles/</span>
+</code></pre></div></p>
+<p><strong>Keybind Management:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Apply a keybind preset</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>keybind<span class="w"> </span>preset<span class="w"> </span>vim<span class="w">    </span><span class="c1"># vim-style navigation</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>keybind<span class="w"> </span>preset<span class="w"> </span>tmux<span class="w">   </span><span class="c1"># tmux-style prefixes</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>keybind<span class="w"> </span>preset<span class="w"> </span>macos<span class="w">  </span><span class="c1"># macOS native shortcuts</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="c1"># Add custom keybinds</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>keybind<span class="w"> </span>add<span class="w"> </span><span class="s2">&quot;ctrl+t&quot;</span><span class="w"> </span><span class="s2">&quot;new_tab&quot;</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>keybind<span class="w"> </span>add<span class="w"> </span><span class="s2">&quot;ctrl+q&quot;</span><span class="w"> </span><span class="s2">&quot;quit&quot;</span><span class="w"> </span>--prefix<span class="w"> </span>global:
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="c1"># List current keybinds</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>keybind<span class="w"> </span>list
+</code></pre></div></p>
+<p><strong>Session Management:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># Save current working directory as session</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>session<span class="w"> </span>save<span class="w"> </span>work<span class="w"> </span>--layout<span class="w"> </span>split-h
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1"># List and restore sessions</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>session<span class="w"> </span>list
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>session<span class="w"> </span>restore<span class="w"> </span>work
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="c1"># Create terminal splits</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>session<span class="w"> </span>split<span class="w"> </span>right
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>session<span class="w"> </span>split<span class="w"> </span>down
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="c1"># Sessions stored in: ~/.config/ghostty/sessions/</span>
+</code></pre></div></p>
+<p><strong>Config Backup:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># Create timestamped backup</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>backup
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="c1"># → config.backup.20251230123456</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="c1"># List and restore backups</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>restore
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>restore<span class="w"> </span>config.backup.20251230123456
+</code></pre></div></p>
 <h3 id="flow-cli-integration-tm-dispatcher">flow-cli Integration (tm dispatcher)</h3>
 <p>For instant Ghostty control via shell:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># tm dispatcher commands (no Python overhead)</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>tm<span class="w"> </span>ghost<span class="w"> </span>status<span class="w">          </span><span class="c1"># Same as: ait ghostty status</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>tm<span class="w"> </span>ghost<span class="w"> </span>theme<span class="w"> </span>dracula<span class="w">   </span><span class="c1"># Same as: ait ghostty theme dracula</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>tm<span class="w"> </span>ghost<span class="w"> </span>font<span class="w"> </span><span class="s2">&quot;Fira Code&quot;</span><span class="w"> </span><span class="m">16</span><span class="w">  </span><span class="c1"># Same as: ait ghostty font</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># tm dispatcher commands (no Python overhead)</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>tm<span class="w"> </span>ghost<span class="w"> </span>status<span class="w">          </span><span class="c1"># Same as: ait ghostty status</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>tm<span class="w"> </span>ghost<span class="w"> </span>theme<span class="w"> </span>dracula<span class="w">   </span><span class="c1"># Same as: ait ghostty theme dracula</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>tm<span class="w"> </span>ghost<span class="w"> </span>font<span class="w"> </span><span class="s2">&quot;Fira Code&quot;</span><span class="w"> </span><span class="m">16</span><span class="w">  </span><span class="c1"># Same as: ait ghostty font</span>
 </code></pre></div>
 <hr />
 <h2 id="iterm2-support">iTerm2 Support</h2>
@@ -3630,11 +3713,11 @@
 </tbody>
 </table>
 <h3 id="profile-switching">Profile Switching</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Switch to a named profile</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>ait<span class="w"> </span>terminals<span class="w"> </span>profile<span class="w"> </span><span class="s2">&quot;Python-Dev&quot;</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1"># Or use context-based switching</span>
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>ait<span class="w"> </span>switch<span class="w">  </span><span class="c1"># Automatically selects profile based on directory</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># Switch to a named profile</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>ait<span class="w"> </span>terminals<span class="w"> </span>profile<span class="w"> </span><span class="s2">&quot;Python-Dev&quot;</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="c1"># Or use context-based switching</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>ait<span class="w"> </span>switch<span class="w">  </span><span class="c1"># Automatically selects profile based on directory</span>
 </code></pre></div>
 <h3 id="recommended-profiles">Recommended Profiles</h3>
 <p>Create these profiles in iTerm2 Preferences for automatic context switching:</p>
@@ -3716,21 +3799,21 @@
 </table>
 <h3 id="configuration_1">Configuration</h3>
 <p>WezTerm config lives at <code>~/.wezterm.lua</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1">-- ~/.wezterm.lua</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="kd">local</span><span class="w"> </span><span class="nv">wezterm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">require</span><span class="w"> </span><span class="s1">&#39;wezterm&#39;</span>
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="kd">local</span><span class="w"> </span><span class="nv">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{}</span>
-<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>
-<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="c1">-- Allow aiterm to set tab title</span>
-<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="nv">config</span><span class="p">.</span><span class="py">window_title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;WezTerm&#39;</span>
-<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>
-<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="c1">-- Theme</span>
-<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="nv">config</span><span class="p">.</span><span class="py">color_scheme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Dracula&#39;</span>
-<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>
-<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="c1">-- Font</span>
-<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="nv">config</span><span class="p">.</span><span class="py">font</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">wezterm</span><span class="p">.</span><span class="py">font</span><span class="w"> </span><span class="s1">&#39;JetBrains Mono&#39;</span>
-<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="nv">config</span><span class="p">.</span><span class="py">font_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">14.0</span>
-<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>
-<a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a><span class="kr">return</span><span class="w"> </span><span class="nv">config</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1">-- ~/.wezterm.lua</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="kd">local</span><span class="w"> </span><span class="nv">wezterm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">require</span><span class="w"> </span><span class="s1">&#39;wezterm&#39;</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="kd">local</span><span class="w"> </span><span class="nv">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{}</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="c1">-- Allow aiterm to set tab title</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="nv">config</span><span class="p">.</span><span class="py">window_title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;WezTerm&#39;</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="c1">-- Theme</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="nv">config</span><span class="p">.</span><span class="py">color_scheme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Dracula&#39;</span>
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="c1">-- Font</span>
+<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="nv">config</span><span class="p">.</span><span class="py">font</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">wezterm</span><span class="p">.</span><span class="py">font</span><span class="w"> </span><span class="s1">&#39;JetBrains Mono&#39;</span>
+<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="nv">config</span><span class="p">.</span><span class="py">font_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">14.0</span>
+<a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a>
+<a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a><span class="kr">return</span><span class="w"> </span><span class="nv">config</span>
 </code></pre></div>
 <hr />
 <h2 id="kitty-support">Kitty Support</h2>
@@ -3763,17 +3846,17 @@
 </tbody>
 </table>
 <h3 id="configuration_2">Configuration</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># ~/.config/kitty/kitty.conf</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="c1"># Allow aiterm to set window title</span>
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="na">allow_remote_control yes</span>
-<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>
-<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="c1"># Theme</span>
-<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="na">include ~/.config/kitty/themes/dracula.conf</span>
-<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>
-<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="c1"># Font</span>
-<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="na">font_family JetBrains Mono</span>
-<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="na">font_size 14.0</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1"># ~/.config/kitty/kitty.conf</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="c1"># Allow aiterm to set window title</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="na">allow_remote_control yes</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="c1"># Theme</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="na">include ~/.config/kitty/themes/dracula.conf</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="c1"># Font</span>
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="na">font_family JetBrains Mono</span>
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="na">font_size 14.0</span>
 </code></pre></div>
 <hr />
 <h2 id="alacritty-support">Alacritty Support</h2>
@@ -3806,31 +3889,32 @@
 </tbody>
 </table>
 <h3 id="configuration_3">Configuration</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># ~/.config/alacritty/alacritty.toml</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="k">[window]</span>
-<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Alacritty&quot;</span>
-<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="n">dynamic_title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
-<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>
-<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="k">[font]</span>
-<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">14.0</span>
-<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>
-<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="k">[font.normal]</span>
-<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;JetBrains Mono&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># ~/.config/alacritty/alacritty.toml</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="k">[window]</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Alacritty&quot;</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="n">dynamic_title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="k">[font]</span>
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">14.0</span>
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="k">[font.normal]</span>
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;JetBrains Mono&quot;</span>
 </code></pre></div>
 <hr />
 <h2 id="feature-comparison">Feature Comparison</h2>
 <p>Run <code>ait terminals compare</code> for a live comparison:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>                    Terminal Feature Comparison
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>┏━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━┳━━━━━━━━━━━┓
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>┃ Terminal  ┃ Profiles ┃ Tab Title ┃ Badge ┃ Themes ┃ Native UI ┃
-<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>┡━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━╇━━━━━━━━━━━┩
-<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>│ iTerm2    │    ✓     │     ✓     │   ✓   │   ✓    │     ✓     │
-<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>│ Kitty     │    ✓     │     ✓     │   ✗   │   ✓    │     ✗     │
-<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>│ Alacritty │    ✗     │     ✓     │   ✗   │   ✓    │     ✗     │
-<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>│ WezTerm   │    ✓     │     ✓     │   ✗   │   ✓    │     ✓     │
-<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>│ Ghostty   │    ✗     │     ✓     │   ✗   │   ✓    │     ✓     │
-<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>└───────────┴──────────┴───────────┴───────┴────────┴───────────┘
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>                    Terminal Feature Comparison
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>┏━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━┳━━━━━━━━━━━┓
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>┃ Terminal  ┃ Profiles ┃ Tab Title ┃ Badge ┃ Themes ┃ Native UI ┃
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>┡━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━╇━━━━━━━━━━━┩
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>│ iTerm2    │    ✓     │     ✓     │   ✓   │   ✓    │     ✓     │
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>│ Kitty     │    ✓     │     ✓     │   ✗   │   ✓    │     ✗     │
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>│ Alacritty │    ✗     │     ✓     │   ✗   │   ✓    │     ✗     │
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>│ WezTerm   │    ✓     │     ✓     │   ✗   │   ✓    │     ✓     │
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>│ Ghostty   │  ✓*      │     ✓     │   ✗   │   ✓    │     ✓     │
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>└───────────┴──────────┴───────────┴───────┴────────┴───────────┘
+<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>* Ghostty profiles managed by aiterm v0.3.15+ (not native to Ghostty)
 </code></pre></div>
 <hr />
 <h2 id="choosing-a-terminal">Choosing a Terminal</h2>
@@ -3857,12 +3941,12 @@
 <hr />
 <h2 id="troubleshooting">Troubleshooting</h2>
 <h3 id="terminal-not-detected">Terminal Not Detected</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1"># Check what aiterm sees</span>
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>ait<span class="w"> </span>terminals<span class="w"> </span>detect
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
-<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="c1"># If wrong terminal detected, check environment</span>
-<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$TERM_PROGRAM</span>
-<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$GHOSTTY_RESOURCES_DIR</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># Check what aiterm sees</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>ait<span class="w"> </span>terminals<span class="w"> </span>detect
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="c1"># If wrong terminal detected, check environment</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$TERM_PROGRAM</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$GHOSTTY_RESOURCES_DIR</span>
 </code></pre></div>
 <h3 id="tab-title-not-changing">Tab Title Not Changing</h3>
 <p>Some terminals require configuration to allow title changes:</p>
