@@ -149,6 +149,7 @@ nav:
       - Ghostty Terminal: reference/REFCARD-GHOSTTY.md
       - Hooks: reference/REFCARD-HOOKS.md
       - Sessions: reference/REFCARD-SESSIONS.md
+      - Tutorials: reference/REFCARD-TUTORIALS.md
       - IDE Reference: reference/REFCARD-IDE.md
       - Troubleshooting: reference/troubleshooting.md
 
