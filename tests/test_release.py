@@ -10,16 +10,21 @@ from typer.testing import CliRunner
 from aiterm.cli.release import (
     app,
     build_package,
+    categorize_commits,
     check_git_branch,
     check_git_status,
     check_tag_exists,
     check_tool_available,
+    generate_release_notes,
     get_changelog_version,
+    get_commits_since_tag,
     get_project_root,
+    get_pypi_sha256,
     get_version_from_init,
     get_version_from_pyproject,
     publish_to_pypi,
     run_command,
+    update_homebrew_formula,
     verify_on_pypi,
 )
 
@@ -426,3 +431,220 @@ class TestReleasePyPICommand:
         result = runner.invoke(app, ["pypi", "--skip-verify"])
         assert result.exit_code == 0
         assert "Published" in result.output
+
+
+class TestReleaseNotesHelpers:
+    """Tests for release notes helper functions."""
+
+    def test_categorize_commits_feat(self):
+        """Should categorize feature commits."""
+        commits = [{"subject": "feat: add new feature", "hash": "abc123"}]
+        result = categorize_commits(commits)
+        assert "feat" in result
+        assert len(result["feat"]) == 1
+
+    def test_categorize_commits_fix(self):
+        """Should categorize fix commits."""
+        commits = [{"subject": "fix(cli): resolve bug", "hash": "abc123"}]
+        result = categorize_commits(commits)
+        assert "fix" in result
+
+    def test_categorize_commits_other(self):
+        """Should categorize unknown commits as other."""
+        commits = [{"subject": "random commit message", "hash": "abc123"}]
+        result = categorize_commits(commits)
+        assert "other" in result
+
+    def test_generate_release_notes(self):
+        """Should generate markdown release notes."""
+        commits = [
+            {"subject": "feat: add feature", "hash": "abc123"},
+            {"subject": "fix: resolve bug", "hash": "def456"},
+        ]
+        notes = generate_release_notes("1.0.0", commits)
+        assert "# Release v1.0.0" in notes
+        assert "Features" in notes
+        assert "Bug Fixes" in notes
+
+    @patch("aiterm.cli.release.run_command")
+    def test_get_commits_since_tag(self, mock_run):
+        """Should parse git log output."""
+        mock_run.return_value = (0, "abc12345|feat: add feature|Author|2025-01-01")
+        commits = get_commits_since_tag("v0.4.0")
+        assert len(commits) == 1
+        assert commits[0]["subject"] == "feat: add feature"
+
+
+class TestReleaseNotesCommand:
+    """Tests for release notes command."""
+
+    def test_notes_help(self):
+        """Should show help text."""
+        result = runner.invoke(app, ["notes", "--help"])
+        assert result.exit_code == 0
+        assert "Generate release notes" in result.output
+
+    @patch("aiterm.cli.release.get_project_root")
+    @patch("aiterm.cli.release.get_version_from_pyproject")
+    @patch("aiterm.cli.release.run_command")
+    @patch("aiterm.cli.release.get_commits_since_tag")
+    def test_notes_generates_output(self, mock_commits, mock_run, mock_ver, mock_root, tmp_path):
+        """Should generate release notes."""
+        mock_root.return_value = tmp_path
+        mock_ver.return_value = "1.0.0"
+        mock_run.return_value = (0, "v0.9.0")
+        mock_commits.return_value = [
+            {"subject": "feat: new feature", "hash": "abc123"}
+        ]
+
+        result = runner.invoke(app, ["notes"])
+        assert result.exit_code == 0
+        assert "Release" in result.output
+
+    @patch("aiterm.cli.release.get_project_root")
+    @patch("aiterm.cli.release.run_command")
+    @patch("aiterm.cli.release.get_commits_since_tag")
+    def test_notes_no_commits(self, mock_commits, mock_run, mock_root, tmp_path):
+        """Should handle no commits gracefully."""
+        mock_root.return_value = tmp_path
+        mock_run.return_value = (0, "v0.9.0")
+        mock_commits.return_value = []
+
+        result = runner.invoke(app, ["notes"])
+        assert "No commits found" in result.output
+
+
+class TestHomebrewHelpers:
+    """Tests for Homebrew helper functions."""
+
+    def test_get_pypi_sha256_real(self):
+        """Should get SHA256 from real PyPI."""
+        sha256 = get_pypi_sha256("aiterm-dev", "0.4.0")
+        assert sha256 is not None
+        assert len(sha256) == 64
+
+    def test_get_pypi_sha256_missing(self):
+        """Should return None for missing package."""
+        sha256 = get_pypi_sha256("nonexistent-package-xyz123", "1.0.0")
+        assert sha256 is None
+
+    def test_update_homebrew_formula(self, tmp_path):
+        """Should update formula file."""
+        # Create formula structure
+        formula_dir = tmp_path / "Formula"
+        formula_dir.mkdir()
+        formula = formula_dir / "test-pkg.rb"
+        formula.write_text('''
+class TestPkg < Formula
+  url "https://files.pythonhosted.org/packages/source/t/test-pkg/test-pkg-0.1.0.tar.gz"
+  sha256 "0000000000000000000000000000000000000000000000000000000000000000"
+end
+''')
+
+        new_sha = "a" * 64
+        success, msg = update_homebrew_formula(tmp_path, "test-pkg", "0.2.0", new_sha)
+        assert success is True
+        assert "Updated" in msg
+
+        # Verify content was updated
+        content = formula.read_text()
+        assert new_sha in content
+
+    def test_update_homebrew_formula_missing(self, tmp_path):
+        """Should handle missing formula."""
+        success, msg = update_homebrew_formula(tmp_path, "missing-pkg", "1.0.0", "a" * 64)
+        assert success is False
+        assert "not found" in msg
+
+
+class TestReleaseHomebrewCommand:
+    """Tests for release homebrew command."""
+
+    def test_homebrew_help(self):
+        """Should show help text."""
+        result = runner.invoke(app, ["homebrew", "--help"])
+        assert result.exit_code == 0
+        assert "Update Homebrew formula" in result.output
+
+    @patch("aiterm.cli.release.get_project_root")
+    @patch("aiterm.cli.release.get_version_from_pyproject")
+    @patch("aiterm.cli.release.get_pypi_sha256")
+    def test_homebrew_dry_run(self, mock_sha, mock_ver, mock_root, tmp_path):
+        """Should show dry run message."""
+        mock_root.return_value = tmp_path
+        mock_ver.return_value = "1.0.0"
+        mock_sha.return_value = "a" * 64
+
+        (tmp_path / "pyproject.toml").write_text('name = "test-pkg"')
+
+        # Create tap structure
+        tap = tmp_path / "tap"
+        tap.mkdir()
+
+        result = runner.invoke(app, ["homebrew", "--tap", str(tap), "--dry-run"])
+        assert result.exit_code == 0
+        assert "Dry run" in result.output
+
+    @patch("aiterm.cli.release.get_project_root")
+    @patch("aiterm.cli.release.get_version_from_pyproject")
+    @patch("aiterm.cli.release.get_pypi_sha256")
+    def test_homebrew_no_sha256(self, mock_sha, mock_ver, mock_root, tmp_path):
+        """Should error if SHA256 not found."""
+        mock_root.return_value = tmp_path
+        mock_ver.return_value = "1.0.0"
+        mock_sha.return_value = None
+
+        (tmp_path / "pyproject.toml").write_text('name = "test-pkg"')
+
+        result = runner.invoke(app, ["homebrew", "--tap", str(tmp_path)])
+        assert result.exit_code == 1
+        assert "Could not get SHA256" in result.output
+
+
+class TestReleaseFullCommand:
+    """Tests for release full command."""
+
+    def test_full_help(self):
+        """Should show help text."""
+        result = runner.invoke(app, ["full", "--help"])
+        assert result.exit_code == 0
+        assert "Full release workflow" in result.output
+
+    def test_full_dry_run(self):
+        """Should show planned steps in dry run."""
+        result = runner.invoke(app, ["full", "1.0.0", "--dry-run"])
+        assert result.exit_code == 0
+        assert "Dry run" in result.output
+        assert "Validate release readiness" in result.output
+        assert "Create git tag" in result.output
+        assert "Publish to PyPI" in result.output
+
+    @patch("aiterm.cli.release.get_project_root")
+    @patch("aiterm.cli.release.get_version_from_pyproject")
+    def test_full_version_mismatch(self, mock_ver, mock_root, tmp_path):
+        """Should error on version mismatch."""
+        mock_root.return_value = tmp_path
+        mock_ver.return_value = "0.9.0"
+
+        result = runner.invoke(app, ["full", "1.0.0"])
+        assert result.exit_code == 1
+        assert "Version mismatch" in result.output
+
+    @patch("aiterm.cli.release.get_project_root")
+    @patch("aiterm.cli.release.get_version_from_pyproject")
+    @patch("aiterm.cli.release.get_version_from_init")
+    @patch("aiterm.cli.release.get_changelog_version")
+    @patch("aiterm.cli.release.check_git_status")
+    def test_full_uncommitted_changes(
+        self, mock_status, mock_changelog, mock_init, mock_ver, mock_root, tmp_path
+    ):
+        """Should error on uncommitted changes."""
+        mock_root.return_value = tmp_path
+        mock_ver.return_value = "1.0.0"
+        mock_init.return_value = "1.0.0"
+        mock_changelog.return_value = "1.0.0"
+        mock_status.return_value = (False, "Uncommitted changes")
+
+        result = runner.invoke(app, ["full", "1.0.0", "--skip-tests"])
+        assert result.exit_code == 1
+        assert "Uncommitted changes" in result.output

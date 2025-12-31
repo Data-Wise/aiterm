@@ -480,6 +480,151 @@ def release_pypi(
         print(f"  pip install {package_name}=={version}")
 
 
+def get_commits_since_tag(tag: str) -> list[dict]:
+    """Get commits since a given tag."""
+    code, output = run_command([
+        "git", "log", f"{tag}..HEAD",
+        "--pretty=format:%H|%s|%an|%ai"
+    ])
+    if code != 0 or not output:
+        return []
+
+    commits = []
+    for line in output.splitlines():
+        if "|" not in line:
+            continue
+        parts = line.split("|", 3)
+        if len(parts) >= 2:
+            commits.append({
+                "hash": parts[0][:8],
+                "subject": parts[1],
+                "author": parts[2] if len(parts) > 2 else "",
+                "date": parts[3] if len(parts) > 3 else "",
+            })
+    return commits
+
+
+def categorize_commits(commits: list[dict]) -> dict[str, list[dict]]:
+    """Categorize commits by conventional commit type."""
+    categories = {
+        "feat": [],
+        "fix": [],
+        "docs": [],
+        "refactor": [],
+        "test": [],
+        "chore": [],
+        "other": [],
+    }
+
+    for commit in commits:
+        subject = commit["subject"]
+        categorized = False
+        for cat in ["feat", "fix", "docs", "refactor", "test", "chore", "ci", "build", "perf", "style"]:
+            if subject.startswith(f"{cat}:") or subject.startswith(f"{cat}("):
+                key = cat if cat in categories else "other"
+                categories.get(key, categories["other"]).append(commit)
+                categorized = True
+                break
+        if not categorized:
+            categories["other"].append(commit)
+
+    return {k: v for k, v in categories.items() if v}
+
+
+def generate_release_notes(version: str, commits: list[dict]) -> str:
+    """Generate markdown release notes from commits."""
+    categories = categorize_commits(commits)
+
+    lines = [f"# Release v{version}", ""]
+
+    category_titles = {
+        "feat": "✨ Features",
+        "fix": "🐛 Bug Fixes",
+        "docs": "📚 Documentation",
+        "refactor": "♻️ Refactoring",
+        "test": "🧪 Tests",
+        "chore": "🔧 Chores",
+        "other": "📝 Other Changes",
+    }
+
+    for cat, title in category_titles.items():
+        if cat in categories:
+            lines.append(f"## {title}")
+            lines.append("")
+            for commit in categories[cat]:
+                # Clean up the subject (remove type prefix)
+                subject = commit["subject"]
+                if ":" in subject:
+                    subject = subject.split(":", 1)[1].strip()
+                lines.append(f"- {subject}")
+            lines.append("")
+
+    lines.append("---")
+    lines.append("")
+    lines.append(f"**Full Changelog**: https://github.com/Data-Wise/aiterm/compare/v{version}...HEAD")
+
+    return "\n".join(lines)
+
+
+@app.command("notes")
+def release_notes(
+    version: str = typer.Argument(None, help="Version for release notes header"),
+    since: str = typer.Option(None, "--since", "-s", help="Tag to compare from (default: latest)"),
+    output_file: str = typer.Option(None, "--output", "-o", help="Write to file instead of stdout"),
+    clipboard: bool = typer.Option(False, "--clipboard", "-c", help="Copy to clipboard"),
+) -> None:
+    """
+    Generate release notes from commits since last tag.
+
+    Examples:
+        ait release notes
+        ait release notes 0.5.0
+        ait release notes --since v0.4.0
+        ait release notes -o RELEASE_NOTES.md
+        ait release notes --clipboard
+    """
+    root = get_project_root()
+
+    # Get version if not specified
+    if version is None:
+        version = get_version_from_pyproject(root) or "next"
+
+    # Get tag to compare from
+    if since is None:
+        code, tags = run_command(["git", "tag", "--sort=-v:refname"])
+        if code == 0 and tags:
+            since = tags.splitlines()[0]
+        else:
+            print("[red]No tags found. Use --since to specify a starting point.[/red]")
+            raise typer.Exit(1)
+
+    # Get commits
+    commits = get_commits_since_tag(since)
+    if not commits:
+        print(f"[yellow]No commits found since {since}[/yellow]")
+        return
+
+    # Generate notes
+    notes = generate_release_notes(version, commits)
+
+    # Output
+    if output_file:
+        Path(output_file).write_text(notes)
+        print(f"[green]✓[/green] Written to {output_file}")
+    elif clipboard:
+        try:
+            import subprocess
+            process = subprocess.Popen(["pbcopy"], stdin=subprocess.PIPE)
+            process.communicate(notes.encode())
+            print(f"[green]✓[/green] Copied to clipboard ({len(commits)} commits)")
+        except Exception:
+            print("[yellow]Could not copy to clipboard. Here are the notes:[/yellow]")
+            print()
+            print(notes)
+    else:
+        print(notes)
+
+
 @app.command("tag")
 def release_tag(
     version: str = typer.Argument(None, help="Version to tag (e.g., 0.5.0)"),
@@ -528,6 +673,358 @@ def release_tag(
         print(f"[green]✓[/green] Pushed {tag_name} to origin")
     else:
         print(f"[dim]Push with: git push origin {tag_name}[/dim]")
+
+
+def get_pypi_sha256(package: str, version: str) -> str | None:
+    """Get SHA256 hash for a package from PyPI."""
+    import urllib.request
+    import json
+
+    url = f"https://pypi.org/pypi/{package}/{version}/json"
+    try:
+        with urllib.request.urlopen(url, timeout=10) as response:
+            data = json.loads(response.read().decode())
+            urls = data.get("urls", [])
+            for file_info in urls:
+                if file_info.get("packagetype") == "sdist":
+                    digests = file_info.get("digests", {})
+                    return digests.get("sha256")
+    except Exception:
+        pass
+    return None
+
+
+def update_homebrew_formula(
+    tap_path: Path, package: str, version: str, sha256: str
+) -> tuple[bool, str]:
+    """Update the Homebrew formula with new version and hash."""
+    formula_path = tap_path / "Formula" / f"{package}.rb"
+
+    if not formula_path.exists():
+        # Try without the -dev suffix
+        alt_name = package.replace("-dev", "")
+        formula_path = tap_path / "Formula" / f"{alt_name}.rb"
+
+    if not formula_path.exists():
+        return False, f"Formula not found at {formula_path}"
+
+    content = formula_path.read_text()
+
+    # Update version in URL
+    import re
+    new_content = re.sub(
+        r'url "https://files\.pythonhosted\.org/.*?/[^/]+\.tar\.gz"',
+        f'url "https://files.pythonhosted.org/packages/source/{package[0]}/{package}/{package}-{version}.tar.gz"',
+        content,
+    )
+
+    # Update sha256
+    new_content = re.sub(
+        r'sha256 "[a-f0-9]{64}"',
+        f'sha256 "{sha256}"',
+        new_content,
+    )
+
+    if new_content == content:
+        return False, "No changes detected in formula"
+
+    formula_path.write_text(new_content)
+    return True, f"Updated {formula_path.name}"
+
+
+@app.command("homebrew")
+def release_homebrew(
+    tap_path: str = typer.Option(
+        None, "--tap", "-t",
+        help="Path to homebrew-tap repo (default: ~/projects/dev-tools/homebrew-tap)"
+    ),
+    version: str = typer.Option(None, "--version", "-v", help="Version to update to"),
+    commit: bool = typer.Option(False, "--commit", "-c", help="Commit changes"),
+    push: bool = typer.Option(False, "--push", "-p", help="Push changes to origin"),
+    dry_run: bool = typer.Option(False, "--dry-run", "-n", help="Show what would be done"),
+) -> None:
+    """
+    Update Homebrew formula in tap.
+
+    Examples:
+        ait release homebrew
+        ait release homebrew --tap ~/homebrew-tap
+        ait release homebrew --commit --push
+        ait release homebrew --dry-run
+    """
+    root = get_project_root()
+
+    # Determine version
+    if version is None:
+        version = get_version_from_pyproject(root)
+        if not version:
+            print("[red]Could not detect version. Use --version to specify.[/red]")
+            raise typer.Exit(1)
+
+    print(Panel.fit("[bold]Update Homebrew Formula[/bold]", style="blue"))
+    print()
+
+    # Get package name
+    package_name = "aiterm-dev"
+    pyproject = root / "pyproject.toml"
+    if pyproject.exists():
+        content = pyproject.read_text()
+        for line in content.splitlines():
+            if line.strip().startswith("name"):
+                parts = line.split("=", 1)
+                if len(parts) == 2:
+                    package_name = parts[1].strip().strip('"').strip("'")
+                    break
+
+    print(f"[bold]Package:[/bold] {package_name}")
+    print(f"[bold]Version:[/bold] {version}")
+    print()
+
+    # Get SHA256 from PyPI
+    print("[dim]Fetching SHA256 from PyPI...[/dim]")
+    sha256 = get_pypi_sha256(package_name, version)
+    if not sha256:
+        print(f"[red]Could not get SHA256 for {package_name} {version} from PyPI[/red]")
+        print("[dim]Make sure the package is published first.[/dim]")
+        raise typer.Exit(1)
+
+    print(f"[green]✓[/green] SHA256: {sha256[:16]}...")
+    print()
+
+    # Find tap path
+    if tap_path is None:
+        # Try common locations
+        possible_paths = [
+            Path.home() / "projects" / "dev-tools" / "homebrew-tap",
+            Path.home() / "homebrew-tap",
+            Path.home() / "dev" / "homebrew-tap",
+        ]
+        for p in possible_paths:
+            if p.exists():
+                tap_path = str(p)
+                break
+
+    if tap_path is None:
+        print("[red]Could not find homebrew-tap. Use --tap to specify path.[/red]")
+        raise typer.Exit(1)
+
+    tap = Path(tap_path)
+    if not tap.exists():
+        print(f"[red]Tap path does not exist: {tap}[/red]")
+        raise typer.Exit(1)
+
+    if dry_run:
+        print(f"[yellow]Dry run - would update formula in {tap}[/yellow]")
+        return
+
+    # Update formula
+    print("[dim]Updating formula...[/dim]")
+    success, msg = update_homebrew_formula(tap, package_name, version, sha256)
+    if success:
+        print(f"[green]✓[/green] {msg}")
+    else:
+        print(f"[red]✗[/red] {msg}")
+        raise typer.Exit(1)
+
+    # Commit if requested
+    if commit:
+        code, _ = run_command(
+            ["git", "-C", str(tap), "add", "-A"],
+            capture=True
+        )
+        code, _ = run_command(
+            ["git", "-C", str(tap), "commit", "-m", f"Update {package_name} to {version}"],
+            capture=True
+        )
+        if code == 0:
+            print("[green]✓[/green] Committed changes")
+        else:
+            print("[yellow]![/yellow] No changes to commit")
+
+    # Push if requested
+    if push:
+        code, _ = run_command(
+            ["git", "-C", str(tap), "push"],
+            capture=True
+        )
+        if code == 0:
+            print("[green]✓[/green] Pushed to origin")
+        else:
+            print("[red]✗[/red] Failed to push")
+
+    print()
+    print(f"[bold green]Homebrew formula updated for {package_name} {version}![/bold green]")
+    print()
+    print("[dim]Test with:[/dim]")
+    print(f"  brew update && brew upgrade {package_name.replace('-dev', '')}")
+
+
+@app.command("full")
+def release_full(
+    version: str = typer.Argument(..., help="Version to release (e.g., 0.5.0)"),
+    skip_tests: bool = typer.Option(False, "--skip-tests", help="Skip running tests"),
+    skip_homebrew: bool = typer.Option(False, "--skip-homebrew", help="Skip Homebrew update"),
+    dry_run: bool = typer.Option(False, "--dry-run", "-n", help="Show what would be done"),
+) -> None:
+    """
+    Full release workflow: check → tag → push → pypi → homebrew.
+
+    This command orchestrates the complete release process:
+    1. Validate release readiness
+    2. Create annotated git tag
+    3. Push tag to origin
+    4. Publish to PyPI (via CI or directly)
+    5. Update Homebrew formula
+
+    Examples:
+        ait release full 0.5.0
+        ait release full 0.5.0 --dry-run
+        ait release full 0.5.0 --skip-homebrew
+    """
+    from rich.progress import Progress, SpinnerColumn, TextColumn
+
+    root = get_project_root()
+
+    print(Panel.fit(f"[bold]Full Release: v{version}[/bold]", style="blue"))
+    print()
+
+    steps = [
+        ("check", "Validate release readiness"),
+        ("tag", "Create git tag"),
+        ("push", "Push tag to origin"),
+        ("pypi", "Publish to PyPI"),
+    ]
+    if not skip_homebrew:
+        steps.append(("homebrew", "Update Homebrew formula"))
+
+    if dry_run:
+        print("[yellow]Dry run mode - showing planned steps:[/yellow]")
+        print()
+        for i, (step, desc) in enumerate(steps, 1):
+            print(f"  {i}. {desc}")
+        print()
+        print("[dim]Run without --dry-run to execute.[/dim]")
+        return
+
+    # Step 1: Check
+    print("[bold]Step 1/{}:[/bold] Validate release readiness".format(len(steps)))
+    current_version = get_version_from_pyproject(root)
+    if current_version != version:
+        print(f"[red]Version mismatch: pyproject.toml has {current_version}, expected {version}[/red]")
+        print("[dim]Update version in pyproject.toml and __init__.py first.[/dim]")
+        raise typer.Exit(1)
+
+    # Version consistency
+    init_ver = get_version_from_init(root)
+    changelog_ver = get_changelog_version(root)
+    if not (current_version == init_ver == changelog_ver):
+        print("[red]Version mismatch across files:[/red]")
+        print(f"  pyproject.toml: {current_version}")
+        print(f"  __init__.py: {init_ver}")
+        print(f"  CHANGELOG.md: {changelog_ver}")
+        raise typer.Exit(1)
+
+    # Git status
+    git_clean, _ = check_git_status(root)
+    if not git_clean:
+        print("[red]Uncommitted changes detected. Commit or stash them first.[/red]")
+        raise typer.Exit(1)
+
+    # Tests
+    if not skip_tests:
+        print("[dim]Running tests...[/dim]")
+        test_passed, test_msg = run_tests(root)
+        if not test_passed:
+            print(f"[red]Tests failed:[/red] {test_msg}")
+            raise typer.Exit(1)
+
+    print("[green]✓[/green] Ready for release")
+    print()
+
+    # Step 2: Tag
+    print("[bold]Step 2/{}:[/bold] Create git tag".format(len(steps)))
+    tag_name = f"v{version}"
+    if check_tag_exists(version):
+        print(f"[yellow]Tag {tag_name} already exists - skipping[/yellow]")
+    else:
+        code, _ = run_command(["git", "tag", "-a", tag_name, "-m", f"Release {tag_name}"])
+        if code != 0:
+            print("[red]Failed to create tag[/red]")
+            raise typer.Exit(1)
+        print(f"[green]✓[/green] Created {tag_name}")
+    print()
+
+    # Step 3: Push
+    print("[bold]Step 3/{}:[/bold] Push tag to origin".format(len(steps)))
+    code, _ = run_command(["git", "push", "origin", tag_name])
+    if code != 0:
+        print("[yellow]Failed to push tag (may already exist remotely)[/yellow]")
+    else:
+        print(f"[green]✓[/green] Pushed {tag_name}")
+    print()
+
+    # Step 4: PyPI
+    print("[bold]Step 4/{}:[/bold] Publish to PyPI".format(len(steps)))
+    print("[dim]Building package...[/dim]")
+    success, msg, _ = build_package(root)
+    if not success:
+        print(f"[red]Build failed:[/red] {msg}")
+        raise typer.Exit(1)
+
+    print("[dim]Publishing...[/dim]")
+    success, msg = publish_to_pypi(root)
+    if success:
+        print(f"[green]✓[/green] {msg}")
+    else:
+        print(f"[red]✗[/red] {msg}")
+        raise typer.Exit(1)
+    print()
+
+    # Step 5: Homebrew (optional)
+    if not skip_homebrew:
+        print("[bold]Step 5/{}:[/bold] Update Homebrew formula".format(len(steps)))
+        print("[dim]Waiting for PyPI to update...[/dim]")
+        import time
+        time.sleep(5)
+
+        package_name = "aiterm-dev"
+        sha256 = get_pypi_sha256(package_name, version)
+        if sha256:
+            # Try to find tap
+            possible_paths = [
+                Path.home() / "projects" / "dev-tools" / "homebrew-tap",
+                Path.home() / "homebrew-tap",
+            ]
+            tap_path = None
+            for p in possible_paths:
+                if p.exists():
+                    tap_path = p
+                    break
+
+            if tap_path:
+                success, msg = update_homebrew_formula(tap_path, package_name, version, sha256)
+                if success:
+                    print(f"[green]✓[/green] {msg}")
+                    # Commit and push
+                    run_command(["git", "-C", str(tap_path), "add", "-A"])
+                    run_command(["git", "-C", str(tap_path), "commit", "-m", f"Update {package_name} to {version}"])
+                    run_command(["git", "-C", str(tap_path), "push"])
+                    print("[green]✓[/green] Pushed formula update")
+                else:
+                    print(f"[yellow]![/yellow] {msg}")
+            else:
+                print("[yellow]![/yellow] Homebrew tap not found - skipping")
+        else:
+            print("[yellow]![/yellow] Could not get SHA256 from PyPI yet")
+        print()
+
+    # Done!
+    print(Panel.fit(
+        f"[bold green]🎉 Released aiterm v{version}![/bold green]\n\n"
+        f"PyPI: https://pypi.org/project/aiterm-dev/{version}/\n"
+        f"GitHub: https://github.com/Data-Wise/aiterm/releases/tag/v{version}",
+        style="green"
+    ))
 
 
 if __name__ == "__main__":
