@@ -122,6 +122,7 @@ nav:
       - Terminal Support: guide/terminals.md
       - Feature Workflow: guide/feature-workflow.md
       - Status Bar: guide/status-bar.md
+      - Claude Code StatusLine: guide/statusline.md
       - Session Coordination: guide/sessions.md
       - IDE Integration: guide/ide-integration.md
       - Workflows: guide/workflows.md

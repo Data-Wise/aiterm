@@ -75,6 +75,11 @@ aiterm claude approvals presets
 - Short aliases: `ait detect`, `ait switch`
 
 ### Claude Code Integration
+- **StatusLine** - Powerlevel10k-style 2-line status display (NEW!)
+  - Project context, git info, session metrics
+  - 3 color themes, 31 config options
+  - Background agents, time tracking, productivity indicators
+  - Install: `ait statusline install`
 - View and backup `~/.claude/settings.json`
 - Manage auto-approval permissions with 8 presets:
   - `safe-reads` - Read-only operations
@@ -229,7 +234,26 @@ ait detect    # Shows: 📦 r-package → R-Dev profile
 
 ## What's New
 
-### v0.6.3 (Latest)
+### v0.7.0 (Next)
+
+- **🎨 Claude Code StatusLine** - Powerlevel10k-style 2-line status display
+  - Install: `ait statusline install`
+  - 3 color themes (purple-charcoal, cool-blues, forest-greens)
+  - 31 configuration options via `ait statusline config`
+  - Project icons, Python env detection, enhanced git info
+  - Background agents counter, time tracking, productivity indicators
+  - 70 comprehensive tests
+- **Documentation Site** - Comprehensive StatusLine guide with examples
+
+```bash
+# StatusLine Setup (v0.7.0)
+ait statusline install             # Install into Claude Code
+ait statusline test                # Test with mock data
+ait statusline config              # Interactive config menu
+ait statusline theme set cool-blues # Switch themes
+```
+
+### v0.6.3
 
 - **Feature Workflow Enhancements** - Complete PR automation
   - `ait feature promote` - Create PRs to dev branch
@@ -242,13 +266,6 @@ ait detect    # Shows: 📦 r-package → R-Dev profile
   - Three skill levels: Getting Started, Intermediate, Advanced
   - 75 comprehensive tests, GIF demos
 - **PyPI Trusted Publishing** - Automated releases via GitHub Actions
-
-```bash
-# Interactive tutorials (v0.6.0)
-ait learn start getting-started   # Start learning
-ait learn list                    # See all tutorials
-ait learn progress                # Check progress
-```
 
 ### v0.5.0
 
@@ -271,15 +288,17 @@ ait learn progress                # Check progress
 
 ## Roadmap
 
-### v0.7.0 (Next)
+### v0.8.0 (Next)
 
 - **Ghostty Enhancements** - Theme switching, badge integration
 - **Workflow Templates** - Reusable workflow patterns
+- **StatusLine Enhancements** - Node.js version, R package health, MCP servers
 
 ### v1.0.0
 
 - **Plugin System** - Extend with custom contexts
 - **Web UI** - Visual configuration tool
+- **Custom StatusLine Segments** - User-defined information display
 
 ---
 

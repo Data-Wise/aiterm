@@ -548,6 +548,330 @@ aiterm claude approvals add git-ops
 
 ---
 
+## StatusLine (v0.7.0)
+
+Powerlevel10k-style 2-line status display for Claude Code CLI.
+
+### `aiterm statusline install`
+
+Install StatusLine into Claude Code settings.
+
+```bash
+aiterm statusline install
+ait statusline install  # Short alias
+```
+
+**What it does:**
+- Updates `~/.claude/settings.json`
+- Sets statusLine command to `ait statusline render`
+- Creates backup of previous settings
+- Verifies installation
+
+**Output:**
+```
+✓ Backup created: ~/.claude/settings.backup-20251231-120000.json
+✓ StatusLine installed successfully
+
+Configuration:
+  Command: ait statusline render
+  Type: command
+  Update Interval: 300ms (Claude Code default)
+
+Next: Start a new Claude Code session to see StatusLine!
+```
+
+---
+
+### `aiterm statusline test`
+
+Test StatusLine with mock data.
+
+```bash
+aiterm statusline test
+ait statusline test
+```
+
+**Output:**
+```
+╭─ ░▒▓ 🐍 aiterm (venv: py3.11)  main* ⇣2 ⇡1 ?3 📦5 ▓▒░
+╰─ Sonnet 4.5 │ 🌅 10:30 │ ⏱ 5m 🟢 │ 🤖2 │ +123/-45 │ [learning]
+```
+
+---
+
+### `aiterm statusline config`
+
+Manage StatusLine configuration.
+
+#### `aiterm statusline config`
+
+Interactive configuration menu.
+
+```bash
+aiterm statusline config
+```
+
+**Output:**
+```
+StatusLine Configuration
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. List all settings
+2. Get a value
+3. Set a value
+4. Reset to defaults
+5. Edit in $EDITOR
+6. Validate configuration
+
+Choose an option:
+```
+
+---
+
+#### `aiterm statusline config list`
+
+List all configuration settings.
+
+```bash
+aiterm statusline config list
+aiterm statusline config list --category display
+aiterm statusline config list --category git
+```
+
+**Output:**
+```
+StatusLine Configuration
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Display Settings (12):
+  display.directory_mode          smart
+  display.show_git                true
+  display.show_thinking_indicator true
+  display.show_output_style       auto
+  display.show_session_duration   true
+  display.show_current_time       true
+  display.show_lines_changed      true
+  display.show_r_version          true
+  display.show_background_agents  true
+  display.show_mcp_status         false
+  display.max_directory_length    50
+
+Git Settings (5):
+  git.show_ahead_behind          true
+  git.show_untracked_count       true
+  git.show_stash_count           true
+  git.show_remote_status         true
+  git.truncate_branch_length     32
+```
+
+**Categories:**
+- `display` - Display toggles and formatting (12 settings)
+- `git` - Git information display (5 settings)
+- `project` - Project context detection (4 settings)
+- `time` - Time tracking options (3 settings)
+- `theme` - Color theme settings (2 settings)
+- `usage` - Usage tracking (disabled, 3 settings)
+
+---
+
+#### `aiterm statusline config get <key>`
+
+Get a configuration value.
+
+```bash
+aiterm statusline config get display.show_git
+aiterm statusline config get theme.name
+aiterm statusline config get git.show_stash_count
+```
+
+**Output:**
+```
+display.show_git = true
+```
+
+---
+
+#### `aiterm statusline config set <key> <value>`
+
+Set a configuration value.
+
+```bash
+# Toggle features
+aiterm statusline config set display.show_git false
+aiterm statusline config set git.show_stash_count true
+
+# Change theme
+aiterm statusline config set theme.name cool-blues
+
+# Set numeric values
+aiterm statusline config set git.truncate_branch_length 40
+```
+
+**Output:**
+```
+✓ Updated: display.show_git = false
+```
+
+**Type conversion:**
+- `true/false` → boolean
+- Numbers → integer
+- Strings → string
+- Validation automatically applied
+
+---
+
+#### `aiterm statusline config reset [key]`
+
+Reset configuration to defaults.
+
+```bash
+# Reset all settings
+aiterm statusline config reset
+
+# Reset single key
+aiterm statusline config reset display.show_git
+```
+
+**Output:**
+```
+✓ Configuration reset to defaults
+```
+
+---
+
+#### `aiterm statusline config edit`
+
+Edit configuration in $EDITOR.
+
+```bash
+aiterm statusline config edit
+```
+
+Opens `~/.config/aiterm/statusline.json` in your editor with validation on save.
+
+---
+
+### `aiterm statusline theme`
+
+Manage color themes.
+
+#### `aiterm statusline theme list`
+
+List available themes.
+
+```bash
+aiterm statusline theme list
+```
+
+**Output:**
+```
+Available Themes
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+purple-charcoal  Purple + dark gray (default)
+cool-blues       Blue tones (calm, professional)
+forest-greens    Green tones (natural, easy on eyes)
+
+Current: purple-charcoal
+
+Switch with: ait statusline theme set <theme>
+```
+
+---
+
+#### `aiterm statusline theme set <theme>`
+
+Switch to a different theme.
+
+```bash
+aiterm statusline theme set cool-blues
+aiterm statusline theme set forest-greens
+aiterm statusline theme set purple-charcoal  # Default
+```
+
+**Output:**
+```
+✓ Theme changed to: cool-blues
+  Restart Claude Code to see changes
+```
+
+---
+
+#### `aiterm statusline theme show`
+
+Show current theme details.
+
+```bash
+aiterm statusline theme show
+```
+
+**Output:**
+```
+Current Theme: purple-charcoal
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Project:       Purple (141)
+Git:           Cyan (75)
+Model:         Purple (141)
+Separator:     Gray (240)
+Time:          Green (107)
+Lines Added:   Green (2)
+Lines Removed: Red (1)
+```
+
+---
+
+### `aiterm statusline doctor`
+
+Validate StatusLine installation and configuration.
+
+```bash
+aiterm statusline doctor
+```
+
+**Output:**
+```
+StatusLine Health Check
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ Claude Code settings found
+✓ StatusLine command configured
+✓ Config file exists
+✓ Theme loaded successfully
+✓ All segments functional
+
+Status: Ready ✨
+```
+
+---
+
+### `aiterm statusline uninstall`
+
+Remove StatusLine from Claude Code settings.
+
+```bash
+aiterm statusline uninstall
+```
+
+**Output:**
+```
+✓ Backup created: ~/.claude/settings.backup-20251231-120000.json
+✓ StatusLine removed from Claude Code settings
+
+Configuration file preserved at: ~/.config/aiterm/statusline.json
+```
+
+---
+
+### `aiterm statusline render`
+
+Render StatusLine (called by Claude Code).
+
+```bash
+# Not usually called directly
+# Claude Code runs this command every 300ms
+echo '{"workspace":{"current_dir":"..."}}' | ait statusline render
+```
+
+**Usage:** Set as statusLine command in `~/.claude/settings.json`.
+
+---
+
 ## OpenCode Integration
 
 ### `aiterm opencode config`
