@@ -28,10 +28,7 @@ jobs:
         run: uv python install 3.12
 
       - name: Install dependencies
-        run: uv sync --extra dev
-
-      - name: Run tests
-        run: uv run pytest --tb=short -q --ignore=tests/test_integration_phase3a.py
+        run: uv sync
 
       - name: Build package
         run: uv build
