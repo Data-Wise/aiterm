@@ -17,12 +17,37 @@ This file provides guidance to Claude Code when working with the aiterm project.
 **Tech Stack:**
 - **Language:** Python 3.10+
 - **CLI Framework:** Typer + Rich
-- **Testing:** pytest (611 tests)
+- **Testing:** pytest (849 tests, all passing)
 - **Distribution:** Homebrew, PyPI, curl installer
+- **CI/CD:** GitHub Actions (6 Python versions, strict mode)
 
 ---
 
-## Current Version: v0.6.0 (Dec 30, 2025)
+## Current Version: v0.6.3 (Dec 31, 2025)
+
+### v0.6.3 Features - StatusLine & Feature Workflow
+
+**StatusLine System:**
+- Comprehensive Claude Code statusLine customization
+- 32 configuration options across 6 categories (display, git, project, usage, theme, time)
+- Worktree display support (🌳N count, `(wt)` marker)
+- Configurable separator spacing (minimal/standard/relaxed)
+- Git branch truncation, ahead/behind indicators, dirty status
+- Session duration, current time, cost tracking
+- 57 comprehensive tests
+
+**Feature Workflow Enhancements:**
+- `ait feature promote` - Create PR to dev branch
+- `ait feature release` - Create PR from dev to main
+- `ait recipes` - Alias for workflow templates
+- Automated PR creation with gh CLI
+- Draft PR support, custom titles/bodies, browser opening
+
+**CI/Testing Improvements:**
+- Documentation strict mode (catches orphaned pages, broken links)
+- All 849 tests passing across Python 3.10-3.13 (Ubuntu + macOS)
+- ANSI code handling in CLI tests
+- StatusLine config test coverage
 
 ### v0.6.0 Features - Interactive Tutorial System
 
@@ -46,12 +71,13 @@ This file provides guidance to Claude Code when working with the aiterm project.
 - 4 tutorial pages
 - REFCARD-TUTORIALS.md
 
-**Statistics:** 75 tutorial tests, 685 total tests
+**Statistics:** 75 tutorial tests, 849 total tests
 
 ### Previous Releases
 
 | Version | Date | Highlights |
 |---------|------|------------|
+| v0.6.0 | Dec 30 | Interactive tutorials (31 steps, 3 levels) |
 | v0.5.0 | Dec 30 | Release automation (7 commands) |
 | v0.4.0 | Dec 30 | Workflows + Craft integration |
 | v0.3.15 | Dec 30 | Ghostty full iTerm2 parity |
@@ -113,10 +139,19 @@ ait terminals detect             # Detect current terminal
 ait ghostty theme                # List/set Ghostty themes
 ait ghostty status               # Ghostty config status
 
-# Feature Workflow
+# Feature Workflow (v0.6.3)
 ait feature status               # Branch pipeline view
 ait feature start auth -w        # Start feature with worktree
+ait feature promote              # Create PR to dev
+ait feature release              # Create PR from dev to main
 ait feature cleanup              # Clean merged branches
+ait recipes                      # Workflow templates (alias)
+
+# StatusLine (v0.6.3)
+ait statusline render            # Display statusLine output
+ait statusline config list       # Show all config options
+ait statusline config get KEY    # Get config value
+ait statusline config set KEY VAL # Set config value
 ```
 
 ### Key Paths
@@ -156,6 +191,10 @@ src/aiterm/
 │   ├── iterm2.py
 │   └── ghostty.py
 ├── context/             # Context detection
+├── statusline/          # StatusLine system (v0.6.3)
+│   ├── config.py        # Configuration management
+│   ├── render.py        # Output rendering
+│   └── project.py       # Project health checks
 ├── claude/              # Claude Code integration
 └── opencode/            # OpenCode integration
 ```
@@ -208,8 +247,8 @@ Automated workflows in `.github/workflows/`:
 
 | Workflow | Trigger | Purpose |
 |----------|---------|---------|
-| `test.yml` | Push/PR | Run pytest (685 tests) |
-| `docs.yml` | Push to main | Deploy docs to GitHub Pages |
+| `test.yml` | Push/PR | Run pytest (849 tests) ✅ All passing |
+| `docs.yml` | Push to main | Deploy docs (strict mode enabled) ✅ |
 | `pypi-release.yml` | Release published | Build & publish to PyPI |
 | `homebrew-release.yml` | Release published | Update Homebrew formula |
 | `demos.yml` | Manual | Generate VHS demo GIFs |
