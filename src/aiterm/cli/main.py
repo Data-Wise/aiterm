@@ -786,6 +786,7 @@ from aiterm.cli import styles as styles_cli
 from aiterm.cli import plugins as plugins_cli
 from aiterm.cli import gemini as gemini_cli
 from aiterm.cli import statusbar as statusbar_cli
+from aiterm.cli import statusline as statusline_cli
 from aiterm.cli import terminals as terminals_cli
 from aiterm.cli import workflows as workflows_cli
 from aiterm.cli import sessions as sessions_cli
@@ -799,6 +800,7 @@ app.add_typer(styles_cli.app, name="styles")
 app.add_typer(plugins_cli.app, name="plugins")
 app.add_typer(gemini_cli.app, name="gemini")
 app.add_typer(statusbar_cli.app, name="statusbar")
+app.add_typer(statusline_cli.app, name="statusline")
 app.add_typer(terminals_cli.app, name="terminals")
 app.add_typer(workflows_cli.app, name="workflows")
 app.add_typer(workflows_cli.app, name="recipes", hidden=True)  # Alias for workflows
