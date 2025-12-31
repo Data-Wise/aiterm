@@ -12,13 +12,13 @@
         <meta name="author" content="Data-Wise">
       
       
-        <link rel="canonical" href="https://data-wise.github.io/aiterm/guide/terminals/">
+        <link rel="canonical" href="https://data-wise.github.io/aiterm/guide/statusline/">
       
       
-        <link rel="prev" href="../profiles/">
+        <link rel="prev" href="../status-bar/">
       
       
-        <link rel="next" href="../feature-workflow/">
+        <link rel="next" href="../sessions/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Terminal Support - aiterm</title>
+        <title>Claude Code StatusLine - aiterm</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#terminal-emulators-guide" class="md-skip">
+        <a href="#claude-code-statusline" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Terminal Support
+              Claude Code StatusLine
             
           </span>
         </div>
@@ -981,37 +981,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Terminal Support
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../terminals/" class="md-nav__link">
         
   
   
@@ -1027,431 +1000,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#supported-terminals" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Supported Terminals
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#quick-start" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Quick Start
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ghostty-support-v039-enhanced-v0315" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ghostty Support (v0.3.9+, Enhanced v0.3.15)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Ghostty Support (v0.3.9+, Enhanced v0.3.15)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#detection" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Detection
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#features" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Features
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Configuration
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#setting-tab-title" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Setting Tab Title
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ghostty-cli-commands-v039-enhanced-v0315" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ghostty CLI Commands (v0.3.9+, Enhanced v0.3.15)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#new-in-v0315-full-iterm2-parity" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        New in v0.3.15: Full iTerm2 Parity
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#flow-cli-integration-tm-dispatcher" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        flow-cli Integration (tm dispatcher)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#iterm2-support" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        iTerm2 Support
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="iTerm2 Support">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#features_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Features
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#profile-switching" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Profile Switching
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#recommended-profiles" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Recommended Profiles
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#wezterm-support" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        WezTerm Support
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="WezTerm Support">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#features_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Features
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#configuration_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Configuration
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#kitty-support" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Kitty Support
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Kitty Support">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#features_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Features
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#configuration_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Configuration
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#alacritty-support" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Alacritty Support
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Alacritty Support">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#features_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Features
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#configuration_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Configuration
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#feature-comparison" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Feature Comparison
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#choosing-a-terminal" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Choosing a Terminal
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Choosing a Terminal">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#for-ai-assisted-development" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        For AI-Assisted Development
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#for-cross-platform" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        For Cross-Platform
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#for-minimalism" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        For Minimalism
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#troubleshooting" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Troubleshooting
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Troubleshooting">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#terminal-not-detected" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Terminal Not Detected
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#tab-title-not-changing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tab Title Not Changing
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#profile-not-switching-iterm2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Profile Not Switching (iTerm2)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next Steps
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1517,10 +1065,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../statusline/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claude Code StatusLine
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1536,6 +1111,625 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Start
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Start">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-install-statusline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Install StatusLine
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-test-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Test It
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-start-claude-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Start Claude Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#display-breakdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Display Breakdown
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Display Breakdown">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#line-1-project-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Line 1: Project Context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#line-2-session-info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Line 2: Session Info
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#view-current-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        View Current Config
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getset-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get/Set Values
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#all-31-configuration-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        All 31 Configuration Options
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#theme-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theme Management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Theme Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-available-themes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List Available Themes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switch-themes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Switch Themes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-theme-colors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Theme Colors
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commands-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Commands Reference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Commands Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installation-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installation &amp; Setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theme-management_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theme Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#minimal-display" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimal Display
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maximum-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maximum Detail
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git-focused-display" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git-Focused Display
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#statusline-not-showing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        StatusLine Not Showing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wrong-colorstheme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wrong Colors/Theme
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#missing-git-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Missing Git Information
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-environment-not-showing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python Environment Not Showing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#background-agents-not-showing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Background Agents Not Showing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#config-changes-not-applied" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Config Changes Not Applied
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#technical-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Technical Details
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Technical Details">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#config-location" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Config Location
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-tracking-currently-disabled" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage Tracking (Currently Disabled)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#faq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FAQ
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FAQ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#can-i-use-statusline-with-other-terminals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Can I use StatusLine with other terminals?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-doesnt-usage-tracking-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why doesn't usage tracking work?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-i-create-my-own-theme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Can I create my own theme?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-do-i-disable-statusline-temporarily" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How do I disable StatusLine temporarily?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-i-show-custom-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Can I show custom information?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-2-lines-instead-of-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why 2 lines instead of 1?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Documentation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#changelog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changelog
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Changelog">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#v060-dec-31-2025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v0.6.0 (Dec 31, 2025)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contributing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contributing
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -3599,10 +3793,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#supported-terminals" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Supported Terminals
+        Overview
       
     </span>
   </a>
@@ -3618,25 +3812,14 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ghostty-support-v039-enhanced-v0315" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ghostty Support (v0.3.9+, Enhanced v0.3.15)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Ghostty Support (v0.3.9+, Enhanced v0.3.15)">
+    <nav class="md-nav" aria-label="Quick Start">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#detection" class="md-nav__link">
+  <a href="#1-install-statusline" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Detection
+        1. Install StatusLine
       
     </span>
   </a>
@@ -3644,10 +3827,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#features" class="md-nav__link">
+  <a href="#2-test-it" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Features
+        2. Test It
       
     </span>
   </a>
@@ -3655,6 +3838,61 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#3-start-claude-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Start Claude Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#display-breakdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Display Breakdown
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Display Breakdown">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#line-1-project-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Line 1: Project Context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#line-2-session-info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Line 2: Session Info
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configuration" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3663,13 +3901,14 @@
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#setting-tab-title" class="md-nav__link">
+  <a href="#view-current-config" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Setting Tab Title
+        View Current Config
       
     </span>
   </a>
@@ -3677,10 +3916,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#ghostty-cli-commands-v039-enhanced-v0315" class="md-nav__link">
+  <a href="#getset-values" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Ghostty CLI Commands (v0.3.9+, Enhanced v0.3.15)
+        Get/Set Values
       
     </span>
   </a>
@@ -3688,21 +3927,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#new-in-v0315-full-iterm2-parity" class="md-nav__link">
+  <a href="#all-31-configuration-options" class="md-nav__link">
     <span class="md-ellipsis">
       
-        New in v0.3.15: Full iTerm2 Parity
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#flow-cli-integration-tm-dispatcher" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        flow-cli Integration (tm dispatcher)
+        All 31 Configuration Options
       
     </span>
   </a>
@@ -3715,22 +3943,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#iterm2-support" class="md-nav__link">
+  <a href="#theme-management" class="md-nav__link">
     <span class="md-ellipsis">
       
-        iTerm2 Support
+        Theme Management
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="iTerm2 Support">
+    <nav class="md-nav" aria-label="Theme Management">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#features_1" class="md-nav__link">
+  <a href="#list-available-themes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Features
+        List Available Themes
       
     </span>
   </a>
@@ -3738,10 +3966,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#profile-switching" class="md-nav__link">
+  <a href="#switch-themes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Profile Switching
+        Switch Themes
       
     </span>
   </a>
@@ -3749,10 +3977,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#recommended-profiles" class="md-nav__link">
+  <a href="#custom-theme-colors" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Recommended Profiles
+        Custom Theme Colors
       
     </span>
   </a>
@@ -3765,22 +3993,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#wezterm-support" class="md-nav__link">
+  <a href="#commands-reference" class="md-nav__link">
     <span class="md-ellipsis">
       
-        WezTerm Support
+        Commands Reference
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="WezTerm Support">
+    <nav class="md-nav" aria-label="Commands Reference">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#features_2" class="md-nav__link">
+  <a href="#installation-setup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Features
+        Installation &amp; Setup
       
     </span>
   </a>
@@ -3798,28 +4026,11 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#kitty-support" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Kitty Support
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Kitty Support">
-      <ul class="md-nav__list">
-        
           <li class="md-nav__item">
-  <a href="#features_3" class="md-nav__link">
+  <a href="#theme-management_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Features
+        Theme Management
       
     </span>
   </a>
@@ -3827,10 +4038,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#configuration_2" class="md-nav__link">
+  <a href="#advanced" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Configuration
+        Advanced
       
     </span>
   </a>
@@ -3843,22 +4054,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#alacritty-support" class="md-nav__link">
+  <a href="#examples" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Alacritty Support
+        Examples
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Alacritty Support">
+    <nav class="md-nav" aria-label="Examples">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#features_4" class="md-nav__link">
+  <a href="#minimal-display" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Features
+        Minimal Display
       
     </span>
   </a>
@@ -3866,49 +4077,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#configuration_3" class="md-nav__link">
+  <a href="#maximum-detail" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Configuration
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#feature-comparison" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Feature Comparison
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#choosing-a-terminal" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Choosing a Terminal
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Choosing a Terminal">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#for-ai-assisted-development" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        For AI-Assisted Development
+        Maximum Detail
       
     </span>
   </a>
@@ -3916,21 +4088,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#for-cross-platform" class="md-nav__link">
+  <a href="#git-focused-display" class="md-nav__link">
     <span class="md-ellipsis">
       
-        For Cross-Platform
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#for-minimalism" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        For Minimalism
+        Git-Focused Display
       
     </span>
   </a>
@@ -3955,10 +4116,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#terminal-not-detected" class="md-nav__link">
+  <a href="#statusline-not-showing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Terminal Not Detected
+        StatusLine Not Showing
       
     </span>
   </a>
@@ -3966,10 +4127,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#tab-title-not-changing" class="md-nav__link">
+  <a href="#wrong-colorstheme" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Tab Title Not Changing
+        Wrong Colors/Theme
       
     </span>
   </a>
@@ -3977,10 +4138,43 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#profile-not-switching-iterm2" class="md-nav__link">
+  <a href="#missing-git-information" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Profile Not Switching (iTerm2)
+        Missing Git Information
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-environment-not-showing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python Environment Not Showing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#background-agents-not-showing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Background Agents Not Showing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#config-changes-not-applied" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Config Changes Not Applied
       
     </span>
   </a>
@@ -3993,10 +4187,204 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
+  <a href="#technical-details" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Next Steps
+        Technical Details
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Technical Details">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#config-location" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Config Location
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-tracking-currently-disabled" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage Tracking (Currently Disabled)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#faq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FAQ
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FAQ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#can-i-use-statusline-with-other-terminals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Can I use StatusLine with other terminals?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-doesnt-usage-tracking-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why doesn't usage tracking work?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-i-create-my-own-theme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Can I create my own theme?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-do-i-disable-statusline-temporarily" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How do I disable StatusLine temporarily?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-i-show-custom-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Can I show custom information?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-2-lines-instead-of-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why 2 lines instead of 1?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Documentation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#changelog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changelog
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Changelog">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#v060-dec-31-2025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v0.6.0 (Dec 31, 2025)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contributing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contributing
       
     </span>
   </a>
@@ -4023,564 +4411,857 @@
   
 
 
-<h1 id="terminal-emulators-guide">Terminal Emulators Guide</h1>
-<p><strong>aiterm</strong> supports multiple terminal emulators for AI-assisted development workflows.</p>
+<h1 id="claude-code-statusline">Claude Code StatusLine</h1>
+<p><strong>Powerlevel10k-style status line for Claude Code CLI.</strong></p>
 <hr />
-<h2 id="supported-terminals">Supported Terminals</h2>
-<table>
-<thead>
-<tr>
-<th>Terminal</th>
-<th>macOS</th>
-<th>Linux</th>
-<th>Windows</th>
-<th>aiterm Support</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>iTerm2</strong></td>
-<td>✅</td>
-<td>-</td>
-<td>-</td>
-<td>Full (profiles, badge, status)</td>
-</tr>
-<tr>
-<td><strong>Ghostty</strong></td>
-<td>✅</td>
-<td>✅</td>
-<td>-</td>
-<td>Full (v0.3.9+)</td>
-</tr>
-<tr>
-<td><strong>Kitty</strong></td>
-<td>✅</td>
-<td>✅</td>
-<td>-</td>
-<td>Basic</td>
-</tr>
-<tr>
-<td><strong>Alacritty</strong></td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>Basic</td>
-</tr>
-<tr>
-<td><strong>WezTerm</strong></td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>Good</td>
-</tr>
-</tbody>
-</table>
+<h2 id="overview">Overview</h2>
+<p>The <strong>StatusLine</strong> feature provides a beautiful, informative 2-line status display for Claude Code CLI sessions. It shows project context, git status, session metrics, and more—all automatically updated every 300ms.</p>
+<p><strong>What it shows:</strong></p>
+<ul>
+<li><strong>Line 1:</strong> Project icon, name, Python environment, git branch, stash count, remote tracking</li>
+<li><strong>Line 2:</strong> Model name, time of day, session duration, background agents, lines changed, output style</li>
+</ul>
+<p><strong>Key benefits:</strong></p>
+<ul>
+<li>🎯 <strong>At-a-glance context</strong> - See project type, git status, session info instantly</li>
+<li>🎨 <strong>3 color themes</strong> - Purple-charcoal (default), cool-blues, forest-greens</li>
+<li>⚙️ <strong>31 config options</strong> - Toggle features, customize display</li>
+<li>📊 <strong>Background agents</strong> - See when Task agents are running</li>
+<li>⏱️ <strong>Time tracking</strong> - Session duration, time-of-day indicators</li>
+</ul>
 <hr />
 <h2 id="quick-start">Quick Start</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Check which terminals are installed</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>ait<span class="w"> </span>terminals<span class="w"> </span>list
+<h3 id="1-install-statusline">1. Install StatusLine</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Install StatusLine into Claude Code settings</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>ait<span class="w"> </span>statusline<span class="w"> </span>install
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Detect your current terminal</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>ait<span class="w"> </span>terminals<span class="w"> </span>detect
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># See features for a specific terminal</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>ait<span class="w"> </span>terminals<span class="w"> </span>features<span class="w"> </span>ghostty
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Verify installation</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>ait<span class="w"> </span>statusline<span class="w"> </span><span class="nb">test</span>
 </code></pre></div>
+<p>This updates <code>~/.claude/settings.json</code> to use <code>ait statusline render</code> as the statusLine command.</p>
+<h3 id="2-test-it">2. Test It</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Show StatusLine with mock data</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>ait<span class="w"> </span>statusline<span class="w"> </span><span class="nb">test</span>
+</code></pre></div>
+<p><strong>Expected output:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>╭─ ░▒▓ 🐍 aiterm (venv: py3.11)  main* ⇣2 ⇡1 ?3 📦5 ▓▒░
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>╰─ Sonnet 4.5 │ 🌅 10:30 │ ⏱ 5m 🟢 │ +123/-45
+</code></pre></div></p>
+<h3 id="3-start-claude-code">3. Start Claude Code</h3>
+<p>Open a new Claude Code session and you'll see the StatusLine at the top of your terminal!</p>
 <hr />
-<h2 id="ghostty-support-v039-enhanced-v0315">Ghostty Support (v0.3.9+, Enhanced v0.3.15)</h2>
-<p><a href="https://ghostty.org/">Ghostty</a> is a fast, native terminal emulator built with Zig. aiterm provides <strong>full iTerm2 parity</strong> for Ghostty as of v0.3.15.</p>
-<h3 id="detection">Detection</h3>
-<p>aiterm detects Ghostty via:
-- <code>GHOSTTY_RESOURCES_DIR</code> environment variable
-- <code>ghostty --version</code> command output</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$<span class="w"> </span>ait<span class="w"> </span>terminals<span class="w"> </span>detect
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Terminal<span class="w"> </span>Detection
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>✓<span class="w"> </span>Detected:<span class="w"> </span>ghostty
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span>Version:<span class="w"> </span>Ghostty<span class="w"> </span><span class="m">1</span>.2.3
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span>Channel:<span class="w"> </span>stable
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span>Features:<span class="w"> </span>tab_title,<span class="w"> </span>themes,<span class="w"> </span>native_ui
+<h2 id="display-breakdown">Display Breakdown</h2>
+<h3 id="line-1-project-context">Line 1: Project Context</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>╭─ ░▒▓ 🐍 aiterm (venv: py3.11)  main* ⇣2 ⇡1 ?3 📦5 ▓▒░
 </code></pre></div>
-<h3 id="features">Features</h3>
 <table>
 <thead>
 <tr>
-<th>Feature</th>
-<th>Support</th>
-<th>Notes</th>
+<th>Element</th>
+<th>Meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Tab Title</td>
-<td>✅</td>
-<td>Via escape sequences</td>
+<td><code>🐍</code></td>
+<td>Project type icon (Python/R/Node/Quarto/etc.)</td>
 </tr>
 <tr>
-<td>Themes</td>
-<td>✅</td>
-<td>14 built-in themes</td>
+<td><code>aiterm</code></td>
+<td>Project name (directory basename)</td>
 </tr>
 <tr>
-<td>Native UI</td>
-<td>✅</td>
-<td>macOS native look</td>
+<td><code>(venv: py3.11)</code></td>
+<td>Python environment (if detected)</td>
 </tr>
 <tr>
-<td>Profiles</td>
-<td>✅ v0.3.15</td>
-<td>aiterm-managed profiles</td>
+<td><code>main*</code></td>
+<td>Git branch with dirty indicator (*)</td>
 </tr>
 <tr>
-<td>Keybinds</td>
-<td>✅ v0.3.15</td>
-<td>With presets (vim/emacs/tmux/macos)</td>
+<td><code>⇣2</code></td>
+<td>2 commits behind remote</td>
 </tr>
 <tr>
-<td>Sessions</td>
-<td>✅ v0.3.15</td>
-<td>Save/restore terminal layouts</td>
+<td><code>⇡1</code></td>
+<td>1 commit ahead of remote</td>
 </tr>
 <tr>
-<td>Backup</td>
-<td>✅ v0.3.15</td>
-<td>Timestamped config backups</td>
+<td><code>?3</code></td>
+<td>3 untracked files</td>
 </tr>
 <tr>
-<td>Badge</td>
-<td>❌</td>
-<td>Not supported by Ghostty</td>
+<td><code>📦5</code></td>
+<td>5 stashed changes</td>
 </tr>
 </tbody>
 </table>
-<h3 id="configuration">Configuration</h3>
-<p>Ghostty configuration lives at:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>~/.config/ghostty/config
+<p><strong>Project icons:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Icon</th>
+<th>Project Type</th>
+<th>Detected From</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🐍</td>
+<td>Python</td>
+<td><code>pyproject.toml</code></td>
+</tr>
+<tr>
+<td>📦</td>
+<td>R Package</td>
+<td><code>DESCRIPTION</code> file</td>
+</tr>
+<tr>
+<td>📦</td>
+<td>Node.js</td>
+<td><code>package.json</code></td>
+</tr>
+<tr>
+<td>📊</td>
+<td>Quarto</td>
+<td><code>_quarto.yml</code></td>
+</tr>
+<tr>
+<td>🛠️</td>
+<td>MCP Server</td>
+<td><code>mcp-server/</code> directory</td>
+</tr>
+<tr>
+<td>🔧</td>
+<td>Spacemacs</td>
+<td><code>.spacemacs</code> file</td>
+</tr>
+<tr>
+<td>🗂️</td>
+<td>Dev Tools</td>
+<td><code>.git</code> + <code>scripts/</code></td>
+</tr>
+<tr>
+<td>📁</td>
+<td>Generic</td>
+<td>Default fallback</td>
+</tr>
+</tbody>
+</table>
+<h3 id="line-2-session-info">Line 2: Session Info</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>╰─ Sonnet 4.5 │ 🌅 10:30 │ ⏱ 5m 🟢 │ 🤖2 │ +123/-45 │ [learning]
 </code></pre></div>
-<p><strong>Example aiterm-friendly config:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># ~/.config/ghostty/config</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># Enable title changes from applications</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="na">window-title-format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;%t&quot;</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1"># Theme (optional)</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="na">theme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">dracula</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="c1"># Font</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="na">font-family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;JetBrains Mono&quot;</span>
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="na">font-size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">14</span>
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="c1"># Window</span>
-<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="na">window-padding-x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">10</span>
-<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="na">window-padding-y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">10</span>
-</code></pre></div>
-<h3 id="setting-tab-title">Setting Tab Title</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Set tab title (works in Ghostty)</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>ait<span class="w"> </span>terminals<span class="w"> </span>title<span class="w"> </span><span class="s2">&quot;Working on aiterm&quot;</span>
-</code></pre></div>
-<h3 id="ghostty-cli-commands-v039-enhanced-v0315">Ghostty CLI Commands (v0.3.9+, Enhanced v0.3.15)</h3>
-<p>aiterm provides dedicated commands for managing Ghostty settings:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Check Ghostty status and configuration</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>status
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Sonnet 4.5</code></td>
+<td>Current model (shortened from "Claude Sonnet 4.5")</td>
+</tr>
+<tr>
+<td><code>🌅 10:30</code></td>
+<td>Time of day icon + current time (24h format)</td>
+</tr>
+<tr>
+<td><code>⏱ 5m 🟢</code></td>
+<td>Session duration + productivity indicator</td>
+</tr>
+<tr>
+<td><code>🤖2</code></td>
+<td>2 background agents running (Task tool)</td>
+</tr>
+<tr>
+<td><code>+123/-45</code></td>
+<td>Lines added/removed in this session</td>
+</tr>
+<tr>
+<td><code>[learning]</code></td>
+<td>Output style (if not "default")</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Time-of-day icons:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Icon</th>
+<th>Time Range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🌅</td>
+<td>6am - 12pm (Morning)</td>
+</tr>
+<tr>
+<td>☀️</td>
+<td>12pm - 6pm (Afternoon)</td>
+</tr>
+<tr>
+<td>🌙</td>
+<td>6pm - 12am (Evening)</td>
+</tr>
+<tr>
+<td>🌃</td>
+<td>12am - 6am (Night)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Productivity indicators:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Icon</th>
+<th>Status</th>
+<th>Idle Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🟢</td>
+<td>Active</td>
+<td>&lt; 5 minutes</td>
+</tr>
+<tr>
+<td>🟡</td>
+<td>Idle</td>
+<td>5-15 minutes</td>
+</tr>
+<tr>
+<td>🔴</td>
+<td>Long idle</td>
+<td>&gt; 15 minutes</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="configuration">Configuration</h2>
+<h3 id="view-current-config">View Current Config</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Interactive menu</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Output:</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1"># Ghostty Configuration</span>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="c1"># ─────────────────────</span>
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># Config file: ~/.config/ghostty/config</span>
-<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="c1"># Theme: catppuccin-mocha</span>
-<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="c1"># Font: JetBrains Mono @ 14pt</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># List all settings</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span>list
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># Filter by category</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span>list<span class="w"> </span>--category<span class="w"> </span>display
 </code></pre></div>
-<p><strong>Theme Management:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># List all 14 built-in themes</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>theme
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1"># catppuccin-mocha, dracula, nord, tokyo-night,</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># gruvbox-dark, gruvbox-light, solarized-dark,</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="c1"># solarized-light, one-dark, one-light, etc.</span>
+<h3 id="getset-values">Get/Set Values</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Get a value</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span>get<span class="w"> </span>display.show_git
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># Set a value</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>display.show_git<span class="w"> </span><span class="nb">false</span>
 <a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="c1"># Apply a theme</span>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>theme<span class="w"> </span>dracula
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="c1"># ✅ Theme set: dracula</span>
-<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="c1"># Ghostty auto-reloads on config change</span>
-</code></pre></div></p>
-<p><strong>Font Configuration:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># View current font settings</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>font
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="c1"># Font: JetBrains Mono @ 14pt</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="c1"># Change font family and size</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>font<span class="w"> </span><span class="s2">&quot;Fira Code&quot;</span><span class="w"> </span><span class="m">16</span>
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="c1"># ✅ Font set: Fira Code @ 16pt</span>
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
-<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="c1"># Change size only (keeps family)</span>
-<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>font<span class="w"> </span>--size<span class="w"> </span><span class="m">18</span>
-</code></pre></div></p>
-<p><strong>Custom Settings:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Set any Ghostty config value</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>ait<span class="w"> </span>ghostty<span class="w"> </span><span class="nb">set</span><span class="w"> </span>window-padding-x<span class="w"> </span><span class="m">12</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>ait<span class="w"> </span>ghostty<span class="w"> </span><span class="nb">set</span><span class="w"> </span>window-padding-y<span class="w"> </span><span class="m">12</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>ait<span class="w"> </span>ghostty<span class="w"> </span><span class="nb">set</span><span class="w"> </span>background-opacity<span class="w"> </span><span class="m">0</span>.95
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>ait<span class="w"> </span>ghostty<span class="w"> </span><span class="nb">set</span><span class="w"> </span>cursor-style<span class="w"> </span>underline
-<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>ait<span class="w"> </span>ghostty<span class="w"> </span><span class="nb">set</span><span class="w"> </span>cursor-style-blink<span class="w"> </span><span class="nb">true</span>
-<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
-<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="c1"># View specific setting</span>
-<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>get<span class="w"> </span>background-opacity
-</code></pre></div></p>
-<p><strong>Config File Location:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Show config file path</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>config
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="c1"># ~/.config/ghostty/config</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="c1"># Open config in $EDITOR</span>
-<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>edit
-</code></pre></div></p>
-<h3 id="new-in-v0315-full-iterm2-parity">New in v0.3.15: Full iTerm2 Parity</h3>
-<p><strong>Profile Management:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Create profile from current config</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>profile<span class="w"> </span>create<span class="w"> </span>coding<span class="w"> </span><span class="s2">&quot;My dev setup&quot;</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="c1"># Reset to defaults</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span>reset
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span>reset<span class="w"> </span>display.show_git<span class="w">  </span><span class="c1"># Reset single key</span>
+</code></pre></div>
+<h3 id="all-31-configuration-options">All 31 Configuration Options</h3>
+<p><strong>Display Settings (12 options):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>display.directory_mode</code></td>
+<td><code>smart</code></td>
+<td>Directory display: smart/basename/full</td>
+</tr>
+<tr>
+<td><code>display.show_git</code></td>
+<td><code>true</code></td>
+<td>Show git information</td>
+</tr>
+<tr>
+<td><code>display.show_thinking_indicator</code></td>
+<td><code>true</code></td>
+<td>Show 🧠 when thinking mode enabled</td>
+</tr>
+<tr>
+<td><code>display.show_output_style</code></td>
+<td><code>auto</code></td>
+<td>Show output style: auto/always/never</td>
+</tr>
+<tr>
+<td><code>display.show_session_duration</code></td>
+<td><code>true</code></td>
+<td>Show ⏱ session duration</td>
+</tr>
+<tr>
+<td><code>display.show_current_time</code></td>
+<td><code>true</code></td>
+<td>Show current time</td>
+</tr>
+<tr>
+<td><code>display.show_lines_changed</code></td>
+<td><code>true</code></td>
+<td>Show +N/-M lines changed</td>
+</tr>
+<tr>
+<td><code>display.show_r_version</code></td>
+<td><code>true</code></td>
+<td>Show R package version</td>
+</tr>
+<tr>
+<td><code>display.show_background_agents</code></td>
+<td><code>true</code></td>
+<td>Show 🤖N background agents</td>
+</tr>
+<tr>
+<td><code>display.show_mcp_status</code></td>
+<td><code>false</code></td>
+<td>Show MCP server count (future)</td>
+</tr>
+<tr>
+<td><code>display.show_session_usage</code></td>
+<td><code>false</code></td>
+<td>Session usage (not available)</td>
+</tr>
+<tr>
+<td><code>display.show_weekly_usage</code></td>
+<td><code>false</code></td>
+<td>Weekly usage (not available)</td>
+</tr>
+<tr>
+<td><code>display.max_directory_length</code></td>
+<td><code>50</code></td>
+<td>Max directory name length</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Git Settings (5 options):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git.show_ahead_behind</code></td>
+<td><code>true</code></td>
+<td>Show ⇣N ⇡N indicators</td>
+</tr>
+<tr>
+<td><code>git.show_untracked_count</code></td>
+<td><code>true</code></td>
+<td>Show ?N untracked files</td>
+</tr>
+<tr>
+<td><code>git.show_stash_count</code></td>
+<td><code>true</code></td>
+<td>Show 📦N stashed changes</td>
+</tr>
+<tr>
+<td><code>git.show_remote_status</code></td>
+<td><code>true</code></td>
+<td>Show remote tracking info</td>
+</tr>
+<tr>
+<td><code>git.truncate_branch_length</code></td>
+<td><code>32</code></td>
+<td>Max branch name length</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Project Settings (4 options):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>project.detect_python_env</code></td>
+<td><code>true</code></td>
+<td>Show Python venv/conda/pyenv</td>
+</tr>
+<tr>
+<td><code>project.detect_node_version</code></td>
+<td><code>false</code></td>
+<td>Show Node.js version</td>
+</tr>
+<tr>
+<td><code>project.detect_r_package_health</code></td>
+<td><code>false</code></td>
+<td>R package status (future)</td>
+</tr>
+<tr>
+<td><code>project.show_dependency_warnings</code></td>
+<td><code>false</code></td>
+<td>Outdated deps (future)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Time Settings (3 options):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>time.session_duration_format</code></td>
+<td><code>compact</code></td>
+<td>Duration format: compact/verbose</td>
+</tr>
+<tr>
+<td><code>time.show_productivity_indicator</code></td>
+<td><code>true</code></td>
+<td>Show 🟢/🟡/🔴 activity level</td>
+</tr>
+<tr>
+<td><code>time.time_format</code></td>
+<td><code>24h</code></td>
+<td>Time format: 24h/12h</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Theme Settings (2 options):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>theme.name</code></td>
+<td><code>purple-charcoal</code></td>
+<td>Active theme name</td>
+</tr>
+<tr>
+<td><code>theme.custom_colors</code></td>
+<td><code>{}</code></td>
+<td>Override specific colors</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Usage Settings (3 options) - Currently Disabled:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>usage.show_reset_timer</code></td>
+<td><code>true</code></td>
+<td>Show time until reset</td>
+</tr>
+<tr>
+<td><code>usage.warning_threshold</code></td>
+<td><code>80</code></td>
+<td>Color warning at N%</td>
+</tr>
+<tr>
+<td><code>usage.compact_format</code></td>
+<td><code>true</code></td>
+<td>Use compact format</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Other Settings (2 options):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>enabled</code></td>
+<td><code>true</code></td>
+<td>Enable/disable StatusLine</td>
+</tr>
+<tr>
+<td><code>update_interval_ms</code></td>
+<td><code>300</code></td>
+<td>Update interval (Claude Code controls)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="theme-management">Theme Management</h2>
+<h3 id="list-available-themes">List Available Themes</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>ait<span class="w"> </span>statusline<span class="w"> </span>theme<span class="w"> </span>list
+</code></pre></div>
+<p><strong>Available themes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Theme</th>
+<th>Colors</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>purple-charcoal</code></td>
+<td>Purple + dark gray</td>
+<td>Default, balanced contrast</td>
+</tr>
+<tr>
+<td><code>cool-blues</code></td>
+<td>Blue tones</td>
+<td>Calm, professional</td>
+</tr>
+<tr>
+<td><code>forest-greens</code></td>
+<td>Green tones</td>
+<td>Natural, easy on eyes</td>
+</tr>
+</tbody>
+</table>
+<h3 id="switch-themes">Switch Themes</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Switch to cool-blues</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>ait<span class="w"> </span>statusline<span class="w"> </span>theme<span class="w"> </span><span class="nb">set</span><span class="w"> </span>cool-blues
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># View current theme</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>ait<span class="w"> </span>statusline<span class="w"> </span>theme<span class="w"> </span>show
+</code></pre></div>
+<h3 id="custom-theme-colors">Custom Theme Colors</h3>
+<p>Create custom color overrides in config:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Edit config</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span>edit
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># Add custom_colors section</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="o">{</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">  </span><span class="s2">&quot;theme&quot;</span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">    </span><span class="s2">&quot;name&quot;</span>:<span class="w"> </span><span class="s2">&quot;purple-charcoal&quot;</span>,
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">    </span><span class="s2">&quot;custom_colors&quot;</span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">      </span><span class="s2">&quot;project_fg&quot;</span>:<span class="w"> </span><span class="s2">&quot;38;5;141&quot;</span>,
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">      </span><span class="s2">&quot;git_fg&quot;</span>:<span class="w"> </span><span class="s2">&quot;38;5;75&quot;</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="w">    </span><span class="o">}</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="w">  </span><span class="o">}</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="o">}</span>
+</code></pre></div>
+<p><strong>Available color keys:</strong></p>
+<ul>
+<li><code>project_fg</code> - Project name color</li>
+<li><code>project_bg</code> - Project background</li>
+<li><code>git_fg</code> - Git information color</li>
+<li><code>git_bg</code> - Git background</li>
+<li><code>model_fg</code> - Model name color</li>
+<li><code>separator_fg</code> - Separator (│) color</li>
+<li><code>time_fg</code> - Time display color</li>
+<li><code>lines_added_fg</code> - Lines added color</li>
+<li><code>lines_removed_fg</code> - Lines removed color</li>
+<li><code>style_fg</code> - Output style color</li>
+</ul>
+<p><strong>Color format:</strong> ANSI codes like <code>38;5;N</code> (foreground) or <code>48;5;N</code> (background) where N is 0-255.</p>
+<hr />
+<h2 id="commands-reference">Commands Reference</h2>
+<h3 id="installation-setup">Installation &amp; Setup</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Install StatusLine into Claude Code</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>ait<span class="w"> </span>statusline<span class="w"> </span>install
 <a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1"># List and apply profiles</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>profile<span class="w"> </span>list
-<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>profile<span class="w"> </span>apply<span class="w"> </span>coding
-<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>
-<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="c1"># Profiles stored in: ~/.config/ghostty/profiles/</span>
-</code></pre></div></p>
-<p><strong>Keybind Management:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Apply a keybind preset</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>keybind<span class="w"> </span>preset<span class="w"> </span>vim<span class="w">    </span><span class="c1"># vim-style navigation</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>keybind<span class="w"> </span>preset<span class="w"> </span>tmux<span class="w">   </span><span class="c1"># tmux-style prefixes</span>
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>keybind<span class="w"> </span>preset<span class="w"> </span>macos<span class="w">  </span><span class="c1"># macOS native shortcuts</span>
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>
-<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="c1"># Add custom keybinds</span>
-<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>keybind<span class="w"> </span>add<span class="w"> </span><span class="s2">&quot;ctrl+t&quot;</span><span class="w"> </span><span class="s2">&quot;new_tab&quot;</span>
-<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>keybind<span class="w"> </span>add<span class="w"> </span><span class="s2">&quot;ctrl+q&quot;</span><span class="w"> </span><span class="s2">&quot;quit&quot;</span><span class="w"> </span>--prefix<span class="w"> </span>global:
-<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>
-<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="c1"># List current keybinds</span>
-<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>keybind<span class="w"> </span>list
-</code></pre></div></p>
-<p><strong>Session Management:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># Save current working directory as session</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>session<span class="w"> </span>save<span class="w"> </span>work<span class="w"> </span>--layout<span class="w"> </span>split-h
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
-<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1"># List and restore sessions</span>
-<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>session<span class="w"> </span>list
-<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>session<span class="w"> </span>restore<span class="w"> </span>work
-<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>
-<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="c1"># Create terminal splits</span>
-<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>session<span class="w"> </span>split<span class="w"> </span>right
-<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>session<span class="w"> </span>split<span class="w"> </span>down
-<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>
-<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="c1"># Sessions stored in: ~/.config/ghostty/sessions/</span>
-</code></pre></div></p>
-<p><strong>Config Backup:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># Create timestamped backup</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>backup
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="c1"># → config.backup.20251230123456</span>
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
-<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="c1"># List and restore backups</span>
-<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>restore
-<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>ait<span class="w"> </span>ghostty<span class="w"> </span>restore<span class="w"> </span>config.backup.20251230123456
-</code></pre></div></p>
-<h3 id="flow-cli-integration-tm-dispatcher">flow-cli Integration (tm dispatcher)</h3>
-<p>For instant Ghostty control via shell:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># tm dispatcher commands (no Python overhead)</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>tm<span class="w"> </span>ghost<span class="w"> </span>status<span class="w">          </span><span class="c1"># Same as: ait ghostty status</span>
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>tm<span class="w"> </span>ghost<span class="w"> </span>theme<span class="w"> </span>dracula<span class="w">   </span><span class="c1"># Same as: ait ghostty theme dracula</span>
-<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>tm<span class="w"> </span>ghost<span class="w"> </span>font<span class="w"> </span><span class="s2">&quot;Fira Code&quot;</span><span class="w"> </span><span class="m">16</span><span class="w">  </span><span class="c1"># Same as: ait ghostty font</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1"># Test with mock data</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>ait<span class="w"> </span>statusline<span class="w"> </span><span class="nb">test</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="c1"># Validate configuration</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>ait<span class="w"> </span>statusline<span class="w"> </span>doctor
 </code></pre></div>
-<hr />
-<h2 id="iterm2-support">iTerm2 Support</h2>
-<p><a href="https://iterm2.com/">iTerm2</a> is the most feature-rich terminal for macOS. aiterm provides full integration.</p>
-<h3 id="features_1">Features</h3>
-<table>
-<thead>
-<tr>
-<th>Feature</th>
-<th>Support</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Profiles</td>
-<td>✅</td>
-<td>Full profile switching</td>
-</tr>
-<tr>
-<td>Tab Title</td>
-<td>✅</td>
-<td>Via escape sequences</td>
-</tr>
-<tr>
-<td>Badge</td>
-<td>✅</td>
-<td>Status badges</td>
-</tr>
-<tr>
-<td>Status Bar</td>
-<td>✅</td>
-<td>User-defined variables</td>
-</tr>
-<tr>
-<td>Themes</td>
-<td>✅</td>
-<td>Color presets</td>
-</tr>
-</tbody>
-</table>
-<h3 id="profile-switching">Profile Switching</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># Switch to a named profile</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>ait<span class="w"> </span>terminals<span class="w"> </span>profile<span class="w"> </span><span class="s2">&quot;Python-Dev&quot;</span>
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
-<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="c1"># Or use context-based switching</span>
-<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>ait<span class="w"> </span>switch<span class="w">  </span><span class="c1"># Automatically selects profile based on directory</span>
-</code></pre></div>
-<h3 id="recommended-profiles">Recommended Profiles</h3>
-<p>Create these profiles in iTerm2 Preferences for automatic context switching:</p>
-<table>
-<thead>
-<tr>
-<th>Profile</th>
-<th>Color</th>
-<th>Use Case</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Default</code></td>
-<td>Blue</td>
-<td>General development</td>
-</tr>
-<tr>
-<td><code>Python-Dev</code></td>
-<td>Green</td>
-<td>Python projects</td>
-</tr>
-<tr>
-<td><code>R-Dev</code></td>
-<td>Purple</td>
-<td>R package development</td>
-</tr>
-<tr>
-<td><code>Node-Dev</code></td>
-<td>Yellow</td>
-<td>Node.js projects</td>
-</tr>
-<tr>
-<td><code>Production</code></td>
-<td><strong>Red</strong></td>
-<td>Production environments</td>
-</tr>
-<tr>
-<td><code>AI-Session</code></td>
-<td>Cyan</td>
-<td>Claude/Gemini sessions</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="wezterm-support">WezTerm Support</h2>
-<p><a href="https://wezfurlong.org/wezterm/">WezTerm</a> is a GPU-accelerated terminal with Lua configuration.</p>
-<h3 id="features_2">Features</h3>
-<table>
-<thead>
-<tr>
-<th>Feature</th>
-<th>Support</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Tab Title</td>
-<td>✅</td>
-<td>Via escape sequences</td>
-</tr>
-<tr>
-<td>Themes</td>
-<td>✅</td>
-<td>Color schemes</td>
-</tr>
-<tr>
-<td>Lua Config</td>
-<td>✅</td>
-<td>Full scripting</td>
-</tr>
-<tr>
-<td>Multiplexing</td>
-<td>✅</td>
-<td>Built-in tmux-like</td>
-</tr>
-</tbody>
-</table>
 <h3 id="configuration_1">Configuration</h3>
-<p>WezTerm config lives at <code>~/.wezterm.lua</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1">-- ~/.wezterm.lua</span>
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="kd">local</span><span class="w"> </span><span class="nv">wezterm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">require</span><span class="w"> </span><span class="s1">&#39;wezterm&#39;</span>
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="kd">local</span><span class="w"> </span><span class="nv">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{}</span>
-<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>
-<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="c1">-- Allow aiterm to set tab title</span>
-<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="nv">config</span><span class="p">.</span><span class="py">window_title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;WezTerm&#39;</span>
-<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>
-<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="c1">-- Theme</span>
-<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="nv">config</span><span class="p">.</span><span class="py">color_scheme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Dracula&#39;</span>
-<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>
-<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="c1">-- Font</span>
-<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="nv">config</span><span class="p">.</span><span class="py">font</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">wezterm</span><span class="p">.</span><span class="py">font</span><span class="w"> </span><span class="s1">&#39;JetBrains Mono&#39;</span>
-<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="nv">config</span><span class="p">.</span><span class="py">font_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">14.0</span>
-<a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a>
-<a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a><span class="kr">return</span><span class="w"> </span><span class="nv">config</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Interactive menu</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1"># List settings</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span>list
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span>list<span class="w"> </span>--category<span class="w"> </span>display
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="c1"># Get/set values</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span>get<span class="w"> </span>&lt;key&gt;
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>&lt;key&gt;<span class="w"> </span>&lt;value&gt;
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="c1"># Reset to defaults</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span>reset<span class="w"> </span><span class="o">[</span>key<span class="o">]</span>
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="c1"># Edit in $EDITOR</span>
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span>edit
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="c1"># Validate config</span>
+<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span>validate
+</code></pre></div>
+<h3 id="theme-management_1">Theme Management</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># List themes</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>ait<span class="w"> </span>statusline<span class="w"> </span>theme<span class="w"> </span>list
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1"># Switch theme</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>ait<span class="w"> </span>statusline<span class="w"> </span>theme<span class="w"> </span><span class="nb">set</span><span class="w"> </span>&lt;theme&gt;
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="c1"># View current theme</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>ait<span class="w"> </span>statusline<span class="w"> </span>theme<span class="w"> </span>show
+</code></pre></div>
+<h3 id="advanced">Advanced</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># Render StatusLine (called by Claude Code)</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>ait<span class="w"> </span>statusline<span class="w"> </span>render
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="c1"># Uninstall from Claude Code</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>ait<span class="w"> </span>statusline<span class="w"> </span>uninstall
 </code></pre></div>
 <hr />
-<h2 id="kitty-support">Kitty Support</h2>
-<p><a href="https://sw.kovidgoyal.net/kitty/">Kitty</a> is a fast, GPU-accelerated terminal.</p>
-<h3 id="features_3">Features</h3>
-<table>
-<thead>
-<tr>
-<th>Feature</th>
-<th>Support</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Tab Title</td>
-<td>✅</td>
-<td>Via escape sequences</td>
-</tr>
-<tr>
-<td>Themes</td>
-<td>✅</td>
-<td>Via kitty-themes</td>
-</tr>
-<tr>
-<td>Kittens</td>
-<td>✅</td>
-<td>Plugin system</td>
-</tr>
-</tbody>
-</table>
-<h3 id="configuration_2">Configuration</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1"># ~/.config/kitty/kitty.conf</span>
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
-<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="c1"># Allow aiterm to set window title</span>
-<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="na">allow_remote_control yes</span>
-<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>
-<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="c1"># Theme</span>
-<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="na">include ~/.config/kitty/themes/dracula.conf</span>
-<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>
-<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="c1"># Font</span>
-<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="na">font_family JetBrains Mono</span>
-<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="na">font_size 14.0</span>
+<h2 id="examples">Examples</h2>
+<h3 id="minimal-display">Minimal Display</h3>
+<p><strong>Goal:</strong> Show only essential info (model, time, git)</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># Disable extras</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>display.show_lines_changed<span class="w"> </span><span class="nb">false</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>display.show_output_style<span class="w"> </span>never
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>time.show_productivity_indicator<span class="w"> </span><span class="nb">false</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>project.detect_python_env<span class="w"> </span><span class="nb">false</span>
 </code></pre></div>
-<hr />
-<h2 id="alacritty-support">Alacritty Support</h2>
-<p><a href="https://alacritty.org/">Alacritty</a> is a minimalist, cross-platform terminal.</p>
-<h3 id="features_4">Features</h3>
-<table>
-<thead>
-<tr>
-<th>Feature</th>
-<th>Support</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Tab Title</td>
-<td>✅</td>
-<td>Via escape sequences</td>
-</tr>
-<tr>
-<td>Themes</td>
-<td>✅</td>
-<td>TOML config</td>
-</tr>
-<tr>
-<td>Profiles</td>
-<td>❌</td>
-<td>Single config only</td>
-</tr>
-</tbody>
-</table>
-<h3 id="configuration_3">Configuration</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># ~/.config/alacritty/alacritty.toml</span>
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>
-<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="k">[window]</span>
-<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Alacritty&quot;</span>
-<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="n">dynamic_title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<p><strong>Result:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>╭─ ░▒▓ 🐍 aiterm  main ▓▒░
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>╰─ Sonnet 4.5 │ 10:30 │ ⏱ 5m
+</code></pre></div></p>
+<h3 id="maximum-detail">Maximum Detail</h3>
+<p><strong>Goal:</strong> Show everything available</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1"># Enable all features</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>git.show_stash_count<span class="w"> </span><span class="nb">true</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>git.show_remote_status<span class="w"> </span><span class="nb">true</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>project.detect_python_env<span class="w"> </span><span class="nb">true</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>time.show_productivity_indicator<span class="w"> </span><span class="nb">true</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>display.show_output_style<span class="w"> </span>always
+</code></pre></div>
+<p><strong>Result:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>╭─ ░▒▓ 🐍 aiterm (venv: py3.11)  main* ⇣2 ⇡1 ?3 📦5 🔗origin/main ▓▒░
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>╰─ Sonnet 4.5 │ 🧠 │ 🌅 10:30 │ ⏱ 5m 🟢 │ 🤖2 │ +123/-45 │ 📘learning
+</code></pre></div></p>
+<h3 id="git-focused-display">Git-Focused Display</h3>
+<p><strong>Goal:</strong> Emphasize git information</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># Show all git features</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>git.show_stash_count<span class="w"> </span><span class="nb">true</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>git.show_remote_status<span class="w"> </span><span class="nb">true</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>git.show_ahead_behind<span class="w"> </span><span class="nb">true</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>git.show_untracked_count<span class="w"> </span><span class="nb">true</span>
 <a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>
-<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="k">[font]</span>
-<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">14.0</span>
-<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>
-<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="k">[font.normal]</span>
-<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;JetBrains Mono&quot;</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="c1"># Disable non-git extras</span>
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>display.show_lines_changed<span class="w"> </span><span class="nb">false</span>
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>project.detect_python_env<span class="w"> </span><span class="nb">false</span>
 </code></pre></div>
-<hr />
-<h2 id="feature-comparison">Feature Comparison</h2>
-<p>Run <code>ait terminals compare</code> for a live comparison:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>                    Terminal Feature Comparison
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>┏━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━┳━━━━━━━━━━━┓
-<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>┃ Terminal  ┃ Profiles ┃ Tab Title ┃ Badge ┃ Themes ┃ Native UI ┃
-<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>┡━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━╇━━━━━━━━━━━┩
-<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>│ iTerm2    │    ✓     │     ✓     │   ✓   │   ✓    │     ✓     │
-<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>│ Kitty     │    ✓     │     ✓     │   ✗   │   ✓    │     ✗     │
-<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>│ Alacritty │    ✗     │     ✓     │   ✗   │   ✓    │     ✗     │
-<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>│ WezTerm   │    ✓     │     ✓     │   ✗   │   ✓    │     ✓     │
-<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>│ Ghostty   │  ✓*      │     ✓     │   ✗   │   ✓    │     ✓     │
-<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>└───────────┴──────────┴───────────┴───────┴────────┴───────────┘
-<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>* Ghostty profiles managed by aiterm v0.3.15+ (not native to Ghostty)
-</code></pre></div>
-<hr />
-<h2 id="choosing-a-terminal">Choosing a Terminal</h2>
-<h3 id="for-ai-assisted-development">For AI-Assisted Development</h3>
-<p><strong>Recommended: iTerm2 or Ghostty</strong></p>
-<ul>
-<li><strong>iTerm2</strong> - Best for profile-based context switching, status bar integration</li>
-<li><strong>Ghostty</strong> - Best for performance, native macOS feel, simplicity</li>
-</ul>
-<h3 id="for-cross-platform">For Cross-Platform</h3>
-<p><strong>Recommended: WezTerm</strong></p>
-<ul>
-<li>Works on macOS, Linux, Windows</li>
-<li>Lua scripting for customization</li>
-<li>Good performance</li>
-</ul>
-<h3 id="for-minimalism">For Minimalism</h3>
-<p><strong>Recommended: Alacritty or Ghostty</strong></p>
-<ul>
-<li>Simple configuration</li>
-<li>Fast startup</li>
-<li>Low resource usage</li>
-</ul>
+<p><strong>Result:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>╭─ ░▒▓ 🐍 aiterm  main* ⇣2 ⇡1 ?3 📦5 🔗origin/main ▓▒░
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>╰─ Sonnet 4.5 │ 10:30 │ ⏱ 5m
+</code></pre></div></p>
 <hr />
 <h2 id="troubleshooting">Troubleshooting</h2>
-<h3 id="terminal-not-detected">Terminal Not Detected</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># Check what aiterm sees</span>
-<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>ait<span class="w"> </span>terminals<span class="w"> </span>detect
+<h3 id="statusline-not-showing">StatusLine Not Showing</h3>
+<p><strong>Check installation:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># Verify settings.json</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>cat<span class="w"> </span>~/.claude/settings.json<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-A<span class="w"> </span><span class="m">3</span><span class="w"> </span>statusLine
 <a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>
-<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="c1"># If wrong terminal detected, check environment</span>
-<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$TERM_PROGRAM</span>
-<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$GHOSTTY_RESOURCES_DIR</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="c1"># Expected:</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="c1"># &quot;statusLine&quot;: {</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="c1">#   &quot;type&quot;: &quot;command&quot;,</span>
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="c1">#   &quot;command&quot;: &quot;ait statusline render&quot;</span>
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="c1"># }</span>
 </code></pre></div>
-<h3 id="tab-title-not-changing">Tab Title Not Changing</h3>
-<p>Some terminals require configuration to allow title changes:</p>
-<p><strong>Ghostty:</strong> Should work by default</p>
-<p><strong>iTerm2:</strong> Preferences → Profiles → Terminal → "Applications in terminal may change the title"</p>
-<p><strong>Kitty:</strong> Add <code>allow_remote_control yes</code> to config</p>
-<p><strong>WezTerm:</strong> Should work by default</p>
-<h3 id="profile-not-switching-iterm2">Profile Not Switching (iTerm2)</h3>
-<ol>
-<li>Ensure the profile exists in iTerm2 Preferences</li>
-<li>Check profile name matches exactly (case-sensitive)</li>
-<li>Try running manually: <code>ait terminals profile "ProfileName"</code></li>
-</ol>
+<p><strong>Fix:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># Reinstall</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>ait<span class="w"> </span>statusline<span class="w"> </span>install
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="c1"># Or manually edit ~/.claude/settings.json</span>
+</code></pre></div>
+<h3 id="wrong-colorstheme">Wrong Colors/Theme</h3>
+<p><strong>Check current theme:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>ait<span class="w"> </span>statusline<span class="w"> </span>theme<span class="w"> </span>show
+</code></pre></div>
+<p><strong>Fix:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1"># Switch to desired theme</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>ait<span class="w"> </span>statusline<span class="w"> </span>theme<span class="w"> </span><span class="nb">set</span><span class="w"> </span>purple-charcoal
+</code></pre></div>
+<h3 id="missing-git-information">Missing Git Information</h3>
+<p><strong>Check git settings:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span>get<span class="w"> </span>git.show_ahead_behind
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span>get<span class="w"> </span>git.show_stash_count
+</code></pre></div>
+<p><strong>Fix:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1"># Enable git features</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>git.show_ahead_behind<span class="w"> </span><span class="nb">true</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>git.show_stash_count<span class="w"> </span><span class="nb">true</span>
+</code></pre></div>
+<h3 id="python-environment-not-showing">Python Environment Not Showing</h3>
+<p><strong>Check project detection:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span>get<span class="w"> </span>project.detect_python_env
+</code></pre></div>
+<p><strong>Fix:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="c1"># Enable Python environment detection</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>project.detect_python_env<span class="w"> </span><span class="nb">true</span>
+</code></pre></div>
+<h3 id="background-agents-not-showing">Background Agents Not Showing</h3>
+<p><strong>Check if agents are actually running:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="c1"># List running Task agents</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>ait<span class="w"> </span>sessions<span class="w"> </span>live
+</code></pre></div>
+<p><strong>Check config:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span>get<span class="w"> </span>display.show_background_agents
+</code></pre></div>
+<p><strong>Fix:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="c1"># Enable background agents display</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>display.show_background_agents<span class="w"> </span><span class="nb">true</span>
+</code></pre></div>
+<h3 id="config-changes-not-applied">Config Changes Not Applied</h3>
+<p><strong>Restart Claude Code session</strong> - Config is loaded at startup.</p>
+<p><strong>Or manually reload:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="c1"># Test rendering with current config</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>ait<span class="w"> </span>statusline<span class="w"> </span><span class="nb">test</span>
+</code></pre></div>
 <hr />
-<h2 id="next-steps">Next Steps</h2>
+<h2 id="technical-details">Technical Details</h2>
+<h3 id="architecture">Architecture</h3>
+<p><strong>Modular Design:</strong></p>
 <ul>
-<li><strong>Context Detection:</strong> <a href="../context-detection/">How aiterm detects project types</a></li>
-<li><strong>Profile Configuration:</strong> <a href="../profiles/">Setting up profiles</a></li>
-<li><strong>Workflows:</strong> <a href="../workflows/">Development workflows</a></li>
+<li><strong>Renderer</strong> - Main <code>StatusLineRenderer</code> class</li>
+<li><strong>Segments</strong> - 8 independent segment classes:</li>
+<li><code>ProjectSegment</code> - Project icon, name, Python env</li>
+<li><code>GitSegment</code> - Git branch, stash, remote</li>
+<li><code>ModelSegment</code> - Model display name</li>
+<li><code>TimeSegment</code> - Time, session duration, productivity</li>
+<li><code>ThinkingSegment</code> - Thinking mode indicator</li>
+<li><code>LinesSegment</code> - Lines added/removed</li>
+<li><code>UsageSegment</code> - Usage tracking (disabled)</li>
+<li><code>AgentSegment</code> - Background agents count</li>
+</ul>
+<p><strong>Data Flow:</strong></p>
+<ol>
+<li>Claude Code calls <code>ait statusline render</code> every 300ms</li>
+<li>Renderer reads JSON from stdin (project/git/session data)</li>
+<li>Each segment renders its portion independently</li>
+<li>Segments combined into 2-line output</li>
+<li>ANSI escape sequences for colors/formatting</li>
+</ol>
+<h3 id="config-location">Config Location</h3>
+<ul>
+<li><strong>User config:</strong> <code>~/.config/aiterm/statusline.json</code> (XDG-compliant)</li>
+<li><strong>Theme files:</strong> <code>src/aiterm/statusline/themes/*.json</code></li>
+<li><strong>Session tracking:</strong> <code>~/.claude/sessions/active/</code></li>
+</ul>
+<h3 id="performance">Performance</h3>
+<ul>
+<li><strong>Update interval:</strong> 300ms (Claude Code default)</li>
+<li><strong>Render time:</strong> &lt; 50ms typically</li>
+<li><strong>Caching:</strong> Session duration, agent counts cached</li>
+</ul>
+<h3 id="testing">Testing</h3>
+<p><strong>919 total tests</strong> including 70 StatusLine-specific tests:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="c1"># Run StatusLine tests</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>pytest<span class="w"> </span>tests/test_statusline_*.py
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>
+<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="c1"># Run all tests</span>
+<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a>pytest
+</code></pre></div>
+<hr />
+<h2 id="usage-tracking-currently-disabled">Usage Tracking (Currently Disabled)</h2>
+<p><strong>Why disabled:</strong> Claude Code does not expose usage limits (session/weekly) programmatically.</p>
+<p><strong>What we tried:</strong></p>
+<ol>
+<li>✅ Extract OAuth token from macOS Keychain</li>
+<li>❌ API call to <code>/api/oauth/usage</code> - OAuth not supported</li>
+<li>❌ Parse <code>/usage</code> command output - uses internal endpoints</li>
+<li>❌ Read from local files - no usage data stored</li>
+</ol>
+<p><strong>Tracking issue:</strong> <a href="https://github.com/anthropics/claude-code/issues/5621">#5621</a> - StatusLine should expose API usage/quota</p>
+<p><strong>Future:</strong> If Claude Code exposes usage data in JSON input, usage tracking will be automatically enabled.</p>
+<p><strong>Current display:</strong> Context window size available in JSON:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="p">{</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="w">  </span><span class="nt">&quot;context_window&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="w">    </span><span class="nt">&quot;context_window_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">200000</span><span class="p">,</span>
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="w">    </span><span class="nt">&quot;current_usage&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a><span class="w">      </span><span class="nt">&quot;input_tokens&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span>
+<a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a><span class="w">      </span><span class="nt">&quot;output_tokens&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">567</span>
+<a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-33-9" name="__codelineno-33-9" href="#__codelineno-33-9"></a><span class="p">}</span>
+</code></pre></div>
+<p>This data is available but not currently displayed. Could be added as optional feature in future.</p>
+<hr />
+<h2 id="faq">FAQ</h2>
+<h3 id="can-i-use-statusline-with-other-terminals">Can I use StatusLine with other terminals?</h3>
+<p><strong>Currently:</strong> StatusLine is Claude Code-specific. It reads JSON from Claude Code's stdin.</p>
+<p><strong>Future:</strong> Could be adapted for standalone use with manual JSON input.</p>
+<h3 id="why-doesnt-usage-tracking-work">Why doesn't usage tracking work?</h3>
+<p>See <a href="#usage-tracking-currently-disabled">Usage Tracking</a> section above. Claude Code doesn't expose this data programmatically.</p>
+<h3 id="can-i-create-my-own-theme">Can I create my own theme?</h3>
+<p>Yes! Edit config with custom color overrides:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span>edit
+</code></pre></div>
+<p>Add <code>theme.custom_colors</code> section with ANSI color codes.</p>
+<h3 id="how-do-i-disable-statusline-temporarily">How do I disable StatusLine temporarily?</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="c1"># Disable in config</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>enabled<span class="w"> </span><span class="nb">false</span>
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>
+<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="c1"># Or remove from Claude Code settings</span>
+<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a>ait<span class="w"> </span>statusline<span class="w"> </span>uninstall
+</code></pre></div>
+<h3 id="can-i-show-custom-information">Can I show custom information?</h3>
+<p>Not currently, but planned for future versions. The modular segment design makes this feasible.</p>
+<h3 id="why-2-lines-instead-of-1">Why 2 lines instead of 1?</h3>
+<p>Powerlevel10k-style 2-line layout provides:
+- Clear visual hierarchy (context vs session info)
+- More space for detailed information
+- Better readability</p>
+<hr />
+<h2 id="related-documentation">Related Documentation</h2>
+<ul>
+<li><a href="../claude-integration/">Claude Code Integration</a> - Auto-approvals, settings management</li>
+<li><a href="../context-detection/">Context Detection</a> - How project types are detected</li>
+<li><a href="../workflows/">Workflows</a> - Session-aware workflow automation</li>
+<li><a href="../terminals/">Terminals</a> - iTerm2/Ghostty integration</li>
+</ul>
+<hr />
+<h2 id="changelog">Changelog</h2>
+<h3 id="v060-dec-31-2025">v0.6.0 (Dec 31, 2025)</h3>
+<ul>
+<li>✨ <strong>Initial Release</strong> - Full StatusLine implementation</li>
+<li>🎨 <strong>3 Themes</strong> - purple-charcoal, cool-blues, forest-greens</li>
+<li>⚙️ <strong>31 Config Options</strong> - Fully customizable display</li>
+<li>📊 <strong>Background Agents</strong> - Show running Task agents</li>
+<li>⏱️ <strong>Enhanced Time Tracking</strong> - Productivity indicators, time-of-day icons</li>
+<li>🐍 <strong>Python Environment</strong> - venv/conda/pyenv detection</li>
+<li>🌿 <strong>Enhanced Git</strong> - Stash count, remote tracking</li>
+<li>🧪 <strong>70 Tests</strong> - Comprehensive test coverage</li>
+</ul>
+<hr />
+<h2 id="contributing">Contributing</h2>
+<p>Found a bug or have a feature request?</p>
+<ul>
+<li><strong>Issues:</strong> <a href="https://github.com/Data-Wise/aiterm/issues">https://github.com/Data-Wise/aiterm/issues</a></li>
+<li><strong>Discussions:</strong> <a href="https://github.com/Data-Wise/aiterm/discussions">https://github.com/Data-Wise/aiterm/discussions</a></li>
+</ul>
+<p><strong>Ideas for contributions:</strong></p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Additional themes</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Custom segment system</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Node.js version detection</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> R package health indicators</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Dependency warning detection</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> MCP server status integration</li>
 </ul>
 
 

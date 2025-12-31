@@ -789,10 +789,21 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#v063-latest" class="md-nav__link">
+  <a href="#v070-next" class="md-nav__link">
     <span class="md-ellipsis">
       
-        v0.6.3 (Latest)
+        v0.7.0 (Next)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#v063" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v0.6.3
       
     </span>
   </a>
@@ -850,10 +861,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#v070-next" class="md-nav__link">
+  <a href="#v080-next" class="md-nav__link">
     <span class="md-ellipsis">
       
-        v0.7.0 (Next)
+        v0.8.0 (Next)
       
     </span>
   </a>
@@ -1465,6 +1476,34 @@
     
   
     Status Bar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="guide/statusline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claude Code StatusLine
   
 
     
@@ -3792,10 +3831,21 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#v063-latest" class="md-nav__link">
+  <a href="#v070-next" class="md-nav__link">
     <span class="md-ellipsis">
       
-        v0.6.3 (Latest)
+        v0.7.0 (Next)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#v063" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v0.6.3
       
     </span>
   </a>
@@ -3853,10 +3903,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#v070-next" class="md-nav__link">
+  <a href="#v080-next" class="md-nav__link">
     <span class="md-ellipsis">
       
-        v0.7.0 (Next)
+        v0.8.0 (Next)
       
     </span>
   </a>
@@ -4046,6 +4096,11 @@
 </ul>
 <h3 id="claude-code-integration">Claude Code Integration</h3>
 <ul>
+<li><strong>StatusLine</strong> - Powerlevel10k-style 2-line status display (NEW!)</li>
+<li>Project context, git info, session metrics</li>
+<li>3 color themes, 31 config options</li>
+<li>Background agents, time tracking, productivity indicators</li>
+<li>Install: <code>ait statusline install</code></li>
 <li>View and backup <code>~/.claude/settings.json</code></li>
 <li>Manage auto-approval permissions with 8 presets:</li>
 <li><code>safe-reads</code> - Read-only operations</li>
@@ -4161,7 +4216,24 @@
 </code></pre></div>
 <hr />
 <h2 id="whats-new">What's New</h2>
-<h3 id="v063-latest">v0.6.3 (Latest)</h3>
+<h3 id="v070-next">v0.7.0 (Next)</h3>
+<ul>
+<li><strong>🎨 Claude Code StatusLine</strong> - Powerlevel10k-style 2-line status display</li>
+<li>Install: <code>ait statusline install</code></li>
+<li>3 color themes (purple-charcoal, cool-blues, forest-greens)</li>
+<li>31 configuration options via <code>ait statusline config</code></li>
+<li>Project icons, Python env detection, enhanced git info</li>
+<li>Background agents counter, time tracking, productivity indicators</li>
+<li>70 comprehensive tests</li>
+<li><strong>Documentation Site</strong> - Comprehensive StatusLine guide with examples</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># StatusLine Setup (v0.7.0)</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>ait<span class="w"> </span>statusline<span class="w"> </span>install<span class="w">             </span><span class="c1"># Install into Claude Code</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>ait<span class="w"> </span>statusline<span class="w"> </span><span class="nb">test</span><span class="w">                </span><span class="c1"># Test with mock data</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>ait<span class="w"> </span>statusline<span class="w"> </span>config<span class="w">              </span><span class="c1"># Interactive config menu</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>ait<span class="w"> </span>statusline<span class="w"> </span>theme<span class="w"> </span><span class="nb">set</span><span class="w"> </span>cool-blues<span class="w"> </span><span class="c1"># Switch themes</span>
+</code></pre></div>
+<h3 id="v063">v0.6.3</h3>
 <ul>
 <li><strong>Feature Workflow Enhancements</strong> - Complete PR automation</li>
 <li><code>ait feature promote</code> - Create PRs to dev branch</li>
@@ -4175,11 +4247,6 @@
 <li>75 comprehensive tests, GIF demos</li>
 <li><strong>PyPI Trusted Publishing</strong> - Automated releases via GitHub Actions</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Interactive tutorials (v0.6.0)</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>ait<span class="w"> </span>learn<span class="w"> </span>start<span class="w"> </span>getting-started<span class="w">   </span><span class="c1"># Start learning</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>ait<span class="w"> </span>learn<span class="w"> </span>list<span class="w">                    </span><span class="c1"># See all tutorials</span>
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>ait<span class="w"> </span>learn<span class="w"> </span>progress<span class="w">                </span><span class="c1"># Check progress</span>
-</code></pre></div>
 <h3 id="v050">v0.5.0</h3>
 <ul>
 <li><strong>Release Automation</strong> - Complete CLI for streamlined publishing</li>
@@ -4200,15 +4267,17 @@
 <li><strong>IDE Integrations</strong> - VS Code, Cursor, Zed, Positron, Windsurf</li>
 </ul>
 <h2 id="roadmap">Roadmap</h2>
-<h3 id="v070-next">v0.7.0 (Next)</h3>
+<h3 id="v080-next">v0.8.0 (Next)</h3>
 <ul>
 <li><strong>Ghostty Enhancements</strong> - Theme switching, badge integration</li>
 <li><strong>Workflow Templates</strong> - Reusable workflow patterns</li>
+<li><strong>StatusLine Enhancements</strong> - Node.js version, R package health, MCP servers</li>
 </ul>
 <h3 id="v100">v1.0.0</h3>
 <ul>
 <li><strong>Plugin System</strong> - Extend with custom contexts</li>
 <li><strong>Web UI</strong> - Visual configuration tool</li>
+<li><strong>Custom StatusLine Segments</strong> - User-defined information display</li>
 </ul>
 <hr />
 <h2 id="links">Links</h2>
