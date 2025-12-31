@@ -29,6 +29,26 @@ class StatusLineRenderer:
         self.config = config or StatusLineConfig()
         self.theme = theme or get_theme(self.config.get('theme.name', 'purple-charcoal'))
 
+    def _get_separator(self) -> str:
+        """Get separator pattern based on config.
+
+        Returns:
+            Formatted separator with spacing (e.g., " │ " or "  │  ")
+        """
+        spacing_mode = self.config.get('display.separator_spacing', 'standard')
+
+        # Map spacing mode to number of spaces
+        spacing_map = {
+            'minimal': 1,
+            'standard': 2,
+            'relaxed': 3
+        }
+
+        spaces = spacing_map.get(spacing_mode, 2)  # Default to 2 (standard)
+        space_str = ' ' * spaces
+
+        return f"{space_str}\033[{self.theme.separator_fg}m│\033[0m{space_str}"
+
     def render(self, json_input: Optional[str] = None) -> str:
         """Render statusLine from JSON input.
 
@@ -186,7 +206,7 @@ class StatusLineRenderer:
             detector = AgentDetector()
             agent_count = detector.get_running_count(session_id)
             if agent_count > 0:
-                line2 += f" \033[{self.theme.separator_fg}m│\033[0m \033[38;5;2m🤖{agent_count}\033[0m"
+                line2 += f"{self._get_separator()}\033[38;5;2m🤖{agent_count}\033[0m"
 
         # Add time
         line2 += time_output
@@ -195,15 +215,15 @@ class StatusLineRenderer:
         usage_segment = UsageSegment(self.config, self.theme)
         usage_output = usage_segment.render()
         if usage_output:
-            line2 += f" \033[{self.theme.separator_fg}m│\033[0m {usage_output}"
+            line2 += f"{self._get_separator()}{usage_output}"
 
         # Add lines if available
         if lines_output:
-            line2 += f" \033[{self.theme.separator_fg}m│\033[0m {lines_output}"
+            line2 += f"{self._get_separator()}{lines_output}"
 
         # Add style if not default
         if style_name and style_name != 'default':
-            line2 += f" \033[{self.theme.separator_fg}m│\033[0m \033[{self.theme.style_fg}m[{style_name}]\033[0m"
+            line2 += f"{self._get_separator()}\033[{self.theme.style_fg}m[{style_name}]\033[0m"
 
         return line2
 

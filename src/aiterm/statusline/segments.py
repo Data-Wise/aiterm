@@ -22,6 +22,31 @@ from aiterm.statusline.themes import Theme, get_theme
 from aiterm.statusline.usage import UsageTracker, get_usage_color
 
 
+def get_separator(config: StatusLineConfig, theme: Theme) -> str:
+    """Get separator pattern based on config.
+
+    Args:
+        config: StatusLineConfig instance
+        theme: Theme instance
+
+    Returns:
+        Formatted separator with spacing (e.g., " │ " or "  │  ")
+    """
+    spacing_mode = config.get('display.separator_spacing', 'standard')
+
+    # Map spacing mode to number of spaces
+    spacing_map = {
+        'minimal': 1,
+        'standard': 2,
+        'relaxed': 3
+    }
+
+    spaces = spacing_map.get(spacing_mode, 2)  # Default to 2 (standard)
+    space_str = ' ' * spaces
+
+    return f"{space_str}\033[{theme.separator_fg}m│\033[0m{space_str}"
+
+
 class ProjectSegment:
     """Renders project type icon and directory."""
 
@@ -746,7 +771,7 @@ class TimeSegment:
         # Current time
         if self.config.get('display.show_current_time', True):
             current_time = time.strftime("%H:%M")
-            output += f" \033[{self.theme.separator_fg}m│\033[0m \033[{self.theme.time_fg}m{current_time}\033[0m"
+            output += f"{get_separator(self.config, self.theme)}\033[{self.theme.time_fg}m{current_time}\033[0m"
 
             # Add time-of-day indicator
             time_of_day = self._get_time_of_day_indicator()
@@ -756,7 +781,7 @@ class TimeSegment:
         # Session duration
         if self.config.get('display.show_session_duration', True):
             duration = self._get_session_duration(session_id)
-            output += f" \033[{self.theme.separator_fg}m│\033[0m \033[{self.theme.duration_fg}m⏱ {duration}\033[0m"
+            output += f"{get_separator(self.config, self.theme)}\033[{self.theme.duration_fg}m⏱ {duration}\033[0m"
 
             # Add productivity indicator
             productivity = self._get_productivity_indicator(transcript_path)
@@ -904,7 +929,7 @@ class ThinkingSegment:
             thinking_enabled = settings.get('alwaysThinkingEnabled', False)
 
             if thinking_enabled:
-                return f" \033[{self.theme.separator_fg}m│\033[0m \033[{self.theme.thinking_fg}m🧠\033[0m"
+                return f"{get_separator(self.config, self.theme)}\033[{self.theme.thinking_fg}m🧠\033[0m"
 
         except Exception:
             pass
@@ -1005,4 +1030,4 @@ class UsageSegment:
 
         # Combine and add separator
         usage_str = " ".join(parts)
-        return f" \033[{self.theme.separator_fg}m│\033[0m \033[38;5;2m📊{usage_str}\033[0m"
+        return f"{get_separator(self.config, self.theme)}\033[38;5;2m📊{usage_str}\033[0m"

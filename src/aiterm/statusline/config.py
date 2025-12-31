@@ -307,6 +307,13 @@ class StatusLineConfig:
                 'description': 'Max directory name length',
                 'category': 'display'
             },
+            'display.separator_spacing': {
+                'type': 'str',
+                'default': 'standard',
+                'choices': ['minimal', 'standard', 'relaxed'],
+                'description': 'Spacing around separators (minimal=1, standard=2, relaxed=3 spaces)',
+                'category': 'display'
+            },
             'usage.show_reset_timer': {
                 'type': 'bool',
                 'default': True,

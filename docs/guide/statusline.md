@@ -170,6 +170,7 @@ ait statusline config reset display.show_git  # Reset single key
 | `display.show_session_usage` | `false` | Session usage (not available) |
 | `display.show_weekly_usage` | `false` | Weekly usage (not available) |
 | `display.max_directory_length` | `50` | Max directory name length |
+| `display.separator_spacing` | `standard` | Spacing around separators: minimal/standard/relaxed |
 
 **Git Settings (5 options):**
 
@@ -350,6 +351,32 @@ ait statusline uninstall
 ---
 
 ## Examples
+
+### Spacing Adjustments
+
+**Goal:** Customize visual spacing around separators
+
+```bash
+# Minimal spacing (1 space) - Most compact
+ait statusline config set display.separator_spacing minimal
+
+# Standard spacing (2 spaces) - Default, balanced
+ait statusline config set display.separator_spacing standard
+
+# Relaxed spacing (3 spaces) - Most spacious
+ait statusline config set display.separator_spacing relaxed
+```
+
+**Visual comparison:**
+```
+Minimal:  Sonnet 4.5 │ 11:46 │ ⏱ 5m │ +123/-45
+Standard: Sonnet 4.5  │  11:46  │  ⏱ 5m  │  +123/-45  (default)
+Relaxed:  Sonnet 4.5   │   11:46   │   ⏱ 5m   │   +123/-45
+```
+
+**Recommended:** Use `standard` (default) for best balance of readability and compactness.
+
+---
 
 ### Minimal Display
 
@@ -660,7 +687,13 @@ Powerlevel10k-style 2-line layout provides:
 
 ## Changelog
 
-### v0.6.0 (Dec 31, 2025)
+### v0.7.1 (Dec 31, 2025)
+
+- 🎨 **Configurable Spacing** - Adjust separator spacing (minimal/standard/relaxed)
+- ✨ **Better Readability** - Default spacing improved from 1 to 2 spaces
+- ⚙️ **New Config Option** - `display.separator_spacing`
+
+### v0.7.0 (Dec 31, 2025)
 
 - ✨ **Initial Release** - Full StatusLine implementation
 - 🎨 **3 Themes** - purple-charcoal, cool-blues, forest-greens
