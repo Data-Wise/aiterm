@@ -332,42 +332,54 @@ def learn(
    - Interactive: Yes
    - Hint: "Stops on first failure, great for pre-commit checks"
 
-7. **Craft Integration**
+7. **Craft Integration Overview**
    - Command: `ait craft status`
    - Description: Check craft plugin installation and available commands
    - Interactive: No
-   - Hint: "Craft extends aiterm with 60+ AI-powered features"
+   - Hint: "Craft extends aiterm with 68 commands, 17 skills, 7 agents"
+   - Follow-up commands to mention:
+     - `/craft:git:worktree` - Parallel development with git worktrees
+     - `/craft:docs:mermaid` - Generate diagram templates
+     - `/craft:orchestrate` - AI-assisted multi-agent workflows
+     - `/craft:check release` - Pre-release audit
 
-8. **MCP Server Management**
+8. **Craft Git Worktrees**
+   - Command: (Show example) `/craft:git:worktree setup`
+   - Description: Work on multiple branches simultaneously without switching
+   - Interactive: Yes
+   - Hint: "Create worktrees for feature + hotfix at same time"
+   - Key commands: `create <branch>`, `list`, `finish`, `clean`
+
+9. **MCP Server Management**
    - Command: `ait mcp list`
    - Description: View configured MCP servers for Claude Code
    - Interactive: No
    - Follow-up: `ait mcp status` for health check
 
-9. **IDE Integrations**
-   - Command: `ait ide list`
-   - Description: See supported IDEs (VS Code, Cursor, Zed, Positron)
-   - Interactive: No
-   - Hint: "Use `ait ide configure <ide>` to set up integration"
+10. **IDE Integrations**
+    - Command: `ait ide list`
+    - Description: See supported IDEs (VS Code, Cursor, Zed, Positron)
+    - Interactive: No
+    - Hint: "Use `ait ide configure <ide>` to set up integration"
 
-10. **Advanced Debugging**
+11. **Advanced Debugging**
     - Command: `ait info --json`
     - Description: Get detailed diagnostic information
     - Interactive: No
     - Hint: "Use --json for programmatic parsing"
 
-11. **Custom Configurations**
+12. **Custom Configurations**
     - Command: `ait config edit`
     - Description: Edit config.toml directly for advanced customization
     - Interactive: Yes
     - Hint: "See docs/reference/configuration.md for all options"
 
-12. **Next Steps & Resources**
+13. **Next Steps & Resources**
     - Description: Summary of power-user resources and community
     - Links: GitHub issues, documentation site, craft plugin docs
     - Hint: "Check `ait --help` periodically - new features added regularly!"
 
-**Duration**: 30-35 minutes
+**Duration**: 35-40 minutes
 **Prerequisites**: Completed Intermediate, familiarity with release processes helpful
 **Outcome**: User can automate releases, create custom workflows, manage integrations
 
