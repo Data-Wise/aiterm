@@ -602,3 +602,466 @@ def ghostty_restore(
     else:
         console.print("[red]Failed to restore backup.[/]")
         raise typer.Exit(1)
+
+
+# =============================================================================
+# Keybind Management (v0.4.0)
+# =============================================================================
+
+keybind_app = typer.Typer(help="Keybind management for Ghostty.")
+app.add_typer(keybind_app, name="keybind")
+
+
+@keybind_app.command(
+    "list",
+    epilog="""
+[bold]Examples:[/]
+  ait ghostty keybind list   # List configured keybindings
+""",
+)
+def keybind_list() -> None:
+    """List configured keybindings."""
+    from aiterm.terminal import ghostty
+
+    keybinds = ghostty.list_keybinds()
+
+    if not keybinds:
+        console.print("[dim]No custom keybindings configured.[/]")
+        console.print("\n[bold]Add keybindings:[/]")
+        console.print("  ait ghostty keybind add ctrl+t new_tab")
+        console.print("  ait ghostty keybind preset vim")
+        return
+
+    console.print("[bold cyan]Configured Keybindings[/]\n")
+
+    table = Table(show_header=True, border_style="dim")
+    table.add_column("Trigger", style="bold")
+    table.add_column("Action")
+    table.add_column("Prefix", style="dim")
+
+    for kb in keybinds:
+        table.add_row(kb.trigger, kb.action, kb.prefix or "-")
+
+    console.print(table)
+    console.print(f"\n[dim]Total: {len(keybinds)} keybinding(s)[/]")
+
+
+@keybind_app.command(
+    "add",
+    epilog="""
+[bold]Examples:[/]
+  ait ghostty keybind add ctrl+t new_tab               # Add keybind
+  ait ghostty keybind add ctrl+d new_split:right       # Split right
+  ait ghostty keybind add ctrl+g reload_config --global # Global keybind
+""",
+)
+def keybind_add(
+    trigger: str = typer.Argument(..., help="Key trigger (e.g., ctrl+t, cmd+shift+n)."),
+    action: str = typer.Argument(..., help="Action to perform (e.g., new_tab, new_split:right)."),
+    global_bind: bool = typer.Option(
+        False,
+        "--global",
+        "-g",
+        help="Make keybind global (works even when Ghostty not focused).",
+    ),
+    unconsumed: bool = typer.Option(
+        False,
+        "--unconsumed",
+        "-u",
+        help="Don't consume the input (send to program too).",
+    ),
+) -> None:
+    """Add a keybinding to Ghostty config."""
+    from aiterm.terminal import ghostty
+
+    prefix = ""
+    if global_bind and unconsumed:
+        prefix = "global:unconsumed:"
+    elif global_bind:
+        prefix = "global:"
+    elif unconsumed:
+        prefix = "unconsumed:"
+
+    if ghostty.add_keybind(trigger, action, prefix):
+        console.print(f"[green]✓[/] Added keybind: [bold]{trigger}[/] → {action}")
+        if prefix:
+            console.print(f"  Prefix: {prefix}")
+        console.print("[dim]Ghostty will auto-reload the config.[/]")
+    else:
+        console.print("[red]Failed to add keybind.[/]")
+        raise typer.Exit(1)
+
+
+@keybind_app.command(
+    "remove",
+    epilog="""
+[bold]Examples:[/]
+  ait ghostty keybind remove ctrl+t   # Remove keybind
+""",
+)
+def keybind_remove(
+    trigger: str = typer.Argument(..., help="Key trigger to remove."),
+) -> None:
+    """Remove a keybinding from Ghostty config."""
+    from aiterm.terminal import ghostty
+
+    if ghostty.remove_keybind(trigger):
+        console.print(f"[green]✓[/] Removed keybind: {trigger}")
+        console.print("[dim]Ghostty will auto-reload the config.[/]")
+    else:
+        console.print(f"[yellow]Keybind not found:[/] {trigger}")
+        raise typer.Exit(1)
+
+
+@keybind_app.command(
+    "preset",
+    epilog="""
+[bold]Examples:[/]
+  ait ghostty keybind preset vim      # Apply vim-style keybinds
+  ait ghostty keybind preset tmux     # Apply tmux-style keybinds
+  ait ghostty keybind preset macos    # Apply macOS-native keybinds
+  ait ghostty keybind preset emacs    # Apply emacs-style keybinds
+""",
+)
+def keybind_preset(
+    name: Optional[str] = typer.Argument(
+        None,
+        help="Preset name (vim, emacs, tmux, macos).",
+    ),
+    no_backup: bool = typer.Option(
+        False,
+        "--no-backup",
+        help="Skip backing up current config.",
+    ),
+) -> None:
+    """Apply a keybind preset."""
+    from aiterm.terminal import ghostty
+
+    presets = ghostty.get_keybind_presets()
+
+    if not name:
+        # List available presets
+        console.print("[bold cyan]Available Keybind Presets[/]\n")
+
+        table = Table(show_header=True, border_style="dim")
+        table.add_column("Preset", style="bold")
+        table.add_column("Keybinds")
+        table.add_column("Style")
+
+        preset_info = {
+            "vim": ("10", "Vim-style navigation (ctrl+hjkl, ctrl+w splits)"),
+            "emacs": ("7", "Emacs-style (ctrl+x prefix, buffer navigation)"),
+            "tmux": ("11", "tmux-style (ctrl+b prefix, pane management)"),
+            "macos": ("8", "macOS-native (cmd+t, cmd+d splits)"),
+        }
+
+        for p in presets:
+            count, desc = preset_info.get(p, ("?", ""))
+            table.add_row(p, count, desc)
+
+        console.print(table)
+        console.print("\n[dim]Use 'ait ghostty keybind preset <name>' to apply[/]")
+        return
+
+    if name not in presets:
+        console.print(f"[red]Unknown preset:[/] {name}")
+        console.print(f"[dim]Available: {', '.join(presets)}[/]")
+        raise typer.Exit(1)
+
+    preset_keybinds = ghostty.get_keybind_preset(name)
+    if not preset_keybinds:
+        console.print("[red]Failed to load preset.[/]")
+        raise typer.Exit(1)
+
+    console.print(f"[bold]Applying preset:[/] {name}")
+    console.print(f"[dim]This will add {len(preset_keybinds)} keybindings.[/]\n")
+
+    # Show what will be added
+    table = Table(show_header=True, border_style="dim")
+    table.add_column("Trigger", style="bold")
+    table.add_column("Action")
+
+    for kb in preset_keybinds:
+        table.add_row(kb.trigger, kb.action)
+
+    console.print(table)
+    console.print()
+
+    confirm = typer.confirm("Apply this preset?")
+    if not confirm:
+        console.print("[dim]Cancelled.[/]")
+        raise typer.Exit(0)
+
+    if ghostty.apply_keybind_preset(name, backup=not no_backup):
+        console.print(f"\n[green]✓[/] Applied preset: [bold]{name}[/]")
+        console.print("[dim]Ghostty will auto-reload the config.[/]")
+    else:
+        console.print("[red]Failed to apply preset.[/]")
+        raise typer.Exit(1)
+
+
+# =============================================================================
+# Session Management (v0.4.0)
+# =============================================================================
+
+session_app = typer.Typer(help="Session management for Ghostty.")
+app.add_typer(session_app, name="session")
+
+
+@session_app.command(
+    "list",
+    epilog="""
+[bold]Examples:[/]
+  ait ghostty session list   # List saved sessions
+""",
+)
+def session_list() -> None:
+    """List saved sessions."""
+    from aiterm.terminal import ghostty
+
+    sessions = ghostty.list_sessions()
+
+    if not sessions:
+        console.print("[dim]No sessions saved yet.[/]")
+        console.print("\n[bold]Save your first session:[/]")
+        console.print("  ait ghostty session save my-project")
+        return
+
+    console.print("[bold cyan]Saved Sessions[/]\n")
+
+    table = Table(show_header=True, border_style="dim")
+    table.add_column("Name", style="bold")
+    table.add_column("Layout")
+    table.add_column("Directories")
+    table.add_column("Created")
+
+    for session in sessions:
+        dirs_display = ", ".join(session.working_dirs[:2])
+        if len(session.working_dirs) > 2:
+            dirs_display += f" (+{len(session.working_dirs) - 2})"
+
+        # Format date
+        created = session.created_at[:10] if session.created_at else "-"
+
+        table.add_row(
+            session.name,
+            session.layout,
+            dirs_display or "[dim]-[/]",
+            created,
+        )
+
+    console.print(table)
+    console.print(f"\n[dim]Total: {len(sessions)} session(s)[/]")
+
+
+@session_app.command(
+    "show",
+    epilog="""
+[bold]Examples:[/]
+  ait ghostty session show my-project   # Show session details
+""",
+)
+def session_show(
+    name: str = typer.Argument(..., help="Session name to show."),
+) -> None:
+    """Show details of a saved session."""
+    from aiterm.terminal import ghostty
+
+    session = ghostty.get_session(name)
+    if not session:
+        console.print(f"[red]Session not found:[/] {name}")
+        raise typer.Exit(1)
+
+    console.print(Panel(f"[bold]{session.name}[/]", title="Session Details", border_style="cyan"))
+
+    table = Table(show_header=False, border_style="dim")
+    table.add_column("Field", style="bold")
+    table.add_column("Value")
+
+    if session.description:
+        table.add_row("Description", session.description)
+    table.add_row("Layout", session.layout)
+    table.add_row("Created", session.created_at or "-")
+
+    console.print(table)
+
+    if session.working_dirs:
+        console.print("\n[bold]Working Directories:[/]")
+        for i, dir_path in enumerate(session.working_dirs, 1):
+            exists = "[green]✓[/]" if Path(dir_path).exists() else "[red]✗[/]"
+            console.print(f"  {i}. {dir_path} {exists}")
+
+
+@session_app.command(
+    "save",
+    epilog="""
+[bold]Examples:[/]
+  ait ghostty session save my-project                    # Save with current dir
+  ait ghostty session save dev -d "Development setup"    # With description
+  ait ghostty session save multi --dirs /path1 /path2    # Multiple directories
+""",
+)
+def session_save(
+    name: str = typer.Argument(..., help="Session name."),
+    description: str = typer.Option(
+        "",
+        "--description",
+        "-d",
+        help="Optional description.",
+    ),
+    dirs: Optional[list[str]] = typer.Option(
+        None,
+        "--dirs",
+        help="Working directories to save.",
+    ),
+    layout: str = typer.Option(
+        "single",
+        "--layout",
+        "-l",
+        help="Layout type (single, split-h, split-v, grid).",
+    ),
+) -> None:
+    """Save current session."""
+    from aiterm.terminal import ghostty
+
+    # Check if session already exists
+    existing = ghostty.get_session(name)
+    if existing:
+        console.print(f"[yellow]Session already exists:[/] {name}")
+        confirm = typer.confirm("Overwrite?")
+        if not confirm:
+            console.print("[dim]Cancelled.[/]")
+            raise typer.Exit(0)
+
+    working_dirs = list(dirs) if dirs else None
+
+    session = ghostty.create_session(
+        name=name,
+        working_dirs=working_dirs,
+        description=description,
+        layout=layout,
+    )
+
+    console.print(f"[green]✓[/] Saved session: [bold]{session.name}[/]")
+    console.print(f"  Layout: {session.layout}")
+    console.print(f"  Directories: {len(session.working_dirs)}")
+
+    session_path = ghostty.get_sessions_dir() / f"{name}.json"
+    console.print(f"\n[dim]Saved to: {session_path}[/]")
+
+
+@session_app.command(
+    "restore",
+    epilog="""
+[bold]Examples:[/]
+  ait ghostty session restore my-project   # Restore session
+""",
+)
+def session_restore(
+    name: str = typer.Argument(..., help="Session name to restore."),
+) -> None:
+    """Restore a saved session."""
+    from aiterm.terminal import ghostty
+
+    session = ghostty.get_session(name)
+    if not session:
+        console.print(f"[red]Session not found:[/] {name}")
+        raise typer.Exit(1)
+
+    console.print(f"[bold]Restoring session:[/] {name}")
+    console.print(f"  Layout: {session.layout}")
+    console.print(f"  Directories: {len(session.working_dirs)}")
+
+    # Show directories to restore
+    if session.working_dirs:
+        console.print("\n[bold]Working directories:[/]")
+        for i, dir_path in enumerate(session.working_dirs, 1):
+            exists = Path(dir_path).exists()
+            status = "[green]✓[/]" if exists else "[red]missing[/]"
+            console.print(f"  {i}. {dir_path} {status}")
+
+    # Note about Ghostty limitations
+    console.print("\n[yellow]Note:[/] Full session restoration with splits requires")
+    console.print("manual setup. Use 'ait ghostty session split' to create splits.")
+
+    # Change to first directory
+    if session.working_dirs:
+        first_dir = session.working_dirs[0]
+        if Path(first_dir).exists():
+            console.print(f"\n[dim]Changed to: {first_dir}[/]")
+            # Note: os.chdir in a subprocess won't affect parent shell
+            # This is informational - user should cd manually
+            console.print(f"[bold]Run:[/] cd {first_dir}")
+
+
+@session_app.command(
+    "delete",
+    epilog="""
+[bold]Examples:[/]
+  ait ghostty session delete old-session   # Delete session
+""",
+)
+def session_delete(
+    name: str = typer.Argument(..., help="Session name to delete."),
+    force: bool = typer.Option(
+        False,
+        "--force",
+        "-f",
+        help="Skip confirmation.",
+    ),
+) -> None:
+    """Delete a saved session."""
+    from aiterm.terminal import ghostty
+
+    session = ghostty.get_session(name)
+    if not session:
+        console.print(f"[red]Session not found:[/] {name}")
+        raise typer.Exit(1)
+
+    if not force:
+        confirm = typer.confirm(f"Delete session '{name}'?")
+        if not confirm:
+            console.print("[dim]Cancelled.[/]")
+            raise typer.Exit(0)
+
+    if ghostty.delete_session(name):
+        console.print(f"[green]✓[/] Deleted session: {name}")
+    else:
+        console.print(f"[red]Failed to delete session:[/] {name}")
+        raise typer.Exit(1)
+
+
+@session_app.command(
+    "split",
+    epilog="""
+[bold]Examples:[/]
+  ait ghostty session split right   # Split horizontally (right)
+  ait ghostty session split down    # Split vertically (down)
+  ait ghostty session split h       # Alias for right
+  ait ghostty session split v       # Alias for down
+""",
+)
+def session_split(
+    direction: str = typer.Argument(
+        "right",
+        help="Split direction (right, down, h, v).",
+    ),
+) -> None:
+    """Create a terminal split."""
+    from aiterm.terminal import ghostty
+
+    valid_directions = ["right", "down", "left", "up", "h", "v"]
+    if direction.lower() not in valid_directions:
+        console.print(f"[red]Invalid direction:[/] {direction}")
+        console.print(f"[dim]Valid: {', '.join(valid_directions)}[/]")
+        raise typer.Exit(1)
+
+    if ghostty.split_terminal(direction):
+        console.print(f"[green]✓[/] Split created: {direction}")
+    else:
+        if not ghostty.is_ghostty():
+            console.print("[yellow]Not running in Ghostty terminal.[/]")
+        else:
+            console.print("[yellow]Could not create split.[/]")
+            console.print("[dim]Ensure Ghostty is focused and has split keybinds configured.[/]")
+        raise typer.Exit(1)

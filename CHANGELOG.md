@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-## [Unreleased] - Phase 0.8 Ghostty Enhancements
+## [Unreleased] - Phase 0.8 Ghostty Enhancements (Complete)
 
 ### Added
 
@@ -21,8 +21,28 @@ All notable changes to this project will be documented in this file.
   - `ait ghostty restore [backup]` - Restore from backup (with pre-restore safety)
   - `ait ghostty restore` (no args) - List available backups
 
+#### Phase 0.8.3: Ghostty Keybind Management
+- **Keybind Management** - Manage Ghostty keyboard shortcuts
+  - `ait ghostty keybind list` - List current keybinds from config
+  - `ait ghostty keybind add <trigger> <action>` - Add a keybind
+  - `ait ghostty keybind remove <trigger>` - Remove a keybind
+  - `ait ghostty keybind preset <name>` - Apply keybind preset
+  - **Presets:** vim, emacs, tmux, macos (for common workflows)
+  - Supports prefixes: `global:`, `unconsumed:`, `all:`
+
+#### Phase 0.8.4: Ghostty Session Management
+- **Session Management** - Save and restore terminal layouts
+  - `ait ghostty session list` - List saved sessions
+  - `ait ghostty session show <name>` - Show session details
+  - `ait ghostty session save <name>` - Save current directory as session
+  - `ait ghostty session restore <name>` - Restore a session
+  - `ait ghostty session delete <name>` - Delete a session
+  - `ait ghostty session split [direction]` - Create terminal split
+  - Sessions stored in `~/.config/ghostty/sessions/*.json`
+  - Layout types: single, split-h, split-v, grid
+
 ### Tests
-- 18 new Ghostty profile/backup tests (62 total Ghostty tests)
+- 96 Ghostty tests total (34 new for keybind/session management)
 
 ---
 

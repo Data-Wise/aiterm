@@ -946,3 +946,484 @@ class TestGhosttyBackup:
 
         result = ghostty.restore_backup(tmp_path / "nonexistent")
         assert result is False
+
+
+# =============================================================================
+# NEW TESTS: Keybind Management (v0.4.0 Phase 0.8.3)
+# =============================================================================
+
+
+class TestGhosttyKeybind:
+    """Test GhosttyKeybind dataclass."""
+
+    def test_keybind_to_config_line(self):
+        """Test converting keybind to config format."""
+        from aiterm.terminal.ghostty import GhosttyKeybind
+
+        kb = GhosttyKeybind(trigger="ctrl+t", action="new_tab")
+        assert kb.to_config_line() == "keybind = ctrl+t=new_tab"
+
+    def test_keybind_with_prefix(self):
+        """Test keybind with prefix."""
+        from aiterm.terminal.ghostty import GhosttyKeybind
+
+        kb = GhosttyKeybind(trigger="ctrl+shift+t", action="new_window", prefix="global:")
+        assert kb.to_config_line() == "keybind = global:ctrl+shift+t=new_window"
+
+    def test_keybind_from_config_line(self):
+        """Test parsing keybind from config line."""
+        from aiterm.terminal.ghostty import GhosttyKeybind
+
+        kb = GhosttyKeybind.from_config_line("keybind = ctrl+d=new_split:right")
+        assert kb is not None
+        assert kb.trigger == "ctrl+d"
+        assert kb.action == "new_split:right"
+        assert kb.prefix == ""
+
+    def test_keybind_from_config_line_with_prefix(self):
+        """Test parsing keybind with prefix."""
+        from aiterm.terminal.ghostty import GhosttyKeybind
+
+        kb = GhosttyKeybind.from_config_line("keybind = global:ctrl+q=quit")
+        assert kb is not None
+        assert kb.trigger == "ctrl+q"
+        assert kb.action == "quit"
+        assert kb.prefix == "global:"
+
+    def test_keybind_from_invalid_line(self):
+        """Test parsing invalid keybind line."""
+        from aiterm.terminal.ghostty import GhosttyKeybind
+
+        assert GhosttyKeybind.from_config_line("not a keybind") is None
+        assert GhosttyKeybind.from_config_line("keybind = no-equals-here") is None
+
+
+class TestKeybindManagement:
+    """Test keybind management functions."""
+
+    def test_list_keybinds_empty(self, tmp_path: Path):
+        """Test listing keybinds when none exist."""
+        from aiterm.terminal import ghostty
+
+        config_file = tmp_path / "config"
+        config_file.write_text("theme = nord\n")
+
+        keybinds = ghostty.list_keybinds(config_file)
+        assert keybinds == []
+
+    def test_list_keybinds(self, tmp_path: Path):
+        """Test listing keybinds from config."""
+        from aiterm.terminal import ghostty
+
+        config_file = tmp_path / "config"
+        config_file.write_text(
+            """theme = nord
+keybind = ctrl+t=new_tab
+keybind = ctrl+w=close_surface
+keybind = global:ctrl+q=quit
+"""
+        )
+
+        keybinds = ghostty.list_keybinds(config_file)
+        assert len(keybinds) == 3
+        assert keybinds[0].trigger == "ctrl+t"
+        assert keybinds[0].action == "new_tab"
+        assert keybinds[2].prefix == "global:"
+
+    def test_add_keybind(self, tmp_path: Path):
+        """Test adding a keybind."""
+        from aiterm.terminal import ghostty
+
+        config_file = tmp_path / "config"
+        config_file.write_text("theme = dracula\n")
+
+        result = ghostty.add_keybind("ctrl+n", "new_window", config_path=config_file)
+        assert result is True
+
+        content = config_file.read_text()
+        assert "keybind = ctrl+n=new_window" in content
+
+    def test_add_keybind_with_prefix(self, tmp_path: Path):
+        """Test adding a keybind with prefix."""
+        from aiterm.terminal import ghostty
+
+        config_file = tmp_path / "config"
+        config_file.write_text("")
+
+        result = ghostty.add_keybind(
+            "ctrl+q", "quit", prefix="global:", config_path=config_file
+        )
+        assert result is True
+
+        content = config_file.read_text()
+        assert "keybind = global:ctrl+q=quit" in content
+
+    def test_add_keybind_updates_existing(self, tmp_path: Path):
+        """Test that adding a keybind updates existing trigger."""
+        from aiterm.terminal import ghostty
+
+        config_file = tmp_path / "config"
+        config_file.write_text("keybind = ctrl+t=old_action\n")
+
+        result = ghostty.add_keybind("ctrl+t", "new_action", config_path=config_file)
+        assert result is True
+
+        content = config_file.read_text()
+        assert "keybind = ctrl+t=new_action" in content
+        assert "old_action" not in content
+
+    def test_remove_keybind(self, tmp_path: Path):
+        """Test removing a keybind."""
+        from aiterm.terminal import ghostty
+
+        config_file = tmp_path / "config"
+        config_file.write_text(
+            """theme = nord
+keybind = ctrl+t=new_tab
+keybind = ctrl+w=close_surface
+"""
+        )
+
+        result = ghostty.remove_keybind("ctrl+t", config_path=config_file)
+        assert result is True
+
+        content = config_file.read_text()
+        assert "ctrl+t" not in content
+        assert "ctrl+w=close_surface" in content
+
+    def test_remove_keybind_not_found(self, tmp_path: Path):
+        """Test removing non-existent keybind."""
+        from aiterm.terminal import ghostty
+
+        config_file = tmp_path / "config"
+        config_file.write_text("theme = nord\n")
+
+        result = ghostty.remove_keybind("ctrl+nonexistent", config_path=config_file)
+        assert result is False
+
+
+class TestKeybindPresets:
+    """Test keybind preset functions."""
+
+    def test_get_keybind_presets(self):
+        """Test getting preset names."""
+        from aiterm.terminal import ghostty
+
+        presets = ghostty.get_keybind_presets()
+        assert "vim" in presets
+        assert "emacs" in presets
+        assert "tmux" in presets
+        assert "macos" in presets
+
+    def test_get_keybind_preset_vim(self):
+        """Test getting vim preset keybinds."""
+        from aiterm.terminal import ghostty
+
+        preset = ghostty.get_keybind_preset("vim")
+        assert preset is not None
+        assert len(preset) > 0
+
+        # Check for vim-style navigation
+        triggers = [kb.trigger for kb in preset]
+        assert "ctrl+h" in triggers
+        assert "ctrl+j" in triggers
+        assert "ctrl+k" in triggers
+        assert "ctrl+l" in triggers
+
+    def test_get_keybind_preset_not_found(self):
+        """Test getting non-existent preset."""
+        from aiterm.terminal import ghostty
+
+        preset = ghostty.get_keybind_preset("nonexistent")
+        assert preset is None
+
+    def test_apply_keybind_preset(self, tmp_path: Path):
+        """Test applying a keybind preset."""
+        from aiterm.terminal import ghostty
+
+        config_file = tmp_path / "config"
+        config_file.write_text("theme = nord\n")
+
+        with patch.object(ghostty, "get_config_path", return_value=config_file):
+            result = ghostty.apply_keybind_preset("macos", backup=False, config_path=config_file)
+            assert result is True
+
+            content = config_file.read_text()
+            assert "cmd+t=new_tab" in content
+            assert "cmd+d=new_split:right" in content
+
+    def test_apply_keybind_preset_not_found(self, tmp_path: Path):
+        """Test applying non-existent preset."""
+        from aiterm.terminal import ghostty
+
+        result = ghostty.apply_keybind_preset("nonexistent")
+        assert result is False
+
+
+# =============================================================================
+# NEW TESTS: Session Management (v0.4.0 Phase 0.8.4)
+# =============================================================================
+
+
+class TestGhosttySession:
+    """Test GhosttySession dataclass."""
+
+    def test_session_to_dict(self):
+        """Test converting session to dictionary."""
+        from aiterm.terminal.ghostty import GhosttySession
+
+        session = GhosttySession(
+            name="dev-session",
+            working_dirs=["/home/user/project", "/home/user/docs"],
+            created_at="2025-12-30T12:00:00",
+            description="Development session",
+            layout="split-h",
+        )
+
+        data = session.to_dict()
+        assert data["name"] == "dev-session"
+        assert len(data["working_dirs"]) == 2
+        assert data["layout"] == "split-h"
+        assert data["description"] == "Development session"
+
+    def test_session_from_dict(self):
+        """Test creating session from dictionary."""
+        from aiterm.terminal.ghostty import GhosttySession
+
+        data = {
+            "name": "test-session",
+            "working_dirs": ["/tmp/test"],
+            "created_at": "2025-12-30T10:00:00",
+            "description": "Test",
+            "layout": "single",
+        }
+
+        session = GhosttySession.from_dict(data)
+        assert session.name == "test-session"
+        assert session.working_dirs == ["/tmp/test"]
+        assert session.layout == "single"
+
+    def test_session_from_dict_with_defaults(self):
+        """Test creating session with missing fields."""
+        from aiterm.terminal.ghostty import GhosttySession
+
+        data = {"name": "minimal"}
+        session = GhosttySession.from_dict(data)
+
+        assert session.name == "minimal"
+        assert session.working_dirs == []
+        assert session.layout == "single"
+
+
+class TestSessionManagement:
+    """Test session management functions."""
+
+    def test_get_sessions_dir(self, tmp_path: Path):
+        """Test sessions directory creation."""
+        from aiterm.terminal import ghostty
+
+        sessions_dir = tmp_path / ".config" / "ghostty" / "sessions"
+        with patch.object(ghostty, "SESSIONS_DIR", sessions_dir):
+            result = ghostty.get_sessions_dir()
+            assert result.exists()
+            assert result == sessions_dir
+
+    def test_list_sessions_empty(self, tmp_path: Path):
+        """Test listing sessions when none exist."""
+        from aiterm.terminal import ghostty
+
+        sessions_dir = tmp_path / "sessions"
+        sessions_dir.mkdir(parents=True)
+
+        with patch.object(ghostty, "SESSIONS_DIR", sessions_dir):
+            sessions = ghostty.list_sessions()
+            assert sessions == []
+
+    def test_save_and_get_session(self, tmp_path: Path):
+        """Test saving and retrieving a session."""
+        from aiterm.terminal import ghostty
+        from aiterm.terminal.ghostty import GhosttySession
+
+        sessions_dir = tmp_path / "sessions"
+        sessions_dir.mkdir(parents=True)
+
+        with patch.object(ghostty, "SESSIONS_DIR", sessions_dir):
+            session = GhosttySession(
+                name="work",
+                working_dirs=["/home/user/project"],
+                created_at="2025-12-30T12:00:00",
+                description="Work session",
+                layout="split-h",
+            )
+
+            saved_path = ghostty.save_session(session)
+            assert saved_path.exists()
+            assert saved_path.name == "work.json"
+
+            loaded = ghostty.get_session("work")
+            assert loaded is not None
+            assert loaded.name == "work"
+            assert loaded.working_dirs == ["/home/user/project"]
+            assert loaded.layout == "split-h"
+
+    def test_get_session_not_found(self, tmp_path: Path):
+        """Test getting a non-existent session."""
+        from aiterm.terminal import ghostty
+
+        sessions_dir = tmp_path / "sessions"
+        sessions_dir.mkdir(parents=True)
+
+        with patch.object(ghostty, "SESSIONS_DIR", sessions_dir):
+            session = ghostty.get_session("nonexistent")
+            assert session is None
+
+    def test_create_session(self, tmp_path: Path):
+        """Test creating a new session."""
+        from aiterm.terminal import ghostty
+
+        sessions_dir = tmp_path / "sessions"
+        sessions_dir.mkdir(parents=True)
+
+        with patch.object(ghostty, "SESSIONS_DIR", sessions_dir):
+            session = ghostty.create_session(
+                name="new-session",
+                working_dirs=["/tmp/test1", "/tmp/test2"],
+                description="Test session",
+                layout="grid",
+            )
+
+            assert session.name == "new-session"
+            assert len(session.working_dirs) == 2
+            assert session.layout == "grid"
+            assert session.created_at  # Should have timestamp
+
+            # Should be saved to disk
+            saved = ghostty.get_session("new-session")
+            assert saved is not None
+            assert saved.name == "new-session"
+
+    def test_create_session_default_dir(self, tmp_path: Path):
+        """Test creating session with default working directory."""
+        from aiterm.terminal import ghostty
+
+        sessions_dir = tmp_path / "sessions"
+        sessions_dir.mkdir(parents=True)
+
+        # Change to tmp_path for the test
+        original_cwd = os.getcwd()
+        try:
+            os.chdir(tmp_path)
+            with patch.object(ghostty, "SESSIONS_DIR", sessions_dir):
+                session = ghostty.create_session(name="cwd-session")
+
+                assert session.working_dirs == [str(tmp_path)]
+        finally:
+            os.chdir(original_cwd)
+
+    def test_delete_session(self, tmp_path: Path):
+        """Test deleting a session."""
+        from aiterm.terminal import ghostty
+        from aiterm.terminal.ghostty import GhosttySession
+
+        sessions_dir = tmp_path / "sessions"
+        sessions_dir.mkdir(parents=True)
+
+        with patch.object(ghostty, "SESSIONS_DIR", sessions_dir):
+            session = GhosttySession(name="to-delete")
+            ghostty.save_session(session)
+
+            assert ghostty.get_session("to-delete") is not None
+
+            result = ghostty.delete_session("to-delete")
+            assert result is True
+            assert ghostty.get_session("to-delete") is None
+
+    def test_delete_session_not_found(self, tmp_path: Path):
+        """Test deleting a non-existent session."""
+        from aiterm.terminal import ghostty
+
+        sessions_dir = tmp_path / "sessions"
+        sessions_dir.mkdir(parents=True)
+
+        with patch.object(ghostty, "SESSIONS_DIR", sessions_dir):
+            result = ghostty.delete_session("nonexistent")
+            assert result is False
+
+    def test_restore_session(self, tmp_path: Path):
+        """Test restoring a session."""
+        from aiterm.terminal import ghostty
+        from aiterm.terminal.ghostty import GhosttySession
+
+        sessions_dir = tmp_path / "sessions"
+        sessions_dir.mkdir(parents=True)
+
+        # Create a test directory to restore to
+        restore_dir = tmp_path / "restore_target"
+        restore_dir.mkdir()
+
+        with patch.object(ghostty, "SESSIONS_DIR", sessions_dir):
+            session = GhosttySession(
+                name="restore-me",
+                working_dirs=[str(restore_dir)],
+                layout="single",
+            )
+            ghostty.save_session(session)
+
+            original_cwd = os.getcwd()
+            try:
+                result = ghostty.restore_session("restore-me")
+                assert result is not None
+                assert result.name == "restore-me"
+                # Should have changed to the session's directory
+                assert os.getcwd() == str(restore_dir)
+            finally:
+                os.chdir(original_cwd)
+
+    def test_restore_session_not_found(self, tmp_path: Path):
+        """Test restoring a non-existent session."""
+        from aiterm.terminal import ghostty
+
+        sessions_dir = tmp_path / "sessions"
+        sessions_dir.mkdir(parents=True)
+
+        with patch.object(ghostty, "SESSIONS_DIR", sessions_dir):
+            result = ghostty.restore_session("nonexistent")
+            assert result is None
+
+    def test_split_terminal_not_in_ghostty(self):
+        """Test split_terminal when not in Ghostty."""
+        from aiterm.terminal import ghostty
+
+        with patch.dict(os.environ, {"TERM_PROGRAM": "iTerm.app"}):
+            result = ghostty.split_terminal("right")
+            assert result is False
+
+    def test_split_terminal_invalid_direction(self):
+        """Test split_terminal with invalid direction."""
+        from aiterm.terminal import ghostty
+
+        with patch.dict(os.environ, {"TERM_PROGRAM": "ghostty"}):
+            result = ghostty.split_terminal("invalid")
+            assert result is False
+
+    def test_split_terminal_right(self):
+        """Test split_terminal right direction."""
+        from aiterm.terminal import ghostty
+        import subprocess
+
+        with patch.dict(os.environ, {"TERM_PROGRAM": "ghostty"}):
+            with patch.object(subprocess, "run") as mock_run:
+                result = ghostty.split_terminal("right")
+                assert result is True
+                mock_run.assert_called_once()
+
+    def test_split_terminal_down(self):
+        """Test split_terminal down direction."""
+        from aiterm.terminal import ghostty
+        import subprocess
+
+        with patch.dict(os.environ, {"TERM_PROGRAM": "ghostty"}):
+            with patch.object(subprocess, "run") as mock_run:
+                result = ghostty.split_terminal("down")
+                assert result is True
+                mock_run.assert_called_once()
