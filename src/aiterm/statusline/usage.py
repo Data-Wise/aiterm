@@ -82,19 +82,39 @@ class UsageTracker:
         self._cache_ttl = 60  # Cache for 60 seconds
 
     def _get_api_key(self) -> Optional[str]:
-        """Get Anthropic API key from config or environment.
+        """Get Anthropic API key or OAuth token.
 
         Checks in order:
-        1. aiterm config (anthropic.api_key)
-        2. Environment variable (ANTHROPIC_API_KEY)
-        3. Claude Code settings (apiKey) - usually not present
+        1. macOS Keychain (Claude Code OAuth token)
+        2. aiterm config (anthropic.api_key)
+        3. Environment variable (ANTHROPIC_API_KEY)
+        4. Claude Code settings (apiKey) - usually not present
 
         Returns:
-            API key or None if not found
+            API key/token or None if not found
         """
         import os
+        import subprocess
+        import sys
 
-        # Check aiterm config first
+        # Try to get OAuth token from macOS Keychain (Claude Code)
+        if sys.platform == 'darwin':
+            try:
+                result = subprocess.run(
+                    ['security', 'find-generic-password', '-s', 'Claude Code-credentials', '-w'],
+                    capture_output=True,
+                    text=True,
+                    timeout=2
+                )
+                if result.returncode == 0:
+                    creds = json.loads(result.stdout.strip())
+                    token = creds.get('claudeAiOauth', {}).get('accessToken')
+                    if token:
+                        return token
+            except Exception:
+                pass
+
+        # Check aiterm config
         try:
             config_file = Path.home() / '.config' / 'aiterm' / 'statusline.json'
             if config_file.exists():
@@ -144,12 +164,22 @@ class UsageTracker:
 
         # Fetch from API
         try:
-            req = urllib.request.Request(
-                self.API_USAGE_URL,
-                headers={
+            # Determine if using OAuth token or API key
+            if self._api_key and self._api_key.startswith('sk-ant-oat'):
+                # OAuth token - use Bearer auth
+                headers = {
+                    'Authorization': f'Bearer {self._api_key}'
+                }
+            else:
+                # API key - use x-api-key header
+                headers = {
                     'x-api-key': self._api_key,
                     'anthropic-version': '2023-06-01'
                 }
+
+            req = urllib.request.Request(
+                self.API_USAGE_URL,
+                headers=headers
             )
 
             with urllib.request.urlopen(req, timeout=2) as response:
@@ -170,7 +200,18 @@ class UsageTracker:
 
         Returns:
             UsageData for session usage, or None if not available
+
+        Note: Currently returns None because Claude Code does not expose
+        usage limits programmatically. The /usage command shows this data
+        in the chat interface, but it's not accessible to external tools.
+
+        Tracking: https://github.com/anthropics/claude-code/issues/5621
         """
+        # Claude Code usage limits are not accessible programmatically
+        # The /usage slash command uses internal endpoints that are not exposed
+        return None
+
+        # When/if Claude Code exposes usage data in JSON input, implement here
         data = self._fetch_api_usage()
         if not data:
             return None
@@ -206,7 +247,14 @@ class UsageTracker:
 
         Returns:
             UsageData for weekly usage, or None if not available
+
+        Note: Currently returns None because Claude Code does not expose
+        usage limits programmatically. See get_session_usage() for details.
         """
+        # Claude Code usage limits are not accessible programmatically
+        return None
+
+        # When/if Claude Code exposes usage data in JSON input, implement here
         data = self._fetch_api_usage()
         if not data:
             return None

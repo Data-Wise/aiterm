@@ -1,8 +1,17 @@
-# Usage Tracking Setup
+# Usage Tracking - Currently Unavailable
 
-## Current Status
+## Current Status: DISABLED
 
-Usage tracking is **implemented and ready** but requires configuration because Claude Code uses OAuth authentication and doesn't expose the API key.
+Usage tracking is **not available** because Claude Code does not expose usage limits programmatically.
+
+After thorough investigation (Dec 31, 2025), we found that:
+- ✅ OAuth token can be extracted from macOS Keychain
+- ❌ The `/api/oauth/usage` endpoint rejects OAuth tokens (401: "OAuth authentication is currently not supported")
+- ❌ Claude Code stores no local usage data in `~/.claude/`
+- ❌ No CLI command exists to query usage
+- ❌ The `/usage` slash command uses internal endpoints not exposed to tools
+
+**Bottom line:** There's no way to programmatically access Claude Code usage limits.
 
 ## Why Usage Isn't Showing
 
