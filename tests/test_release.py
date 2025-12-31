@@ -360,9 +360,9 @@ class TestPyPIHelpers:
     def test_verify_on_pypi_real(self):
         """Should verify package on real PyPI."""
         # Test with a known package (use latest released version)
-        success, msg = verify_on_pypi("aiterm-dev", "0.5.0")
+        success, msg = verify_on_pypi("aiterm-dev", "0.5.1")
         assert success is True
-        assert "0.5.0" in msg
+        assert "0.5.1" in msg
 
     def test_verify_on_pypi_missing(self):
         """Should handle missing package."""
