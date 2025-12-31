@@ -31,10 +31,10 @@ ait learn <level> --step N       # Resume from step N
 - What is aiterm? → doctor → config → detect → switch → help → next steps
 
 **Level 2: Intermediate** (11 steps)
-- Terminals → Claude settings → approvals → workflows → features → sessions
+- Claude Code (primary) → workflows → sessions → terminals
 
 **Level 3: Advanced** (12 steps)
-- Release automation (v0.5.0) → workflows → craft → debugging → customization
+- Release (v0.5.0) → workflows → integrations (Craft/MCP/IDE) → debugging
 
 ---
 
@@ -125,13 +125,13 @@ Following **exact Nexus CLI pattern**:
 
 ### ❓ Decisions for Review
 
-1. **Tutorial Content Balance**: 
+1. **Tutorial Content Balance**:
    - Getting Started: 7 steps good, or too long?
-   - Advanced: Heavy on release automation (new v0.5.0) - appropriate?
+   - Advanced: Now balanced across release, workflows, integrations, debugging
 
-2. **Intermediate Tutorial**: 
-   - 11 steps covers all domains
-   - Should Ghostty section be conditional (only if using Ghostty)?
+2. **Intermediate Tutorial**:
+   - Reordered: Claude Code first (primary use case), terminals last
+   - Ghostty section conditional (skipped if not using Ghostty)
 
 3. **Future Scope**:
    - Implement completion tracking in v0.6.0 or defer to v0.7.0?

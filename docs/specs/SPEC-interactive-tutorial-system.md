@@ -212,75 +212,74 @@ def learn(
 **Target Audience**: Users comfortable with basics, ready to explore specific features
 
 **Learning Objectives**:
-- Master terminal-specific features
-- Configure Claude Code integration
+- Configure Claude Code integration (primary use case)
 - Use workflow automation
-- Understand context-aware switching
-- Customize configurations
+- Manage sessions and feature branches
+- Customize terminal-specific features
 
 **Steps**:
 
-1. **Terminal Management Overview** (Intro to domain)
-   - Description: aiterm supports 6 terminals with varying capabilities
-   - Command: `ait terminals list`
-   - Hint: "Feature support varies: iTerm2 has most, Terminal.app has least"
-
-2. **Detect Your Terminal**
-   - Command: `ait terminals detect`
-   - Description: Identify current terminal emulator
-   - Interactive: Yes
-
-3. **Claude Code Settings**
+1. **Claude Code Settings** (Primary integration)
    - Command: `ait claude settings`
    - Description: View current Claude Code configuration
    - Interactive: Yes
    - Hint: "Settings file is in ~/.claude/settings.json"
 
-4. **Backup Your Settings**
+2. **Backup Your Settings**
    - Command: `ait claude backup`
    - Description: Create safety backup before changes
    - Interactive: Yes
 
-5. **Auto-Approval Presets**
+3. **Auto-Approval Presets**
    - Command: `ait claude approvals presets`
    - Description: View pre-configured approval sets (safe, moderate, full)
    - Interactive: No
 
-6. **Add Safe Approvals**
+4. **Add Safe Approvals**
    - Command: `ait claude approvals add safe-reads`
    - Description: Enable safe file reading permissions
    - Interactive: Yes
    - Hint: "Start with safe-reads, add more as needed"
 
-7. **Workflow Basics**
+5. **Workflow Basics**
    - Command: `ait workflows list`
    - Description: See available workflow templates
    - Interactive: No
 
-8. **Feature Branch Workflow**
+6. **Feature Branch Workflow**
    - Command: `ait feature status`
    - Description: Check current feature branch state
    - Interactive: Yes
    - Hint: "Useful for managing parallel development tasks"
 
-9. **Ghostty Quick Themes** (conditional on terminal)
-   - Command: `ait ghostty themes list`
-   - Description: Browse 14 built-in Ghostty themes
-   - Interactive: No
-   - Hint: "Only applicable if using Ghostty terminal"
+7. **Session Management**
+   - Command: `ait sessions list`
+   - Description: Track active Claude Code sessions
+   - Interactive: Yes
 
-10. **Status Bar Customization**
+8. **Terminal Management Overview**
+   - Description: aiterm supports 6 terminals with varying capabilities
+   - Command: `ait terminals list`
+   - Hint: "Feature support varies: iTerm2 has most, Terminal.app has least"
+
+9. **Detect Your Terminal**
+   - Command: `ait terminals detect`
+   - Description: Identify current terminal emulator
+   - Interactive: Yes
+
+10. **Ghostty Quick Themes** (conditional on terminal)
+    - Command: `ait ghostty themes list`
+    - Description: Browse 14 built-in Ghostty themes
+    - Interactive: No
+    - Hint: "Only applicable if using Ghostty terminal"
+
+11. **Status Bar Customization**
     - Command: `ait statusbar show`
     - Description: View current status bar configuration
     - Interactive: No
 
-11. **Session Management**
-    - Command: `ait sessions list`
-    - Description: Track active Claude Code sessions
-    - Interactive: Yes
-
-**Duration**: 20-25 minutes  
-**Prerequisites**: Completed Getting Started  
+**Duration**: 20-25 minutes
+**Prerequisites**: Completed Getting Started
 **Outcome**: User can configure Claude Code, manage workflows, use terminal-specific features
 
 ---
@@ -292,8 +291,8 @@ def learn(
 **Learning Objectives**:
 - Master release automation (v0.5.0 features)
 - Build custom workflows
-- Integrate with craft system
-- Advanced terminal configuration
+- Integrate with craft system and MCP servers
+- Advanced terminal and IDE configuration
 - Troubleshooting and debugging
 
 **Steps**:
@@ -309,65 +308,68 @@ def learn(
    - Interactive: Yes
    - Hint: "Run this before every release to catch issues early"
 
-3. **Release Status**
+3. **Release Status & Notes**
    - Command: `ait release status`
    - Description: See current version, pending commits, suggested next version
-   - Interactive: No
-
-4. **Generate Release Notes**
-   - Command: `ait release notes`
-   - Description: Auto-generate from git commits
    - Interactive: Yes
-   - Hint: "Edit generated notes before tagging"
+   - Follow-up: `ait release notes` - Generate notes from commits
 
-5. **Create Git Tag**
-   - Command: `ait release tag v0.6.0`
-   - Description: Create annotated tag with release notes
-   - Interactive: Yes (dry-run mode)
-
-6. **PyPI Publishing**
-   - Command: `ait release pypi --dry-run`
-   - Description: Build and prepare for PyPI publish
-   - Interactive: Yes
-   - Hint: "Use --dry-run first to verify build"
-
-7. **Homebrew Formula Update**
-   - Command: `ait release homebrew`
-   - Description: Update tap with new version
-   - Interactive: Yes
-
-8. **Full Release Workflow**
+4. **Full Release Workflow**
    - Command: `ait release full --help`
    - Description: Complete workflow: check → tag → pypi → homebrew
    - Interactive: No
-   - Hint: "This combines all steps into one command"
+   - Hint: "Use --dry-run first: `ait release full 0.6.0 --dry-run`"
 
-9. **Custom Workflow Creation**
-   - Command: `ait workflows create my-workflow`
-   - Description: Build personal automation workflows
+5. **Custom Workflow Creation**
+   - Command: `ait workflows custom create my-workflow`
+   - Description: Build personal automation workflows in YAML
    - Interactive: Yes
+   - Hint: "Workflows stored in ~/.config/aiterm/workflows/"
 
-10. **Craft Integration**
-    - Command: `ait craft --help`
-    - Description: Use craft plugin for complex operations
-    - Interactive: No
-    - Hint: "Craft extends aiterm with AI-powered features"
+6. **Workflow Chaining**
+   - Command: `ait workflows run lint+test+build`
+   - Description: Chain multiple workflows with + separator
+   - Interactive: Yes
+   - Hint: "Stops on first failure, great for pre-commit checks"
 
-11. **Advanced Debugging**
+7. **Craft Integration**
+   - Command: `ait craft status`
+   - Description: Check craft plugin installation and available commands
+   - Interactive: No
+   - Hint: "Craft extends aiterm with 60+ AI-powered features"
+
+8. **MCP Server Management**
+   - Command: `ait mcp list`
+   - Description: View configured MCP servers for Claude Code
+   - Interactive: No
+   - Follow-up: `ait mcp status` for health check
+
+9. **IDE Integrations**
+   - Command: `ait ide list`
+   - Description: See supported IDEs (VS Code, Cursor, Zed, Positron)
+   - Interactive: No
+   - Hint: "Use `ait ide configure <ide>` to set up integration"
+
+10. **Advanced Debugging**
     - Command: `ait info --json`
     - Description: Get detailed diagnostic information
     - Interactive: No
     - Hint: "Use --json for programmatic parsing"
 
-12. **Custom Configurations**
+11. **Custom Configurations**
     - Command: `ait config edit`
     - Description: Edit config.toml directly for advanced customization
     - Interactive: Yes
     - Hint: "See docs/reference/configuration.md for all options"
 
-**Duration**: 30-35 minutes  
-**Prerequisites**: Completed Intermediate, familiarity with release processes helpful  
-**Outcome**: User can automate releases, create custom workflows, debug issues
+12. **Next Steps & Resources**
+    - Description: Summary of power-user resources and community
+    - Links: GitHub issues, documentation site, craft plugin docs
+    - Hint: "Check `ait --help` periodically - new features added regularly!"
+
+**Duration**: 30-35 minutes
+**Prerequisites**: Completed Intermediate, familiarity with release processes helpful
+**Outcome**: User can automate releases, create custom workflows, manage integrations
 
 ---
 
@@ -792,6 +794,63 @@ docs/REFCARD.md                      # UPDATE: Learn commands
 - *Impact*: Low (slows iteration)
 - *Mitigation*: Consider YAML-based content in future iteration
 - *Contingency*: Document content update process clearly
+
+### Edge Cases & Error Handling
+
+Implementation must handle these edge cases gracefully:
+
+**1. Command Failures During Tutorial**
+```python
+# When a tutorial command fails (e.g., ait doctor shows errors)
+- Show the actual error output
+- Explain what went wrong in user-friendly terms
+- Offer options: "Retry", "Skip this step", "Exit tutorial"
+- Log failure for debugging if user reports issue
+```
+
+**2. Terminal-Specific Steps**
+```python
+# For Ghostty-only steps when user has iTerm2
+def should_show_step(step):
+    if step.terminal_requirement:
+        current = detect_terminal()
+        if current != step.terminal_requirement:
+            return False, f"Skipping (requires {step.terminal_requirement})"
+    return True, None
+```
+
+**3. Missing Dependencies**
+```python
+# When required tools are missing (e.g., gh CLI for release commands)
+- Pre-flight check at tutorial start
+- Clear message: "This tutorial requires: gh (GitHub CLI)"
+- Provide installation instructions
+- Option to continue anyway (some steps will be skipped)
+```
+
+**4. Network-Dependent Steps**
+```python
+# For steps that need network (PyPI verification, etc.)
+- Timeout after 10 seconds
+- Show "Network check timed out - skipping online verification"
+- Continue with tutorial, mark step as "skipped (offline)"
+```
+
+**5. Invalid User Input**
+```python
+# For step navigation and responses
+- Invalid step number → Show valid range, re-prompt
+- Empty response at confirmation → Treat as "continue"
+- Ctrl+C → Graceful exit with "Tutorial paused at step N"
+```
+
+**6. State Recovery**
+```python
+# For resume functionality
+- Save progress to ~/.config/aiterm/tutorial_state.json
+- On crash/interrupt: "Resume from step 5? [Y/n]"
+- Stale state (>7 days): "Previous progress is old. Start fresh? [Y/n]"
+```
 
 ---
 

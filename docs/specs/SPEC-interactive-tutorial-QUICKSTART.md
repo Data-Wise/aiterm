@@ -193,18 +193,17 @@ def create_getting_started_tutorial() -> Tutorial:
 ### Step 2.2: Implement Intermediate Tutorial
 
 **Content** (11 steps): See spec for full breakdown
-- Terminal management (3 steps)
-- Claude Code (4 steps)
-- Workflows (2 steps)
-- Sessions (1 step)
-- Summary (1 step)
+- Claude Code integration (4 steps) - **primary focus**
+- Workflows & sessions (3 steps)
+- Terminal management (4 steps)
 
-### Step 2.3: Implement Advanced Tutorial  
+### Step 2.3: Implement Advanced Tutorial
 
 **Content** (12 steps): See spec for full breakdown
-- Release automation (8 steps) - emphasize new v0.5.0 features
+- Release automation (4 steps) - v0.5.0 features
 - Custom workflows (2 steps)
-- Advanced config (2 steps)
+- Integrations: Craft, MCP, IDE (3 steps)
+- Advanced: debugging, config, resources (3 steps)
 
 ### Step 2.4: Add Content Tests
 
