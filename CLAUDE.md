@@ -204,11 +204,36 @@ docs: update commands reference
 
 ## CI/CD
 
+Automated workflows in `.github/workflows/`:
+
 | Workflow | Trigger | Purpose |
 |----------|---------|---------|
-| `docs.yml` | Push to main | Auto-deploy docs |
-| `test.yml` | PR/Push | Run pytest |
-| `workflow.yml` | Tag push | PyPI publish |
+| `test.yml` | Push/PR | Run pytest (685 tests) |
+| `docs.yml` | Push to main | Deploy docs to GitHub Pages |
+| `pypi-release.yml` | Release published | Build & publish to PyPI |
+| `homebrew-release.yml` | Release published | Update Homebrew formula |
+| `demos.yml` | Manual | Generate VHS demo GIFs |
+
+### Release Flow
+
+```
+git tag v0.6.0 && git push origin v0.6.0
+gh release create v0.6.0 --title "v0.6.0" --notes "..."
+  ↓ triggers
+├─ pypi-release.yml → PyPI publish (trusted publisher)
+├─ homebrew-release.yml → PR to homebrew-tap
+└─ docs.yml → GitHub Pages deploy
+```
+
+### Manual Triggers
+
+```bash
+# Trigger PyPI publish manually
+gh workflow run pypi-release.yml -f version=0.6.0
+
+# Trigger Homebrew update manually
+gh workflow run homebrew-release.yml -f version=0.6.0
+```
 
 ---
 
