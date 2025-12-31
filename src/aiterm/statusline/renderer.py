@@ -54,6 +54,7 @@ class StatusLineRenderer:
         model_data = data.get('model', {})
         cost_data = data.get('cost', {})
         output_style = data.get('output_style', {})
+        context_window = data.get('context_window', {})
 
         cwd = workspace.get('current_dir', '')
         project_dir = workspace.get('project_dir', cwd)
@@ -66,6 +67,12 @@ class StatusLineRenderer:
         lines_added = cost_data.get('total_lines_added', 0)
         lines_removed = cost_data.get('total_lines_removed', 0)
         total_duration_ms = cost_data.get('total_duration_ms', 0)
+
+        # Extract context window data
+        context_size = context_window.get('context_window_size', 0)
+        current_usage = context_window.get('current_usage', {})
+        input_tokens = current_usage.get('input_tokens', 0)
+        output_tokens = current_usage.get('output_tokens', 0)
 
         # Build line 1 (directory + git)
         line1 = self._build_line1(cwd, project_dir)
@@ -147,7 +154,8 @@ class StatusLineRenderer:
             ModelSegment,
             TimeSegment,
             ThinkingSegment,
-            LinesSegment
+            LinesSegment,
+            UsageSegment
         )
 
         # Model segment
@@ -182,6 +190,12 @@ class StatusLineRenderer:
 
         # Add time
         line2 += time_output
+
+        # Add usage tracking
+        usage_segment = UsageSegment(self.config, self.theme)
+        usage_output = usage_segment.render()
+        if usage_output:
+            line2 += f" \033[{self.theme.separator_fg}m│\033[0m {usage_output}"
 
         # Add lines if available
         if lines_output:

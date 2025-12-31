@@ -13,6 +13,9 @@ from typing import Optional, Tuple
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 import subprocess
+import urllib.request
+import json
+from pathlib import Path
 
 
 @dataclass
@@ -67,58 +70,172 @@ class UsageData:
 class UsageTracker:
     """Tracks Claude Code usage limits.
 
-    This is a placeholder implementation that returns mock data.
-    Will be updated when Claude Code provides an official usage tracking API.
+    Fetches usage data from Anthropic API endpoint.
     """
+
+    API_USAGE_URL = "https://api.anthropic.com/api/oauth/usage"
 
     def __init__(self):
         """Initialize usage tracker."""
-        pass
+        self._api_key = self._get_api_key()
+        self._cache_file = Path.home() / '.cache' / 'aiterm' / 'usage.json'
+        self._cache_ttl = 60  # Cache for 60 seconds
+
+    def _get_api_key(self) -> Optional[str]:
+        """Get Anthropic API key from config or environment.
+
+        Checks in order:
+        1. aiterm config (anthropic.api_key)
+        2. Environment variable (ANTHROPIC_API_KEY)
+        3. Claude Code settings (apiKey) - usually not present
+
+        Returns:
+            API key or None if not found
+        """
+        import os
+
+        # Check aiterm config first
+        try:
+            config_file = Path.home() / '.config' / 'aiterm' / 'statusline.json'
+            if config_file.exists():
+                with open(config_file) as f:
+                    config = json.load(f)
+                api_key = config.get('anthropic', {}).get('api_key')
+                if api_key:
+                    return api_key
+        except Exception:
+            pass
+
+        # Check environment variable
+        api_key = os.environ.get('ANTHROPIC_API_KEY')
+        if api_key:
+            return api_key
+
+        # Check Claude Code settings (unlikely to exist)
+        try:
+            settings_file = Path.home() / '.claude' / 'settings.json'
+            if settings_file.exists():
+                with open(settings_file) as f:
+                    settings = json.load(f)
+                return settings.get('apiKey')
+        except Exception:
+            pass
+
+        return None
+
+    def _fetch_api_usage(self) -> Optional[dict]:
+        """Fetch usage data from Anthropic API.
+
+        Returns:
+            Usage dict or None if fetch fails
+        """
+        if not self._api_key:
+            return None
+
+        # Check cache first
+        if self._cache_file.exists():
+            try:
+                cache_age = datetime.now().timestamp() - self._cache_file.stat().st_mtime
+                if cache_age < self._cache_ttl:
+                    with open(self._cache_file) as f:
+                        return json.load(f)
+            except Exception:
+                pass
+
+        # Fetch from API
+        try:
+            req = urllib.request.Request(
+                self.API_USAGE_URL,
+                headers={
+                    'x-api-key': self._api_key,
+                    'anthropic-version': '2023-06-01'
+                }
+            )
+
+            with urllib.request.urlopen(req, timeout=2) as response:
+                data = json.loads(response.read())
+
+            # Cache the result
+            self._cache_file.parent.mkdir(parents=True, exist_ok=True)
+            with open(self._cache_file, 'w') as f:
+                json.dump(data, f)
+
+            return data
+
+        except Exception:
+            return None
 
     def get_session_usage(self) -> Optional[UsageData]:
-        """Get current session usage.
+        """Get current session usage (5-hour limit).
 
         Returns:
             UsageData for session usage, or None if not available
         """
-        # PLACEHOLDER: Return mock data
-        # TODO: Replace with actual Claude Code API call
-        #
-        # Potential implementation:
-        # - Parse `claude --usage` output
-        # - Read from ~/.claude/usage.json
-        # - Extract from Claude Code's internal database
-        #
-        # For now, return None to disable display
+        data = self._fetch_api_usage()
+        if not data:
+            return None
+
+        try:
+            five_hour = data.get('five_hour', {})
+            utilization = five_hour.get('utilization', {})
+
+            current = utilization.get('used', 0)
+            limit = utilization.get('total', 0)
+            reset_at = five_hour.get('resets_at', '')
+
+            # Parse ISO timestamp
+            if reset_at:
+                reset_time = int(datetime.fromisoformat(reset_at.replace('Z', '+00:00')).timestamp())
+            else:
+                reset_time = int(datetime.now().timestamp()) + (5 * 3600)
+
+            if limit > 0:
+                return UsageData(
+                    current=current,
+                    limit=limit,
+                    reset_time=reset_time
+                )
+
+        except Exception:
+            pass
+
         return None
 
-        # Example of what real data might look like:
-        # now = int(datetime.now().timestamp())
-        # reset_in_2h = now + (2 * 3600)
-        # return UsageData(
-        #     current=45,
-        #     limit=100,
-        #     reset_time=reset_in_2h
-        # )
-
     def get_weekly_usage(self) -> Optional[UsageData]:
-        """Get current weekly usage.
+        """Get current weekly usage (7-day limit).
 
         Returns:
             UsageData for weekly usage, or None if not available
         """
-        # PLACEHOLDER: Return mock data
-        # TODO: Replace with actual Claude Code API call
-        return None
+        data = self._fetch_api_usage()
+        if not data:
+            return None
 
-        # Example of what real data might look like:
-        # now = int(datetime.now().timestamp())
-        # reset_in_3d = now + (3 * 86400)
-        # return UsageData(
-        #     current=234,
-        #     limit=500,
-        #     reset_time=reset_in_3d
-        # )
+        try:
+            seven_day = data.get('seven_day', {})
+            utilization = seven_day.get('utilization', {})
+
+            current = utilization.get('used', 0)
+            limit = utilization.get('total', 0)
+            reset_at = seven_day.get('resets_at', '')
+
+            # Parse ISO timestamp
+            if reset_at:
+                reset_time = int(datetime.fromisoformat(reset_at.replace('Z', '+00:00')).timestamp())
+            else:
+                reset_time = int(datetime.now().timestamp()) + (7 * 86400)
+
+            if limit > 0:
+                return UsageData(
+                    current=current,
+                    limit=limit,
+                    reset_time=reset_time
+                )
+
+        except Exception:
+            pass
+
+        return None
 
     def _parse_claude_usage_command(self) -> Tuple[Optional[UsageData], Optional[UsageData]]:
         """Parse output from `claude --usage` command (if it exists).
