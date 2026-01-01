@@ -1,7 +1,13 @@
 # Getting Started Tutorial
 
-**Duration:** ~10 minutes
-**Steps:** 7
+⏱️ **10 minutes** • 🟢 Beginner • ✓ 7 steps
+
+> **TL;DR** (30 seconds)
+> - **What:** Complete walkthrough of aiterm from installation to advanced features
+> - **Why:** Master the basics in 10 minutes and start optimizing your workflow
+> - **How:** Follow the 7-step tutorial with hands-on examples
+> - **Next:** Move to [Intermediate Tutorial](../intermediate/index.md) for workflows and craft integration
+
 **Prerequisites:** aiterm installed
 
 ---

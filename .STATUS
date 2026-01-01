@@ -1,10 +1,34 @@
 project: aiterm
 status: active
 priority: P1
-progress: 90
+progress: 92
 version: 0.6.3
 updated: 2025-12-31
-next: Continue v0.4.0 workflow automation features
+next: Craft plugin website enhancements (Phase 1) → Apply to aiterm docs
+
+## Planned: Website Documentation Enhancements (via Craft Plugin)
+
+**Strategic Approach:** Build enhancements in craft plugin first, test on craft's docs, then apply to aiterm
+**Spec:** docs/specs/SPEC-craft-website-enhancements-2025-12-31.md
+**Brainstorm:** BRAINSTORM-website-enhancements-2025-12-31.md
+**Craft Roadmap:** ~/projects/dev-tools/claude-plugins/craft/ROADMAP.md (v1.15.0)
+
+**Phase 1 (Week 1):**
+- [ ] Create `/craft:docs:website` command
+- [ ] Implement ADHD scoring algorithm (0-100)
+- [ ] Fix all mermaid syntax errors on aiterm docs
+- [ ] Add TL;DR boxes to major pages
+- [ ] Add time estimates to tutorials
+- [ ] Create ADHD Quick Start page
+- [ ] Target: ADHD score 62 → 77 (+15 points)
+
+**Phase 2-3:** See craft ROADMAP.md v1.15.0 for full details
+
+**Impact:**
+- Time-to-first-success: ~15 min → < 5 min (70% reduction)
+- Tutorial completion rate: Unknown → > 70% target
+- Mermaid errors: 5+ → 0
+- Mobile bounce rate: Unknown → < 30% target
 
 ## Current Version: v0.6.3 (Released Dec 31, 2025)
 
@@ -52,6 +76,25 @@ next: Continue v0.4.0 workflow automation features
 - **Docs:** https://data-wise.github.io/aiterm/
 
 ## Recent Sessions
+
+### Dec 31, 2025 - StatusLine Spacing & Worktree Display
+- **Phase 1:** Implemented configurable separator spacing
+  - Added minimal/standard/relaxed spacing modes (1/2/3 spaces)
+  - Changed default from 1→2 spaces for improved readability
+  - Config option: `display.separator_spacing`
+  - Commit: 159a615
+- **Phase 2:** Implemented worktree display support
+  - Shows 🌳N count when >1 worktree exists
+  - Shows (wt) marker when in non-main worktree
+  - Config option: `git.show_worktrees` (enabled by default)
+  - Tested with real worktrees (4 total)
+  - Commit: c55c462
+- Created comprehensive brainstorm documents
+  - BRAINSTORM-statusline-spacing-worktree-2025-12-31.md
+  - STATUSLINE-SPACING-COMPARISON.md
+- Updated documentation (32 config options, examples, visual comparisons)
+- Session: ~2.5 hours
+- Next: Test in live Claude Code session, prepare v0.7.0 release
 
 ### Dec 31, 2025 - v0.6.3 Feature Workflow Enhancements
 - Implemented `ait feature promote` (create PR to dev)

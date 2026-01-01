@@ -1,5 +1,11 @@
 # aiterm
 
+> **TL;DR** (30 seconds)
+> - **What:** Terminal optimizer CLI that auto-configures iTerm2/Ghostty for AI development
+> - **Why:** Save 15+ minutes per day with auto-context detection and smart profile switching
+> - **How:** `curl -fsSL https://raw.githubusercontent.com/Data-Wise/aiterm/main/install.sh | bash`
+> - **Next:** Run `ait detect` to see your current context, then `ait switch` to apply settings
+
 **Terminal optimizer CLI for AI-assisted development with Claude Code and Gemini CLI.**
 
 [![PyPI](https://img.shields.io/pypi/v/aiterm-dev)](https://pypi.org/project/aiterm-dev/)

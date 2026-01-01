@@ -58,12 +58,21 @@ ait learn info advanced
 
 ```mermaid
 flowchart TD
-    A[Getting Started<br/>7 steps] --> B[Intermediate<br/>11 steps]
-    B --> C[Advanced<br/>13 steps]
+    A["`**Getting Started**
+    7 steps`"] --> B["`**Intermediate**
+    11 steps`"]
+    B --> C["`**Advanced**
+    13 steps`"]
 
-    A -.->|Topics| A1[doctor<br/>detect<br/>switch]
-    B -.->|Topics| B1[claude<br/>workflows<br/>sessions]
-    C -.->|Topics| C1[release<br/>craft<br/>MCP]
+    A -.->|Topics| A1["`doctor
+    detect
+    switch`"]
+    B -.->|Topics| B1["`claude
+    workflows
+    sessions`"]
+    C -.->|Topics| C1["`release
+    craft
+    MCP`"]
 
     style A fill:#e8f5e9,stroke:#4caf50
     style B fill:#fff9c4,stroke:#fbc02d

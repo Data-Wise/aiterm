@@ -1,6 +1,12 @@
 # aiterm Quick Start
 
-> **TL;DR:** Terminal optimizer for Claude Code and Gemini CLI - detects project context, switches profiles, manages auto-approvals.
+⏱️ **3 minutes** • 🟢 Beginner • ✓ 3 steps
+
+> **TL;DR** (30 seconds)
+> - **What:** Get aiterm installed and working in your terminal
+> - **Why:** Start saving 15+ minutes per day with auto-context switching
+> - **How:** Install via Homebrew or uv, then run `ait doctor` to verify
+> - **Next:** Try `ait detect` in any project directory to see context detection
 
 ## 30-Second Setup
 
