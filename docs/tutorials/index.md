@@ -57,13 +57,17 @@ ait learn info advanced
 ## Tutorial Flow
 
 ```mermaid
-flowchart LR
-    A[Getting Started] --> B[Intermediate]
-    B --> C[Advanced]
+flowchart TD
+    A[Getting Started<br/>7 steps] --> B[Intermediate<br/>11 steps]
+    B --> C[Advanced<br/>13 steps]
 
-    A -->|7 steps| A1[doctor, detect, switch]
-    B -->|11 steps| B1[claude, workflows, sessions]
-    C -->|13 steps| C1[release, craft, MCP]
+    A -.->|Topics| A1[doctor<br/>detect<br/>switch]
+    B -.->|Topics| B1[claude<br/>workflows<br/>sessions]
+    C -.->|Topics| C1[release<br/>craft<br/>MCP]
+
+    style A fill:#e8f5e9,stroke:#4caf50
+    style B fill:#fff9c4,stroke:#fbc02d
+    style C fill:#ffe0b2,stroke:#ff9800
 ```
 
 ## Learning Path
