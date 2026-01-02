@@ -111,7 +111,9 @@
       "Bash(uv run ait release --help:*)",
       "Bash(uv run ait release notes:*)",
       "Bash(gh release create:*)",
-      "Bash(shasum:*)"
+      "Bash(shasum:*)",
+      "Bash(while read spec)",
+      "Bash(do if grep -q \"Status: [Dd]raft\" \"$spec\")"
     ]
   }
 }
