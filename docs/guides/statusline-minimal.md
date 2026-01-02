@@ -455,7 +455,6 @@ ait statusline theme show
 
 ## See Also
 
-- [StatusLine Configuration Reference](../reference/statusline.md)
-- [StatusLine Themes Guide](./statusline-themes.md)
-- [BRAINSTORM-statusline-redesign-2026-01-01.md](../../BRAINSTORM-statusline-redesign-2026-01-01.md)
-- [SPEC-statusline-redesign-2026-01-01.md](../../docs/specs/SPEC-statusline-redesign-2026-01-01.md)
+- **StatusLine Configuration Reference:** See `ait statusline config --help`
+- **StatusLine Spacing Guide:** [statusline-spacing.md](statusline-spacing.md)
+- **Implementation Spec:** [SPEC-statusline-redesign-2026-01-01.md](../specs/SPEC-statusline-redesign-2026-01-01.md)

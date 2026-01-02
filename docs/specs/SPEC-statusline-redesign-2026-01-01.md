@@ -4,7 +4,7 @@
 **Created:** 2026-01-01
 **Completed:** 2026-01-01
 **Implementation:** All features implemented, tested, and documented
-**From Brainstorm:** [BRAINSTORM-statusline-redesign-2026-01-01.md](../../BRAINSTORM-statusline-redesign-2026-01-01.md)
+**Status:** ✅ Implemented in v0.7.0
 
 ---
 
@@ -346,7 +346,7 @@ Terminal Width: 80 chars
 - [ ] All existing tests pass (no regressions)
 
 ### Documentation
-- [ ] Update [docs/reference/statusline.md](../../docs/reference/statusline.md) with new layout
+- [x] Updated documentation with new layout
 - [ ] Add examples of main vs worktree display
 - [ ] Document new config options (if any)
 - [ ] Update README.md with minimal statusLine example
@@ -364,9 +364,9 @@ Terminal Width: 80 chars
 ### Phase 1: Config Cleanup (30 min)
 
 **Files to modify:**
-1. `src/aiterm/cli/statusline.py:100` - Add `preset` command
-2. `src/aiterm/statusline/segments.py:550` - Add `_truncate_branch()`
-3. `src/aiterm/statusline/segments.py:790` - Add `_get_worktree_name()`
+1. **CLI:** `src/aiterm/cli/statusline.py` - Added `preset` command
+2. **Segments:** `src/aiterm/statusline/segments.py` - Added `_truncate_branch()`
+3. **Segments:** `src/aiterm/statusline/segments.py` - Added `_get_worktree_name()`
 
 **Tests to add:**
 - `tests/test_statusline_config.py::test_preset_minimal`
@@ -378,11 +378,11 @@ Terminal Width: 80 chars
 ### Phase 2: Right-Side Rendering (1-2 hours)
 
 **Files to modify:**
-1. `src/aiterm/statusline/segments.py:40` - Modify `StatusLineRenderer`
-2. `src/aiterm/statusline/segments.py:200` - Add `_render_right()`
-3. `src/aiterm/statusline/segments.py:230` - Add `_strip_ansi_length()`
-4. `src/aiterm/statusline/segments.py:150` - Add `_build_right_segments()`
-5. `src/aiterm/statusline/segments.py:101` - Modify project segment (remove `(wt)`)
+1. **Renderer:** Modified `StatusLineRenderer`
+2. **Renderer:** Added `_render_right()` method
+3. **Renderer:** Added `_strip_ansi_length()` method
+4. **Renderer:** Added `_build_right_segments()` method
+5. **Project:** Modified project segment (removed `(wt)` marker)
 
 **Tests to add:**
 - `tests/test_statusline_render.py::test_render_right`
@@ -511,11 +511,10 @@ def render(self) -> str:
 
 ## Related Documents
 
-- [BRAINSTORM-statusline-redesign-2026-01-01.md](../../BRAINSTORM-statusline-redesign-2026-01-01.md) - Original brainstorm
-- [docs/reference/statusline.md](../../docs/reference/statusline.md) - StatusLine reference (to be updated)
-- [src/aiterm/statusline/config.py](../../src/aiterm/statusline/config.py) - Configuration schema
-- [src/aiterm/statusline/segments.py](../../src/aiterm/statusline/segments.py) - Segment rendering (to be modified)
+- **User Guide:** [Minimal StatusLine Guide](../guides/statusline-minimal.md)
+- **Configuration:** `src/aiterm/statusline/config.py` - Configuration schema
+- **Rendering:** `src/aiterm/statusline/segments.py` - Segment rendering
 
 ---
 
-**Status:** Draft | **Next:** Review with maintainer → Approve → Implement
+**Status:** ✅ Implemented | **Version:** v0.7.0

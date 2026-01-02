@@ -749,6 +749,96 @@ Opens `~/.config/aiterm/statusline.json` in your editor with validation on save.
 
 ---
 
+#### `aiterm statusline config spacing <preset>`
+
+Configure gap spacing between left and right segments (v0.7.1+).
+
+```bash
+# Apply a spacing preset
+aiterm statusline config spacing minimal    # Tight (15%, 5-20 chars)
+aiterm statusline config spacing standard   # Balanced (20%, 10-40 chars) [default]
+aiterm statusline config spacing spacious   # Wide (30%, 15-60 chars)
+
+# Short alias
+ait statusline config spacing minimal
+```
+
+**Spacing Presets:**
+
+| Preset | Gap Size | Min-Max | Use Case |
+|--------|----------|---------|----------|
+| **minimal** | 15% of terminal width | 5-20 chars | Compact, information-dense |
+| **standard** | 20% of terminal width | 10-40 chars | Balanced (default) |
+| **spacious** | 30% of terminal width | 15-60 chars | Wide, maximum clarity |
+
+**What it does:**
+- Sets gap size between left (project+git) and right (worktree) segments
+- Adds optional centered separator (`…`) in the gap
+- Constrains gap within min/max limits for consistency
+
+**Output:**
+```
+✓ Spacing preset updated
+
+  Setting      Old        New
+  ──────────────────────────────
+  spacing.mode standard   minimal
+
+✓ Spacing set to 'minimal'
+
+Run 'ait statusline test' to preview the new spacing
+```
+
+**Manual overrides:**
+```bash
+# Set custom minimum gap
+ait statusline config set spacing.min_gap 12
+
+# Set custom maximum gap
+ait statusline config set spacing.max_gap 50
+
+# Disable separator
+ait statusline config set spacing.show_separator false
+```
+
+**See also:** [StatusLine Spacing Guide](../guides/statusline-spacing.md)
+
+---
+
+#### `aiterm statusline config preset <name>`
+
+Apply a configuration preset (v0.7.0+).
+
+```bash
+# Apply minimal preset (disables bloat)
+aiterm statusline config preset minimal
+
+# Short alias
+ait statusline config preset minimal
+```
+
+**Available presets:**
+- `minimal` - Disables session duration, current time, lines changed, usage tracking
+
+**Output:**
+```
+✓ Applied minimal preset
+
+  Disabled:
+    • display.show_session_duration
+    • display.show_current_time
+    • display.show_lines_changed
+    • usage.enabled
+    • usage.show_session
+    • usage.show_weekly
+
+Restart Claude Code to see changes
+```
+
+**See also:** [Minimal StatusLine Guide](../guides/statusline-minimal.md)
+
+---
+
 ### `aiterm statusline theme`
 
 Manage color themes.

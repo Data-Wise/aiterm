@@ -2,7 +2,7 @@
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│ AITERM v0.6.3 - Terminal Optimizer for AI Development      │
+│ AITERM v0.7.1 - Terminal Optimizer for AI Development      │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
 │ ESSENTIAL                                                   │
@@ -99,7 +99,7 @@
 │ ait feature cleanup     Remove merged feature branches      │
 │ ait recipes             Alias for workflow templates        │
 │                                                             │
-│ STATUSLINE (v0.6.3) 🆕                                      │
+│ STATUSLINE (v0.7.1) 🆕                                      │
 │ ──────────────────────                                      │
 │ ait statusline render   Display statusLine output           │
 │ ait statusline config   Manage 32 configuration options     │
@@ -107,13 +107,21 @@
 │   config get KEY        Get config value                    │
 │   config set KEY VAL    Set config value                    │
 │   config reset [KEY]    Reset to defaults                   │
+│   config preset <name>  Apply preset (minimal)              │
+│   config spacing <mode> Set gap spacing (minimal/standard)  │
+│                                                             │
+│ Spacing Presets (v0.7.1):                                   │
+│   • minimal   - 15% gap (5-20 chars)  - Compact             │
+│   • standard  - 20% gap (10-40 chars) - Balanced [default]  │
+│   • spacious  - 30% gap (15-60 chars) - Wide                │
+│   • Optional centered separator (…) in gap                  │
 │                                                             │
 │ StatusLine Features:                                        │
 │   • 6 categories: display, git, project, usage, theme, time │
 │   • Worktree display (🌳N count, (wt) marker)               │
-│   • Configurable separator spacing (minimal/standard)       │
+│   • Smart gap spacing with presets (v0.7.1)                 │
 │   • Git status (branch, dirty, ahead/behind, worktrees)     │
-│   • Session tracking (duration, time, cost)                 │
+│   • Minimal preset removes bloat (v0.7.0)                   │
 │   • 3 built-in themes (cool-blues, forest-greens, custom)   │
 │                                                             │
 │ FLOW-CLI INTEGRATION (v0.3.10+)                             │

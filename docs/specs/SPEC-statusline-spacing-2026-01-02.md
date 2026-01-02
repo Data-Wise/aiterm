@@ -2,7 +2,7 @@
 
 **Status:** Draft
 **Created:** 2026-01-02
-**From Brainstorm:** [BRAINSTORM-statusline-spacing-2026-01-02.md](../../BRAINSTORM-statusline-spacing-2026-01-02.md)
+**Status:** ✅ Implemented in v0.7.1
 **Priority:** High (ADHD-friendly visual clarity)
 
 ---

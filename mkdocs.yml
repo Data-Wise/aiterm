@@ -125,7 +125,10 @@ nav:
       - Terminal Support: guide/terminals.md
       - Feature Workflow: guide/feature-workflow.md
       - Status Bar: guide/status-bar.md
-      - Claude Code StatusLine: guide/statusline.md
+      - Claude Code StatusLine:
+          - Overview: guide/statusline.md
+          - Minimal Preset: guides/statusline-minimal.md
+          - Spacing Presets: guides/statusline-spacing.md
       - Session Coordination: guide/sessions.md
       - IDE Integration: guide/ide-integration.md
       - Workflows: guide/workflows.md
@@ -206,6 +209,8 @@ nav:
           - Ghostty Enhancements: specs/SPEC-ghostty-enhancements-2025-12-30.md
           - StatusLine Config UX: specs/SPEC-statusline-config-ux-2025-12-31.md
           - StatusLine Integration: specs/SPEC-statusline-integration-2025-12-31.md
+          - StatusLine Minimal Redesign: specs/SPEC-statusline-redesign-2026-01-01.md
+          - StatusLine Spacing Presets: specs/SPEC-statusline-spacing-2026-01-02.md
 
 extra:
   social:
