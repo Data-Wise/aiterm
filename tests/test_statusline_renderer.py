@@ -531,3 +531,286 @@ class TestSpacingFeatures:
         text = "Plain text without codes"
         length = renderer._strip_ansi_length(text)
         assert length == len(text)
+
+    # =============================================================================
+    # Performance Benchmark Tests
+    # =============================================================================
+
+    def test_calculate_gap_performance(self, renderer):
+        """Test gap calculation performance."""
+        import time
+
+        # Run multiple iterations to measure performance
+        iterations = 1000
+        start_time = time.perf_counter()
+
+        for _ in range(iterations):
+            renderer._calculate_gap(120)
+
+        end_time = time.perf_counter()
+        avg_time = (end_time - start_time) / iterations
+
+        # Should complete in less than 1ms per call
+        assert avg_time < 0.001, f"Gap calculation took {avg_time*1000:.3f}ms (expected <1ms)"
+
+    def test_render_gap_performance(self, renderer):
+        """Test gap rendering performance."""
+        import time
+
+        # Run multiple iterations to measure performance
+        iterations = 1000
+        start_time = time.perf_counter()
+
+        for _ in range(iterations):
+            renderer._render_gap(24)
+
+        end_time = time.perf_counter()
+        avg_time = (end_time - start_time) / iterations
+
+        # Should complete in less than 1ms per call
+        assert avg_time < 0.001, f"Gap rendering took {avg_time*1000:.3f}ms (expected <1ms)"
+
+    def test_align_line_performance(self, renderer, monkeypatch):
+        """Test line alignment performance."""
+        import time
+        from collections import namedtuple
+
+        # Mock terminal size
+        TerminalSize = namedtuple('TerminalSize', ['columns', 'lines'])
+        def mock_get_terminal_size(fallback=None):
+            return TerminalSize(columns=120, lines=24)
+
+        import shutil
+        monkeypatch.setattr(shutil, 'get_terminal_size', mock_get_terminal_size)
+
+        left = "Left side segment"
+        right = "Right side segment"
+
+        # Run multiple iterations to measure performance
+        iterations = 1000
+        start_time = time.perf_counter()
+
+        for _ in range(iterations):
+            renderer._align_line(left, right)
+
+        end_time = time.perf_counter()
+        avg_time = (end_time - start_time) / iterations
+
+        # Should complete in less than 2ms per call (includes gap calculation + rendering)
+        assert avg_time < 0.002, f"Line alignment took {avg_time*1000:.3f}ms (expected <2ms)"
+
+    # =============================================================================
+    # Integration Tests
+    # =============================================================================
+
+    def test_full_statusline_render_with_spacing(self, renderer):
+        """Test complete statusLine rendering with spacing system."""
+        import json
+
+        # Create mock JSON input
+        mock_json = json.dumps({
+            "workspace": {
+                "current_dir": "/Users/dt/projects/dev-tools/aiterm",
+                "project_dir": "/Users/dt/projects/dev-tools/aiterm"
+            },
+            "model": {
+                "display_name": "Claude Sonnet 4.5"
+            },
+            "output_style": {
+                "name": "learning"
+            },
+            "session_id": "test-123",
+            "cost": {
+                "total_lines_added": 123,
+                "total_lines_removed": 45,
+                "total_duration_ms": 45000
+            }
+        })
+
+        # Render the full statusLine
+        output = renderer.render(mock_json)
+
+        # Should have two lines
+        lines = output.split('\n')
+        assert len([l for l in lines if l]) >= 2
+
+        # Should contain model name
+        assert 'Sonnet' in output
+
+        # Should contain box drawing characters (from Powerlevel10k style)
+        assert '╭─' in output
+        assert '╰─' in output
+
+        # Verify the spacing system is working by checking alignment
+        # Extract the visible content (strip ANSI codes)
+        import re
+        ansi_pattern = re.compile(r'\x1b\[[0-9;]*m')
+        for line in lines:
+            if line and '╭─' in line:
+                # First line should have left segment
+                clean_line = ansi_pattern.sub('', line)
+                # Should have project name or identifier
+                assert len(clean_line) > 10  # Has substantial content
+
+    def test_statusline_adaptive_spacing_terminal_resize(self, renderer, monkeypatch):
+        """Test spacing adapts to terminal width changes."""
+        from collections import namedtuple
+
+        TerminalSize = namedtuple('TerminalSize', ['columns', 'lines'])
+
+        left = "Left"
+        right = "Right"
+
+        # Test different terminal widths
+        test_widths = [80, 120, 160, 200]
+        previous_gap = None
+
+        for width in test_widths:
+            # Mock terminal width
+            def mock_get_terminal_size(fallback=None):
+                return TerminalSize(columns=width, lines=24)
+
+            import shutil
+            monkeypatch.setattr(shutil, 'get_terminal_size', mock_get_terminal_size)
+
+            # Calculate gap for this width
+            gap = renderer._calculate_gap(width)
+
+            # Verify gap is within bounds
+            min_gap = renderer.config.get('spacing.min_gap', 10)
+            max_gap = renderer.config.get('spacing.max_gap', 40)
+            assert min_gap <= gap <= max_gap
+
+            # Verify alignment works
+            aligned = renderer._align_line(left, right)
+            assert "Left" in aligned
+            assert "Right" in aligned
+
+            # Gap should increase with terminal width (until max_gap)
+            if previous_gap is not None and gap < max_gap:
+                assert gap >= previous_gap, f"Gap should increase or stay same: {previous_gap} -> {gap}"
+
+            previous_gap = gap
+
+    def test_spacing_presets_integration(self, renderer):
+        """Test all spacing presets work end-to-end."""
+        from collections import namedtuple
+        import shutil
+
+        TerminalSize = namedtuple('TerminalSize', ['columns', 'lines'])
+
+        # Mock terminal width
+        def mock_get_terminal_size(fallback=None):
+            return TerminalSize(columns=120, lines=24)
+
+        import pytest
+
+        # Save original get_terminal_size
+        original_get_terminal_size = shutil.get_terminal_size
+
+        try:
+            shutil.get_terminal_size = mock_get_terminal_size
+
+            left = "Left segment"
+            right = "Right segment"
+
+            # Test each preset
+            for preset in ['minimal', 'standard', 'spacious']:
+                renderer.config.set('spacing.mode', preset)
+
+                # Calculate gap
+                gap = renderer._calculate_gap(120)
+
+                # Render gap
+                gap_str = renderer._render_gap(gap)
+
+                # Verify visible length matches
+                visible_length = renderer._strip_ansi_length(gap_str)
+                assert visible_length == gap, f"Preset {preset}: gap length mismatch"
+
+                # Verify alignment works
+                aligned = renderer._align_line(left, right)
+                assert "Left segment" in aligned
+                assert "Right segment" in aligned
+
+        finally:
+            # Restore original function
+            shutil.get_terminal_size = original_get_terminal_size
+
+    # =============================================================================
+    # Config Persistence Tests
+    # =============================================================================
+
+    def test_spacing_config_persists_after_reload(self, tmp_path, monkeypatch):
+        """Test spacing settings persist across config reloads."""
+        # Create isolated config
+        config_file = tmp_path / "test_statusline.json"
+        monkeypatch.setenv('AITERM_CONFIG_DIR', str(tmp_path))
+
+        # Create first config instance
+        config1 = StatusLineConfig()
+        config1.set('spacing.mode', 'spacious')
+        config1.set('spacing.min_gap', 20)
+        config1.set('spacing.max_gap', 50)
+        config1.set('spacing.show_separator', False)
+
+        # Create second config instance (should load persisted values)
+        config2 = StatusLineConfig()
+
+        # Values should persist
+        assert config2.get('spacing.mode') == 'spacious'
+        assert config2.get('spacing.min_gap') == 20
+        assert config2.get('spacing.max_gap') == 50
+        assert config2.get('spacing.show_separator') == False
+
+    def test_spacing_config_overrides_persist(self, tmp_path, monkeypatch):
+        """Test manual spacing overrides persist correctly."""
+        # Create isolated config
+        config_file = tmp_path / "test_statusline.json"
+        monkeypatch.setenv('AITERM_CONFIG_DIR', str(tmp_path))
+
+        # Set preset first
+        config1 = StatusLineConfig()
+        config1.set('spacing.mode', 'standard')
+
+        # Override min/max
+        config1.set('spacing.min_gap', 15)
+        config1.set('spacing.max_gap', 30)
+
+        # Create new instance
+        config2 = StatusLineConfig()
+
+        # Both preset and overrides should persist
+        assert config2.get('spacing.mode') == 'standard'
+        assert config2.get('spacing.min_gap') == 15
+        assert config2.get('spacing.max_gap') == 30
+
+    def test_spacing_settings_survive_config_operations(self, tmp_path, monkeypatch):
+        """Test spacing settings survive save/load/reset operations."""
+        # Create isolated config
+        config_file = tmp_path / "test_statusline.json"
+        monkeypatch.setenv('AITERM_CONFIG_DIR', str(tmp_path))
+
+        config = StatusLineConfig()
+
+        # Set custom spacing
+        config.set('spacing.mode', 'minimal')
+        config.set('spacing.show_separator', False)
+
+        # Explicitly save (should happen automatically, but test it)
+        # Note: StatusLineConfig auto-saves on set(), so this tests that behavior
+
+        # Load again (should get saved values)
+        config2 = StatusLineConfig()
+        assert config2.get('spacing.mode') == 'minimal'
+        assert config2.get('spacing.show_separator') == False
+
+        # Reset single setting
+        config2.reset('spacing.mode')
+        assert config2.get('spacing.mode') == 'standard'  # Back to default
+        assert config2.get('spacing.show_separator') == False  # Other setting preserved
+
+        # Reset all
+        config2.reset()
+        assert config2.get('spacing.mode') == 'standard'  # Default
+        assert config2.get('spacing.show_separator') == True  # Default
