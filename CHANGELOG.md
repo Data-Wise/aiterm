@@ -4,6 +4,150 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [0.7.1] - 2026-01-02 - StatusLine Spacing Presets ✨
+
+**Tag:** v0.7.1
+**PyPI:** https://pypi.org/project/aiterm-dev/0.7.1/
+**Homebrew:** `brew upgrade data-wise/tap/aiterm`
+
+### 🎉 New Feature: Spacing Presets
+
+Configurable spacing system for gap between left and right Powerlevel10k segments.
+
+**New Command:**
+```bash
+ait statusline config spacing <preset>
+```
+
+**Spacing Presets:**
+
+| Preset | Gap Size | Range | Use Case |
+|--------|----------|-------|----------|
+| **minimal** | 15% of terminal width | 5-20 chars | Compact, information-dense |
+| **standard** | 20% of terminal width | 10-40 chars | Balanced (default) |
+| **spacious** | 30% of terminal width | 15-60 chars | Wide, maximum clarity |
+
+**Features:**
+- Dynamic gap calculation based on terminal width
+- Optional centered separator (`…` character) in dim gray
+- Min/max gap constraints (5-60 chars range)
+- Graceful degradation for narrow terminals
+- 4 new config settings (spacing.mode, min_gap, max_gap, show_separator)
+
+**Technical:**
+- SPACING_PRESETS constant with preset parameters
+- `_calculate_gap()` method for dynamic sizing
+- `_render_gap()` method with separator support
+- Updated `_align_line()` to use new spacing system
+
+**Testing:**
+- 12 comprehensive tests (all passing)
+- Gap calculation, rendering, and alignment tests
+- Config override and constraint tests
+- Visual testing at different terminal widths
+
+**Files Changed:**
+- `src/aiterm/statusline/config.py`: Added 4 spacing settings
+- `src/aiterm/statusline/renderer.py`: Added SPACING_PRESETS and 3 methods (+200 lines)
+- `src/aiterm/cli/statusline.py`: Added spacing command (+129 lines)
+- `tests/test_statusline_renderer.py`: Added TestSpacingFeatures (+199 lines)
+
+**Documentation:**
+- `docs/specs/SPEC-statusline-spacing-2026-01-02.md`: Implementation spec
+- `IMPLEMENTATION-SUMMARY-spacing-2026-01-02.md`: Feature summary
+
+### 📊 Statistics
+
+| Metric | Value |
+|--------|-------|
+| Files Changed | 6 |
+| Lines Added | 1,303 |
+| Tests Added | 12 |
+| Total Tests | 173 (all passing) |
+
+---
+
+## [0.7.0] - 2026-01-01 - StatusLine Minimal Redesign 🎨
+
+**Tag:** v0.7.0
+**PyPI:** https://pypi.org/project/aiterm-dev/0.7.0/
+**Homebrew:** `brew upgrade data-wise/tap/aiterm`
+
+### 🎉 Major Redesign: Minimal StatusLine
+
+Complete StatusLine redesign focusing on clarity and reduced visual clutter.
+
+**Key Changes:**
+- **Minimal Preset (Default):** Removed bloat - session duration, current time, lines changed, battery %, cost data
+- **Right-Side Worktree Display:** Adaptive layout showing worktree context on the right
+- **Smart Branch Truncation:** Preserves both start and end of branch names (not just prefix)
+- **Terminal Width Auto-Detection:** Responsive layout with proper ANSI code stripping
+
+**Visual Example:**
+```
+Main:     ╭─ ░▒▓ 📁 aiterm  main ▓▒░
+          ╰─ Sonnet 4.5
+
+Worktree: ╭─ ░▒▓ 📁 aiterm  feature-auth ▓▒░          ░▒▓ (wt) feature-auth ▓▒░
+          ╰─ Sonnet 4.5
+```
+
+**New Command:**
+```bash
+ait statusline config preset minimal    # Apply minimal preset
+ait statusline config preset default    # Restore defaults
+```
+
+**Features:**
+- Adaptive layout: Different display for main vs worktree branches
+- Worktree marker moved to right side: `░▒▓ (wt) feature-name ▓▒░`
+- Main branch shows worktree count or nothing
+- Smart branch truncation: `feature/...auth-system` (preserves both ends)
+- Terminal width detection with fallback to 120 chars
+
+**Technical:**
+- Updated `_build_line1()` for right-side segments
+- Added `_build_right_segments()` for worktree context
+- Added `_render_right_segment()` for P10k reversed style
+- Added `_align_line()` for dynamic padding
+- Added `_strip_ansi_length()` for accurate width calculation
+- Updated `_truncate_branch()` to preserve start/end
+
+**Testing:**
+- 24 new comprehensive tests (all passing)
+- Worktree display tests
+- Branch truncation tests
+- Layout adaptation tests
+
+**Bug Fixes:**
+- Fixed NoneType error when Claude Code sends `null` values in JSON
+- Changed defensive pattern from `data.get('key', {})` to `data.get('key') or {}`
+- Fixed 5 test failures due to v0.7.0 minimal preset defaults
+
+**Files Changed:**
+- `src/aiterm/statusline/renderer.py`: Major refactoring for right-side display
+- `src/aiterm/statusline/segments.py`: Worktree refactoring, smart truncation
+- `tests/test_statusline_renderer.py`: Updated test fixtures
+- `tests/test_statusline_worktree.py`: 24 new worktree tests
+
+**Documentation:**
+- `docs/guides/statusline-minimal.md`: Complete user guide
+- `docs/specs/SPEC-statusline-redesign-2026-01-01.md`: Implementation spec
+- `STATUSLINE-FIX-SUMMARY.md`: Bug fixes and feature summary
+- `BRAINSTORM-statusline-redesign-2026-01-01.md`: Design brainstorm
+
+### 📊 Statistics
+
+| Metric | Before | After | Change |
+|--------|--------|-------|--------|
+| Default metrics shown | 8 | 3 | -63% clutter |
+| Character count (main) | ~80 | ~60 | -25% |
+| Tests | 156 | 161 | +5 tests |
+| Test pass rate | 97% (5 failing) | 100% | All passing ✅ |
+| Critical bugs | 1 (NoneType) | 0 | Fixed ✅ |
+
+---
+
 ## [0.6.3] - 2025-12-31 - StatusLine System & CI Improvements 🎨
 
 **Tag:** v0.6.3
