@@ -1,21 +1,11 @@
-# Next Steps: aiterm v0.3.0 Planning
+# Next Steps: Implementing the Complete aiterm Vision
 
-**Updated:** 2025-12-26
-**Current Status:** v0.2.1 released to PyPI & Homebrew
-
----
-
-## ✅ COMPLETED (v0.2.0-v0.2.1)
-
-- [x] **v0.2.0:** Hook management, command library, MCP integration, docs helpers
-- [x] **v0.2.1:** PyPI publishing (`pip install aiterm-dev`), Homebrew fix, 9 REFCARDs
-- [x] **Distribution:** Available via Homebrew, PyPI, uv, pipx
-- [x] **Documentation:** 27+ pages deployed to GitHub Pages
-- [x] **Trusted Publishing:** GitHub Actions OIDC configured
+**Generated:** 2025-12-19
+**Current Status:** Vision complete, ready for implementation
 
 ---
 
-## 📋 NEXT ACTIONS (v0.3.0)
+## 📋 IMMEDIATE ACTIONS (This Week)
 
 ### 1. Commit All Brainstorm Documents ✅
 

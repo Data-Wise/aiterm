@@ -1,27 +1,4 @@
-# ROADMAP
-
-## Current Status: v0.2.1 ✅ RELEASED
-
-**Latest Release:** v0.2.1 (Dec 26, 2025)
-**PyPI:** https://pypi.org/project/aiterm-dev/
-**Homebrew:** `brew install data-wise/tap/aiterm`
-**Docs:** https://data-wise.github.io/aiterm/
-
-### Release History
-| Version | Date | Highlights |
-|---------|------|------------|
-| v0.2.1 | 2025-12-26 | PyPI publishing, Homebrew fix, 9 REFCARDs |
-| v0.2.0 | 2025-12-24 | 4 feature systems (hooks, commands, MCP, docs) |
-| v0.1.0 | 2025-12-16 | Initial release, core CLI |
-
-### Next: v0.3.0 (Planned)
-- Gemini CLI support
-- IDE integrations (Positron, Zed, VS Code)
-- Workflow automation enhancements
-
----
-
-# Historical: Week 1 MVP ✅ COMPLETE
+# ROADMAP - Week 1 MVP ✅ COMPLETE
 
 **Goal:** Transform aiterm → aiterm CLI tool
 
@@ -29,6 +6,8 @@
 **Target Version:** v0.1.0-dev
 **User:** DT (primary user testing)
 **Status:** 100% complete ✅ - Tagged and ready for release
+
+**Known Issue:** StatusLine bug in Claude Code v2.0.70 (documented in STATUSLINE-BUG.md) - does not affect aiterm functionality
 
 ---
 
@@ -253,40 +232,6 @@
 - Real-time preview
 - Session data integration (cost tracking, duration, changes)
 
-#### 4. Workflow Commands & Documentation Automation (Phase 2.6)
-**Status:** Planning complete, implementation planned
-**Created:** `/workflow:done` command (474 lines)
-
-**Core Features:**
-- Session completion with git-based activity detection
-- Automatic .STATUS file updates
-- Commit message generation
-- ADHD-optimized 30-second fast path
-
-**Enhancement Roadmap (3 Phases):**
-1. **Detection & Warnings** (3-4 hours)
-   - CLAUDE.md staleness detection (git diff)
-   - Orphaned documentation pages (grep)
-   - README/docs divergence checks
-   - Missing CHANGELOG entries
-
-2. **Auto-Updates** (4-6 hours)
-   - CHANGELOG generation from commits
-   - CLAUDE.md "What's New" section updates
-   - mkdocs.yml navigation sync
-   - Link validation and fixing
-
-3. **AI-Powered Generation** (8-12 hours)
-   - LLM-based documentation writing
-   - Interactive doc review interface
-   - Multi-document consistency checks
-   - Screenshot/diagram generation
-
-**Integration Points:**
-- Works with `/workflow:recap` for session restoration
-- Complements `/workflow:next` for decision support
-- Enhances git workflow with documentation awareness
-
 ### Quick Wins to Add:
 - `aiterm context show` - Current context info (already exists!)
 - `aiterm quota set` - Integration with existing `qu` command
@@ -294,7 +239,7 @@
 
 ### Timeline
 **Target:** 2 weeks after v0.1.0 release
-**Priority:** Hook management > MCP integration > StatusLine builder > Workflow automation
+**Priority:** Hook management > MCP integration > StatusLine builder
 
 ---
 
