@@ -98,10 +98,8 @@ class ProjectSegment:
         # Build content
         content = f"{project_icon} {dir_display}"
 
-        # Add worktree marker if in a worktree
-        if self.config.get('git.show_worktrees', True):
-            if self._is_worktree(project_dir):
-                content += " \033[38;5;245m(wt)\033[38;5;250m"
+        # Note: Worktree marker moved to right-side display in renderer.py
+        # Left-side (wt) marker removed to avoid duplication
 
         if r_version and self.config.get('display.show_r_version', True):
             content += f" \033[38;5;245m{r_version}\033[38;5;250m"
@@ -613,10 +611,10 @@ class GitSegment:
                 )
                 branch = result.stdout.strip() or "detached"
 
-            # Truncate long branch names
+            # Truncate long branch names with smart truncation
             max_len = self.config.get('git.truncate_branch_length', 32)
             if len(branch) > max_len:
-                branch = f"{branch[:12]}…{branch[-12:]}"
+                branch = self._truncate_branch(branch, max_len)
 
             # Check for changes
             has_changes = False
@@ -788,6 +786,61 @@ class GitSegment:
         except Exception:
             pass
         return False
+
+    def _get_worktree_name(self, cwd: str) -> Optional[str]:
+        """Get name of current worktree (or None if main).
+
+        Args:
+            cwd: Current working directory
+
+        Returns:
+            Worktree name if in a worktree, None if in main working directory
+        """
+        try:
+            result = subprocess.run(
+                ['git', '-C', cwd, 'rev-parse', '--git-dir'],
+                capture_output=True,
+                text=True,
+                timeout=1
+            )
+            if result.returncode == 0:
+                git_dir = result.stdout.strip()
+                # Worktrees: .git/worktrees/<name>
+                if '/worktrees/' in git_dir:
+                    # Extract name from path
+                    from pathlib import Path
+                    return Path(git_dir).name
+                return None  # Main working directory
+        except Exception:
+            pass
+        return None
+
+    def _truncate_branch(self, branch: str, max_len: int) -> str:
+        """Truncate branch name while preserving start and end.
+
+        Args:
+            branch: Branch name to truncate
+            max_len: Maximum length
+
+        Returns:
+            Truncated branch name with "..." in middle
+
+        Examples:
+            >>> _truncate_branch('feature/authentication-system-oauth2', 32)
+            'feature/...stem-oauth2'
+        """
+        if len(branch) <= max_len:
+            return branch
+
+        # Keep first 10 chars + "..." + last (max_len - 13) chars
+        keep_start = 10
+        keep_end = max_len - keep_start - 3
+
+        if keep_end < 5:
+            # If max_len too small, just use ellipsis at end
+            return branch[:max_len-3] + "..."
+
+        return f"{branch[:keep_start]}...{branch[-keep_end:]}"
 
 
 class ModelSegment:

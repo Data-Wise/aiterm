@@ -23,17 +23,44 @@ This file provides guidance to Claude Code when working with the aiterm project.
 
 ---
 
-## Current Version: v0.6.3 (Dec 31, 2025)
+## Current Version: v0.7.0 (Jan 1, 2026)
+
+### v0.7.0 Features - Minimal StatusLine Redesign
+
+**StatusLine Redesign:**
+
+- ✅ Minimal preset command (`ait statusline config preset minimal`)
+- ✅ Right-side Powerlevel10k worktree display (adaptive)
+- ✅ Smart branch truncation (preserves start/end, not just prefix)
+- ✅ Removed bloat: session duration, current time, lines changed, battery %, cost data
+- ✅ Adaptive layout (different for main vs worktree branches)
+- ✅ Terminal width auto-detection with proper ANSI code stripping
+- ✅ 24 new comprehensive tests (all passing)
+- ✅ Complete documentation guide
+
+**Visual Example:**
+
+```text
+Main:     ╭─ ░▒▓ 📁 aiterm  main ▓▒░
+          ╰─ Sonnet 4.5
+
+Worktree: ╭─ ░▒▓ 📁 aiterm  feature-auth ▓▒░          ░▒▓ (wt) feature-auth ▓▒░
+          ╰─ Sonnet 4.5
+```
+
+**Files:**
+
+- [docs/guides/statusline-minimal.md](docs/guides/statusline-minimal.md) - Complete user guide
+- [BRAINSTORM-statusline-redesign-2026-01-01.md](BRAINSTORM-statusline-redesign-2026-01-01.md) - Design brainstorm
+- [docs/specs/SPEC-statusline-redesign-2026-01-01.md](docs/specs/SPEC-statusline-redesign-2026-01-01.md) - Implementation spec
 
 ### v0.6.3 Features - StatusLine & Feature Workflow
 
-**StatusLine System:**
+**StatusLine System (Legacy):**
 - Comprehensive Claude Code statusLine customization
 - 32 configuration options across 6 categories (display, git, project, usage, theme, time)
-- Worktree display support (🌳N count, `(wt)` marker)
 - Configurable separator spacing (minimal/standard/relaxed)
 - Git branch truncation, ahead/behind indicators, dirty status
-- Session duration, current time, cost tracking
 - 57 comprehensive tests
 
 **Feature Workflow Enhancements:**
