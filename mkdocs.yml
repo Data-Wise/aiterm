@@ -129,6 +129,9 @@ nav:
           - Overview: guide/statusline.md
           - Minimal Preset: guides/statusline-minimal.md
           - Spacing Presets: guides/statusline-spacing.md
+      - Ghostty Terminal:
+          - Overview: guide/terminals.md
+          - Ghostty 1.2.x Features: guides/ghostty-1.2.x.md
       - Session Coordination: guide/sessions.md
       - IDE Integration: guide/ide-integration.md
       - Workflows: guide/workflows.md

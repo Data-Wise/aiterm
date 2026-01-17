@@ -66,6 +66,9 @@ font-size = 16
 theme = catppuccin-mocha
 window-padding-x = 10
 window-padding-y = 8
+macos-titlebar-style = native
+background-image = test.png
+mouse-scroll-multiplier = 1.5
 """
         )
 
@@ -75,6 +78,9 @@ window-padding-y = 8
         assert config.theme == "catppuccin-mocha"
         assert config.window_padding_x == 10
         assert config.window_padding_y == 8
+        assert config.macos_titlebar_style == "native"
+        assert config.background_image == "test.png"
+        assert config.mouse_scroll_multiplier == 1.5
 
     def test_parse_config_with_comments(self, tmp_path: Path):
         """Test parsing config ignores comments."""
@@ -665,6 +671,9 @@ class TestGhosttyProfile:
             font_size=14,
             theme="dracula",
             background_opacity=0.9,
+            macos_titlebar_style="tabs",
+            background_image="bg.jpg",
+            mouse_scroll_multiplier=2.0,
         )
 
         profile = GhosttyProfile.from_config("my-profile", config, "My coding setup")
@@ -674,6 +683,9 @@ class TestGhosttyProfile:
         assert profile.font_family == "Fira Code"
         assert profile.font_size == 14
         assert profile.background_opacity == 0.9
+        assert profile.macos_titlebar_style == "tabs"
+        assert profile.background_image == "bg.jpg"
+        assert profile.mouse_scroll_multiplier == 2.0
         assert profile.description == "My coding setup"
         assert profile.created_at  # Should have timestamp
 

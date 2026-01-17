@@ -115,6 +115,9 @@ def ghostty_config(
     table.add_row("Padding", f"x={config.window_padding_x}, y={config.window_padding_y}")
     table.add_row("Opacity", str(config.background_opacity))
     table.add_row("Cursor", config.cursor_style)
+    table.add_row("Titlebar Style", config.macos_titlebar_style)
+    table.add_row("Background Image", config.background_image or "[dim]None[/]")
+    table.add_row("Scroll Multiplier", str(config.mouse_scroll_multiplier))
 
     console.print(table)
 
@@ -127,6 +130,9 @@ def ghostty_config(
         "window-padding-y",
         "background-opacity",
         "cursor-style",
+        "macos-titlebar-style",
+        "background-image",
+        "mouse-scroll-multiplier",
     }
     if extra_keys:
         console.print("\n[bold]Other settings:[/]")

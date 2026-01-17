@@ -12,6 +12,7 @@ Each segment class handles rendering a specific part of the statusLine:
 
 import os
 import subprocess
+import sys
 from pathlib import Path
 from typing import Optional, Tuple
 import time
@@ -1110,6 +1111,20 @@ class LinesSegment:
         if lines_removed > 0:
             output += f"\033[{self.theme.lines_removed_fg}m/-{lines_removed}\033[0m"
 
+        # Ghostty 1.2.x Native Progress Bar (OSC 9;4)
+        from aiterm.terminal import detect_terminal, TerminalType
+        if detect_terminal() == TerminalType.GHOSTTY:
+            # Render lines added/removed as a balance progress bar
+            total = lines_added + lines_removed
+            if total > 0:
+                percent = int((lines_added / total) * 100)
+                # OSC 9;4;ST;NN
+                # ST: 0 (normal), 1 (success), 2 (error), 3 (indeterminate)
+                # NN: progress 0-100
+                status = 1 if lines_added >= lines_removed else 2
+                sys.stdout.write(f"\033]9;4;{status};{percent}\033\\")
+                sys.stdout.flush()
+
         return output
 
 
@@ -1168,4 +1183,20 @@ class UsageSegment:
 
         # Combine and add separator
         usage_str = " ".join(parts)
+        
+        # Ghostty 1.2.x Native Progress Bar (OSC 9;4)
+        from aiterm.terminal import detect_terminal, TerminalType
+        if detect_terminal() == TerminalType.GHOSTTY:
+            max_usage = 0
+            if session:
+                max_usage = max(max_usage, int((session.current / session.limit) * 100))
+            if weekly:
+                max_usage = max(max_usage, int((weekly.current / weekly.limit) * 100))
+            
+            if max_usage > 0:
+                threshold = self.config.get('usage.warning_threshold', 80)
+                status = 2 if max_usage >= threshold else 0
+                sys.stdout.write(f"\033]9;4;{status};{max_usage}\033\\")
+                sys.stdout.flush()
+
         return f"{get_separator(self.config, self.theme)}\033[38;5;2m📊{usage_str}\033[0m"

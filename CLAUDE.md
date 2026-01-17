@@ -7,6 +7,7 @@ This file provides guidance to Claude Code when working with the aiterm project.
 **aiterm** - AI Terminal Optimizer CLI for Claude Code, OpenCode, and Gemini CLI workflows.
 
 **What it does:**
+
 - Optimizes terminal setup (iTerm2, Ghostty, etc.) for AI coding workflows
 - Manages terminal profiles, context detection, and visual customization
 - Integrates with Claude Code CLI (hooks, commands, auto-approvals, MCP servers)
@@ -15,6 +16,7 @@ This file provides guidance to Claude Code when working with the aiterm project.
 - OpenCode and Gemini CLI configuration management
 
 **Tech Stack:**
+
 - **Language:** Python 3.10+
 - **CLI Framework:** Typer + Rich
 - **Testing:** pytest (849 tests, all passing)
@@ -23,7 +25,55 @@ This file provides guidance to Claude Code when working with the aiterm project.
 
 ---
 
-## Current Version: v0.7.1 (Jan 2, 2026)
+## Current Version: v0.7.2 (Jan 17, 2026)
+
+### v0.7.2 Features - Ghostty 1.2.x Integration & StatusBar Fix
+
+**Ghostty 1.2.x Support:**
+
+- ✅ New config keys: `macos-titlebar-style`, `background-image`, `mouse-scroll-multiplier`
+- ✅ Native progress bars (OSC 9;4) for Ghostty users
+- ✅ Full profile support for 1.2.x settings
+- ✅ CLI display of all new configuration options
+
+**StatusBar Critical Fix:**
+
+- ✅ Fixed `NameError: name 'sys' is not defined` in Claude Code status bar
+- ✅ Added missing `import sys` to segments.py
+- ✅ Verified with 166 passing tests
+
+**Quick Commands:**
+
+```bash
+# View Ghostty 1.2.x settings
+ait ghostty config
+
+# Set new Tahoe titlebar style
+ait ghostty set macos-titlebar-style tabs
+
+# Set background image
+ait ghostty set background-image ~/Pictures/bg.jpg
+
+# Test status bar rendering
+echo '{"workspace":{...}}' | ait statusline render
+```
+
+**Files:**
+
+- [src/aiterm/terminal/ghostty.py](src/aiterm/terminal/ghostty.py) - 1.2.x config support
+- [src/aiterm/cli/ghostty.py](src/aiterm/cli/ghostty.py) - Updated CLI
+- [src/aiterm/statusline/segments.py](src/aiterm/statusline/segments.py) - OSC 9;4 + sys import fix
+
+**Statistics:**
+
+| Metric | Value |
+|--------|-------|
+| Files Changed | 4 |
+| Lines Added | 150 |
+| New Config Keys | 3 |
+| Tests Passing | 166 |
+
+---
 
 ### v0.7.1 Features - StatusLine Spacing Presets
 
@@ -119,6 +169,7 @@ Worktree: ╭─ ░▒▓ 📁 aiterm  feature-auth ▓▒░          ░▒�
 ### v0.6.3 Features - StatusLine & Feature Workflow
 
 **StatusLine System (Legacy):**
+
 - Comprehensive Claude Code statusLine customization
 - 32 configuration options across 6 categories (display, git, project, usage, theme, time)
 - Configurable separator spacing (minimal/standard/relaxed)
@@ -126,6 +177,7 @@ Worktree: ╭─ ░▒▓ 📁 aiterm  feature-auth ▓▒░          ░▒�
 - 57 comprehensive tests
 
 **Feature Workflow Enhancements:**
+
 - `ait feature promote` - Create PR to dev branch
 - `ait feature release` - Create PR from dev to main
 - `ait recipes` - Alias for workflow templates
@@ -133,6 +185,7 @@ Worktree: ╭─ ░▒▓ 📁 aiterm  feature-auth ▓▒░          ░▒�
 - Draft PR support, custom titles/bodies, browser opening
 
 **CI/Testing Improvements:**
+
 - Documentation strict mode (catches orphaned pages, broken links)
 - All 849 tests passing across Python 3.10-3.13 (Ubuntu + macOS)
 - ANSI code handling in CLI tests
@@ -141,6 +194,7 @@ Worktree: ╭─ ░▒▓ 📁 aiterm  feature-auth ▓▒░          ░▒�
 ### v0.6.0 Features - Interactive Tutorial System
 
 **Tutorial System** (`ait learn`):
+
 - `ait learn` - List all tutorials
 - `ait learn start <level>` - Begin a tutorial
 - `ait learn start <level> -s N` - Resume from step
@@ -155,6 +209,7 @@ Worktree: ╭─ ░▒▓ 📁 aiterm  feature-auth ▓▒░          ░▒�
 | Advanced | 13 | ~35 min | Release, craft, MCP, IDE |
 
 **Visual Documentation:**
+
 - 9 GIF demos (VHS-generated)
 - 6 Mermaid diagrams
 - 4 tutorial pages
@@ -311,16 +366,19 @@ docs: update commands reference
 ## Integration Points
 
 ### Craft Plugin (v1.8.0+)
+
 - Location: `~/.claude/plugins/craft`
 - Source: `~/projects/dev-tools/claude-plugins/craft`
 - 60 commands, 16 skills, 8 agents
 
 ### Session Coordination
+
 - Hooks: `~/.claude/hooks/session-register.sh`, `session-cleanup.sh`
 - Data: `~/.claude/sessions/active/`, `~/.claude/sessions/history/`
 - Auto-registers sessions on Claude Code start
 
 ### Terminal Support
+
 | Terminal | Features |
 |----------|----------|
 | iTerm2 | Profiles, badges, status bar |
@@ -363,12 +421,14 @@ gh workflow run homebrew-release.yml -f version=0.6.0
 ### PyPI Publishing
 
 **Option 1: Local CLI (working)**
+
 ```bash
 ait release pypi  # Uses uv build + twine
 ```
 
 **Option 2: GitHub Actions (requires PyPI setup)**
-1. Go to https://pypi.org/manage/account/publishing/
+
+1. Go to <https://pypi.org/manage/account/publishing/>
 2. Add trusted publisher for `Data-Wise/aiterm`
 3. Then: `gh workflow run pypi-release.yml -f version=X.Y.Z`
 
@@ -376,7 +436,7 @@ ait release pypi  # Uses uv build + twine
 
 ## Links
 
-- **Repo:** https://github.com/Data-Wise/aiterm
-- **Docs:** https://Data-Wise.github.io/aiterm/
-- **PyPI:** https://pypi.org/project/aiterm-dev/
+- **Repo:** <https://github.com/Data-Wise/aiterm>
+- **Docs:** <https://Data-Wise.github.io/aiterm/>
+- **PyPI:** <https://pypi.org/project/aiterm-dev/>
 - **Homebrew:** `brew install data-wise/tap/aiterm`

@@ -4,10 +4,79 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [0.7.2] - 2026-01-17 - Ghostty 1.2.x Integration & StatusBar Fix 🎨
+
+**Tag:** v0.7.2
+**PyPI:** <https://pypi.org/project/aiterm-dev/0.7.2/>
+**Homebrew:** `brew upgrade data-wise/tap/aiterm`
+
+### 🎉 New Features: Ghostty 1.2.x Support
+
+Full integration with Ghostty 1.2.x features (latest: 1.2.3).
+
+**New Configuration Keys:**
+
+- `macos-titlebar-style` - Support for Tahoe titlebar styles (native/tabs)
+- `background-image` - Terminal background image support
+- `mouse-scroll-multiplier` - Precision scroll control
+
+**Native Progress Bars (OSC 9;4):**
+
+- **Lines Changed**: Visualizes code changes as success/error progress bar
+- **Usage Tracking**: Shows API usage with warning thresholds
+- Automatically enabled when Ghostty is detected
+
+**CLI Enhancements:**
+
+- `ait ghostty config` now displays all 1.2.x settings
+- Full profile support for new configuration keys
+- Updated `ait ghostty set` for new options
+
+### 🐛 Critical Fix: StatusBar sys Import
+
+**Issue:** `NameError: name 'sys' is not defined` in Claude Code status bar
+
+**Root Cause:** Missing `import sys` in `segments.py` after OSC 9;4 implementation
+
+**Resolution:**
+
+- Added missing import statement
+- Verified status bar rendering with test cases
+- All 166 tests passing
+
+### 📊 Statistics
+
+| Metric | Value |
+|--------|-------|
+| Files Changed | 4 |
+| Lines Added | 150 |
+| New Config Keys | 3 |
+| Tests Updated | 3 |
+| Total Tests | 166 (all passing) |
+
+### 🔧 Technical Details
+
+**Files Modified:**
+
+- `src/aiterm/terminal/ghostty.py`: Added 1.2.x config support
+- `src/aiterm/cli/ghostty.py`: Updated CLI display
+- `src/aiterm/statusline/segments.py`: Added sys import + OSC 9;4
+- `tests/test_ghostty.py`: Added 1.2.x field tests
+
+**Ghostty Features Researched:**
+
+- Command Palette (Ctrl+Shift+P)
+- Graphical Progress Bars (OSC 9;4)
+- macOS Tahoe support (Liquid Glass style)
+- Background image support
+- Mouse scroll multiplier for precision devices
+
+---
+
 ## [0.7.1] - 2026-01-02 - StatusLine Spacing Presets ✨
 
 **Tag:** v0.7.1
-**PyPI:** https://pypi.org/project/aiterm-dev/0.7.1/
+**PyPI:** <https://pypi.org/project/aiterm-dev/0.7.1/>
 **Homebrew:** `brew upgrade data-wise/tap/aiterm`
 
 ### 🎉 New Feature: Spacing Presets
@@ -15,6 +84,7 @@ All notable changes to this project will be documented in this file.
 Configurable spacing system for gap between left and right Powerlevel10k segments.
 
 **New Command:**
+
 ```bash
 ait statusline config spacing <preset>
 ```
@@ -28,6 +98,7 @@ ait statusline config spacing <preset>
 | **spacious** | 30% of terminal width | 15-60 chars | Wide, maximum clarity |
 
 **Features:**
+
 - Dynamic gap calculation based on terminal width
 - Optional centered separator (`…` character) in dim gray
 - Min/max gap constraints (5-60 chars range)
@@ -35,24 +106,28 @@ ait statusline config spacing <preset>
 - 4 new config settings (spacing.mode, min_gap, max_gap, show_separator)
 
 **Technical:**
+
 - SPACING_PRESETS constant with preset parameters
 - `_calculate_gap()` method for dynamic sizing
 - `_render_gap()` method with separator support
 - Updated `_align_line()` to use new spacing system
 
 **Testing:**
+
 - 12 comprehensive tests (all passing)
 - Gap calculation, rendering, and alignment tests
 - Config override and constraint tests
 - Visual testing at different terminal widths
 
 **Files Changed:**
+
 - `src/aiterm/statusline/config.py`: Added 4 spacing settings
 - `src/aiterm/statusline/renderer.py`: Added SPACING_PRESETS and 3 methods (+200 lines)
 - `src/aiterm/cli/statusline.py`: Added spacing command (+129 lines)
 - `tests/test_statusline_renderer.py`: Added TestSpacingFeatures (+199 lines)
 
 **Documentation:**
+
 - `docs/specs/SPEC-statusline-spacing-2026-01-02.md`: Implementation spec
 - `IMPLEMENTATION-SUMMARY-spacing-2026-01-02.md`: Feature summary
 
@@ -70,7 +145,7 @@ ait statusline config spacing <preset>
 ## [0.7.0] - 2026-01-01 - StatusLine Minimal Redesign 🎨
 
 **Tag:** v0.7.0
-**PyPI:** https://pypi.org/project/aiterm-dev/0.7.0/
+**PyPI:** <https://pypi.org/project/aiterm-dev/0.7.0/>
 **Homebrew:** `brew upgrade data-wise/tap/aiterm`
 
 ### 🎉 Major Redesign: Minimal StatusLine
@@ -78,12 +153,14 @@ ait statusline config spacing <preset>
 Complete StatusLine redesign focusing on clarity and reduced visual clutter.
 
 **Key Changes:**
+
 - **Minimal Preset (Default):** Removed bloat - session duration, current time, lines changed, battery %, cost data
 - **Right-Side Worktree Display:** Adaptive layout showing worktree context on the right
 - **Smart Branch Truncation:** Preserves both start and end of branch names (not just prefix)
 - **Terminal Width Auto-Detection:** Responsive layout with proper ANSI code stripping
 
 **Visual Example:**
+
 ```
 Main:     ╭─ ░▒▓ 📁 aiterm  main ▓▒░
           ╰─ Sonnet 4.5
@@ -93,12 +170,14 @@ Worktree: ╭─ ░▒▓ 📁 aiterm  feature-auth ▓▒░          ░▒�
 ```
 
 **New Command:**
+
 ```bash
 ait statusline config preset minimal    # Apply minimal preset
 ait statusline config preset default    # Restore defaults
 ```
 
 **Features:**
+
 - Adaptive layout: Different display for main vs worktree branches
 - Worktree marker moved to right side: `░▒▓ (wt) feature-name ▓▒░`
 - Main branch shows worktree count or nothing
@@ -106,6 +185,7 @@ ait statusline config preset default    # Restore defaults
 - Terminal width detection with fallback to 120 chars
 
 **Technical:**
+
 - Updated `_build_line1()` for right-side segments
 - Added `_build_right_segments()` for worktree context
 - Added `_render_right_segment()` for P10k reversed style
@@ -114,23 +194,27 @@ ait statusline config preset default    # Restore defaults
 - Updated `_truncate_branch()` to preserve start/end
 
 **Testing:**
+
 - 24 new comprehensive tests (all passing)
 - Worktree display tests
 - Branch truncation tests
 - Layout adaptation tests
 
 **Bug Fixes:**
+
 - Fixed NoneType error when Claude Code sends `null` values in JSON
 - Changed defensive pattern from `data.get('key', {})` to `data.get('key') or {}`
 - Fixed 5 test failures due to v0.7.0 minimal preset defaults
 
 **Files Changed:**
+
 - `src/aiterm/statusline/renderer.py`: Major refactoring for right-side display
 - `src/aiterm/statusline/segments.py`: Worktree refactoring, smart truncation
 - `tests/test_statusline_renderer.py`: Updated test fixtures
 - `tests/test_statusline_worktree.py`: 24 new worktree tests
 
 **Documentation:**
+
 - `docs/guides/statusline-minimal.md`: Complete user guide
 - `docs/specs/SPEC-statusline-redesign-2026-01-01.md`: Implementation spec
 - `STATUSLINE-FIX-SUMMARY.md`: Bug fixes and feature summary
@@ -151,7 +235,7 @@ ait statusline config preset default    # Restore defaults
 ## [0.6.3] - 2025-12-31 - StatusLine System & CI Improvements 🎨
 
 **Tag:** v0.6.3
-**PyPI:** https://pypi.org/project/aiterm-dev/0.6.3/
+**PyPI:** <https://pypi.org/project/aiterm-dev/0.6.3/>
 **Homebrew:** `brew upgrade data-wise/tap/aiterm`
 
 ### 🎉 Major Features
@@ -171,6 +255,7 @@ Complete Claude Code statusLine customization system with 32 configuration optio
 | `ait statusline config reset [KEY]` | Reset to defaults |
 
 **Features:**
+
 - **6 Configuration Categories:** display, git, project, usage, theme, time
 - **Worktree Display:** 🌳N count when multiple worktrees, `(wt)` marker in non-main
 - **Configurable Spacing:** minimal (1 space), standard (2 spaces), relaxed (3 spaces)
@@ -187,6 +272,7 @@ Complete Claude Code statusLine customization system with 32 configuration optio
 | `ait recipes` | Alias for workflow templates |
 
 **Features:**
+
 - Automated PR creation using gh CLI
 - Draft PR support (`--draft` flag)
 - Custom titles and bodies
@@ -230,7 +316,7 @@ Complete Claude Code statusLine customization system with 32 configuration optio
 ## [0.6.0] - 2025-12-30 - Interactive Tutorial System 📚
 
 **Tag:** v0.6.0
-**PyPI:** https://pypi.org/project/aiterm-dev/0.6.0/
+**PyPI:** <https://pypi.org/project/aiterm-dev/0.6.0/>
 **Homebrew:** `brew upgrade data-wise/tap/aiterm`
 
 ### 🎉 Major Features
@@ -307,7 +393,7 @@ Progressive learning with 3 levels (31 total steps):
 ## [0.5.0] - 2025-12-30 - Release Automation 🚀
 
 **Tag:** v0.5.0
-**PyPI:** https://pypi.org/project/aiterm-dev/0.5.0/
+**PyPI:** <https://pypi.org/project/aiterm-dev/0.5.0/>
 **Homebrew:** `brew upgrade data-wise/tap/aiterm`
 
 ### 🎉 Major Features
@@ -356,7 +442,7 @@ Complete release automation CLI for streamlined publishing workflow.
 ## [0.4.0] - 2025-12-30 - Workflow Automation & Craft Integration 🚀
 
 **Tag:** v0.4.0
-**PyPI:** https://pypi.org/project/aiterm-dev/0.4.0/
+**PyPI:** <https://pypi.org/project/aiterm-dev/0.4.0/>
 **Homebrew:** `brew upgrade data-wise/tap/aiterm`
 
 ### 🎉 Major Features
@@ -364,6 +450,7 @@ Complete release automation CLI for streamlined publishing workflow.
 Three complete feature systems for workflow automation:
 
 #### Phase 2: Craft Plugin Management (`ait craft`)
+
 - **Craft CLI** - Manage Claude Code's craft plugin
   - `ait craft status` - Show craft plugin installation status and overview
   - `ait craft list` - List available craft commands, skills, and agents
@@ -375,6 +462,7 @@ Three complete feature systems for workflow automation:
 - **19 tests** for craft plugin management
 
 #### Phase 3: Session-Aware Workflows (`ait workflows`)
+
 - **Workflow Runner** with Claude Code session awareness
   - `ait workflows status` - Check session status and available workflows
   - `ait workflows run <name>` - Run workflow with session task updates
@@ -383,6 +471,7 @@ Three complete feature systems for workflow automation:
 - **Session requirement checks** - Some workflows require active Claude Code session
 
 #### Phase 3 Quick Wins: Advanced Workflow Features
+
 - **13 Built-in Workflows:**
   - `test` - Run project tests (auto-detected)
   - `lint` - Run linter (ruff/eslint/lintr)
@@ -422,7 +511,7 @@ Three complete feature systems for workflow automation:
 ## [0.3.15] - 2025-12-30 - Ghostty Full iTerm2 Parity
 
 **Tag:** v0.3.15
-**PyPI:** https://pypi.org/project/aiterm-dev/0.3.15/
+**PyPI:** <https://pypi.org/project/aiterm-dev/0.3.15/>
 **Homebrew:** `brew upgrade data-wise/tap/aiterm`
 
 Phase 0.8 Complete - Ghostty now has full feature parity with iTerm2!
@@ -430,6 +519,7 @@ Phase 0.8 Complete - Ghostty now has full feature parity with iTerm2!
 ### Added
 
 #### Phase 0.8.1-0.8.2: Ghostty Profile & Backup Management
+
 - **Profile Management** - Save and switch between Ghostty configurations
   - `ait ghostty profile list` - List saved profiles
   - `ait ghostty profile show <name>` - Show profile details
@@ -443,6 +533,7 @@ Phase 0.8 Complete - Ghostty now has full feature parity with iTerm2!
   - `ait ghostty restore` (no args) - List available backups
 
 #### Phase 0.8.3: Ghostty Keybind Management
+
 - **Keybind Management** - Manage Ghostty keyboard shortcuts
   - `ait ghostty keybind list` - List current keybinds from config
   - `ait ghostty keybind add <trigger> <action>` - Add a keybind
@@ -452,6 +543,7 @@ Phase 0.8 Complete - Ghostty now has full feature parity with iTerm2!
   - Supports prefixes: `global:`, `unconsumed:`, `all:`
 
 #### Phase 0.8.4: Ghostty Session Management
+
 - **Session Management** - Save and restore terminal layouts
   - `ait ghostty session list` - List saved sessions
   - `ait ghostty session show <name>` - Show session details
@@ -463,6 +555,7 @@ Phase 0.8 Complete - Ghostty now has full feature parity with iTerm2!
   - Layout types: single, split-h, split-v, grid
 
 ### Tests
+
 - 96 Ghostty tests total (34 new for keybind/session management)
 
 ---
@@ -470,12 +563,13 @@ Phase 0.8 Complete - Ghostty now has full feature parity with iTerm2!
 ## [0.3.13] - 2025-12-30 - Feature Workflow & Ghost Aliases
 
 **Tag:** v0.3.13
-**PyPI:** https://pypi.org/project/aiterm-dev/0.3.13/
+**PyPI:** <https://pypi.org/project/aiterm-dev/0.3.13/>
 **Homebrew:** `brew upgrade data-wise/tap/aiterm`
 
 ### Added
 
 #### Phase 0.7: Quick Wins
+
 - **Ghost Aliases** - Shortcuts for Ghostty terminal management
   - `ait ghost` - Show Ghostty status (alias for `ait ghostty status`)
   - `ait ghost theme [name]` - List or apply Ghostty theme
@@ -487,6 +581,7 @@ Phase 0.8 Complete - Ghostty now has full feature parity with iTerm2!
   - Uses appropriate backend for each terminal
 
 #### Phase 1b: Feature Workflow Commands
+
 - **Feature Status** - `ait feature status`
   - Rich pipeline visualization (main → dev → features)
   - Shows worktree locations for each feature
@@ -505,6 +600,7 @@ Phase 0.8 Complete - Ghostty now has full feature parity with iTerm2!
   - Use `--dry-run` to preview deletions
 
 ### Tests
+
 - 17 new tests for feature CLI (all passing)
 
 ---
@@ -512,10 +608,11 @@ Phase 0.8 Complete - Ghostty now has full feature parity with iTerm2!
 ## [0.3.12] - 2025-12-30 - Version Display Fix
 
 **Tag:** v0.3.12
-**PyPI:** https://pypi.org/project/aiterm-dev/0.3.12/
+**PyPI:** <https://pypi.org/project/aiterm-dev/0.3.12/>
 **Homebrew:** `brew upgrade data-wise/tap/aiterm`
 
 ### Fixed
+
 - **Version Display** - Fixed mismatch between `--version` output and package version
   - `__version__` in `__init__.py` now syncs with `pyproject.toml`
 - **CI Workflow** - Fixed checkout ref handling for `workflow_dispatch` triggers
@@ -526,10 +623,11 @@ Phase 0.8 Complete - Ghostty now has full feature parity with iTerm2!
 ## [0.3.11] - 2025-12-30 - XDG Config Support
 
 **Tag:** v0.3.11
-**PyPI:** https://pypi.org/project/aiterm-dev/0.3.11/
+**PyPI:** <https://pypi.org/project/aiterm-dev/0.3.11/>
 **Homebrew:** `brew upgrade data-wise/tap/aiterm`
 
 ### Added
+
 - **XDG-Compliant Configuration** - Config paths now follow XDG Base Directory Specification
   - Default config directory: `~/.config/aiterm/`
   - Config file: `~/.config/aiterm/config.toml`
@@ -546,6 +644,7 @@ Phase 0.8 Complete - Ghostty now has full feature parity with iTerm2!
   - `config edit` - Open config in $EDITOR
 
 ### Documentation
+
 - `docs/proposals/XDG-CONFIG-MIGRATION.md` - Full migration proposal
 - Updated `docs/reference/configuration.md` - XDG paths and environment variables
 - Updated `docs/reference/commands.md` - Config command reference
@@ -555,10 +654,11 @@ Phase 0.8 Complete - Ghostty now has full feature parity with iTerm2!
 ## [0.3.10] - 2025-12-29 - flow-cli Integration
 
 **Tag:** v0.3.10
-**PyPI:** https://pypi.org/project/aiterm-dev/0.3.10/
+**PyPI:** <https://pypi.org/project/aiterm-dev/0.3.10/>
 **Homebrew:** `brew upgrade data-wise/tap/aiterm`
 
 ### Added
+
 - **flow-cli Integration** - New `tm` dispatcher for flow-cli
   - `tm title <text>` - Set tab/window title (shell-native, instant)
   - `tm profile <name>` - Switch iTerm2 profile (shell-native)
@@ -577,11 +677,13 @@ Phase 0.8 Complete - Ghostty now has full feature parity with iTerm2!
   - Caveats show manual installation instructions
 
 ### Removed
+
 - **Legacy ZSH** - Removed `zsh/iterm2-integration.zsh` (186 lines)
   - Replaced by `flow-integration/aiterm.zsh`
   - All functionality preserved in new dispatcher
 
 ### Documentation
+
 - `docs/design/TERMINAL-DISPATCHER-DESIGN.md` - Naming research, escape sequences, sync mechanism
 - `docs/proposals/AITERM-IN-FLOW-CLI.md` - Integration architecture proposal
 - `docs/proposals/ZSH-DELEGATION-FLOW-CLI.md` - Delegation strategy proposal
@@ -591,10 +693,11 @@ Phase 0.8 Complete - Ghostty now has full feature parity with iTerm2!
 ## [0.3.9] - 2025-12-29 - Ghostty Terminal Support
 
 **Tag:** v0.3.9
-**PyPI:** https://pypi.org/project/aiterm-dev/0.3.9/
+**PyPI:** <https://pypi.org/project/aiterm-dev/0.3.9/>
 **Homebrew:** `brew upgrade data-wise/tap/aiterm`
 
 ### Added
+
 - **Ghostty Terminal Support** - Full integration with Ghostty terminal emulator
   - Auto-detection when running in Ghostty (`TERM_PROGRAM=ghostty`)
   - Version detection (channel, build config)
@@ -625,6 +728,7 @@ Phase 0.8 Complete - Ghostty now has full feature parity with iTerm2!
   - Theme list immutability tests
 
 ### Changed
+
 - **CI Pipelines** - Migrated from pip to uv for faster builds
   - `publish.yml`: Faster PyPI publishing
   - `docs.yml`: Faster documentation builds
@@ -632,6 +736,7 @@ Phase 0.8 Complete - Ghostty now has full feature parity with iTerm2!
 - **Terminal Detection** - Now supports 6 terminals (iTerm2, Ghostty, Kitty, Alacritty, WezTerm, Terminal.app)
 
 ### Documentation
+
 - New `docs/guide/terminals.md` - Multi-terminal support guide
 - Updated commands reference with Ghostty CLI
 - Added IDEAS.md with v0.4.0 planning and flow-cli integration brainstorm
@@ -641,10 +746,11 @@ Phase 0.8 Complete - Ghostty now has full feature parity with iTerm2!
 ## [0.3.7] - 2025-12-27 - Craft v1.6.0 Integration
 
 **Tag:** v0.3.7
-**PyPI:** https://pypi.org/project/aiterm-dev/0.3.7/
+**PyPI:** <https://pypi.org/project/aiterm-dev/0.3.7/>
 **Homebrew:** `brew upgrade data-wise/tap/aiterm`
 
 ### Documentation
+
 - Updated CLAUDE.md with Craft v1.6.0-dev integration
   - 58 commands available for workflow recipes (was 53)
   - 15 skills for intelligent task routing (was 13)
@@ -653,6 +759,7 @@ Phase 0.8 Complete - Ghostty now has full feature parity with iTerm2!
 - Updated V0.4.0-PLAN.md with current version references
 
 ### Integration
+
 - **Craft plugin v1.6.0-dev** compatibility
   - New `/craft:docs:update` - Smart universal documentation updater
   - New `/craft:docs:feature` - Comprehensive feature documentation
@@ -664,10 +771,11 @@ Phase 0.8 Complete - Ghostty now has full feature parity with iTerm2!
 ## [0.3.6] - 2025-12-27 - curl Installation Script
 
 **Tag:** v0.3.6
-**PyPI:** https://pypi.org/project/aiterm-dev/0.3.6/
+**PyPI:** <https://pypi.org/project/aiterm-dev/0.3.6/>
 **Homebrew:** `brew upgrade data-wise/tap/aiterm`
 
 ### Added
+
 - **install.sh:** Universal curl-based installer
   - Auto-detects best method: uv → pipx → brew → pip
   - `INSTALL_METHOD` env var for method override
@@ -679,6 +787,7 @@ curl -fsSL https://raw.githubusercontent.com/Data-Wise/aiterm/main/install.sh | 
 ```
 
 ### Documentation
+
 - Updated README with curl install as primary option
 - Updated docs/GETTING-STARTED.md with Quick Install tab
 - Updated docs/index.md with dynamic PyPI badge
@@ -692,10 +801,11 @@ curl -fsSL https://raw.githubusercontent.com/Data-Wise/aiterm/main/install.sh | 
 ## [0.3.5] - 2025-12-27 - Diagnostic Commands & Enhanced Version
 
 **Tag:** v0.3.5
-**PyPI:** https://pypi.org/project/aiterm-dev/0.3.5/
+**PyPI:** <https://pypi.org/project/aiterm-dev/0.3.5/>
 **Homebrew:** `brew upgrade data-wise/tap/aiterm`
 
 ### Added
+
 - **hello command:** `ait hello` - Simple diagnostic greeting
   - `ait hello --name <name>` for personalized greeting
 - **goodbye command:** `ait goodbye` - Farewell message
@@ -706,10 +816,12 @@ curl -fsSL https://raw.githubusercontent.com/Data-Wise/aiterm/main/install.sh | 
 - **18 new CLI tests** for diagnostic commands
 
 ### Enhanced
+
 - **--version flag:** Now shows Python version, platform info, and install path
   - Rich formatted panel output
 
 ### Developer Notes
+
 - Added via Craft Orchestrator v2.1 dogfooding tests
 - Validated: live orchestration, 4-agent stress test, session persistence
 
@@ -718,10 +830,11 @@ curl -fsSL https://raw.githubusercontent.com/Data-Wise/aiterm/main/install.sh | 
 ## [0.3.4] - 2025-12-27 - OpenCode MCP Server Tools
 
 **Tag:** v0.3.4
-**PyPI:** https://pypi.org/project/aiterm-dev/0.3.4/
+**PyPI:** <https://pypi.org/project/aiterm-dev/0.3.4/>
 **Homebrew:** `brew upgrade data-wise/tap/aiterm`
 
 ### Added
+
 - **MCP server test command:** `ait opencode servers test <name>` - Test individual server startup
 - **MCP server health check:** `ait opencode servers health` - Check all enabled servers at once
 - **MCP server add/remove:** `ait opencode servers add/remove` - Manage server configurations
@@ -730,6 +843,7 @@ curl -fsSL https://raw.githubusercontent.com/Data-Wise/aiterm/main/install.sh | 
 - **Integration test marker:** `pytest -m integration` to run actual server tests
 
 ### Changed
+
 - **OpenCode schema v1.0.203 compatibility:**
   - Use singular keys: `agent` (not `agents`), `command` (not `commands`)
   - Commands require `template` field (not `command`)
@@ -738,6 +852,7 @@ curl -fsSL https://raw.githubusercontent.com/Data-Wise/aiterm/main/install.sh | 
   - Keybinds are not supported (show informational message)
 
 ### Usage
+
 ```bash
 # Test individual server
 ait opencode servers test filesystem
@@ -757,21 +872,24 @@ ait opencode servers add myserver --command "npx -y my-mcp-server"
 ## [0.3.3] - 2025-12-26 - CLI Test Enhancements
 
 **Tag:** v0.3.3
-**PyPI:** https://pypi.org/project/aiterm-dev/0.3.3/
+**PyPI:** <https://pypi.org/project/aiterm-dev/0.3.3/>
 **Homebrew:** `brew upgrade data-wise/tap/aiterm`
 
 ### Added
+
 - **JUnit XML output** for CLI tests (`--junit results.xml`)
 - **Performance benchmarking** for CLI tests (`--benchmark`)
 - **GitHub Actions integration** with test result upload
 - Performance summary showing fast/medium/slow test distribution
 
 ### Changed
+
 - Improved interactive test runner with Ghostty AppleScript support
 - Simplified interactive test flow (run → show → judge)
 - Enhanced terminal detection for Claude Code context
 
 ### Usage
+
 ```bash
 # Run with benchmarks
 bash tests/cli/automated-tests.sh --benchmark
@@ -787,6 +905,7 @@ bash tests/cli/automated-tests.sh --junit test-results.xml
 **Tag:** v0.3.2
 
 ### Fixed
+
 - Session prune command stability improvements
 
 ---
@@ -796,6 +915,7 @@ bash tests/cli/automated-tests.sh --junit test-results.xml
 **Tag:** v0.3.1
 
 ### Added
+
 - `ait sessions prune` command to clean up stale session files
 
 ---
@@ -804,13 +924,14 @@ bash tests/cli/automated-tests.sh --junit test-results.xml
 
 **Status:** Released
 **Tag:** v0.3.0
-**PyPI:** https://pypi.org/project/aiterm-dev/0.3.0/
+**PyPI:** <https://pypi.org/project/aiterm-dev/0.3.0/>
 **Homebrew:** `brew upgrade data-wise/tap/aiterm`
-**Documentation:** https://Data-Wise.github.io/aiterm/
+**Documentation:** <https://Data-Wise.github.io/aiterm/>
 
 ### 🎉 Major Features
 
 #### Phase 4.1: IDE Integrations (`ait ide`)
+
 Multi-IDE support for AI-assisted development workflows.
 
 - **Supported IDEs:** VS Code, Positron, Zed, Cursor, Windsurf
@@ -823,6 +944,7 @@ Multi-IDE support for AI-assisted development workflows.
   - IDE installation detection
 
 #### Phase 4.2: Session Coordination (`ait sessions`)
+
 Automatic tracking and coordination of parallel Claude Code sessions.
 
 - **Hook-based auto-registration:** Sessions auto-register when Claude Code starts
@@ -966,15 +1088,16 @@ uv tool upgrade aiterm-dev
 
 **Status:** Published to PyPI & Homebrew
 **Tag:** v0.2.1
-**PyPI:** https://pypi.org/project/aiterm-dev/0.2.1/
+**PyPI:** <https://pypi.org/project/aiterm-dev/0.2.1/>
 **Homebrew:** `brew install data-wise/tap/aiterm`
-**Documentation:** https://Data-Wise.github.io/aiterm/
+**Documentation:** <https://Data-Wise.github.io/aiterm/>
 
 ### 🎉 Distribution Milestone
 
 aiterm is now available on PyPI and Homebrew!
 
 #### Installation Options
+
 ```bash
 # macOS (Homebrew)
 brew install data-wise/tap/aiterm
@@ -1023,7 +1146,7 @@ pipx install aiterm-dev
 
 ### Changed
 
-- Version sync across pyproject.toml, __init__.py, and .STATUS
+- Version sync across pyproject.toml, **init**.py, and .STATUS
 - Updated README with simplified installation section
 - Updated mkdocs.yml navigation with all new pages
 
@@ -1033,32 +1156,36 @@ pipx install aiterm-dev
 
 **Status:** Production-Ready Stable Release
 **Tag:** v0.2.0
-**Release URL:** https://github.com/Data-Wise/aiterm/releases/tag/v0.2.0
-**Documentation:** https://Data-Wise.github.io/aiterm/
+**Release URL:** <https://github.com/Data-Wise/aiterm/releases/tag/v0.2.0>
+**Documentation:** <https://Data-Wise.github.io/aiterm/>
 
 ### 🎉 Major Features
 
 Four complete feature systems delivered in Phase 3A:
 
 #### 1. Hook Management System (580 lines)
+
 - Commands: `aiterm claude hooks list/install/validate/test`
 - Interactive hook templates (5 hooks included)
 - Validation and testing framework
 - Beautiful Rich output
 
 #### 2. Command Library System (600 lines)
+
 - Commands: `aiterm claude commands list/browse/install/validate`
 - Category-based organization (git, docs, workflow, etc.)
 - Command template library (5 commands included)
 - Installation wizard
 
 #### 3. MCP Server Integration (513 lines + 597 lines docs)
+
 - Commands: `aiterm mcp list/test/test-all/validate/info`
 - Server health monitoring and testing
 - Automatic sensitive data masking
 - Comprehensive MCP-INTEGRATION.md documentation
 
 #### 4. Documentation Helpers (715 lines + 647 lines docs)
+
 - Commands: `aiterm docs stats/validate-links/test-examples/validate-all`
 - Link validation (internal + external)
 - Code syntax checking (Python + Bash)
@@ -1180,6 +1307,7 @@ Four complete feature systems delivered in Phase 3A:
 - session completion - Phase 1 documentation automation ([8f2750b](https://github.com/Data-Wise/aiterm/commit/8f2750b))
 
 ### Added
+
 - 🍺 **Homebrew Distribution** - macOS users can now install via `brew install data-wise/tap/aiterm`
   - Added formula to private Homebrew tap
   - Automatic dependency management
@@ -1187,6 +1315,7 @@ Four complete feature systems delivered in Phase 3A:
   - Primary installation method for macOS
 
 ### Workflow & Documentation
+
 - 🔧 **Created `/workflow:done` Command** - Critical missing ADHD-friendly session completion
   - Captures session progress from git changes (commits, diffs, file changes)
   - Updates .STATUS file automatically
@@ -1197,12 +1326,14 @@ Four complete feature systems delivered in Phase 3A:
   - ADHD-optimized with 30-second fast path
 
 ### Changed
+
 - Updated README with Homebrew as recommended macOS installation method
 - Added installation methods comparison table
 - Updated website documentation (docs/getting-started/*.md, docs/index.md)
 - Enhanced CLAUDE.md with Homebrew installation methods
 
 ### Documentation
+
 - Created `HOMEBREW-DISTRIBUTION-PLAN.md` - comprehensive Homebrew roadmap
 - Created `HOMEBREW-QUICKSTART.md` - quick implementation guide
 - Updated `IDEAS.md` with:
@@ -1240,11 +1371,12 @@ uv tool install git+https://github.com/Data-Wise/aiterm
 pipx install git+https://github.com/Data-Wise/aiterm
 ```
 
-**Documentation:** https://data-wise.github.io/aiterm/
+**Documentation:** <https://data-wise.github.io/aiterm/>
 
 ### What's New in v0.1.0
 
 #### Core Features
+
 - 🎯 Smart context detection (8 project types)
 - 🎨 Auto profile switching for iTerm2
 - ⚙️ Claude Code integration
@@ -1252,6 +1384,7 @@ pipx install git+https://github.com/Data-Wise/aiterm
 - 🧪 Well-tested (51 tests, 83% coverage)
 
 #### Documentation (NEW!)
+
 - Complete installation guide (UV, pipx, dev)
 - CLI reference with all commands
 - Claude Code integration guide (8 presets explained)
@@ -1260,25 +1393,28 @@ pipx install git+https://github.com/Data-Wise/aiterm
 - Architecture documentation
 
 #### Performance
+
 - UV build system (10-100x faster installation)
 - < 100ms for all operations
 - < 2 minutes full setup
 
 #### Testing
+
 - Comprehensive testing report
 - Real workflow validation
 - All 51 tests passing
 
 ### Repository
+
 - Renamed from `iterm2-context-switcher` to `aiterm`
-- GitHub: https://github.com/Data-Wise/aiterm
-- Docs: https://data-wise.github.io/aiterm/
+- GitHub: <https://github.com/Data-Wise/aiterm>
+- Docs: <https://data-wise.github.io/aiterm/>
 
 ---
 
 ## [0.1.0-dev] - 2024-12-16 - Development Preview
 
-### 🎉 aiterm Python CLI is Here!
+### 🎉 aiterm Python CLI is Here
 
 The first functional Python release of aiterm, migrated from zsh to a modern CLI.
 
@@ -1295,6 +1431,7 @@ pipx install git+https://github.com/Data-Wise/aiterm
 ### New Features
 
 #### Context Detection (8 types)
+
 - **Production** 🚨 - Red theme for `*/production/*` paths
 - **AI Sessions** 🤖 - Purple theme for `*/claude-sessions/*`
 - **R Packages** 📦 - Blue theme (DESCRIPTION file)
@@ -1305,6 +1442,7 @@ pipx install git+https://github.com/Data-Wise/aiterm
 - **Dev-Tools** 🔧 - Amber theme (commands/, scripts/)
 
 #### Claude Code Integration
+
 - `ait claude settings` - View settings summary
 - `ait claude backup` - Backup settings.json
 - `ait claude approvals list` - Show allow/deny permissions
@@ -1312,6 +1450,7 @@ pipx install git+https://github.com/Data-Wise/aiterm
 - `ait claude approvals add <preset>` - Add preset permissions
 
 #### Auto-Approval Presets
+
 - **safe-reads** - Safe read-only operations
 - **git-ops** - Git commands (status, diff, log, branch)
 - **github-cli** - GitHub CLI (gh pr, gh issue)
@@ -1322,6 +1461,7 @@ pipx install git+https://github.com/Data-Wise/aiterm
 - **minimal** - Basic safe commands only
 
 #### CLI Commands
+
 ```bash
 ait --version          # Show version
 ait doctor             # Health check
@@ -1333,6 +1473,7 @@ ait profile list       # List profiles
 ```
 
 ### Tech Stack
+
 - **Language:** Python 3.10+
 - **CLI Framework:** Typer
 - **Terminal Output:** Rich
@@ -1340,12 +1481,14 @@ ait profile list       # List profiles
 - **Distribution:** uv/pipx/PyPI
 
 ### Files Added
+
 - `src/aiterm/` - Main package (cli, context, terminal, claude, utils)
 - `tests/` - 51 tests across 4 files
 - `templates/commands/` - 6 hub commands + 5 archived
 - `pyproject.toml` - Modern Python project config
 
 ### What's Next (v0.2.0)
+
 - Hook management system
 - Command template library
 - MCP server integration
@@ -1358,10 +1501,12 @@ ait profile list       # List profiles
 ### 🎉 Major Change: aiterm → **aiterm**
 
 **Vision Evolution:**
+
 - **Was:** zsh-based iTerm2 context switcher
 - **Now:** Python CLI for optimizing terminals for AI development
 
 **Why the pivot:**
+
 - Expand beyond iTerm2 to support multiple terminals
 - Deep integration with Claude Code and Gemini CLI
 - Hook/command/MCP management systems
@@ -1369,12 +1514,14 @@ ait profile list       # List profiles
 - Better testing and distribution (PyPI)
 
 ### Project Reorganization
+
 - **New name:** aiterm (AI Terminal optimizer)
 - **New architecture:** Python CLI (Typer + Rich)
 - **New scope:** Multi-tool terminal optimization
 - **Target users:** DT first, then public release
 
 ### Documentation Overhaul
+
 - ✅ `IDEAS.md` - Full feature roadmap (Phases 1-4)
 - ✅ `ROADMAP.md` - Week 1 MVP plan (day-by-day)
 - ✅ `ARCHITECTURE.md` - Technical design
@@ -1383,7 +1530,9 @@ ait profile list       # List profiles
 - ✅ `.STATUS` - Reset to v0.1.0-dev
 
 ### v2.5.0 Features Preserved
+
 All existing functionality will be ported to Python:
+
 - 8 context types (R, Python, Node, Quarto, MCP, Production, AI sessions, Dev-tools)
 - Profile switching
 - Tab titles with icons
@@ -1392,7 +1541,9 @@ All existing functionality will be ported to Python:
 - 15 comprehensive tests
 
 ### What's Next
+
 See `ROADMAP.md` for Week 1 MVP plan:
+
 - Day 1-2: Python project setup
 - Day 3-4: Core terminal integration
 - Day 5: Claude Code settings management
@@ -1406,6 +1557,7 @@ See `ROADMAP.md` for Week 1 MVP plan:
 ## [2.5.0] - 2025-12-15 - Final zsh-based release
 
 ### Added
+
 - **Comprehensive test suite** - `scripts/test-context-switcher.sh`
   - Tests all 8 context detection scenarios
   - Validates profile switching and title/badge setting
@@ -1422,6 +1574,7 @@ See `ROADMAP.md` for Week 1 MVP plan:
 ## [2.5.0] - 2025-12-15
 
 ### Added
+
 - **Comprehensive test suite** - `scripts/test-context-switcher.sh`
   - Tests all 8 context detection scenarios
   - Validates profile switching and title/badge setting
@@ -1438,6 +1591,7 @@ See `ROADMAP.md` for Week 1 MVP plan:
 ## [2.4.0] - 2025-12-14
 
 ### Added
+
 - **Status Bar Integration** - Display context in iTerm2 status bar
   - `\(user.ctxIcon)` - Context icon (📦, 🐍, 🔧, etc.)
   - `\(user.ctxName)` - Project name
@@ -1446,12 +1600,14 @@ See `ROADMAP.md` for Week 1 MVP plan:
 - **Status bar documentation** - New docs/guide/status-bar.md with setup guide
 
 ### Changed
+
 - Refactored detection to set user variables alongside profile/title
 - Variables update on every directory change
 
 ## [2.3.0] - 2025-12-14
 
 ### Added
+
 - **iTerm2 Triggers for Claude Code** - Auto-notifications in AI-Session profile
   - Bounce Dock Icon when tool approval needed (`Allow .+?`)
   - Highlight errors in red (`Error:|error:|failed`)
@@ -1460,24 +1616,28 @@ See `ROADMAP.md` for Week 1 MVP plan:
 - **Trigger documentation** - Updated docs/guide/triggers.md with customization guide
 
 ### Changed
+
 - AI-Session profile now includes built-in triggers
 - Triggers activate automatically when using AI-Session profile
 
 ## [2.2.0] - 2025-12-14
 
 ### Added
+
 - **Git branch in title** - Shows current branch: `📦 medfit (main)`
 - **Git dirty indicator** - Shows `*` when uncommitted changes: `📦 medfit (main)*`
 - **Install script** - `scripts/install-profiles.sh` for easy setup
 - **Profiles in repo** - `profiles/context-switcher-profiles.json` for distribution
 
 ### Changed
+
 - Titles now include git info for all contexts
 - Long branch names truncated (>20 chars)
 
 ## [2.1.0] - 2025-12-14
 
 ### Added
+
 - **Dynamic Profiles** - Auto-installed color themes for all project types
   - R-Dev: Blue theme 📦
   - AI-Session: Purple theme 🤖
@@ -1491,26 +1651,31 @@ See `ROADMAP.md` for Week 1 MVP plan:
 - **Emacs profile switching** - New dedicated purple theme ⚡
 
 ### Changed
+
 - All project types now have profile + icon switching
 - Profiles auto-load via iTerm2 Dynamic Profiles
 
 ## [2.0.1] - 2025-12-14
 
 ### Added
+
 - **Dev-Tools profile** - New profile for dev-tools projects with 🔧 icon
 - **scripts/ detection** - Dev-tools now detected by `scripts/` directory (not just `commands/`)
 
 ### Fixed
+
 - **Shared detector bypass** - Skip generic "project" type, use local detection for specifics
 - **False positive fix** - Require `.git` for dev-tools detection (prevents `~/scripts` false positive)
 - **iTerm2 title setting** - Profiles must use "Session Name" for escape sequences to work
 
 ### Changed
+
 - Detection now more specific: dev-tools requires git repo + commands/ or scripts/
 
 ## [2.0.0] - 2025-12-14
 
 ### Added
+
 - **MkDocs documentation site** - Material theme, dark/light toggle
 - **GitHub Pages deployment** - Auto-deploy on push to main
 - **Tab title support** - Icons + project names in tab title
@@ -1522,6 +1687,7 @@ See `ROADMAP.md` for Week 1 MVP plan:
   - `/mkdocs-preview` - Quick preview
 
 ### Changed
+
 - **Removed badges** - Using tab titles instead (more reliable)
 - **Simplified detection** - File-based only, no glob patterns
 - **OSC 2 for titles** - Window title escape sequence
@@ -1529,17 +1695,20 @@ See `ROADMAP.md` for Week 1 MVP plan:
 - **Dev-tools detection** - Checks for `commands/` directory
 
 ### Fixed
+
 - Loop issues with badge escape sequences
 - OMZ title conflicts (DISABLE_AUTO_TITLE)
 - Profile switch escape sequence format (`it2profile -s`)
 
 ### Documentation
+
 - 7 documentation pages covering installation, guides, and reference
-- Live site: https://data-wise.github.io/aiterm/
+- Live site: <https://data-wise.github.io/aiterm/>
 
 ## [1.1.0] - 2025-12-13
 
 ### Added
+
 - **Git dirty indicator** - Badges now show `✗` when repo has uncommitted changes
 - **New context patterns:**
   - Python projects (`pyproject.toml`) → Python-Dev profile
@@ -1550,12 +1719,14 @@ See `ROADMAP.md` for Week 1 MVP plan:
 - **Verification script** - `scripts/verify-setup.sh`
 
 ### Changed
+
 - Refactored main function with clear priority sections
 - Improved code organization with helper functions
 
 ## [1.0.0] - 2025-12-13
 
 ### Added
+
 - Initial project structure
 - Core auto-switching integration (iterm2-integration.zsh)
 - Profile creation guide
@@ -1565,10 +1736,11 @@ See `ROADMAP.md` for Week 1 MVP plan:
 ## [Unreleased]
 
 ### Planned
+
 - Production warning sound/bell
 - Smart triggers for test results
 
 ---
 
 **Project Status:** Complete (v2.4.0)
-**Live Docs:** https://data-wise.github.io/aiterm/
+**Live Docs:** <https://data-wise.github.io/aiterm/>

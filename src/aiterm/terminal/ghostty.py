@@ -38,6 +38,9 @@ class GhosttyConfig:
     window_padding_x: int = 0
     window_padding_y: int = 0
     background_opacity: float = 1.0
+    macos_titlebar_style: str = "native"
+    background_image: str = ""
+    mouse_scroll_multiplier: float = 1.0
     cursor_style: str = "block"
     raw_config: dict = field(default_factory=dict)
 
@@ -128,6 +131,10 @@ class GhosttyProfile:
     window_padding_x: int = 0
     window_padding_y: int = 0
     cursor_style: str = ""
+    macos_titlebar_style: str = ""
+    background_image: str = ""
+    mouse_scroll_multiplier: float = 0.0
+    cursor_style: str = ""
     custom_settings: dict = field(default_factory=dict)
     created_at: str = ""
     description: str = ""
@@ -154,6 +161,12 @@ class GhosttyProfile:
             lines.append(f"window-padding-y = {self.window_padding_y}")
         if self.cursor_style:
             lines.append(f"cursor-style = {self.cursor_style}")
+        if self.macos_titlebar_style:
+            lines.append(f"macos-titlebar-style = {self.macos_titlebar_style}")
+        if self.background_image:
+            lines.append(f"background-image = {self.background_image}")
+        if self.mouse_scroll_multiplier > 0:
+            lines.append(f"mouse-scroll-multiplier = {self.mouse_scroll_multiplier}")
 
         for key, value in self.custom_settings.items():
             lines.append(f"{key} = {value}")
@@ -172,6 +185,9 @@ class GhosttyProfile:
             window_padding_x=config.window_padding_x,
             window_padding_y=config.window_padding_y,
             cursor_style=config.cursor_style,
+            macos_titlebar_style=config.macos_titlebar_style,
+            background_image=config.background_image,
+            mouse_scroll_multiplier=config.mouse_scroll_multiplier,
             created_at=datetime.now().isoformat(),
             description=description,
         )
@@ -289,6 +305,15 @@ def parse_config(config_path: Optional[Path] = None) -> GhosttyConfig:
                         pass
                 elif key == "cursor-style":
                     config.cursor_style = value
+                elif key == "macos-titlebar-style":
+                    config.macos_titlebar_style = value
+                elif key == "background-image":
+                    config.background_image = value
+                elif key == "mouse-scroll-multiplier":
+                    try:
+                        config.mouse_scroll_multiplier = float(value)
+                    except ValueError:
+                        pass
 
     return config
 
@@ -546,6 +571,15 @@ def get_profile(name: str) -> Optional[GhosttyProfile]:
                         pass
                 elif key == "cursor-style":
                     profile.cursor_style = value
+                elif key == "macos-titlebar-style":
+                    profile.macos_titlebar_style = value
+                elif key == "background-image":
+                    profile.background_image = value
+                elif key == "mouse-scroll-multiplier":
+                    try:
+                        profile.mouse_scroll_multiplier = float(value)
+                    except ValueError:
+                        pass
                 else:
                     profile.custom_settings[key] = value
 
@@ -628,6 +662,12 @@ def apply_profile(name: str, backup: bool = True) -> bool:
         set_config_value("window-padding-y", str(profile.window_padding_y), config_path)
     if profile.cursor_style:
         set_config_value("cursor-style", profile.cursor_style, config_path)
+    if profile.macos_titlebar_style:
+        set_config_value("macos-titlebar-style", profile.macos_titlebar_style, config_path)
+    if profile.background_image:
+        set_config_value("background-image", profile.background_image, config_path)
+    if profile.mouse_scroll_multiplier > 0:
+        set_config_value("mouse-scroll-multiplier", str(profile.mouse_scroll_multiplier), config_path)
 
     for key, value in profile.custom_settings.items():
         set_config_value(key, value, config_path)
