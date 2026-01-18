@@ -17,10 +17,26 @@ echo -e "${BLUE}║  Interactive test for Ghostty 1.2.x integration           �
 echo -e "${BLUE}╚════════════════════════════════════════════════════════════╝${NC}"
 echo ""
 
+# Check if running interactively
+INTERACTIVE=true
+if [ ! -t 0 ]; then
+    INTERACTIVE=false
+fi
+
 # Test counter
 TESTS_RUN=0
 TESTS_PASSED=0
 TESTS_FAILED=0
+
+# Pause between phases
+pause_between_phases() {
+    if [ "$INTERACTIVE" = true ]; then
+        echo ""
+        echo -e "${YELLOW}Press ENTER to continue to next phase...${NC}"
+        read -r
+        echo ""
+    fi
+}
 
 # Test helper functions
 run_test() {
@@ -88,7 +104,8 @@ run_test "Show Ghostty version" \
     "ait --version" \
     "aiterm version"
 
-echo ""
+pause_between_phases
+
 echo -e "${BLUE}═══ Phase 2: Configuration Management ═══${NC}"
 echo ""
 
@@ -105,7 +122,8 @@ run_test "Display all 1.2.x settings" \
     "ait ghostty config" \
     "Titlebar Style"
 
-echo ""
+pause_between_phases
+
 echo -e "${BLUE}═══ Phase 3: New 1.2.x Configuration Keys ═══${NC}"
 echo ""
 
@@ -133,7 +151,8 @@ run_test "Verify scroll multiplier in config" \
     "cat /root/.config/ghostty/config" \
     "mouse-scroll-multiplier = 2.0"
 
-echo ""
+pause_between_phases
+
 echo -e "${BLUE}═══ Phase 4: Profile Management with 1.2.x Keys ═══${NC}"
 echo ""
 
@@ -160,7 +179,8 @@ run_test "Verify profile restored titlebar style" \
     "cat /root/.config/ghostty/config" \
     "macos-titlebar-style = tabs"
 
-echo ""
+pause_between_phases
+
 echo -e "${BLUE}═══ Phase 5: Theme Management ═══${NC}"
 echo ""
 
@@ -175,7 +195,8 @@ run_test "Verify theme in config" \
     "cat /root/.config/ghostty/config" \
     "theme = catppuccin-mocha"
 
-echo ""
+pause_between_phases
+
 echo -e "${BLUE}═══ Phase 6: Config Backup and Restore ═══${NC}"
 echo ""
 
