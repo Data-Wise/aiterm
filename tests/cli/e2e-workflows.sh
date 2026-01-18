@@ -97,28 +97,31 @@ assert_output_contains() {
 run_step() {
     local num="$1"
     local desc="$2"
-    local cmd="$3"
+    local cmd="${3:-}"
     local check_pattern="${4:-}"
+
+    [[ -z "$cmd" ]] && { log_failure "run_step: missing command"; return 1; }
 
     log_step "$num" "$desc"
 
     local output
     output=$(eval "$cmd" 2>&1 || true)
+    local exit_code=$?
 
     if [[ -n "$check_pattern" ]]; then
-        if assert_output_contains "$output" "$check_pattern" "$desc"; then
+        if echo "$output" | grep -q "$check_pattern"; then
             log_success "$desc"
             return 0
         else
-            log_failure "$desc"
+            log_failure "$desc" "Pattern not found: $check_pattern"
             return 1
         fi
     else
-        if [[ $? -eq 0 ]]; then
+        if [[ $exit_code -eq 0 ]]; then
             log_success "$desc"
             return 0
         else
-            log_failure "$desc"
+            log_failure "$desc" "Exit code: $exit_code"
             return 1
         fi
     fi
@@ -135,37 +138,57 @@ workflow_statusline() {
     local failed=0
 
     # Step 1: Check setup gateway exists
-    run_step 1 "Verify statusline setup gateway" \
+    if run_step 1 "Verify statusline setup gateway" \
         "ait statusline setup --help" \
-        "setup\|gateway" && ((passed++)) || ((failed++))
+        "setup\|gateway"; then
+        ((passed++))
+    else
+        ((failed++))
+    fi
 
     # Step 2: Check customize menu exists
-    run_step 2 "Verify customize unified menu" \
+    if run_step 2 "Verify customize unified menu" \
         "ait statusline customize --help" \
-        "customize\|menu" && ((passed++)) || ((failed++))
+        "customize\|menu"; then
+        ((passed++))
+    else
+        ((failed++))
+    fi
 
     # Step 3: List available hooks
-    run_step 3 "List hook templates" \
+    if run_step 3 "List hook templates" \
         "ait statusline hooks list" \
-        "on-theme-change\|on-remote-session\|on-error" && ((passed++)) || ((failed++))
+        "on-theme-change\|on-remote-session\|on-error"; then
+        ((passed++))
+    else
+        ((failed++))
+    fi
 
     # Step 4: Verify hook template details
-    run_step 4 "Verify hook template validity" \
+    if run_step 4 "Verify hook template validity" \
         "ait statusline hooks list --available" \
-        "available" && ((passed++)) || ((failed++))
+        "available"; then
+        ((passed++))
+    else
+        ((failed++))
+    fi
 
     # Step 5: Test help accessibility
-    run_step 5 "Access statusline help" \
+    if run_step 5 "Access statusline help" \
         "ait statusline --help" \
-        "setup\|customize\|Commands" && ((passed++)) || ((failed++))
+        "setup\|customize\|Commands"; then
+        ((passed++))
+    else
+        ((failed++))
+    fi
 
     # Summary
     log ""
-    log "${BLUE}StatusLine Workflow:${NC} $passed passed, $failed failed"
-
     if [[ $failed -eq 0 ]]; then
+        log "${GREEN}✅${NC} ${BLUE}StatusLine Workflow:${NC} $passed passed"
         WORKFLOW_PASS=$((WORKFLOW_PASS + 1))
     else
+        log "${RED}❌${NC} ${BLUE}StatusLine Workflow:${NC} $passed passed, $failed failed"
         WORKFLOW_FAIL=$((WORKFLOW_FAIL + 1))
     fi
 }
@@ -458,13 +481,15 @@ main() {
 
     if [[ $WORKFLOW_FAIL -eq 0 ]]; then
         log "${GREEN}✅ All workflows PASSED${NC}"
-        return 0
     else
         log "${RED}❌ $WORKFLOW_FAIL workflow(s) FAILED${NC}"
-        return 1
     fi
 }
 
 # Execute
 main "$@"
-exit $?
+if [[ $WORKFLOW_FAIL -eq 0 ]]; then
+    exit 0
+else
+    exit 1
+fi
