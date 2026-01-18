@@ -145,7 +145,7 @@ echo ""
 
 run_test "Set macos-titlebar-style" \
     "ait ghostty set macos-titlebar-style tabs" \
-    "."
+    "Set macos-titlebar-style = tabs"
 
 run_test "Verify titlebar style in config" \
     "cat /root/.config/ghostty/config" \
@@ -153,7 +153,7 @@ run_test "Verify titlebar style in config" \
 
 run_test "Set background-image" \
     "ait ghostty set background-image /tmp/bg.jpg" \
-    "."
+    "Set background-image = /tmp/bg.jpg"
 
 run_test "Verify background-image in config" \
     "cat /root/.config/ghostty/config" \
@@ -161,7 +161,7 @@ run_test "Verify background-image in config" \
 
 run_test "Set mouse-scroll-multiplier" \
     "ait ghostty set mouse-scroll-multiplier 2.0" \
-    "."
+    "Set mouse-scroll-multiplier = 2.0"
 
 run_test "Verify scroll multiplier in config" \
     "cat /root/.config/ghostty/config" \
