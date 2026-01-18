@@ -46,6 +46,7 @@ ait statusline test
 ```
 
 **Expected output:**
+
 ```
 ╭─ ░▒▓ 🐍 aiterm (venv: py3.11)  main* ⇣2 ⇡1 ?3 📦5 ▓▒░
 ╰─ Sonnet 4.5 │ 🌅 10:30 │ ⏱ 5m 🟢 │ +123/-45
@@ -122,6 +123,50 @@ Open a new Claude Code session and you'll see the StatusLine at the top of your 
 | 🟢 | Active | < 5 minutes |
 | 🟡 | Idle | 5-15 minutes |
 | 🔴 | Long idle | > 15 minutes |
+
+---
+
+## Ghostty Native Progress Bars (v0.7.2)
+
+**Ghostty 1.2.x users get native graphical progress bars!**
+
+When running in Ghostty terminal, StatusLine automatically emits OSC 9;4 escape sequences to display native progress bars for:
+
+### Lines Changed Progress
+
+Visualizes code changes as a progress bar:
+
+- **Green bar (success)**: More lines added than removed
+- **Red bar (error)**: More lines removed than added
+- **Percentage**: Ratio of lines added to total changes
+
+**Example:**
+
+- `+100/-20` → Green bar at 83% (100/120)
+- `+20/-100` → Red bar at 17% (20/120)
+
+### Usage Tracking Progress
+
+Displays API usage as a progress bar:
+
+- **Normal (blue)**: Usage below warning threshold
+- **Warning (red)**: Usage at or above threshold (default: 80%)
+
+**Note:** Usage tracking is currently disabled as Claude Code doesn't expose this data programmatically.
+
+### How It Works
+
+1. **Automatic Detection**: Enabled when `TERM_PROGRAM=ghostty`
+2. **No Configuration**: Works out of the box
+3. **Native Integration**: Uses Ghostty's built-in progress bar feature
+4. **Visual Feedback**: Instant visual indication of session activity
+
+**To verify Ghostty is detected:**
+
+```bash
+echo $TERM_PROGRAM
+# Should output: ghostty
+```
 
 ---
 
@@ -372,6 +417,7 @@ ait statusline config set display.separator_spacing relaxed
 ```
 
 **Visual comparison:**
+
 ```
 Minimal:  Sonnet 4.5 │ 11:46 │ ⏱ 5m │ +123/-45
 Standard: Sonnet 4.5  │  11:46  │  ⏱ 5m  │  +123/-45  (default)
@@ -395,6 +441,7 @@ ait statusline config set git.show_worktrees false
 ```
 
 **In main working directory:**
+
 ```
 ╭─ ░▒▓ 🐍 aiterm  main 🌳4 ▓▒░
                         ^^^^
@@ -402,6 +449,7 @@ ait statusline config set git.show_worktrees false
 ```
 
 **In a worktree directory:**
+
 ```
 ╭─ ░▒▓ 🐍 aiterm-test (wt)  feature-auth 🌳4 ▓▒░
                      ^^^^                 ^^^^
@@ -409,6 +457,7 @@ ait statusline config set git.show_worktrees false
 ```
 
 **Features:**
+
 - `🌳N` - Shows total worktree count when > 1
 - `(wt)` - Marker when in a non-main worktree
 - Helps identify context in multi-branch workflows
@@ -428,6 +477,7 @@ ait statusline config set project.detect_python_env false
 ```
 
 **Result:**
+
 ```
 ╭─ ░▒▓ 🐍 aiterm  main ▓▒░
 ╰─ Sonnet 4.5 │ 10:30 │ ⏱ 5m
@@ -447,6 +497,7 @@ ait statusline config set display.show_output_style always
 ```
 
 **Result:**
+
 ```
 ╭─ ░▒▓ 🐍 aiterm (venv: py3.11)  main* ⇣2 ⇡1 ?3 📦5 🔗origin/main 🌳4 ▓▒░
 ╰─ Sonnet 4.5 │ 🧠 │ 🌅 10:30 │ ⏱ 5m 🟢 │ 🤖2 │ +123/-45 │ 📘learning
@@ -470,6 +521,7 @@ ait statusline config set project.detect_python_env false
 ```
 
 **Result:**
+
 ```
 ╭─ ░▒▓ 🐍 aiterm  main* ⇣2 ⇡1 ?3 📦5 🔗origin/main 🌳4 ▓▒░
 ╰─ Sonnet 4.5 │ 10:30 │ ⏱ 5m
@@ -708,6 +760,7 @@ Not currently, but planned for future versions. The modular segment design makes
 ### Why 2 lines instead of 1?
 
 Powerlevel10k-style 2-line layout provides:
+
 - Clear visual hierarchy (context vs session info)
 - More space for detailed information
 - Better readability
