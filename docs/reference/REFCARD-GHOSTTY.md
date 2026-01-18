@@ -2,7 +2,7 @@
 
 Quick reference for aiterm's Ghostty terminal integration.
 
-**Added in:** v0.3.9 | **Updated:** v0.3.15 (Full iTerm2 Parity)
+**Added in:** v0.3.9 | **Updated:** v0.7.2 (Ghostty 1.2.x Support)
 
 ---
 
@@ -116,12 +116,20 @@ ait ghostty theme apply nord
 | `background-opacity` | 0.0-1.0 | Window transparency |
 | `cursor-style` | block/bar/underline | Cursor shape |
 | `cursor-style-blink` | true/false | Blink cursor |
+| `macos-titlebar-style` | native/transparent/tabs/hidden | macOS titlebar style (1.2.x) |
+| `background-image` | Path to PNG/JPEG | Terminal background image (1.2.x) |
+| `mouse-scroll-multiplier` | 0.01-10000 | Scroll sensitivity (1.2.x) |
 
 ```bash
 # Examples
 ait ghostty set background-opacity 0.95
 ait ghostty set cursor-style bar
 ait ghostty set window-padding-x 12
+
+# Ghostty 1.2.x features
+ait ghostty set macos-titlebar-style tabs
+ait ghostty set background-image ~/Pictures/bg.jpg
+ait ghostty set mouse-scroll-multiplier 2.0
 ```
 
 ---
@@ -141,6 +149,7 @@ cat ~/.config/ghostty/config
 ```
 
 **Sample config:**
+
 ```ini
 font-family = JetBrains Mono
 font-size = 14
@@ -195,6 +204,7 @@ ait ghostty keybind add "cmd+shift+d" "new_split:down" --prefix global:
 ```
 
 **Keybind prefixes:**
+
 - `global:` - Works even when terminal isn't focused
 - `unconsumed:` - Only if not consumed by shell
 - `all:` - Combines global + unconsumed
@@ -222,6 +232,7 @@ ait ghostty session split right    # or: down, left, up
 **Session storage:** `~/.config/ghostty/sessions/*.json`
 
 **Layout types:**
+
 - `single` - Single pane (default)
 - `split-h` - Horizontal split
 - `split-v` - Vertical split
