@@ -1,10 +1,49 @@
 project: aiterm
 status: active
 priority: P1
-progress: 92
-version: 0.6.3
-updated: 2025-12-31
-next: Craft plugin website enhancements (Phase 1) → Apply to aiterm docs
+progress: 98
+version: 0.7.0-dev
+updated: 2026-01-17
+next: StatusLine Phase 2 (remote session detection) OR Craft website enhancements
+
+## Recent Work: StatusLine Phase 1 - Gateway Pattern (Jan 17, 2026) ✅
+
+**Status:** Merged to dev (PR #9)
+**Branch:** feat/statusline-command-ux-improvements → dev
+**Merge Commit:** 63720deaf5e1809418bde981d020210a5248512f
+
+### Phase 1: Gateway Pattern + Unified Menu + Hooks ✅ COMPLETE
+
+**Problem Solved:** Configuration Paradox - 7 ways to configure statusline
+**Solution:** Single entry point with progressive disclosure
+
+**Deliverables:**
+- ✅ `ait statusline setup` - Interactive 6-option gateway command
+- ✅ `ait statusline customize` - Unified menu (Display/Theme/Spacing/Advanced)
+- ✅ `ait statusline hooks` - Hook template management (3 templates)
+- ✅ 50+ tests (31 hooks + 20+ CLI) - All passing
+- ✅ Updated documentation with new commands
+
+**Hook Templates (v2.1+):**
+- `on-theme-change` (PostToolUse) - Auto-update colors on theme change
+- `on-remote-session` (PreToolUse) - Enable remote indicator for /teleport
+- `on-error` (PostToolUse) - Alert when statusline fails
+
+**Files Changed:**
+- src/aiterm/cli/statusline.py (+367 lines)
+- src/aiterm/statusline/hooks.py (NEW, 352 lines)
+- tests/test_statusline_hooks.py (NEW, 386 lines)
+- tests/test_statusline_cli_gateway.py (NEW, 292 lines)
+- docs/guide/statusline.md (+142 lines)
+- BRAINSTORM & SPEC docs (+2,700 lines)
+
+**Total:** 3,756 insertions, 10 files changed
+
+**Backward Compatibility:** ✅ All existing commands still work
+
+**Session Duration:** ~5 hours (analysis → implementation → testing → docs → merge)
+
+---
 
 ## Planned: Website Documentation Enhancements (via Craft Plugin)
 
@@ -30,9 +69,19 @@ next: Craft plugin website enhancements (Phase 1) → Apply to aiterm docs
 - Mermaid errors: 5+ → 0
 - Mobile bounce rate: Unknown → < 30% target
 
-## Current Version: v0.6.3 (Released Dec 31, 2025)
+## Current Version: v0.7.0-dev (In Development)
 
-**Major Features:**
+**StatusLine Phase 1 (merged to dev):**
+- ✅ Gateway command (`ait statusline setup`)
+- ✅ Unified menu (`ait statusline customize`)
+- ✅ Hook templates system (`ait statusline hooks`)
+- ✅ 50+ new tests (all passing)
+- ✅ Updated documentation
+
+**Previous: v0.6.3 (Released Dec 31, 2025)**
+
+**Major Features (Cumulative):**
+- StatusLine command UX improvements (Phase 1 - NEW)
 - Complete feature workflow with PR automation (`promote`, `release`)
 - Workflow templates via `ait recipes` alias
 - Feature branch commands (`ait feature status/start/cleanup/promote/release`)
@@ -63,9 +112,11 @@ next: Craft plugin website enhancements (Phase 1) → Apply to aiterm docs
 
 | Category | Tests |
 |----------|-------|
-| Total | 712 |
+| Total | 762+ |
+| StatusLine (new Phase 1) | 50+ |
 | Feature module | 25 |
 | Release module | 55 |
+| Other modules | 630+ |
 | Coverage | 85%+ |
 
 ## Distribution
@@ -76,6 +127,34 @@ next: Craft plugin website enhancements (Phase 1) → Apply to aiterm docs
 - **Docs:** https://data-wise.github.io/aiterm/
 
 ## Recent Sessions
+
+### Jan 17, 2026 - StatusLine Phase 1: Gateway Pattern & Hooks
+- **Phase:** Command UX Improvements (v0.7.0)
+- **Branch:** feat/statusline-command-ux-improvements (merged to dev)
+- **Status:** ✅ Complete & merged to dev (PR #9)
+- **Key Deliverables:**
+  - `ait statusline setup` - Gateway command (6-option interactive menu)
+  - `ait statusline customize` - Unified menu for display/theme/spacing/advanced
+  - `ait statusline hooks` - Hook management (3 templates + CLI)
+  - 50+ tests (31 hooks + 20+ CLI gateway tests)
+  - Full documentation updates with examples
+- **Files:** 10 files, 3,756 insertions
+- **Testing:** 100% test pass rate (50+ tests)
+- **Backward Compatibility:** ✅ All old commands still work
+- **Session Duration:** ~5 hours
+- **What's Next:** Phase 2 (remote session detection) or Craft website enhancements
+
+**Problem Solved:**
+- Configuration Paradox: 7+ confusing commands → 1 clear entry point
+- User Confusion: "Which command?" → "Use `setup`"
+- First-time Setup: 10+ min → < 2 min
+
+**Architecture Decision:**
+- Implemented Gateway Pattern for progressive disclosure
+- Unified menu consolidating all customization options
+- Pre-built hook templates leveraging v2.1 features
+
+---
 
 ### Dec 31, 2025 - StatusLine Spacing & Worktree Display
 - **Phase 1:** Implemented configurable separator spacing
