@@ -172,10 +172,66 @@ echo $TERM_PROGRAM
 
 ## Configuration
 
-### View Current Config
+### Quick Setup (Recommended for New Users)
+
+**Use `ait statusline setup` to configure everything in one place!**
 
 ```bash
-# Interactive menu
+ait statusline setup
+```
+
+This shows a friendly menu:
+
+```
+┌────────────────────────────────┐
+│  StatusLine Configuration      │
+└────────────────────────────────┘
+
+  1. Customize display options
+     git, time, session, lines changed, etc.
+
+  2. Change color theme
+     select from available themes
+
+  3. Adjust spacing
+     minimal, standard, spacious
+
+  4. Apply a preset
+     pre-configured profiles
+
+  5. View all settings
+     see current configuration
+
+  6. Edit raw config
+     advanced JSON editing
+
+What would you like to do? [1]:
+```
+
+**New in v0.7.0:** All configuration in one gateway command!
+
+---
+
+### Unified Menu (Explore All Options)
+
+**Use `ait statusline customize` to see everything at once:**
+
+```bash
+ait statusline customize
+```
+
+This opens a unified menu with all display, theme, and spacing options in one place—no command jumping needed!
+
+---
+
+### Advanced Configuration
+
+For power users who prefer direct CLI control, the advanced commands still work:
+
+#### View Current Config
+
+```bash
+# Interactive menu (category filter)
 ait statusline config
 
 # List all settings
@@ -185,7 +241,7 @@ ait statusline config list
 ait statusline config list --category display
 ```
 
-### Get/Set Values
+#### Get/Set Values
 
 ```bash
 # Get a value
@@ -335,7 +391,75 @@ ait statusline config edit
 
 ---
 
+## Hook Templates (Claude Code v2.1+)
+
+StatusLine includes pre-built hooks that can automatically adapt to your environment.
+
+### Available Hooks
+
+```bash
+# List all available hook templates
+ait statusline hooks list
+```
+
+**Pre-built hooks:**
+
+| Hook | Type | Purpose |
+|------|------|---------|
+| `on-theme-change` | PostToolUse | Auto-update colors when terminal theme changes |
+| `on-remote-session` | PreToolUse | Enable remote indicator when using /teleport |
+| `on-error` | PostToolUse | Alert when statusLine rendering fails |
+
+### Installing Hooks
+
+```bash
+# Install a hook template
+ait statusline hooks add on-theme-change
+
+# View installed hooks
+ait statusline hooks list --installed
+```
+
+### Managing Hooks
+
+```bash
+# Enable a hook
+ait statusline hooks enable on-error
+
+# Disable a hook
+ait statusline hooks disable on-error
+
+# Remove a hook
+ait statusline hooks remove on-theme-change
+```
+
+**Benefits:**
+- Automatic environment detection
+- No manual configuration needed
+- Auto-validated for compatibility
+- Works with Claude Code v2.1+ features
+
+---
+
 ## Commands Reference
+
+### 🎯 Recommended (v0.7.0+)
+
+```bash
+# Gateway to all customization options
+ait statusline setup
+
+# Unified menu combining display/theme/spacing
+ait statusline customize
+
+# Manage hook templates
+ait statusline hooks list              # Show available hooks
+ait statusline hooks add <name>        # Install a hook
+ait statusline hooks list --installed  # Show installed hooks
+ait statusline hooks enable <name>     # Enable a hook
+ait statusline hooks disable <name>    # Disable a hook
+ait statusline hooks remove <name>     # Uninstall a hook
+```
 
 ### Installation & Setup
 
@@ -350,7 +474,9 @@ ait statusline test
 ait statusline doctor
 ```
 
-### Configuration
+### Advanced Configuration
+
+For power users who prefer direct CLI control:
 
 ```bash
 # Interactive menu
@@ -372,6 +498,12 @@ ait statusline config edit
 
 # Validate config
 ait statusline config validate
+
+# Apply preset
+ait statusline config preset <name>
+
+# Adjust spacing
+ait statusline config spacing <preset>
 ```
 
 ### Theme Management
@@ -387,7 +519,7 @@ ait statusline theme set <theme>
 ait statusline theme show
 ```
 
-### Advanced
+### Internal Commands
 
 ```bash
 # Render StatusLine (called by Claude Code)
