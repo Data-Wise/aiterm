@@ -15,6 +15,7 @@ import os
 
 from aiterm.statusline.config import StatusLineConfig
 from aiterm.statusline.interactive import InteractiveConfigMenu
+from aiterm.statusline.hooks import StatusLineHooks
 
 app = typer.Typer(
     help="Manage statusLine configuration for Claude Code.",
@@ -29,6 +30,10 @@ app.add_typer(config_app, name="config")
 # Theme subcommand group
 theme_app = typer.Typer(name="theme", help="Manage statusLine themes")
 app.add_typer(theme_app, name="theme")
+
+# Hooks subcommand group (v0.7.0 - Claude Code v2.1+)
+hooks_app = typer.Typer(name="hooks", help="Manage statusLine hooks (Claude Code v2.1+)")
+app.add_typer(hooks_app, name="hooks")
 
 
 # =============================================================================
@@ -695,6 +700,368 @@ def theme_show():
     table.add_row("", "Style", theme.style_fg, f"\033[{theme.style_fg}m████\033[0m")
 
     console.print(table)
+
+
+# =============================================================================
+# Hooks Commands (v0.7.0 - Claude Code v2.1+)
+# =============================================================================
+
+
+@hooks_app.command(
+    "list",
+    epilog="""
+\b
+Examples:
+  ait statusline hooks list           # Show available templates
+  ait statusline hooks list --installed # Show installed hooks
+"""
+)
+def hooks_list(
+    installed: bool = typer.Option(
+        False,
+        "--installed",
+        help="Show installed hooks instead of templates"
+    )
+):
+    """List available or installed hook templates."""
+    if installed:
+        # Show installed hooks
+        hooks = StatusLineHooks.list_installed()
+        if not hooks:
+            console.print("[yellow]No hooks installed yet[/]")
+            console.print("\nUse [bold]ait statusline hooks add <name>[/] to install a hook")
+            return
+
+        console.print("\n[bold]Installed StatusLine Hooks:[/]\n")
+        table = Table(title="StatusLine Hooks")
+        table.add_column("Name", style="cyan")
+        table.add_column("Type", style="yellow")
+        table.add_column("Enabled", style="green")
+        table.add_column("Description")
+
+        for hook in hooks:
+            enabled = "[green]✓[/]" if hook.get("enabled") else "[red]✗[/]"
+            table.add_row(
+                hook["name"],
+                hook.get("type", "unknown"),
+                enabled,
+                hook.get("description", "")
+            )
+
+        console.print(table)
+    else:
+        # Show available templates
+        console.print("\n[bold]Available StatusLine Hook Templates:[/]\n")
+
+        templates = StatusLineHooks.TEMPLATES
+        for name, template in templates.items():
+            enabled_mark = " [green]✓ enabled[/]" if template.get("enabled", True) else " [red]✗ disabled[/]"
+            console.print(f"[bold cyan]{name}{enabled_mark}[/]")
+            console.print(f"  Type: {template['hook_type']}")
+            console.print(f"  {template['description']}")
+            console.print()
+
+        console.print("[dim]Use 'ait statusline hooks add <name>' to install a hook[/]")
+
+
+@hooks_app.command(
+    "add",
+    epilog="""
+\b
+Examples:
+  ait statusline hooks add on-theme-change    # Install theme change hook
+  ait statusline hooks add on-remote-session  # Install remote session hook
+"""
+)
+def hooks_add(
+    name: str = typer.Argument(..., help="Hook template name")
+):
+    """Install a hook template."""
+    # Validate
+    valid, error = StatusLineHooks.validate_template(name)
+    if not valid:
+        console.print(f"[red]✗[/] {error}")
+        raise typer.Exit(1)
+
+    # Confirm installation
+    template = StatusLineHooks.get_template(name)
+    console.print(f"\n[bold]Installing: {name}[/]")
+    console.print(f"Type: {template['hook_type']}")
+    console.print(f"{template['description']}")
+    console.print()
+
+    if not Confirm.ask("Install this hook?", default=True):
+        console.print("[yellow]Cancelled[/]")
+        return
+
+    # Install
+    success, message = StatusLineHooks.install_template(name, enable=True)
+    if success:
+        console.print(f"[green]✓[/] {message}")
+    else:
+        console.print(f"[red]✗[/] {message}")
+        raise typer.Exit(1)
+
+
+@hooks_app.command(
+    "remove",
+    epilog="""
+\b
+Examples:
+  ait statusline hooks remove on-theme-change
+"""
+)
+def hooks_remove(
+    name: str = typer.Argument(..., help="Hook name to remove")
+):
+    """Remove an installed hook."""
+    if not Confirm.ask(f"Remove hook '{name}'?", default=False):
+        console.print("[yellow]Cancelled[/]")
+        return
+
+    success, message = StatusLineHooks.uninstall_template(name)
+    if success:
+        console.print(f"[green]✓[/] {message}")
+    else:
+        console.print(f"[red]✗[/] {message}")
+        raise typer.Exit(1)
+
+
+@hooks_app.command(
+    "enable",
+    epilog="""
+\b
+Examples:
+  ait statusline hooks enable on-error
+"""
+)
+def hooks_enable(
+    name: str = typer.Argument(..., help="Hook name to enable")
+):
+    """Enable a hook."""
+    success, message = StatusLineHooks.enable_hook(name)
+    if success:
+        console.print(f"[green]✓[/] {message}")
+    else:
+        console.print(f"[red]✗[/] {message}")
+        raise typer.Exit(1)
+
+
+@hooks_app.command(
+    "disable",
+    epilog="""
+\b
+Examples:
+  ait statusline hooks disable on-error
+"""
+)
+def hooks_disable(
+    name: str = typer.Argument(..., help="Hook name to disable")
+):
+    """Disable a hook."""
+    success, message = StatusLineHooks.disable_hook(name)
+    if success:
+        console.print(f"[green]✓[/] {message}")
+    else:
+        console.print(f"[red]✗[/] {message}")
+        raise typer.Exit(1)
+
+
+# =============================================================================
+# Gateway Commands (Setup & Customize - v0.7.0)
+# =============================================================================
+
+
+@app.command(
+    "setup",
+    epilog="""
+\b
+Examples:
+  ait statusline setup        # Interactive gateway menu
+
+The setup command is the recommended entry point for new users.
+It guides you through configuration with clear options.
+"""
+)
+def statusline_setup():
+    """Quick gateway to statusLine customization.
+
+    Single command for discovering and applying all statusLine customizations:
+    - Visual customization (display options like git, time, session)
+    - Theme selection
+    - Spacing adjustment
+    - Preset application
+    - View all settings
+    - Advanced editing
+
+    This is the recommended way for new users to configure statusLine.
+    """
+    from rich.panel import Panel
+    from rich.align import Align
+
+    console.print()
+    console.print(Panel.fit(
+        "[bold]StatusLine Configuration[/]",
+        border_style="cyan"
+    ))
+    console.print()
+
+    options = [
+        ("Customize display options", "git, time, session, lines changed, etc."),
+        ("Change color theme", "select from available themes"),
+        ("Adjust spacing", "minimal, standard, spacious"),
+        ("Apply a preset", "pre-configured profiles"),
+        ("View all settings", "see current configuration"),
+        ("Edit raw config", "advanced JSON editing"),
+    ]
+
+    for i, (title, desc) in enumerate(options, 1):
+        console.print(f"  [bold cyan]{i}.[/] {title}")
+        console.print(f"     [dim]{desc}[/]")
+    console.print()
+
+    choice = Prompt.ask(
+        "What would you like to do?",
+        choices=["1", "2", "3", "4", "5", "6"],
+        default="1"
+    )
+
+    # Route to appropriate command
+    routing = {
+        "1": lambda: config_wizard(),
+        "2": lambda: theme_set(None),
+        "3": lambda: config_spacing(None),
+        "4": lambda: config_preset(None),
+        "5": lambda: config_list(None, "table"),
+        "6": config_edit,
+    }
+
+    try:
+        routing[choice]()
+    except KeyboardInterrupt:
+        console.print("\n[yellow]Setup cancelled[/]")
+
+    # Offer to continue or exit
+    console.print()
+    if Confirm.ask("Configure another setting?", default=False):
+        statusline_setup()  # Recursive call for another round
+
+
+@app.command(
+    "customize",
+    epilog="""
+\b
+Examples:
+  ait statusline customize    # Open unified customization menu
+
+Unified menu combining display, theme, spacing, and advanced options.
+Everything in one place!
+"""
+)
+def statusline_customize():
+    """Unified customization menu combining all options.
+
+    Interactive menu showing:
+    - Display settings (git, time, session info, etc.)
+    - Theme selection
+    - Spacing adjustment
+    - Advanced options (reset, load preset, edit raw)
+
+    All options are in one place - no jumping between commands!
+    """
+    from rich.panel import Panel
+    from rich.align import Align
+
+    config = StatusLineConfig()
+
+    while True:
+        console.print()
+        console.print(Panel.fit(
+            "[bold]StatusLine Customization[/]",
+            border_style="cyan"
+        ))
+        console.print()
+
+        # Show current status
+        console.print("[bold]Current Configuration:[/]")
+        console.print(f"  Theme: [yellow]{config.get('theme.name')}[/]")
+        console.print(f"  Spacing: [yellow]{config.get('display.separator_spacing')}[/]")
+        console.print()
+
+        menu_options = [
+            ("Display Options", "Choose what to show (git, time, session, etc.)"),
+            ("Theme Selection", "Browse and select themes"),
+            ("Spacing", "Adjust spacing between left and right sections"),
+            ("Advanced", "Reset, load preset, or edit raw config"),
+            ("Done", "Exit customization menu"),
+        ]
+
+        for i, (title, desc) in enumerate(menu_options, 1):
+            console.print(f"  [bold cyan]{i}.[/] {title}")
+            console.print(f"     [dim]{desc}[/]")
+        console.print()
+
+        choice = Prompt.ask(
+            "Choose option",
+            choices=["1", "2", "3", "4", "5"],
+            default="5"
+        )
+
+        if choice == "1":
+            # Display options - show settings from display category
+            menu = InteractiveConfigMenu(config)
+            menu.run(category="display")
+        elif choice == "2":
+            # Theme selection
+            console.print()
+            console.print("[bold]Available Themes:[/]")
+            try:
+                themes = config.get_available_themes()
+                for theme in themes:
+                    current = " [green]✓[/]" if theme == config.get('theme.name') else ""
+                    console.print(f"  • {theme}{current}")
+                console.print()
+                new_theme = Prompt.ask("Select theme", choices=themes)
+                config.set('theme.name', new_theme)
+                console.print(f"[green]✓[/] Theme changed to [bold]{new_theme}[/]")
+            except Exception as e:
+                console.print(f"[red]Error loading themes: {e}[/]")
+        elif choice == "3":
+            # Spacing options
+            spacing_options = ["minimal", "standard", "spacious"]
+            console.print()
+            console.print("[bold]Spacing Presets:[/]")
+            console.print("  • minimal - tight spacing (1 space)")
+            console.print("  • standard - normal spacing (2 spaces)")
+            console.print("  • spacious - relaxed spacing (3 spaces)")
+            console.print()
+            spacing = Prompt.ask("Choose spacing", choices=spacing_options)
+            config.set('display.separator_spacing', spacing)
+            console.print(f"[green]✓[/] Spacing set to [bold]{spacing}[/]")
+        elif choice == "4":
+            # Advanced menu
+            console.print()
+            console.print("[bold]Advanced Options:[/]")
+            console.print("  1. Edit raw config file")
+            console.print("  2. Reset to defaults")
+            console.print("  3. Load preset")
+            console.print("  4. Cancel")
+            console.print()
+            adv_choice = Prompt.ask("Choose", choices=["1", "2", "3", "4"], default="4")
+            if adv_choice == "1":
+                config_edit()
+            elif adv_choice == "2":
+                if Confirm.ask("Reset all settings to defaults?", default=False):
+                    config.reset()
+                    console.print("[green]✓[/] Reset to defaults")
+            elif adv_choice == "3":
+                presets = ["minimal", "default", "verbose"]
+                preset = Prompt.ask("Choose preset", choices=presets)
+                config.load_preset(preset)
+                console.print(f"[green]✓[/] Preset '{preset}' applied")
+        elif choice == "5":
+            console.print("[green]✓[/] Done!")
+            break
 
 
 # =============================================================================
