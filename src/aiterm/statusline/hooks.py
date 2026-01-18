@@ -225,8 +225,8 @@ fi
             template: Hook template
             enable: Whether to enable
         """
-        # Create hook index in .claude directory
-        index_file = Path.home() / ".claude" / "hooks" / "index.json"
+        # Create hook index in HOOKS_DIR
+        index_file = cls.HOOKS_DIR / "index.json"
 
         index = {}
         if index_file.exists():
@@ -242,6 +242,8 @@ fi
             "description": template.get("description"),
         }
 
+        # Ensure parent directory exists
+        index_file.parent.mkdir(parents=True, exist_ok=True)
         index_file.write_text(json.dumps(index, indent=2), encoding="utf-8")
 
     @classmethod
@@ -283,7 +285,7 @@ fi
         Returns:
             List of installed hook info dicts
         """
-        index_file = Path.home() / ".claude" / "hooks" / "index.json"
+        index_file = cls.HOOKS_DIR / "index.json"
 
         if not index_file.exists():
             return []
@@ -293,7 +295,6 @@ fi
             return [
                 {"name": name, **info}
                 for name, info in index.items()
-                if name.startswith("statusline-")
             ]
         except json.JSONDecodeError:
             return []
@@ -308,7 +309,7 @@ fi
         Returns:
             Tuple of (success, message)
         """
-        index_file = Path.home() / ".claude" / "hooks" / "index.json"
+        index_file = cls.HOOKS_DIR / "index.json"
 
         if not index_file.exists():
             return False, "No hooks installed"
@@ -334,7 +335,7 @@ fi
         Returns:
             Tuple of (success, message)
         """
-        index_file = Path.home() / ".claude" / "hooks" / "index.json"
+        index_file = cls.HOOKS_DIR / "index.json"
 
         if not index_file.exists():
             return False, "No hooks installed"
