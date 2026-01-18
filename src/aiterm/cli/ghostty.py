@@ -400,6 +400,12 @@ def profile_show(
         table.add_row("Padding", f"x={profile.window_padding_x}, y={profile.window_padding_y}")
     if profile.cursor_style:
         table.add_row("Cursor", profile.cursor_style)
+    if profile.macos_titlebar_style:
+        table.add_row("Titlebar Style", profile.macos_titlebar_style)
+    if profile.background_image:
+        table.add_row("Background Image", profile.background_image)
+    if profile.mouse_scroll_multiplier > 0:
+        table.add_row("Scroll Multiplier", str(profile.mouse_scroll_multiplier))
 
     console.print(table)
 
