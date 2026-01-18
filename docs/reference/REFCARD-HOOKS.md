@@ -42,6 +42,12 @@
 │ session-logger     Log session activity                     │
 │ git-guard          Prevent dangerous git commands           │
 │                                                             │
+│ STATUSLINE TEMPLATES (v2.1+)                                │
+│ ─────────────────────────────                               │
+│ on-theme-change    Auto-update colors on theme change       │
+│ on-remote-session  Show indicator during /teleport          │
+│ on-error          Alert on rendering failures               │
+│                                                             │
 ├─────────────────────────────────────────────────────────────┤
 │ HOOK LOCATIONS                                              │
 │ ──────────────                                              │
