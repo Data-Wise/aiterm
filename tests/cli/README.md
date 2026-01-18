@@ -1,7 +1,7 @@
 # CLI Test Suite for aiterm
 
 Generated: 2025-12-26
-Updated: 2025-12-29
+Updated: 2026-01-17
 
 ## Overview
 
@@ -115,7 +115,23 @@ TERMINAL=ghostty ./scripts/run-interactive-tests.sh right
 ### Help Accessibility (8 tests)
 - Help for all major subcommand groups (including terminals)
 
-**Total: 54 test cases (automated) / 42 test cases (interactive)**
+### StatusLine Commands (Phase 1 - v0.7.0) ⭐ NEW
+- `statusline setup` - Gateway command with 6-option menu
+- `statusline customize` - Unified interactive menu
+- `statusline hooks list` - Available hook templates
+- `statusline hooks add` - Install hook template
+- `statusline hooks remove` - Uninstall hook
+- `statusline hooks enable` - Enable installed hook
+- `statusline hooks disable` - Disable hook
+
+### Release Commands (v0.5.0)
+- `release check` - Pre-release validation
+- `release status` - Release state
+- `release pypi` - PyPI publish
+- `release homebrew` - Homebrew formula update
+- `release full` - Complete workflow
+
+**Total: 68 test cases (automated) / 56 test cases (interactive)**
 
 ## Options
 

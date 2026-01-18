@@ -113,7 +113,9 @@
       "Bash(gh release create:*)",
       "Bash(shasum:*)",
       "Bash(while read spec)",
-      "Bash(do if grep -q \"Status: [Dd]raft\" \"$spec\")"
+      "Bash(do if grep -q \"Status: [Dd]raft\" \"$spec\")",
+      "Bash(ait --help:*)",
+      "Bash(ait statusline:*)"
     ]
   }
 }
