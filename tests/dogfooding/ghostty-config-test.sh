@@ -45,22 +45,38 @@ run_test() {
     local expected_pattern="$3"
     
     TESTS_RUN=$((TESTS_RUN + 1))
+    echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
     echo -e "${YELLOW}[TEST $TESTS_RUN]${NC} $test_name"
+    echo ""
     
     if output=$(eval "$test_cmd" 2>&1); then
+        # Show expected vs actual
+        echo -e "${BLUE}Expected Pattern:${NC}"
+        echo -e "  ${GREEN}✓${NC} $expected_pattern"
+        echo ""
+        echo -e "${BLUE}Actual Output:${NC}"
+        echo "$output" | sed 's/^/  /'
+        echo ""
+        
         if echo "$output" | grep -q "$expected_pattern"; then
-            echo -e "${GREEN}  ✓ PASS${NC}"
+            echo -e "${GREEN}✓ PASS${NC} - Pattern found in output"
             TESTS_PASSED=$((TESTS_PASSED + 1))
             return 0
         else
-            echo -e "${RED}  ✗ FAIL${NC} - Expected pattern not found: $expected_pattern"
-            echo "  Output: $output"
+            echo -e "${RED}✗ FAIL${NC} - Expected pattern NOT found in output"
             TESTS_FAILED=$((TESTS_FAILED + 1))
             return 1
         fi
     else
-        echo -e "${RED}  ✗ FAIL${NC} - Command failed"
-        echo "  Output: $output"
+        echo -e "${RED}Command failed with exit code $?${NC}"
+        echo ""
+        echo -e "${BLUE}Expected Pattern:${NC}"
+        echo -e "  $expected_pattern"
+        echo ""
+        echo -e "${BLUE}Actual Output:${NC}"
+        echo "$output" | sed 's/^/  /'
+        echo ""
+        echo -e "${RED}✗ FAIL${NC} - Command execution failed"
         TESTS_FAILED=$((TESTS_FAILED + 1))
         return 1
     fi
