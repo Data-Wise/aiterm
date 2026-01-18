@@ -1,10 +1,53 @@
 project: aiterm
-status: active
+status: WIP
 priority: P1
-progress: 92
-version: 0.6.3
-updated: 2025-12-31
-next: Craft plugin website enhancements (Phase 1) → Apply to aiterm docs
+progress: 94
+version: 0.7.3-dev
+updated: 2026-01-17
+next: Implement statusline command UX improvements (Phase 1)
+branch: feat/statusline-command-ux-improvements
+
+## Current Work: StatusLine Command UX Improvements (v0.7.3)
+
+**Branch:** feat/statusline-command-ux-improvements
+**Status:** Documentation + Brainstorming Phase
+**Updated:** 2026-01-17
+
+### Phase 1: Gateway Pattern + Unified Menu (5-6 hours)
+
+**Problem:** Too many ways to configure statusline (7+ commands)
+**Solution:** Single entry point + unified interactive menu
+
+**Deliverables:**
+- [ ] `ait statusline setup` - Gateway command routing to appropriate tool
+- [ ] `ait statusline customize` - Unified interactive menu (display/theme/spacing)
+- [ ] Hook templates - Pre-built hooks for v2.1 integration
+- [ ] 25+ new tests
+- [ ] Updated documentation
+
+**Files to Modify:**
+- src/aiterm/cli/statusline.py (add setup, customize commands)
+- src/aiterm/statusline/hooks.py (NEW: hook templates)
+- src/aiterm/statusline/interactive.py (enhance menu)
+- src/aiterm/statusline/config.py (add hints/descriptions)
+- tests/test_statusline_*.py (25+ new tests)
+- docs/guide/statusline.md (update with new flow)
+
+**Quick Wins Completed:**
+- ✅ REVIEW-STATUSLINE-COMMAND.md (comprehensive review)
+- ✅ BRAINSTORM-statusline-v2.1-integration-2026-01-17.md (Claude Code v2.1 features)
+- ✅ BRAINSTORM-statusline-command-improvements-2026-01-17.md (gateway pattern + hook templates)
+
+### Phase 2: Install/Wizard Enhancements (2-3 hours)
+- [ ] Remote session auto-detection (v2.1 `/teleport`)
+- [ ] Wizard workspace context detection
+- [ ] Hook validation in install
+
+### Phase 3: Advanced Features (Future)
+- [ ] Settings profiles (teaching/deep-work/remote/pair)
+- [ ] Command aliases for power users
+
+---
 
 ## Planned: Website Documentation Enhancements (via Craft Plugin)
 
