@@ -26,9 +26,12 @@ jobs:
     steps:
       - name: Get version and calculate SHA
         id: release
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_VERSION: ${{ github.event.inputs.version }}
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            VERSION="${{ github.event.inputs.version }}"
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            VERSION="$INPUT_VERSION"
           else
             # Extract version from tag (remove 'v' prefix if present)
             VERSION="${GITHUB_REF#refs/tags/}"
@@ -40,7 +43,13 @@ jobs:
           # Download tarball and calculate SHA256
           TARBALL_URL="https://github.com/Data-Wise/aiterm/archive/v${VERSION}.tar.gz"
           echo "📦 Downloading: $TARBALL_URL"
-          SHA256=$(curl -sL "$TARBALL_URL" | shasum -a 256 | cut -d' ' -f1)
+          SHA256=$(curl -sL --retry 3 --retry-delay 2 "$TARBALL_URL" | sha256sum | cut -d' ' -f1)
+
+          # Validate SHA256 is not empty (download failed)
+          if [ -z "$SHA256" ] || [ ${#SHA256} -ne 64 ]; then
+            echo "::error::SHA256 calculation failed. Got: '$SHA256'"
+            exit 1
+          fi
 
           echo "sha256=$SHA256" >> $GITHUB_OUTPUT
           echo ""
