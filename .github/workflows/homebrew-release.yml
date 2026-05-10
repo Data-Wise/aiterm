@@ -9,11 +9,6 @@ on:
         description: 'Version to release (e.g., 0.6.0)'
         required: true
         type: string
-      auto_merge:
-        description: 'Auto-merge the formula PR'
-        required: false
-        type: boolean
-        default: true
 
 jobs:
   prepare:
@@ -26,9 +21,12 @@ jobs:
     steps:
       - name: Get version and calculate SHA
         id: release
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_VERSION: ${{ github.event.inputs.version }}
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            VERSION="${{ github.event.inputs.version }}"
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            VERSION="$INPUT_VERSION"
           else
             # Extract version from tag (remove 'v' prefix if present)
             VERSION="${GITHUB_REF#refs/tags/}"
@@ -38,26 +36,82 @@ jobs:
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
           # Download tarball and calculate SHA256
-          TARBALL_URL="https://github.com/Data-Wise/aiterm/archive/v${VERSION}.tar.gz"
-          echo "📦 Downloading: $TARBALL_URL"
-          SHA256=$(curl -sL "$TARBALL_URL" | shasum -a 256 | cut -d' ' -f1)
+          TARBALL_URL="https://github.com/Data-Wise/aiterm/archive/refs/tags/v${VERSION}.tar.gz"
+          echo "Downloading: $TARBALL_URL"
+          SHA256=$(curl -sL --retry 3 --retry-delay 2 "$TARBALL_URL" | sha256sum | cut -d' ' -f1)
+
+          # Validate SHA256 is not empty (download failed)
+          if [ -z "$SHA256" ] || [ ${#SHA256} -ne 64 ]; then
+            echo "::error::SHA256 calculation failed. Got: '$SHA256'"
+            exit 1
+          fi
 
           echo "sha256=$SHA256" >> $GITHUB_OUTPUT
-          echo ""
-          echo "✅ Version: $VERSION"
-          echo "✅ SHA256: $SHA256"
+          echo "Version: $VERSION"
+          echo "SHA256: $SHA256"
 
   update-homebrew:
     name: Update Homebrew Formula
     needs: prepare
-    uses: Data-Wise/homebrew-tap/.github/workflows/update-formula.yml@main
-    with:
-      formula_name: aiterm
-      version: ${{ needs.prepare.outputs.version }}
-      sha256: ${{ needs.prepare.outputs.sha256 }}
-      source_type: github
-      auto_merge: ${{ github.event.inputs.auto_merge == 'true' || github.event_name == 'release' }}
-    secrets:
-      tap_token: ${{ secrets.HOMEBREW_TAP_GITHUB_TOKEN }}
-      app_id: ${{ secrets.APP_ID }}
-      app_private_key: ${{ secrets.APP_PRIVATE_KEY }}
+    runs-on: ubuntu-latest
+    # Inlines the formula update against the homebrew-tap manifest+regen pattern.
+    # Replaces a previous workflow_call which depended on HOMEBREW_TAP_GITHUB_TOKEN
+    # — an expiring PAT. Now uses GitHub App auth (APP_ID + APP_PRIVATE_KEY) which
+    # mints short-lived tokens per run. See Data-Wise/craft#129 for context.
+    steps:
+      - name: Mint GitHub App token (for cross-repo push to homebrew-tap)
+        id: app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          owner: Data-Wise
+          repositories: homebrew-tap
+
+      - name: Checkout homebrew-tap
+        uses: actions/checkout@v4
+        with:
+          repository: Data-Wise/homebrew-tap
+          token: ${{ steps.app-token.outputs.token }}
+          path: homebrew-tap
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Update manifest and regenerate aiterm formula
+        env:
+          VERSION: ${{ needs.prepare.outputs.version }}
+          SHA256: ${{ needs.prepare.outputs.sha256 }}
+        working-directory: homebrew-tap
+        run: |
+          python3 - <<'PY'
+          import json, os
+          m = json.load(open('generator/manifest.json'))
+          formulas = m.get('formulas', m)
+          aiterm = formulas['aiterm']
+          aiterm['version'] = os.environ['VERSION']
+          aiterm['sha256'] = os.environ['SHA256']
+          with open('generator/manifest.json', 'w') as f:
+              json.dump(m, f, indent=2)
+              f.write('\n')
+          print(f"manifest updated: aiterm -> v{aiterm['version']}")
+          PY
+          python3 generator/generate.py aiterm
+          ruby -c Formula/aiterm.rb
+
+      - name: Commit and push to tap
+        env:
+          VERSION: ${{ needs.prepare.outputs.version }}
+        working-directory: homebrew-tap
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Formula/aiterm.rb generator/manifest.json
+          if git diff --staged --quiet; then
+            echo "No changes to commit (formula already at v${VERSION})"
+            exit 0
+          fi
+          git commit -m "aiterm: update to v${VERSION}"
+          git push origin main
