@@ -112,7 +112,7 @@ aiterm/
 ├── templates/                   # User-facing templates
 │   ├── profiles/                # Terminal profiles
 │   │   ├── iterm2/
-│   │   │   ├── r-dev.json
+│   │   │   ├── dev.json
 │   │   │   ├── python-dev.json
 │   │   │   └── ...
 │   │   └── themes/
@@ -502,8 +502,8 @@ terminal:
   preferred: iterm2
 
 profiles:
-  r-dev:
-    name: "R-Dev"
+  dev:
+    name: "Dev"
     colors: "cool-blues"
   python-dev:
     name: "Python-Dev"

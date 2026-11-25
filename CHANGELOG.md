@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [Unreleased]
+
+### 🛠 Changes
+
+- **Agent rename:** Updated `r-dev` agent/profile references to `dev` across profiles, docs, and tests to reflect broader scope (R + devops + coding).
+- **Config:** `context-switcher-profiles.json` GUID renamed to `dev-context-switcher-001`, docs updated to recommend `ait claude approvals add dev`.
+
+---
+
 ## [0.7.2] - 2026-01-17 - Ghostty 1.2.x Integration & StatusBar Fix 🎨
 
 **Tag:** v0.7.2

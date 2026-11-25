@@ -46,7 +46,7 @@ ait claude approvals add safe-reads
 ait claude approvals add git-ops
 
 # Add your primary dev tools
-ait claude approvals add python-dev  # or node-dev, r-dev
+ait claude approvals add python-dev  # or node-dev, dev
 ```
 
 ### 4. Verify
@@ -204,9 +204,9 @@ ait claude approvals add node-dev
 
 ---
 
-### r-dev (5 permissions)
+### dev (5 permissions)
 
-**Purpose:** R package development and Quarto
+**Purpose:** General development: R packages, CI/CD, scripting, devops, and coding
 
 **Permissions:**
 ```bash
@@ -221,10 +221,12 @@ Bash(which:*)                # Check R installation
 - R package development
 - Statistical analysis
 - Quarto document rendering
+- CI/CD and devops scripting
+- General coding
 
 **Add:**
 ```bash
-ait claude approvals add r-dev
+ait claude approvals add dev
 ```
 
 ---
@@ -307,7 +309,7 @@ ait claude approvals add github-cli
 ```bash
 ait claude approvals add safe-reads
 ait claude approvals add git-ops
-ait claude approvals add r-dev
+ait claude approvals add dev
 ait claude approvals add github-cli
 ```
 

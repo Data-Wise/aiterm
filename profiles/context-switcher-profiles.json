@@ -2,7 +2,7 @@
   "Profiles" : [
     {
       "Name" : "R-Dev",
-      "Guid" : "r-dev-context-switcher-001",
+      "Guid" : "dev-context-switcher-001",
       "Dynamic Profile Parent Name" : "Default",
       "Rewritable" : true,
       "Use Separate Colors for Light and Dark Mode" : false,

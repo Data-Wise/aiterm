@@ -27,7 +27,7 @@
 
 | Test | Status | Details |
 |------|--------|--------|
-| r-dev Agent | ✅ Pass | Model: anthropic/claude-sonnet-4-5, Tools: 6, Desc: R package development speciali... |
+| dev Agent | ✅ Pass | Model: anthropic/claude-sonnet-4-5, Tools: 6, Desc: General development: R packages, CI/CD, scripting, releases, Homebrew, devops, and coding |
 | quick Agent | ✅ Pass | Model: anthropic/claude-haiku-4-5 (fast ✓), Tools: 3 |
 | Agent Tools | ✅ Pass | All agent tools are valid |
 
