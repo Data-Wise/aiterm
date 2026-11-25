@@ -648,3 +648,14 @@ class TestReleaseFullCommand:
         result = runner.invoke(app, ["full", "1.0.0", "--skip-tests"])
         assert result.exit_code == 1
         assert "Uncommitted changes" in result.output
+
+
+def test_repo_version_sources_agree():
+    """__init__.py literal must match pyproject.toml, or `ait release check` fails."""
+    import aiterm
+
+    root = Path(__file__).resolve().parents[1]
+    pyproject_ver = get_version_from_pyproject(root)
+    assert pyproject_ver is not None
+    assert get_version_from_init(root) == pyproject_ver
+    assert aiterm.__version__ == pyproject_ver

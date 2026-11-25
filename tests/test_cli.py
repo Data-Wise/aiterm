@@ -299,3 +299,13 @@ def test_info_short_json_flag():
     assert result.exit_code == 0
     data = json.loads(result.output)
     assert "aiterm" in data
+
+
+def test_info_json_survives_long_values(monkeypatch):
+    """Long values and [brackets] must not be wrapped or parsed as Rich markup."""
+    long_path = "/very/long/path/[with-brackets]/" + "x" * 200 + "/python"
+    monkeypatch.setattr(sys, "executable", long_path)
+    result = runner.invoke(app, ["info", "--json"])
+    assert result.exit_code == 0
+    data = json.loads(result.output)
+    assert data["python"]["executable"] == long_path

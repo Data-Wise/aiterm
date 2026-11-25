@@ -58,7 +58,8 @@ def config_show(
     if raw:
         import json
 
-        console.print(json.dumps(config.to_dict(), indent=2))
+        # typer.echo, not console.print: Rich would wrap long values and parse [markup].
+        typer.echo(json.dumps(config.to_dict(), indent=2))
         return
 
     # Build config table

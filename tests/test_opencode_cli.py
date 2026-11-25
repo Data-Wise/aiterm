@@ -76,6 +76,23 @@ class TestOpenCodeConfig:
         output_data = json.loads(result.output)
         assert output_data["model"] == "anthropic/claude-sonnet-4-5"
 
+    def test_config_raw_output_survives_long_values(
+        self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """--raw must not wrap long values or parse [brackets] as Rich markup."""
+        long_model = "anthropic/[custom]-" + "x" * 200
+        config_path = tmp_path / "config.json"
+        config_path.write_text(
+            json.dumps({"$schema": "https://opencode.ai/config.json", "model": long_model})
+        )
+        monkeypatch.setattr(
+            "aiterm.opencode.config.get_config_path",
+            lambda: config_path,
+        )
+        result = runner.invoke(app, ["opencode", "config", "--raw"])
+        assert result.exit_code == 0
+        assert json.loads(result.output)["model"] == long_model
+
 
 class TestOpenCodeValidate:
     """Tests for opencode validate command."""

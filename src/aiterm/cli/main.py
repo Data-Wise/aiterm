@@ -230,7 +230,9 @@ def info(
         info_data["tools"][tool] = shutil.which(tool) is not None
 
     if json_output:
-        console.print(json_module.dumps(info_data, indent=2))
+        # typer.echo, not console.print: Rich wraps at terminal width and parses
+        # [markup], which corrupts JSON when a value (e.g. a path) is long.
+        typer.echo(json_module.dumps(info_data, indent=2))
         return
 
     # Rich formatted output
